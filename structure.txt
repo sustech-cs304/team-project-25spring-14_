@@ -1,0 +1,64 @@
+src/main/java/com/example/album/
+├── config/              # 配置类
+│   ├── MyBatisPlusConfig.java
+│   ├── WebMvcConfig.java
+│   └── GlobalExceptionHandler.java
+├── entity/              # 实体类
+│   ├── User.java
+│   ├── Role.java
+│   ├── UserRole.java
+│   ├── Album.java
+│   ├── Photo.java
+│   ├── Tag.java
+│   ├── PhotoTag.java
+│   ├── PhotoAi.java
+│   ├── AiTask.java
+│   ├── AdminLog.java
+│   └── Report.java
+├── mapper/              # MyBatis Mapper接口
+│   ├── UserMapper.java
+│   ├── RoleMapper.java
+│   ├── UserRoleMapper.java
+│   ├── AlbumMapper.java
+│   ├── PhotoMapper.java
+│   ├── TagMapper.java
+│   └── ...
+├── service/             # 服务接口
+│   ├── UserService.java
+│   ├── AlbumService.java
+│   ├── PhotoService.java
+│   ├── TagService.java
+│   └── ...
+│   └── impl/            # 服务实现
+│       ├── UserServiceImpl.java
+│       ├── AlbumServiceImpl.java
+│       └── ...
+├── controller/          # REST控制器
+│   ├── UserController.java
+│   ├── AlbumController.java
+│   ├── PhotoController.java
+│   └── ...
+├── dto/                 # 数据传输对象
+│   ├── UserDTO.java
+│   ├── AlbumDTO.java
+│   └── ...
+├── vo/                  # 视图对象
+│   ├── UserVO.java
+│   ├── AlbumVO.java
+│   └── ...
+├── common/              # 通用工具
+│   ├── constant/        # 常量
+│   │   ├── StatusConstants.java
+│   │   └── ...
+│   ├── enums/           # 枚举
+│   │   ├── UserStatusEnum.java
+│   │   ├── PrivacyTypeEnum.java
+│   │   └── ...
+│   ├── utils/           # 工具类
+│   │   ├── FileUtils.java
+│   │   ├── ResponseResult.java
+│   │   └── ...
+│   └── exception/       # 异常处理
+│       ├── BusinessException.java
+│       └── ...
+└── AlbumApplication.java

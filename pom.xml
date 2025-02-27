@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -13,19 +13,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>album</name>
 	<description>software engineering project</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
 	<properties>
 		<java.version>23</java.version>
 	</properties>
@@ -34,7 +21,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -46,42 +32,49 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- MyBatis (与 MyBatis-Plus 配套使用) -->
+		<!-- MyBatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.5.10</version> <!-- 适配 Spring Boot 3.x -->
+			<artifactId>mybatis-spring</artifactId>
+			<version>3.0.3</version>
 		</dependency>
 		<!-- MyBatis-Plus Starter -->
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
-			<version>3.5.10.1</version> <!-- 兼容 Spring Boot 3.x -->
-		</dependency>
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus-jsqlparser</artifactId>
-			<version>3.5.10.1</version>
+			<version>3.5.5</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.mybatis</groupId>
+					<artifactId>mybatis-spring</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- Spring Boot Starter Logging (日志功能，Spring Boot 默认的日志组件) -->
+		<!-- Spring Boot Starter Logging -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-logging</artifactId>
 		</dependency>
-		<!-- Lombok (简化 Getter/Setter、构造方法等代码) -->
+		<!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.24</version> <!-- 使用适合版本 -->
+			<version>1.18.30</version>
 			<scope>provided</scope>
 		</dependency>
-	</dependencies>
+<!--		解决复合主键问题-->
+<!--		<dependency>-->
+<!--			<groupId>com.github.jeffreyning</groupId>-->
+<!--			<artifactId>mybatisplus-plus</artifactId>-->
+<!--			<version>1.7.5-RELEASE</version>-->
+<!--		</dependency>-->
 
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
@@ -90,5 +83,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

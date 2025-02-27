@@ -26,12 +26,14 @@ CREATE TABLE tb_role (
   permissions TEXT[] -- 使用数组存储权限，比JSONB更简洁
 );
 
+-- 修改 tb_user_role 表，从复合主键改为单一主键
 CREATE TABLE tb_user_role (
+  ur_id SERIAL PRIMARY KEY, -- 添加自增主键
   user_id INTEGER NOT NULL,
   role_id INTEGER NOT NULL,
-  PRIMARY KEY (user_id, role_id),
   FOREIGN KEY (user_id) REFERENCES tb_user(user_id) ON DELETE CASCADE,
-  FOREIGN KEY (role_id) REFERENCES tb_role(role_id) ON DELETE CASCADE
+  FOREIGN KEY (role_id) REFERENCES tb_role(role_id) ON DELETE CASCADE,
+  UNIQUE (user_id, role_id) -- 保持原有的唯一性约束
 );
 
 
@@ -73,12 +75,14 @@ CREATE TABLE tb_tag (
   tag_type VARCHAR(20) DEFAULT 'user' -- user, ai, system
 );
 
+-- 修改 tb_photo_tag 表，从复合主键改为单一主键
 CREATE TABLE tb_photo_tag (
+  pt_id SERIAL PRIMARY KEY, -- 添加自增主键
   photo_id INTEGER NOT NULL,
   tag_id INTEGER NOT NULL,
-  PRIMARY KEY (photo_id, tag_id),
   FOREIGN KEY (photo_id) REFERENCES tb_photo(photo_id) ON DELETE CASCADE,
-  FOREIGN KEY (tag_id) REFERENCES tb_tag(tag_id) ON DELETE CASCADE
+  FOREIGN KEY (tag_id) REFERENCES tb_tag(tag_id) ON DELETE CASCADE,
+  UNIQUE (photo_id, tag_id) -- 保持原有的唯一性约束
 );
 
 CREATE TABLE tb_photo_ai (
@@ -129,5 +133,3 @@ CREATE TABLE tb_report (
 );
 
 CREATE INDEX idx_report_status ON tb_report(status);
-
-

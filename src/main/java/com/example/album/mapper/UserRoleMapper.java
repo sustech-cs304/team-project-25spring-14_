@@ -17,7 +17,10 @@ public interface UserRoleMapper extends BaseMapper<UserRole> {
     @Delete("DELETE FROM tb_user_role WHERE user_id = #{userId} AND role_id = #{roleId}")
     int deleteByUserIdAndRoleId(@Param("userId") Integer userId, @Param("roleId") Integer roleId);
 
-    // insert
+    // insert - 修改为返回自增主键
     @Insert("INSERT INTO tb_user_role(user_id, role_id) VALUES(#{userId}, #{roleId})")
+    @Options(useGeneratedKeys = true, keyProperty = "urId", keyColumn = "ur_id")
     int insertUserRole(@Param("userId") Integer userId, @Param("roleId") Integer roleId);
 }
+
+// PhotoTagMapper.java

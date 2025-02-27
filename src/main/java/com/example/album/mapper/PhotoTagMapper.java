@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.album.entity.PhotoTag;
 import org.apache.ibatis.annotations.*;
 
-import java.util.List;
+        import java.util.List;
 
 @Mapper
 public interface PhotoTagMapper extends BaseMapper<PhotoTag> {
@@ -13,7 +13,7 @@ public interface PhotoTagMapper extends BaseMapper<PhotoTag> {
     @Select("SELECT photo_id FROM tb_photo_tag WHERE tag_id = #{tagId}")
     List<Integer> selectPhotoIdsByTagId(@Param("tagId") Integer tagId);
 
-    // DELETE tagid $ phtoid's relationship
+    // DELETE tagid & photoid's relationship
     @Delete("DELETE FROM tb_photo_tag WHERE photo_id = #{photoId} AND tag_id = #{tagId}")
     int deleteByPhotoIdAndTagId(@Param("photoId") Integer photoId, @Param("tagId") Integer tagId);
 
@@ -21,7 +21,8 @@ public interface PhotoTagMapper extends BaseMapper<PhotoTag> {
     @Delete("DELETE FROM tb_photo_tag WHERE photo_id = #{photoId}")
     int deleteByPhotoId(@Param("photoId") Integer photoId);
 
-    // INSERT photo_tag
+    // INSERT photo_tag - 修改为返回自增主键
     @Insert("INSERT INTO tb_photo_tag(photo_id, tag_id) VALUES(#{photoId}, #{tagId})")
+    @Options(useGeneratedKeys = true, keyProperty = "ptId", keyColumn = "pt_id")
     int insertPhotoTag(@Param("photoId") Integer photoId, @Param("tagId") Integer tagId);
 }

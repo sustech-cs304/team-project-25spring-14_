@@ -539,3 +539,215 @@ Caused by: java.lang.NoSuchMethodError: com.baomidou.mybatisplus.core.injector.A
 2025-02-28 06:46:43 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 2.646 seconds (process running for 3.062)
 2025-02-28 06:50:29 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
 2025-02-28 06:50:29 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-02-28 06:52:35 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 29236 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-02-28 06:52:35 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-02-28 06:52:35 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-02-28 06:52:35 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-28 06:52:35 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-28 06:52:36 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-02-28 06:52:36 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-02-28 06:52:36 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-02-28 06:52:36 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-02-28 06:52:36 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1204 ms
+2025-02-28 06:52:37 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-02-28 06:52:37 [restartedMain] WARN  c.b.m.c.injector.DefaultSqlInjector - class com.example.album.entity.PhotoTag ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-02-28 06:52:37 [restartedMain] WARN  c.b.m.c.injector.DefaultSqlInjector - class com.example.album.entity.UserRole ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-02-28 06:52:37 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-02-28 06:52:37 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 2.733 seconds (process running for 3.189)
+2025-02-28 06:52:41 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-28 06:52:41 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-02-28 07:24:50 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 21880 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-02-28 07:24:50 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-02-28 07:24:50 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-02-28 07:24:50 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-28 07:24:50 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-28 07:24:51 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-02-28 07:24:51 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-02-28 07:24:51 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-02-28 07:24:51 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-02-28 07:24:51 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1291 ms
+2025-02-28 07:24:52 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.AdminLog not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.AdminLog not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.AdminLog not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.AiTask not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.AiTask not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.AiTask not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Album not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Album not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Album not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.PhotoAi not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.PhotoAi not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.PhotoAi not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Photo not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Photo not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Photo not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] WARN  c.g.j.m.base.MppSqlInjector - class com.example.album.entity.PhotoTag ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Report not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Report not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Report not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Role not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Role not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Role not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Tag not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Tag not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Tag not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.User not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.User not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.User not contain MppMultiId anno
+2025-02-28 07:24:52 [restartedMain] WARN  c.g.j.m.base.MppSqlInjector - class com.example.album.entity.UserRole ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-02-28 07:24:52 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-02-28 07:24:52 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 3.003 seconds (process running for 3.495)
+2025-02-28 07:26:47 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-28 07:26:47 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-02-28 07:26:56 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 9824 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-02-28 07:26:56 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-02-28 07:26:56 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-02-28 07:26:56 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-28 07:26:56 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-28 07:26:57 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-02-28 07:26:57 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-02-28 07:26:57 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-02-28 07:26:57 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-02-28 07:26:57 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1412 ms
+2025-02-28 07:26:58 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-02-28 07:26:58 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.AdminLog not contain MppMultiId anno
+2025-02-28 07:26:58 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.AdminLog not contain MppMultiId anno
+2025-02-28 07:26:58 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.AdminLog not contain MppMultiId anno
+2025-02-28 07:26:58 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.AiTask not contain MppMultiId anno
+2025-02-28 07:26:58 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.AiTask not contain MppMultiId anno
+2025-02-28 07:26:58 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.AiTask not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Album not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Album not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Album not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.PhotoAi not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.PhotoAi not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.PhotoAi not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Photo not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Photo not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Photo not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] WARN  c.g.j.m.base.MppSqlInjector - class com.example.album.entity.PhotoTag ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Report not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Report not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Report not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Role not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Role not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Role not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Tag not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Tag not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Tag not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.User not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.User not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.User not contain MppMultiId anno
+2025-02-28 07:26:59 [restartedMain] WARN  c.g.j.m.base.MppSqlInjector - class com.example.album.entity.UserRole ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-02-28 07:26:59 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-02-28 07:26:59 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 3.247 seconds (process running for 3.702)
+2025-02-28 07:29:54 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-28 07:29:54 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-02-28 07:32:32 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 32016 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-02-28 07:32:32 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-02-28 07:32:32 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-02-28 07:32:32 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-28 07:32:32 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-28 07:32:34 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-02-28 07:32:34 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-02-28 07:32:34 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-02-28 07:32:34 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-02-28 07:32:34 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1149 ms
+2025-02-28 07:32:34 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-02-28 07:32:34 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.AdminLog not contain MppMultiId anno
+2025-02-28 07:32:34 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.AdminLog not contain MppMultiId anno
+2025-02-28 07:32:34 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.AdminLog not contain MppMultiId anno
+2025-02-28 07:32:34 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.AiTask not contain MppMultiId anno
+2025-02-28 07:32:34 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.AiTask not contain MppMultiId anno
+2025-02-28 07:32:34 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.AiTask not contain MppMultiId anno
+2025-02-28 07:32:34 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Album not contain MppMultiId anno
+2025-02-28 07:32:34 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Album not contain MppMultiId anno
+2025-02-28 07:32:34 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Album not contain MppMultiId anno
+2025-02-28 07:32:34 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.PhotoAi not contain MppMultiId anno
+2025-02-28 07:32:34 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.PhotoAi not contain MppMultiId anno
+2025-02-28 07:32:34 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.PhotoAi not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Photo not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Photo not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Photo not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] WARN  c.g.j.m.base.MppSqlInjector - class com.example.album.entity.PhotoTag ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-02-28 07:32:35 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Report not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Report not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Report not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Role not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Role not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Role not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Tag not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Tag not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Tag not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.User not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.User not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.User not contain MppMultiId anno
+2025-02-28 07:32:35 [restartedMain] WARN  c.g.j.m.base.MppSqlInjector - class com.example.album.entity.UserRole ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-02-28 07:32:35 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-02-28 07:32:35 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 2.697 seconds (process running for 3.136)
+2025-02-28 07:35:10 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-28 07:35:10 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-02-28 07:55:46 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 28976 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-02-28 07:55:46 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-02-28 07:55:46 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-02-28 07:55:46 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-28 07:55:46 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-28 07:55:47 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-02-28 07:55:47 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-02-28 07:55:47 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-02-28 07:55:48 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-02-28 07:55:48 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1281 ms
+2025-02-28 07:55:48 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.AdminLog not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.AdminLog not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.AdminLog not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.AiTask not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.AiTask not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.AiTask not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Album not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Album not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Album not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.PhotoAi not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.PhotoAi not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.PhotoAi not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Photo not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Photo not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Photo not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.PhotoTag not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.PhotoTag not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.PhotoTag not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Report not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Report not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Report not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Role not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Role not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Role not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.Tag not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.Tag not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.Tag not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.User not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.User not contain MppMultiId anno
+2025-02-28 07:55:48 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.User not contain MppMultiId anno
+2025-02-28 07:55:49 [restartedMain] INFO  c.g.j.m.base.SelectByMultiIdMethod - entity com.example.album.entity.UserRole not contain MppMultiId anno
+2025-02-28 07:55:49 [restartedMain] INFO  c.g.j.m.base.UpdateByMultiIdMethod - entity com.example.album.entity.UserRole not contain MppMultiId anno
+2025-02-28 07:55:49 [restartedMain] INFO  c.g.j.m.base.DeleteByMultiIdMethod - entity com.example.album.entity.UserRole not contain MppMultiId anno
+2025-02-28 07:55:49 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-02-28 07:55:49 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 2.849 seconds (process running for 3.329)
+2025-02-28 07:55:58 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-28 07:55:58 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-02-28 07:56:03 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 10720 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-02-28 07:56:03 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-02-28 07:56:03 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-02-28 07:56:03 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-28 07:56:03 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-28 07:56:04 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-02-28 07:56:04 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-02-28 07:56:04 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-02-28 07:56:04 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-02-28 07:56:04 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1240 ms
+2025-02-28 07:56:05 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-02-28 07:56:06 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-02-28 07:56:06 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 2.789 seconds (process running for 3.181)
+2025-02-28 07:56:10 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-28 07:56:10 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete

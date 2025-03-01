@@ -31,7 +31,8 @@ def cut(img_path,region,save):  # 对图片进行裁剪
     (x1,y1),(x2,y2) = region
     cut_img = img[x1:y1, x2:y2]
     if save:
-        cv.imwrite(img_path,cv.cvtColor(img,cv.COLOR_RGB2BGR))
+        cv.imwrite(img_path,cv.cvtColor(cut_img,cv.COLOR_RGB2BGR))
+    return cut_img
     # plt.imshow(cut_img)
     # plt.axis('off')
     # plt.show()
@@ -50,7 +51,7 @@ def adjust_brightness(img_path,save,brightness=0,contrast=1.0):  # 调整亮度�
     # plt.axis('off')
     # plt.show()
 
-def remove_object(img_path,mask_region,save):  # 移除物体，但是移除之后
+def remove_object(img_path,mask_region,save):  # 移除物体，移除之后用周围的像素点进行补全（待修正）
     img = cv.imread(img_path)
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
     mask = np.zeros(img.shape[:2], dtype="uint8")
@@ -59,6 +60,7 @@ def remove_object(img_path,mask_region,save):  # 移除物体，但是移除之�
     img_inpainted = cv.inpaint(img, mask, inpaintRadius=3, flags=cv.INPAINT_TELEA)
     if save:
         cv.imwrite(img_path,cv.cvtColor(img_inpainted,cv.COLOR_RGB2BGR))
+    return img_inpainted
     # plt.imshow(img_inpainted)
     # plt.axis('off')
     # plt.show()
@@ -70,13 +72,14 @@ def sketch_effect(img_path,save):  # 边缘检测，然后颜色反转得到所�
     edges = cv.Canny(img, 100, 200)
     inverted_edges = cv.bitwise_not(edges)
     if save:
-        cv.imwrite(img_path,cv.cvtColor(inverted_edges,cv.COLOR_GRAY2BGR))    
+        cv.imwrite(img_path,cv.cvtColor(inverted_edges,cv.COLOR_GRAY2BGR))
+    return inverted_edges
     # plt.imshow(inverted_edges)
     # plt.axis('off')
     # plt.show()
 
 
-def detect_people_in_photos(input_dir, output_dir, confidence_threshold=0.5):  # 还是将分类检测的结果预先存储到数据库里面，每加进来一张就进行一次判断
+def detect_people_in_photos(input_dir, output_dir, confidence_threshold=0.5):  # 将出现人脸的图片全部取出来保存到某一个文件
 
     model = YOLO('yolov8n.pt')
     os.makedirs(output_dir, exist_ok=True)
@@ -96,7 +99,7 @@ def detect_people_in_photos(input_dir, output_dir, confidence_threshold=0.5):  #
                 shutil.copy(image_path, output_dir)
                 break  
 
-def img_to_video_moviepy(image_folder, audio_path, output_video, fps=1, size=(640, 480)):  # 这个是将多张照片整合成一个视频，可以添加音频
+def img_to_video_moviepy(image_folder, audio_path, output_video, fps=1, size=(640, 480)):  # 这个是将多张照片整合成一个视频，可以添加音频，但是不能添加字幕
     imgs = [os.path.join(image_folder, f) for f in os.listdir(image_folder) if f.endswith(('jpg', 'jpeg', 'png'))]
     imgs = imgs[:100]
     resized_imgs = []
@@ -127,7 +130,7 @@ def img_to_video_moviepy(image_folder, audio_path, output_video, fps=1, size=(64
     audio.close()
     clip.close()
 
-def img_to_video(image_folder, audio_file, final_output_file, transition='', fps=25):
+def img_to_video(image_folder, audio_file, final_output_file, transition='', fps=25):  # 跟上面的方法一致，不过这个可以添加图片切换时候的特效
 
     fourcc = cv.VideoWriter_fourcc(*'mp4v')
     frame_size = (640, 480)  # 要注意resize之后是（480,640），因为传进去的是（width，height）
@@ -218,6 +221,7 @@ def img_to_video(image_folder, audio_file, final_output_file, transition='', fps
     video_writer.release()  # 释放资源，不然最后会报警告
     print("Video saved successfully.")
 
+    # 这里用ffmpeg添加音频，需要到https://www.ffmpeg.org/ 上面下载，解压后把bin目录加到环境变量里面
     ffmpeg_cmd = [  # 用ffmpeg添加音频，但是这里得先生成视频再加音频
         "ffmpeg",
         "-i", temp_output,
@@ -232,11 +236,12 @@ def img_to_video(image_folder, audio_file, final_output_file, transition='', fps
     os.remove(temp_output)
     print("Final video with audio created.")
 
-def add_captions(input_video, output_video, subtitles_dict:dict,font_name='Arial',font_size=24,font_color='white',position='bottom'):
+def add_captions(input_video, output_video, subtitles_dict:dict,font_name='Arial',font_size=24,font_color='white'):
     """
     这里用ffmpeg来添加字幕，因为使用cv的话需要逐帧渲染太麻烦了，而且不易于前端的操作
     这里面的字典，key是输入的时间，value是字幕内容
     将字典转换成.srt字幕文件，将字幕硬编码到视频
+    但是这里的字幕必须手动加入，还没有能够自动加入的库
     """
     # video = cv.VideoCapture(input_video)
     # fps = int(video.get(cv.CAP_PROP_FPS))
@@ -272,12 +277,9 @@ def add_captions(input_video, output_video, subtitles_dict:dict,font_name='Arial
     subprocess.run(ffmpeg_cmd)
     os.remove(temp_srt)
 
+# def facial_reco():
+#
 if __name__ == '__main__':
-    # rotate()
-    # cut()
-    # adjust_brightness(brightness=50,contrast=1)
-    # sketch_effect()
-    # detect_people_in_photos(r'F:\VOCtrainval_11-May-2012\JPEGImages',r'F:\VOCtrainval_11-May-2012\Output',confidence_threshold=0.6)
     # img_to_video(r'F:/VOCtrainval_11-May-2012/JPEGImages',r'E:/bgMusic.wav','F:/VOCtrainval_11-May-2012/FinalOutput.mp4',transition='fade')
     subtitles = {
         "00:00:05-00:00:10": "第一段字幕：欢迎观看！",
@@ -285,10 +287,9 @@ if __name__ == '__main__':
     }
     add_captions(
         input_video="F:/VOCtrainval_11-May-2012/FinalOutput.mp4",
-        output_video="F:/VOCtrainval_11-May-2012/FinalOutput2.mp4",
+        output_video="F:/VOCtrainval_11-May-2012/FinalOutput_captions.mp4",
         subtitles_dict=subtitles,
         font_name="Arial",
         font_size=18,
-        font_color="&H00FFFFFF",
-        position="bottom"
+        font_color="&H00FFFFFF"
     )

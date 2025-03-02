@@ -4,6 +4,11 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.album.common.enums.UserStatusEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -13,21 +18,19 @@ import java.time.LocalDateTime;
 public class User {
 
     @TableId(type = IdType.AUTO)
+    @NotNull
     private Integer userId;
-
+    @NotEmpty
+    @Pattern(regexp = "^\\S{5,16}$")
     private String username;
-
+    @JsonIgnore // 返回json时忽略该字段
     private String password;
-
+    @NotEmpty
+    @Email
     private String email;
-
     private String avatarUrl;
-
-    private UserStatusEnum status;
-
+    private String status;
     private Long storageUsed;
-
     private LocalDateTime createdAt;
-
     private LocalDateTime lastLogin;
 }

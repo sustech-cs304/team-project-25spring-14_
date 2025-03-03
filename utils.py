@@ -1,89 +1,83 @@
-import cv2 as cv
-import matplotlib.pyplot as plt
-import numpy as np
 import os
 import shutil
-from ultralytics import YOLO
-from tqdm import tqdm
-from moviepy import ImageSequenceClip, AudioFileClip, concatenate_audioclips
-from PIL import Image
 import subprocess
 from datetime import datetime, timedelta
 
-def rotate(image_path,save): # 每点击一下就逆时针旋转90度，然后判断是否需要保存
+import cv2 as cv
+import matplotlib.pyplot as plt
+import numpy as np
+from tqdm import tqdm
+from ultralytics import YOLO
+
+"""
+这个版本还是python服务器不直接对数据库以及本地文件进行修改,但是会通过springboot后端传过来的路径,直接获取服务器本地的文件
+然后生成的图片和视频都直接用编码的方式回传给springboot
+"""
+def rotate(image_path): # 每点击一下就逆时针旋转90度，然后判断是否需要保存
     img = cv.imread(image_path)
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
     weight = img.shape[0]
     height = img.shape[1]
     ro_matrix = cv.getRotationMatrix2D((weight/2, height/2), 90, 1)
     img = cv.warpAffine(img, ro_matrix, (height, weight))
-    if save:
-        cv.imwrite(image_path,cv.cvtColor(img,cv.COLOR_RGB2BGR))
     return img
     # plt.imshow(img)
     # plt.axis('off')
     # plt.show()
 
-def cut(img_path,region,save):  # 对图片进行裁剪
+def cut(img_path,region):  # 对图片进行裁剪
     img = cv.imread(img_path)
     print(img.shape)    
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
     (x1,y1),(x2,y2) = region
     cut_img = img[x1:y1, x2:y2]
-    if save:
-        cv.imwrite(img_path,cv.cvtColor(cut_img,cv.COLOR_RGB2BGR))
     return cut_img
     # plt.imshow(cut_img)
     # plt.axis('off')
     # plt.show()
 
-def adjust_brightness(img_path,save,brightness=0,contrast=1.0):  # 调整亮度，和对比度
-    img = cv.imread('./resources/lenna.jpg')
+def adjust_brightness(img_path,brightness=0,contrast=1.0):  # 调整亮度，和对比度
+    img = cv.imread(img_path)
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
     plt.figure(figsize=(8,3))
     plt.subplot(121)
     plt.imshow(img)
     plt.subplot(122)
     img = cv.convertScaleAbs(img, alpha=contrast, beta=brightness)
-    if save:
-        cv.imwrite(img_path,cv.cvtColor(img,cv.COLOR_RGB2BGR))
+    return img
     # plt.imshow(img)
     # plt.axis('off')
     # plt.show()
 
-def remove_object(img_path,mask_region,save):  # 移除物体，移除之后用周围的像素点进行补全（待修正）
+def remove_object(img_path,mask_region):  # 移除物体，移除之后用周围的像素点进行补全（待修正）
     img = cv.imread(img_path)
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
     mask = np.zeros(img.shape[:2], dtype="uint8")
     (x1, y1), (x2, y2) = mask_region
     mask[x1:y2, x2:y2] = 255
     img_inpainted = cv.inpaint(img, mask, inpaintRadius=3, flags=cv.INPAINT_TELEA)
-    if save:
-        cv.imwrite(img_path,cv.cvtColor(img_inpainted,cv.COLOR_RGB2BGR))
     return img_inpainted
     # plt.imshow(img_inpainted)
     # plt.axis('off')
     # plt.show()
 
-def sketch_effect(img_path,save):  # 边缘检测，然后颜色反转得到所谓的素描图片
+def sketch_effect(img_path):  # 边缘检测，然后颜色反转得到所谓的素描图片
     img = cv.imread(img_path)
     img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
     edges = cv.Canny(img, 100, 200)
     inverted_edges = cv.bitwise_not(edges)
-    if save:
-        cv.imwrite(img_path,cv.cvtColor(inverted_edges,cv.COLOR_GRAY2BGR))
     return inverted_edges
     # plt.imshow(inverted_edges)
     # plt.axis('off')
     # plt.show()
 
 
-def detect_people_in_photos(input_dir, output_dir, confidence_threshold=0.5):  # 将出现人脸的图片全部取出来保存到某一个文件
+def detect_object_in_photos(input_dir, output_dir, confidence_threshold=0.6):  # 将出现人脸的图片全部取出来保存到某一个文件
 
     model = YOLO('yolov8n.pt')
     os.makedirs(output_dir, exist_ok=True)
-
+    
     # 获取所有图片文件
     image_extensions = ['.jpg', '.jpeg', '.png', '.webp']
     image_paths = [
@@ -99,36 +93,17 @@ def detect_people_in_photos(input_dir, output_dir, confidence_threshold=0.5):  #
                 shutil.copy(image_path, output_dir)
                 break  
 
-def img_to_video_moviepy(image_folder, audio_path, output_video, fps=1, size=(640, 480)):  # 这个是将多张照片整合成一个视频，可以添加音频，但是不能添加字幕
-    imgs = [os.path.join(image_folder, f) for f in os.listdir(image_folder) if f.endswith(('jpg', 'jpeg', 'png'))]
-    imgs = imgs[:100]
-    resized_imgs = []
-    for img_path in imgs:
-        # 用PIL打开图片并调整大小,因为这个IS这个方法要传进去一个numpy数组，而且还要统一大小
-        # 640，480有些图片会拉伸，到时候再调整
-        img = Image.open(img_path)
-        img = img.resize(size)
-        img = img.convert('RGB')
-        resized_imgs.append(np.array(img))
-
-    clip = ImageSequenceClip(resized_imgs, fps=fps)  # 报了一个没有shape属性的错
-    audio = AudioFileClip(audio_path)
-
-    video_duration = clip.duration
-    audio_duration = audio.duration
-
-    if audio.duration > clip.duration:
-        audio = audio.subclipped(0,clip.duration)
-    else:
-        num_loops = int(video_duration // audio_duration) + 1
-        audio_clips = [audio] * num_loops
-        audio = concatenate_audioclips(audio_clips)
-        audio = audio.subclipped(0, video_duration)  # 截取到视频长度
-
-    clip.audio = audio  # 加背景音乐
-    clip.write_videofile(output_video, codec='libx264',fps=fps)
-    audio.close()
-    clip.close()
+def ai_classify_image(image_path):  # 用AI来识别图片中是否有特定的物体
+    model = YOLO('yolov8n.pt')
+    common_choises = ['person', 'car', 'dog', 'cat', 'book','snowboard']
+    result = model.predict(image_path, verbose=False)
+    detect = []
+    for box in result[0].boxes:
+        class_id = int(box.cls[0].item())
+        class_name = model.names[class_id]
+        if class_name in common_choises and class_name not in detect:
+            detect.append(class_name)
+    return detect
 
 def img_to_video(image_folder, audio_file, final_output_file, transition='', fps=25):  # 跟上面的方法一致，不过这个可以添加图片切换时候的特效
 
@@ -243,13 +218,6 @@ def add_captions(input_video, output_video, subtitles_dict:dict,font_name='Arial
     将字典转换成.srt字幕文件，将字幕硬编码到视频
     但是这里的字幕必须手动加入，还没有能够自动加入的库
     """
-    # video = cv.VideoCapture(input_video)
-    # fps = int(video.get(cv.CAP_PROP_FPS))
-    # width = int(video.get(cv.CAP_PROP_FRAME_WIDTH))
-    # height = int(video.get(cv.CAP_PROP_FRAME_HEIGHT))
-
-    # fourcc = cv.VideoWriter_fourcc(*'mp4v')
-    # writer = cv.VideoWriter(output_video,fourcc,fps,(width,height))
     srt_content = []
     for idx,(time_range,text) in enumerate(subtitles_dict.items(),1):
         start_time, end_time = time_range.split("-")
@@ -262,7 +230,7 @@ def add_captions(input_video, output_video, subtitles_dict:dict,font_name='Arial
             f"{idx}\n"
             f"{start_srt} --> {end_srt}\n"
             f"{text}\n\n"
-        )        
+        )
     # 这里用一个临时文件存储字幕，就不保存到本地，运行结束之后直接删掉
     temp_srt = 'temp_subtitle.srt'
     with open(temp_srt,"w",encoding='utf-8') as f:
@@ -277,10 +245,14 @@ def add_captions(input_video, output_video, subtitles_dict:dict,font_name='Arial
     subprocess.run(ffmpeg_cmd)
     os.remove(temp_srt)
 
-# def facial_reco():
-#
 if __name__ == '__main__':
-    # img_to_video(r'F:/VOCtrainval_11-May-2012/JPEGImages',r'E:/bgMusic.wav','F:/VOCtrainval_11-May-2012/FinalOutput.mp4',transition='fade')
+    # rotate('./resources/lenna.jpg',False)
+    # cut('./resources/lenna.jpg',((100,200),(100,200)),False)
+    # adjust_brightness('./resources/lenna.jpg',False,100,1)
+    # remove_object('./resources/lenna.jpg',((100,200),(100,200)),False)
+    # sketch_effect('./resources/lenna.jpg',False)
+    # detect_people_in_photos('F:/VOCtrainval_11-May-2012/JPEGImages','F:/VOCtrainval_11-May-2012/Output',0.6)
+    # img_to_video(r'F:/VOCtrainval_11-May-2012/JPEGImages',r'E:/bgMusic.wav','F:/VOCtrainval_11-May-2012/FinalOutput.mp4',transition='zoom')
     subtitles = {
         "00:00:05-00:00:10": "第一段字幕：欢迎观看！",
         "00:00:15-00:00:20": "第二段字幕：这是一个示例视频。"
@@ -293,3 +265,5 @@ if __name__ == '__main__':
         font_size=18,
         font_color="&H00FFFFFF"
     )
+    # play_video(temp)
+    # os.remove(temp)  # 删除临时文件

@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/photos")
+@RequestMapping("/photos")
 @Slf4j
 public class PhotoController {
 

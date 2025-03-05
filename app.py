@@ -79,18 +79,17 @@ def sketch_app():
     except Exception as e:
         print(e)
 
-@app.route('/detect_face',methods=['POST'])
+@app.route('/denoising',methods=['POST'])
 def detect_face_app():
-    input_dir = request.form.get('input_dir')
-    output_dir = request.form.get('output_dir')
-    confidence_threshold = request.form.get('confidence_threshold')
-    confidence_threshold = float(confidence_threshold)  # 转换成浮点数传进去
+    input_dir = request.form.get('img_path')
     if not input_dir:
         return 'ERROR :Image_path not provided'
     if not os.path.exists(input_dir):
         return 'ERROR :Image_path dose not exists'
     try:
-        detect_object_in_photos(input_dir, output_dir, confidence_threshold)
+        img = denoising(input_dir)
+        _,img_encoded = cv2.imencode('.jpg', img)
+        return Response(img_encoded.tobytes(), mimetype='image/jpeg')
     except Exception as e:
         print(e)
 

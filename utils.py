@@ -13,6 +13,7 @@ from ultralytics import YOLO
 这个版本还是python服务器不直接对数据库以及本地文件进行修改,但是会通过springboot后端传过来的路径,直接获取服务器本地的文件
 然后生成的图片和视频都直接用编码的方式回传给springboot
 """
+
 def rotate(image_path): # 每点击一下就逆时针旋转90度，然后判断是否需要保存
     img = cv.imread(image_path)
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
@@ -48,18 +49,42 @@ def adjust_brightness(img_path,brightness=0,contrast=1.0):  # 调整亮度，和
     # plt.imshow(img)
     # plt.axis('off')
     # plt.show()
-
-def remove_object(img_path,mask_region):  # 移除物体，移除之后用周围的像素点进行补全（待修正）
+def remove_object(img_path, mask_region=None):
     img = cv.imread(img_path)
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
-    mask = np.zeros(img.shape[:2], dtype="uint8")
-    (x1, y1), (x2, y2) = mask_region
-    mask[x1:y2, x2:y2] = 255
-    img_inpainted = cv.inpaint(img, mask, inpaintRadius=3, flags=cv.INPAINT_TELEA)
-    return img_inpainted
-    # plt.imshow(img_inpainted)
-    # plt.axis('off')
-    # plt.show()
+    
+    if mask_region is None:
+        model = YOLO('yolov8n-seg.pt')  # 这里用分割模型效果会好一点
+        results = model.predict(img, verbose=False)
+        mask = np.zeros(img.shape[:2], dtype="uint8")  
+        for result in results:
+            for box in result.boxes:
+                if box.cls == 0 and result.masks:
+                    seg_mask = cv.resize(
+                        result.masks[0].data[0].numpy().astype(np.uint8) * 255,
+                        (img.shape[1], img.shape[0])  # 使用原图的宽高
+                    )
+                    mask = cv.bitwise_or(mask, seg_mask)  # 合并多个掩码
+    else:
+        (x1, y1), (x2, y2) = mask_region
+        mask = np.zeros(img.shape[:2], dtype="uint8")
+        cv.rectangle(mask, (x1, y1), (x2, y2), 255, -1)
+    mask = cv.resize(mask, (img.shape[1], img.shape[0])) if mask.shape != img.shape[:2] else mask
+    img_inpainted = cv.inpaint(img, mask, inpaintRadius=5, flags=cv.INPAINT_TELEA)
+
+    gray_inpainted = cv.cvtColor(img_inpainted, cv.COLOR_RGB2GRAY)
+    _, threshold = cv.threshold(gray_inpainted, 1, 255, cv.THRESH_BINARY)
+    kernel = np.ones((5, 5), np.uint8)
+    eroded = cv.erode(threshold, kernel,iterations=2)
+    mask_no_white = cv.bitwise_not(eroded)
+    # 合并原图和修复后的图像
+    background = cv.bitwise_and(img, img, mask=mask_no_white)
+    foreground = cv.bitwise_and(img_inpainted, img_inpainted, mask=eroded)
+    final_img = cv.add(background, foreground)
+    # return final_img
+    plt.imshow(final_img)
+    plt.axis('off')
+    plt.show()
 
 def sketch_effect(img_path):  # 边缘检测，然后颜色反转得到所谓的素描图片
     img = cv.imread(img_path)
@@ -73,25 +98,25 @@ def sketch_effect(img_path):  # 边缘检测，然后颜色反转得到所谓的
     # plt.show()
 
 
-def detect_object_in_photos(input_dir, output_dir, confidence_threshold=0.6):  # 将出现人脸的图片全部取出来保存到某一个文件
+# def detect_object_in_photos(input_dir, output_dir, confidence_threshold=0.6):  # 将出现人脸的图片全部取出来保存到某一个文件
 
-    model = YOLO('yolov8n.pt')
-    os.makedirs(output_dir, exist_ok=True)
+#     model = YOLO('yolov8n.pt')
+#     os.makedirs(output_dir, exist_ok=True)
     
-    # 获取所有图片文件
-    image_extensions = ['.jpg', '.jpeg', '.png', '.webp']
-    image_paths = [
-        os.path.join(input_dir, f) for f in os.listdir(input_dir)
-        if os.path.splitext(f)[1].lower() in image_extensions
-    ]
-    image_paths = image_paths[:100]  # 现在只选前一百张进行实验
-    for image_path in tqdm(image_paths, desc="Processing Photos"):
-        results = model.predict(image_path, verbose=False)
-        for box in results[0].boxes:
-            if box.cls == 0 and box.conf >= confidence_threshold:
-                # 复制包含人物的图片到输出目录
-                shutil.copy(image_path, output_dir)
-                break  
+#     # 获取所有图片文件
+#     image_extensions = ['.jpg', '.jpeg', '.png', '.webp']
+#     image_paths = [
+#         os.path.join(input_dir, f) for f in os.listdir(input_dir)
+#         if os.path.splitext(f)[1].lower() in image_extensions
+#     ]
+#     image_paths = image_paths[:100]  # 现在只选前一百张进行实验
+#     for image_path in tqdm(image_paths, desc="Processing Photos"):
+#         results = model.predict(image_path, verbose=False)
+#         for box in results[0].boxes:
+#             if box.cls == 0 and box.conf >= confidence_threshold:
+#                 # 复制包含人物的图片到输出目录
+#                 shutil.copy(image_path, output_dir)
+#                 break  
 
 def ai_classify_image(image_path):  # 用AI来识别图片中是否有特定的物体
     model = YOLO('yolov8n.pt')
@@ -245,25 +270,36 @@ def add_captions(input_video, output_video, subtitles_dict:dict,font_name='Arial
     subprocess.run(ffmpeg_cmd)
     os.remove(temp_srt)
 
+def denoising(img_path):  # 这里用锐化的效果比较明显，高斯滤波和双边滤波的效果一般
+
+    img = cv.imread(img_path)
+    sharpen_kernel = np.array([[0, -1, 0], [-1, 5,-1], [0, -1, 0]])
+    sharpened_img = cv.filter2D(img, -1, sharpen_kernel)
+    return sharpened_img
+    # plt.imshow(cv.cvtColor(sharpened_img, cv.COLOR_BGR2RGB))
+    # plt.axis('off')
+    # plt.show()
+
 if __name__ == '__main__':
     # rotate('./resources/lenna.jpg',False)
     # cut('./resources/lenna.jpg',((100,200),(100,200)),False)
     # adjust_brightness('./resources/lenna.jpg',False,100,1)
-    # remove_object('./resources/lenna.jpg',((100,200),(100,200)),False)
+    # remove_object('F:/VOCtrainval_11-May-2012/JPEGImages/2007_000170.jpg',None)
     # sketch_effect('./resources/lenna.jpg',False)
     # detect_people_in_photos('F:/VOCtrainval_11-May-2012/JPEGImages','F:/VOCtrainval_11-May-2012/Output',0.6)
     # img_to_video(r'F:/VOCtrainval_11-May-2012/JPEGImages',r'E:/bgMusic.wav','F:/VOCtrainval_11-May-2012/FinalOutput.mp4',transition='zoom')
-    subtitles = {
-        "00:00:05-00:00:10": "第一段字幕：欢迎观看！",
-        "00:00:15-00:00:20": "第二段字幕：这是一个示例视频。"
-    }
-    add_captions(
-        input_video="F:/VOCtrainval_11-May-2012/FinalOutput.mp4",
-        output_video="F:/VOCtrainval_11-May-2012/FinalOutput_captions.mp4",
-        subtitles_dict=subtitles,
-        font_name="Arial",
-        font_size=18,
-        font_color="&H00FFFFFF"
-    )
+    # subtitles = {
+    #     "00:00:05-00:00:10": "第一段字幕：欢迎观看！",
+    #     "00:00:15-00:00:20": "第二段字幕：这是一个示例视频。"
+    # }
+    # add_captions(
+    #     input_video="F:/VOCtrainval_11-May-2012/FinalOutput.mp4",
+    #     output_video="F:/VOCtrainval_11-May-2012/FinalOutput_captions.mp4",
+    #     subtitles_dict=subtitles,
+    #     font_name="Arial",
+    #     font_size=18,
+    #     font_color="&H00FFFFFF"
+    # )
     # play_video(temp)
     # os.remove(temp)  # 删除临时文件
+    denoising('F:/VOCtrainval_11-May-2012/JPEGImages/2007_000170.jpg')

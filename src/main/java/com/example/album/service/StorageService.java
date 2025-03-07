@@ -1,8 +1,10 @@
 package com.example.album.service;
 
 import com.example.album.dto.PhotoStorageResult;
+import com.example.album.entity.Photo;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.util.List;
 
 public interface StorageService {
     /**
@@ -18,4 +20,10 @@ public interface StorageService {
      * @param fileUrl 文件URL
      */
     void deletePhoto(String fileUrl) throws IOException;
+
+    Photo getById(Integer coverPhotoId);
+
+    List<Photo> getPhotosByAlbumId(Integer albumId);
+
+    String getFullUrl(String fileUrl);
 }

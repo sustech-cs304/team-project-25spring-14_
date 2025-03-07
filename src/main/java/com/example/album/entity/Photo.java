@@ -33,4 +33,5 @@ public class Photo {
     private LocalDateTime capturedAt;
 
     private LocalDateTime createdAt;
+
 }

@@ -16,10 +16,6 @@ public interface PhotoMapper extends BaseMapper<Photo> {
     @Options(useGeneratedKeys = true, keyProperty = "photoId")
     int insert(Photo photo);
 
-    @Delete("DELETE FROM tb_photo WHERE photo_id = #{photoId}")
-    int delete(Long photoId);
-
-
     /**
      * 获取相册内的所有照片
      */

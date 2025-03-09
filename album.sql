@@ -11,6 +11,7 @@ CREATE TYPE resource_type AS ENUM ('album', 'photo');
 CREATE TABLE tb_user
 (
     user_id      SERIAL PRIMARY KEY,
+    role_id      INT,
     username     VARCHAR(40)  NOT NULL UNIQUE,
     password     VARCHAR(255) NOT NULL,
     email        VARCHAR(60) UNIQUE,
@@ -19,24 +20,6 @@ CREATE TABLE tb_user
     storage_used BIGINT      DEFAULT 0,
     created_at   TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
     last_login   TIMESTAMP
-);
-
-CREATE TABLE tb_role
-(
-    role_id     SERIAL PRIMARY KEY,
-    role_name   VARCHAR(40) NOT NULL UNIQUE,
-    permissions TEXT[] -- 使用数组存储权限，比JSONB更简洁
-);
-
--- 修改 tb_user_role 表，从复合主键改为单一主键
-CREATE TABLE tb_user_role
-(
-    ur_id   SERIAL PRIMARY KEY, -- 添加自增主键
-    user_id INTEGER NOT NULL,
-    role_id INTEGER NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES tb_user (user_id) ON DELETE CASCADE,
-    FOREIGN KEY (role_id) REFERENCES tb_role (role_id) ON DELETE CASCADE,
-    UNIQUE (user_id, role_id)   -- 保持原有的唯一性约束
 );
 
 

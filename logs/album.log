@@ -1,60 +1,57 @@
-2025-03-07 13:02:08 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 27424 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-03-07 13:02:08 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-03-07 13:02:08 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-03-07 13:02:08 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-03-07 13:02:08 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-03-07 13:02:09 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-03-07 13:02:09 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 0 JDBC repository interfaces.
-2025-03-07 13:02:09 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-03-07 13:02:09 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-03-07 13:02:09 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-07 13:02:09 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-03-07 13:02:09 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1582 ms
-2025-03-07 13:02:10 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-03-07 13:02:10 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-03-07 13:02:11 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@63a7e669
-2025-03-07 13:02:11 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-03-07 13:02:11 [restartedMain] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+2025-03-09 06:25:07 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 35644 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-03-09 06:25:07 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-09 06:25:07 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-09 06:25:07 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-03-09 06:25:07 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-03-09 06:25:08 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-09 06:25:08 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31 ms. Found 0 JDBC repository interfaces.
+2025-03-09 06:25:09 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-03-09 06:25:09 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-09 06:25:09 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-09 06:25:09 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-09 06:25:09 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2602 ms
+2025-03-09 06:25:11 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
+2025-03-09 06:25:11 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-09 06:25:12 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@78e77e29
+2025-03-09 06:25:12 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-09 06:25:12 [restartedMain] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
 
-Using generated security password: 24ec756a-3815-4c3c-80ee-47649895a811
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2025-03-07 13:02:11 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
-2025-03-07 13:02:11 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-03-07 13:02:11 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-03-07 13:02:11 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 3.981 seconds (process running for 4.605)
-2025-03-07 13:02:32 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-07 13:02:32 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-03-07 13:02:32 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-03-07 13:02:32 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-03-07 15:57:13 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 5700 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-03-07 15:57:13 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-03-07 15:57:13 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-03-07 15:57:13 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-03-07 15:57:13 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-03-07 15:57:13 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-03-07 15:57:13 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 19 ms. Found 0 JDBC repository interfaces.
-2025-03-07 15:57:14 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-03-07 15:57:14 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-03-07 15:57:14 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-07 15:57:14 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-03-07 15:57:14 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1473 ms
-2025-03-07 15:57:15 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-03-07 15:57:15 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-03-07 15:57:15 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7f4580df
-2025-03-07 15:57:15 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-03-07 15:57:16 [restartedMain] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
-
-Using generated security password: 302fbbcb-84a6-4400-9ba4-4d736cfc4ba3
+Using generated security password: 78635e83-3bd5-4bb2-8b43-6b407dfb48cd
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2025-03-07 15:57:16 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
-2025-03-07 15:57:16 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-03-07 15:57:16 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-03-07 15:57:16 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 3.886 seconds (process running for 4.352)
-2025-03-07 15:57:25 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-07 15:57:25 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-03-07 15:57:25 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-03-07 15:57:25 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-03-09 06:25:12 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-03-09 06:25:12 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-03-09 06:25:13 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-03-09 06:25:13 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.654 seconds (process running for 7.701)
+2025-03-09 06:25:56 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-09 06:25:56 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-03-09 06:25:56 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-09 06:25:56 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-03-09 06:53:48 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 27128 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-03-09 06:53:48 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-09 06:53:48 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-09 06:53:48 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-03-09 06:53:48 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-03-09 06:53:49 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-09 06:53:49 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 41 ms. Found 0 JDBC repository interfaces.
+2025-03-09 06:53:50 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-03-09 06:53:50 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-09 06:53:50 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-09 06:53:50 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-09 06:53:50 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2226 ms
+2025-03-09 06:53:51 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
+2025-03-09 06:53:52 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-09 06:53:52 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2f55e9c9
+2025-03-09 06:53:52 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-09 06:53:52 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-03-09 06:53:52 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-03-09 06:53:52 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 5.459 seconds (process running for 6.35)
+2025-03-09 07:00:08 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-09 07:00:08 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-09 07:00:08 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-03-09 07:00:09 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [jakarta.validation.ConstraintViolationException: register.username: 需要匹配正则表达式"^\S{5,16}$"]
+2025-03-09 07:04:17 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-09 07:04:17 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-03-09 07:04:17 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-09 07:04:17 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

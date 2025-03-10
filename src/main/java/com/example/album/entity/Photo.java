@@ -22,6 +22,8 @@ public class Photo {
 
     private Integer userId;
 
+    private String tagName;
+
     private String fileName;
 
     private String fileUrl;

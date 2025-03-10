@@ -10,14 +10,15 @@ import com.example.album.service.AlbumService;
 import com.example.album.service.StorageService;
 import com.example.album.service.ExceptionHandlingService;
 import com.example.album.common.exception.BusinessException;
+import com.example.album.utils.ThreadLocalUtil;
 import com.example.album.vo.PhotoVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -51,9 +52,15 @@ public class PhotoController {
             log.info("接收到照片上传请求，相册ID: {}, 文件名: {}", uploadDTO.getAlbumId(), file.getOriginalFilename());
 
             // 获取当前用户ID (假设使用了Spring Security)
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            long userId = Long.parseLong(auth.getName()); // 假设getName()返回用户ID
-
+//            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//            long userId = Long.parseLong(auth.getName()); // 假设getName()返回用户ID
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            long userId = 0;
+            if (claims != null) {
+                userId = ((Number) claims.get("id")).longValue();
+                log.info("从ThreadLocal获取的用户ID: {}", userId);
+                // 处理逻辑...
+            }else return null;
             // 存储照片
             PhotoStorageResult result = storageService.storePhoto(file, userId);
 
@@ -146,10 +153,13 @@ public class PhotoController {
             @PathVariable Long photoId,
             @Valid @RequestBody PhotoUpdateDTO updateDTO) {
         try {
-            // 获取当前用户ID
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            Long userId = Long.parseLong(auth.getName());
-
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            long userId = 0;
+            if (claims != null) {
+                userId = ((Number) claims.get("id")).longValue();
+                log.info("从ThreadLocal获取的用户ID: {}", userId);
+                // 处理逻辑...
+            }else return null;
             // 查找照片
             Photo photo = photoMapper.selectById(photoId);
             if (photo == null) {
@@ -205,11 +215,13 @@ public class PhotoController {
     public ResponseEntity<?> deletePhoto(@PathVariable Long photoId) {
         try {
             log.info("接收到照片删除请求，照片ID: {}", photoId);
-
-            // 获取当前用户ID
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            Long userId = Long.parseLong(auth.getName());
-
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            long userId = 0;
+            if (claims != null) {
+                userId = ((Number) claims.get("id")).longValue();
+                log.info("从ThreadLocal获取的用户ID: {}", userId);
+                // 处理逻辑...
+            }else return null;
             // 查找照片
             Photo photo = photoMapper.selectById(photoId);
             if (photo == null) {

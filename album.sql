@@ -1,6 +1,6 @@
 -- 创建数据库
-DROP DATABASE IF EXISTS smart_photo_album;
-CREATE DATABASE smart_photo_album;
+-- DROP DATABASE IF EXISTS smart_photo_album;
+-- CREATE DATABASE smart_photo_album;
 
 -- \c smart_photo_album;
 
@@ -10,10 +10,10 @@ CREATE TYPE resource_type AS ENUM ('album', 'photo');
 
 CREATE TABLE tb_user (
   user_id SERIAL PRIMARY KEY,
-  role_name VARCHAR(40) NOT NULL UNIQUE,
+  role_name VARCHAR(40) NOT NULL UNIQUE DEFAULT 'user',
   username VARCHAR(40) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
-  email VARCHAR(60) NOT NULL UNIQUE,
+  email VARCHAR(60) UNIQUE,
   avatar_url VARCHAR(255),
   status user_status DEFAULT 'active',
   storage_used BIGINT DEFAULT 0,

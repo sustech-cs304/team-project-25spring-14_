@@ -141,34 +141,28 @@ export default {
       if (this.registerForm.username.length < 5) {
         alert("用户名长度不能小于5位");
         this.handleRegister = true;
+        this.registerForm.username = "";
         this.registerForm.password = "";
         this.registerForm.confirmPassword = "";
         return;
       } else if (this.registerForm.username.length > 16) {
         alert("用户名长度不能大于16位");
         this.handleRegister = true;
-        this.registerForm.password = "";
-        this.registerForm.confirmPassword = "";
+        
         return;
       }
       if (this.registerForm.password.length < 5) {
         alert("密码长度不能小于5位");
         this.handleRegister = true;
-        this.registerForm.password = "";
-        this.registerForm.confirmPassword = "";
         return;
       } else if (this.registerForm.password.length > 16) {
         alert("密码长度不能大于16位");
         this.handleRegister = true;
-        this.registerForm.password = "";
-        this.registerForm.confirmPassword = "";
         return;
       } else {
         if (this.registerForm.password !== this.registerForm.confirmPassword) {
           alert("两次输入的密码不一致");
           this.handleRegister = true;
-          this.registerForm.password = "";
-          this.registerForm.confirmPassword = "";
           return;
         }
       }

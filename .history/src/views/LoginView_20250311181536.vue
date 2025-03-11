@@ -160,15 +160,14 @@ export default {
       } else if (this.registerForm.password.length > 16) {
         alert("密码长度不能大于16位");
         this.handleRegister = true;
-        this.registerForm.password = "";
-        this.registerForm.confirmPassword = "";
+  
+            this.registerForm.password = "";
+            this.registerForm.confirmPassword = "";
         return;
       } else {
         if (this.registerForm.password !== this.registerForm.confirmPassword) {
           alert("两次输入的密码不一致");
           this.handleRegister = true;
-          this.registerForm.password = "";
-          this.registerForm.confirmPassword = "";
           return;
         }
       }

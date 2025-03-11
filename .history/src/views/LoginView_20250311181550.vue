@@ -167,6 +167,7 @@ export default {
         if (this.registerForm.password !== this.registerForm.confirmPassword) {
           alert("两次输入的密码不一致");
           this.handleRegister = true;
+
           this.registerForm.password = "";
           this.registerForm.confirmPassword = "";
           return;

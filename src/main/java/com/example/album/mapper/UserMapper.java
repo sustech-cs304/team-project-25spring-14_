@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.album.entity.User;
+import com.example.album.vo.UserVO;
 import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
@@ -43,4 +46,7 @@ public interface UserMapper extends BaseMapper<User> {
 
     @Update("UPDATE tb_user SET storage_used = storage_used + #{size} WHERE user_id = #{userId}")
     int updateStorageUsed(@Param("userId") Long userId, @Param("size") Long size);
+
+    @Select("SELECT user_id, username, email, role_name FROM tb_user")
+    List<UserVO> findAllUsers();
 }

@@ -7,10 +7,11 @@
 CREATE TYPE user_status AS ENUM ('active', 'disabled');
 CREATE TYPE privacy_type AS ENUM ('private', 'public', 'shared');
 CREATE TYPE resource_type AS ENUM ('album', 'photo');
+CREATE TYPE user_role AS ENUM ('admin', 'user');
 
 CREATE TABLE tb_user (
   user_id SERIAL PRIMARY KEY,
-  role_name VARCHAR(40) NOT NULL UNIQUE DEFAULT 'user',
+  role_name user_role DEFAULT 'user',
   username VARCHAR(40) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
   email VARCHAR(60) UNIQUE,

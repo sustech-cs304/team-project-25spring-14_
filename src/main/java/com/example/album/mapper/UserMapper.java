@@ -37,4 +37,10 @@ public interface UserMapper extends BaseMapper<User> {
     //search page by page
     @Select("SELECT * FROM tb_user WHERE status = 'active' ORDER BY created_at DESC")
     IPage<User> selectUserPage(Page<User> page);
+
+    @Select("SELECT * FROM tb_user WHERE user_id = #{userId}")
+    User findById(Long userId);
+
+    @Update("UPDATE tb_user SET storage_used = storage_used + #{size} WHERE user_id = #{userId}")
+    int updateStorageUsed(@Param("userId") Long userId, @Param("size") Long size);
 }

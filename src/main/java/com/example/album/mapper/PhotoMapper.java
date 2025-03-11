@@ -4,15 +4,17 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.album.entity.Photo;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
 public interface PhotoMapper extends BaseMapper<Photo> {
+    @Insert("INSERT INTO tb_photo(album_id, user_id, file_name, file_url, thumbnail_url, file_size, is_favorite, captured_at, created_at) " +
+            "VALUES(#{albumId}, #{userId}, #{fileName}, #{fileUrl}, #{thumbnailUrl}, #{fileSize}, #{isFavorite}, #{capturedAt}, #{createdAt})")
+    @Options(useGeneratedKeys = true, keyProperty = "photoId")
+    int insert(Photo photo);
 
     /**
      * 获取相册内的所有照片

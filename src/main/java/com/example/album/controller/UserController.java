@@ -6,6 +6,7 @@ import com.example.album.service.UserService;
 import com.example.album.utils.JwtUtil;
 import com.example.album.utils.Md5Util;
 import com.example.album.utils.ThreadLocalUtil;
+import com.example.album.vo.UserVO;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -50,8 +52,14 @@ public class UserController {
             Map<String, Object> claims = new HashMap<>();
             claims.put("id", loginUser.getUserId());
             claims.put("username", loginUser.getUsername());
+            claims.put("role", loginUser.getRoleName());  // 将角色信息放入 claims
             String token = JwtUtil.genToken(claims);
-            return Result.success(token);
+
+            Map<String, Object> data = new HashMap<>();
+            data.put("token", token);
+            data.put("role", loginUser.getRoleName());  // 让前端可以获取角色信息
+
+            return Result.success(data);
         }
 
         return Result.error("密码错误");
@@ -65,6 +73,34 @@ public class UserController {
         User user = userService.findByUsername((String) claims.get("username"));
         return Result.success(user);
     }
+
+    @GetMapping("/all")
+    public Result getAllUsers() {
+        // 1. 解析 JWT Token
+        Map<String, Object> claims = ThreadLocalUtil.get();
+
+        // 2. 检查用户是否是管理员
+        String role = (String) claims.get("role");
+        if (!"admin".equals(role)) {
+            return Result.error("权限不足，只有管理员可以查看用户列表");
+        }
+
+        // 3. 查询所有用户
+        List<UserVO> users = userService.getAllUsers();
+
+        return Result.success(users);
+    }
+
+    @GetMapping("/{userId}")
+    public Result getUserById(@PathVariable Long userId) {
+        User user = userService.getUserById(userId);
+        if (user == null) {
+            return Result.error("用户不存在");
+        }
+
+        return Result.success(user);
+    }
+
 
     @PutMapping("/update")
     public Result update(@RequestBody @Validated User user) {

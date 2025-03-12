@@ -1,18 +1,17 @@
 -- 创建数据库
-SET search_path TO public;
 DROP DATABASE IF EXISTS smart_photo_album;
 CREATE DATABASE smart_photo_album;
 
--- \c smart_photo_album;
+\c smart_photo_album;
 DROP TYPE IF EXISTS user_status CASCADE;
 DROP TYPE IF EXISTS privacy_type CASCADE;
 DROP TYPE IF EXISTS resource_type CASCADE;
-
+DROP TYPE IF EXISTS user_role CASCADE;
 -- 创建类型
 CREATE TYPE user_status AS ENUM ('active', 'disabled');
 CREATE TYPE privacy_type AS ENUM ('private', 'public', 'shared');
 CREATE TYPE resource_type AS ENUM ('album', 'photo');
-
+CREATE TYPE user_role AS ENUM ('admin', 'user');
 -- 注意删除表的顺序需要考虑外键依赖关系（先删除引用其他表的表）
 DROP TABLE IF EXISTS tb_report CASCADE;
 DROP TABLE IF EXISTS tb_admin_log CASCADE;
@@ -22,12 +21,13 @@ DROP TABLE IF EXISTS tb_photo CASCADE;
 DROP TABLE IF EXISTS tb_album CASCADE;
 DROP TABLE IF EXISTS tb_user CASCADE;
 
+
 CREATE TABLE tb_user (
   user_id SERIAL PRIMARY KEY,
-  rolename VARCHAR(40) NOT NULL UNIQUE,
+  role_name user_role DEFAULT 'user',
   username VARCHAR(40) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
-  email VARCHAR(60) NOT NULL UNIQUE,
+  email VARCHAR(60) UNIQUE,
   avatar_url VARCHAR(255),
   status user_status DEFAULT 'active',
   storage_used BIGINT DEFAULT 0,

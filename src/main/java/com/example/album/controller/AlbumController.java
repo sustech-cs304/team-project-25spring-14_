@@ -2,15 +2,14 @@ package com.example.album.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.example.album.common.exception.BusinessException;
 import com.example.album.dto.AlbumCreateDTO;
 import com.example.album.dto.AlbumUpdateDTO;
 import com.example.album.entity.Album;
 import com.example.album.entity.Photo;
+import com.example.album.entity.Result;
 import com.example.album.entity.User;
 import com.example.album.mapper.UserMapper;
 import com.example.album.service.AlbumService;
-import com.example.album.service.ExceptionHandlingService;
 import com.example.album.service.StorageService;
 import com.example.album.vo.AlbumDetailVO;
 import com.example.album.vo.AlbumVO;
@@ -19,8 +18,6 @@ import com.example.album.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -40,13 +37,12 @@ public class AlbumController {
     private final UserMapper userMapper;
     private final AlbumService albumService;
     private final StorageService storageService;
-    private final ExceptionHandlingService exceptionHandlingService;
 
     /**
      * 创建相册
      */
     @PostMapping("/upload")
-    public ResponseEntity<?> createAlbum(
+    public Result createAlbum(
             @RequestAttribute("userId") Integer userId,
             @Valid @RequestBody AlbumCreateDTO createDTO) {
 
@@ -61,7 +57,7 @@ public class AlbumController {
 
             boolean result = albumService.createAlbum(album);
             if (!result) {
-                throw new BusinessException(HttpStatus.INTERNAL_SERVER_ERROR.value(), "创建相册失败");
+                throw new Exception("创建相册失败");
             }
 
             AlbumVO albumVO = convertToAlbumVO(album);
@@ -70,10 +66,10 @@ public class AlbumController {
             response.put("album", albumVO);
             response.put("message", "相册创建成功");
 
-            return ResponseEntity.ok(response);
+            return Result.success(response);
         } catch (Exception e) {
             log.error("创建相册失败", e);
-            return exceptionHandlingService.handleExceptionWithStructuredResponse(e, "创建相册失败");
+            return Result.error("创建相册失败");
         }
     }
 
@@ -81,19 +77,22 @@ public class AlbumController {
      * 获取相册详情
      */
     @GetMapping("/{albumId}")
-    public ResponseEntity<?> getAlbumDetail(
+    public Result<Map<String, Object>> getAlbumDetail(
             @PathVariable Integer albumId,
             @RequestAttribute(value = "userId", required = false) Integer userId) {
 
         try {
             // 检查访问权限
             if (!albumService.checkAlbumAccess(albumId, userId)) {
-                throw new BusinessException(HttpStatus.FORBIDDEN.value(), "没有访问权限");
+
+                throw new Exception("没有访问权限");
+
             }
 
             Album album = albumService.getById(albumId);
             if (album == null) {
-                throw new BusinessException(HttpStatus.NOT_FOUND.value(), "相册不存在");
+
+                throw new Exception("相册不存在");
             }
 
             // 构建详细响应
@@ -102,10 +101,10 @@ public class AlbumController {
             Map<String, Object> response = new HashMap<>();
             response.put("album", albumDetailVO);
 
-            return ResponseEntity.ok(response);
+            return Result.success(response);
         } catch (Exception e) {
             log.error("获取相册详情失败", e);
-            return exceptionHandlingService.handleExceptionWithStructuredResponse(e, "获取相册详情失败");
+            return Result.error("获取相册详情失败");
         }
     }
 
@@ -113,7 +112,7 @@ public class AlbumController {
      * 更新相册
      */
     @PutMapping("/{albumId}")
-    public ResponseEntity<?> updateAlbum(
+    public Result<Map<String, Object>> updateAlbum(
             @PathVariable Integer albumId,
             @RequestAttribute("userId") Integer userId,
             @Valid @RequestBody AlbumUpdateDTO updateDTO) {
@@ -121,12 +120,13 @@ public class AlbumController {
         try {
             Album album = albumService.getById(albumId);
             if (album == null) {
-                throw new BusinessException(HttpStatus.NOT_FOUND.value(), "相册不存在");
+
+                throw new Exception("没有访问权限");
             }
 
             // 检查是否为相册所有者
             if (!album.getUserId().equals(userId)) {
-                throw new BusinessException(HttpStatus.FORBIDDEN.value(), "没有修改权限");
+                throw new Exception("没有修改权限");
             }
 
             boolean hasUpdates = false;
@@ -153,7 +153,7 @@ public class AlbumController {
                 album.setUpdatedAt(LocalDateTime.now());
                 boolean result = albumService.updateAlbum(album);
                 if (!result) {
-                    throw new BusinessException(HttpStatus.INTERNAL_SERVER_ERROR.value(), "更新相册失败");
+                    throw new Exception("更新相册失败");
                 }
             }
 
@@ -164,10 +164,11 @@ public class AlbumController {
             response.put("album", albumVO);
             response.put("message", "相册更新成功");
 
-            return ResponseEntity.ok(response);
+            return Result.success(response);
         } catch (Exception e) {
             log.error("更新相册失败", e);
-            return exceptionHandlingService.handleExceptionWithStructuredResponse(e, "更新相册失败");
+
+            return Result.error("更新相册失败");
         }
     }
 
@@ -175,7 +176,7 @@ public class AlbumController {
      * 删除相册
      */
     @DeleteMapping("/{albumId}")
-    public ResponseEntity<?> deleteAlbum(
+    public Result<Map<String, Object>> deleteAlbum(
             @PathVariable Integer albumId,
             @RequestAttribute("userId") Integer userId) {
 
@@ -184,16 +185,16 @@ public class AlbumController {
         try {
             boolean result = albumService.deleteAlbum(albumId, userId);
             if (!result) {
-                throw new BusinessException(HttpStatus.INTERNAL_SERVER_ERROR.value(), "删除相册失败");
+                throw new Exception("删除相册失败");
             }
 
             Map<String, Object> response = new HashMap<>();
             response.put("message", "相册删除成功");
 
-            return ResponseEntity.ok(response);
+            return Result.success(response);
         } catch (Exception e) {
             log.error("删除相册失败", e);
-            return exceptionHandlingService.handleExceptionWithStructuredResponse(e, "删除相册失败");
+            return Result.error("删除相册失败");
         }
     }
 
@@ -201,7 +202,7 @@ public class AlbumController {
      * 获取用户的相册列表
      */
     @GetMapping("/user/{userId}")
-    public ResponseEntity<?> getUserAlbums(
+    public Result<Map<String, Object>> getUserAlbums(
             @PathVariable Integer userId,
             @RequestAttribute(value = "currentUserId", required = false) Integer currentUserId) {
 
@@ -222,10 +223,11 @@ public class AlbumController {
             response.put("albums", albumVOList);
             response.put("count", albumVOList.size());
 
-            return ResponseEntity.ok(response);
+            return Result.success(response);
         } catch (Exception e) {
             log.error("获取用户相册失败", e);
-            return exceptionHandlingService.handleExceptionWithStructuredResponse(e, "获取用户相册失败");
+
+            return Result.error("获取用户相册失败");
         }
     }
 
@@ -233,7 +235,7 @@ public class AlbumController {
      * 分页获取公开相册
      */
     @GetMapping("/public")
-    public ResponseEntity<?> getPublicAlbums(
+    public Result<Map<String, Object>> getPublicAlbums(
             @RequestParam(defaultValue = "1") Integer current,
             @RequestParam(defaultValue = "10") Integer size) {
 
@@ -252,10 +254,10 @@ public class AlbumController {
             response.put("total", albumPage.getTotal());
             response.put("records", albumVOList);
 
-            return ResponseEntity.ok(response);
+            return Result.success(response);
         } catch (Exception e) {
             log.error("获取公开相册失败", e);
-            return exceptionHandlingService.handleExceptionWithStructuredResponse(e, "获取公开相册失败");
+            return Result.error("获取公开相册失败");
         }
     }
 
@@ -264,7 +266,7 @@ public class AlbumController {
      * 获取用户最近更新的相册
      */
     @GetMapping("/recent/{userId}")
-    public ResponseEntity<?> getRecentAlbums(
+    public Result<Map<String, Object>> getRecentAlbums(
             @PathVariable Integer userId,
             @RequestParam(defaultValue = "5") Integer limit,
             @RequestAttribute(value = "currentUserId", required = false) Integer currentUserId) {
@@ -287,10 +289,10 @@ public class AlbumController {
             response.put("albums", albumVOList);
             response.put("count", albumVOList.size());
 
-            return ResponseEntity.ok(response);
+            return Result.success(response);
         } catch (Exception e) {
             log.error("获取最近相册失败", e);
-            return exceptionHandlingService.handleExceptionWithStructuredResponse(e, "获取最近相册失败");
+            return Result.error("获取最近相册失败");
         }
     }
 

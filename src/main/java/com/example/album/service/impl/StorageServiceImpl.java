@@ -44,7 +44,7 @@ public class StorageServiceImpl implements StorageService {
     private String thumbnailLocation;
 
     @Override
-    public PhotoStorageResult storePhoto(MultipartFile file, Long userId) throws IOException {
+    public PhotoStorageResult storePhoto(MultipartFile file, int userId) throws IOException {
         log.info("开始存储照片，用户ID: {}, 文件名: {}", userId, file.getOriginalFilename());
 
         // 创建必要的目录

@@ -4,19 +4,16 @@ import com.example.album.dto.PhotoUploadDTO;
 import com.example.album.dto.PhotoUpdateDTO;
 import com.example.album.dto.PhotoStorageResult;
 import com.example.album.entity.Photo;
+import com.example.album.entity.Result;
 import com.example.album.mapper.PhotoMapper;
-import com.example.album.mapper.UserMapper;
 import com.example.album.service.AlbumService;
 import com.example.album.service.StorageService;
-import com.example.album.service.ExceptionHandlingService;
-import com.example.album.common.exception.BusinessException;
 import com.example.album.utils.ThreadLocalUtil;
 import com.example.album.vo.PhotoVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -38,14 +35,12 @@ public class PhotoController {
     private final AlbumService albumService;
     private final StorageService storageService;
     private final PhotoMapper photoMapper;
-    private final UserMapper userMapper;
-    private final ExceptionHandlingService exceptionHandlingService;
 
     /**
      * 上传照片
      */
     @PostMapping("/upload")
-    public ResponseEntity<?> uploadPhoto(
+    public Result<Map<String, Object>> uploadPhoto(
             @RequestParam("file") MultipartFile file,
             @Valid @ModelAttribute PhotoUploadDTO uploadDTO) {
         try {
@@ -55,9 +50,9 @@ public class PhotoController {
 //            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //            long userId = Long.parseLong(auth.getName()); // 假设getName()返回用户ID
             Map<String, Object> claims = ThreadLocalUtil.get();
-            long userId = 0;
+            int userId = 0;
             if (claims != null) {
-                userId = ((Number) claims.get("id")).longValue();
+                userId = ((Number) claims.get("id")).intValue();
                 log.info("从ThreadLocal获取的用户ID: {}", userId);
                 // 处理逻辑...
             }else return null;
@@ -90,10 +85,11 @@ public class PhotoController {
             Map<String, Object> response = new HashMap<>();
             response.put("photo", photoVO);
             response.put("message", "照片上传成功");
-            return ResponseEntity.ok(response);
+
+            return Result.success(response);
         } catch (Exception e) {
             log.error("照片上传失败", e);
-            return exceptionHandlingService.handleExceptionWithStructuredResponse(e, "照片上传失败");
+            return Result.error("照片上传失败");
         }
     }
 
@@ -101,21 +97,24 @@ public class PhotoController {
      * 获取照片详情
      */
     @GetMapping("/{photoId}")
-    public ResponseEntity<?> getPhotoDetail(@PathVariable Long photoId) {
+    public Result<Map<String, Object>> getPhotoDetail(@PathVariable int photoId) {
         try {
             // 查询照片信息
             Photo photo = photoMapper.selectById(photoId);
             if (photo == null) {
-                throw new BusinessException(HttpStatus.NOT_FOUND.value(), "照片未找到");
+                throw new Exception("照片未找到");
             }
 
             // 转换为VO
             PhotoVO photoVO = convertToPhotoVO(photo);
 
-            return ResponseEntity.ok(photoVO);
+            Map<String, Object> response = new HashMap<>();
+            response.put("photo", photoVO);
+
+            return Result.success(response);
         } catch (Exception e) {
             log.error("获取照片详情失败", e);
-            return exceptionHandlingService.handleException(e, "获取照片详情失败");
+            return Result.error("获取照片详情失败");
         }
     }
 
@@ -123,7 +122,7 @@ public class PhotoController {
      * 获取相册中的所有照片
      */
     @GetMapping("/album/{albumId}")
-    public ResponseEntity<?> getPhotosByAlbum(@PathVariable Long albumId) {
+    public Result<Map<String, Object>> getPhotosByAlbum(@PathVariable int albumId) {
         try {
             // 查询相册中的所有照片
             List<Photo> photos = photoMapper.selectByAlbumId(Math.toIntExact(albumId));
@@ -137,10 +136,10 @@ public class PhotoController {
             response.put("photos", photoVOList);
             response.put("count", photoVOList.size());
 
-            return ResponseEntity.ok(response);
+            return Result.success(response);
         } catch (Exception e) {
             log.error("获取相册照片失败", e);
-            return exceptionHandlingService.handleExceptionWithStructuredResponse(e, "获取相册照片失败");
+            return Result.error("获取相册照片失败");
         }
     }
 
@@ -149,27 +148,27 @@ public class PhotoController {
      * 注：使用专用的PhotoUpdateDTO而不是复用PhotoUploadDTO
      */
     @PutMapping("/{photoId}")
-    public ResponseEntity<?> updatePhoto(
-            @PathVariable Long photoId,
+    public Result<Map<String, Object>> updatePhoto(
+            @PathVariable int photoId,
             @Valid @RequestBody PhotoUpdateDTO updateDTO) {
         try {
             Map<String, Object> claims = ThreadLocalUtil.get();
-            long userId = 0;
+            int userId = 0;
             if (claims != null) {
-                userId = ((Number) claims.get("id")).longValue();
+                userId = ((Number) claims.get("id")).intValue();
                 log.info("从ThreadLocal获取的用户ID: {}", userId);
                 // 处理逻辑...
             }else return null;
             // 查找照片
             Photo photo = photoMapper.selectById(photoId);
             if (photo == null) {
-                throw new BusinessException(HttpStatus.NOT_FOUND.value(), "照片未找到");
+                throw new Exception("照片未找到");
             }
 
             // 验证所有权
-            if (!Long.valueOf(photo.getUserId()).equals(userId)) {
+            if (!Integer.valueOf(photo.getUserId()).equals(userId)) {
                 log.warn("用户 {} 尝试更新不属于他的照片 {}", userId, photoId);
-                throw new BusinessException(HttpStatus.FORBIDDEN.value(), "无权更新此照片");
+                throw new Exception("无权更新此照片");
             }
 
             boolean hasUpdates = false;
@@ -201,10 +200,10 @@ public class PhotoController {
             response.put("photo", photoVO);
             response.put("message", "照片信息更新成功");
 
-            return ResponseEntity.ok(response);
+            return Result.success(response);
         } catch (Exception e) {
             log.error("更新照片信息失败", e);
-            return exceptionHandlingService.handleExceptionWithStructuredResponse(e, "更新照片信息失败");
+            return Result.error("更新照片信息失败");
         }
     }
 
@@ -212,26 +211,26 @@ public class PhotoController {
      * 删除照片
      */
     @DeleteMapping("/{photoId}")
-    public ResponseEntity<?> deletePhoto(@PathVariable Long photoId) {
+    public Result<Map<String, Object>> deletePhoto(@PathVariable int photoId) {
         try {
             log.info("接收到照片删除请求，照片ID: {}", photoId);
             Map<String, Object> claims = ThreadLocalUtil.get();
-            long userId = 0;
+            int userId = 0;
             if (claims != null) {
-                userId = ((Number) claims.get("id")).longValue();
+                userId = ((Number) claims.get("id")).intValue();
                 log.info("从ThreadLocal获取的用户ID: {}", userId);
                 // 处理逻辑...
             }else return null;
             // 查找照片
             Photo photo = photoMapper.selectById(photoId);
             if (photo == null) {
-                throw new BusinessException(HttpStatus.NOT_FOUND.value(), "照片未找到");
+                throw new Exception("照片未找到");
             }
 
             // 验证所有权
-            if (!Long.valueOf(photo.getUserId()).equals(userId)) {
+            if (!Integer.valueOf(photo.getUserId()).equals(userId)) {
                 log.warn("用户 {} 尝试删除不属于他的照片 {}", userId, photoId);
-                throw new BusinessException(HttpStatus.FORBIDDEN.value(), "无权删除此照片");
+                throw new Exception("无权删除此照片");
             }
 
             // 删除物理文件
@@ -244,10 +243,10 @@ public class PhotoController {
             Map<String, Object> response = new HashMap<>();
             response.put("message", "照片删除成功");
 
-            return ResponseEntity.ok(response);
+            return Result.success(response);
         } catch (Exception e) {
             log.error("照片删除失败", e);
-            return exceptionHandlingService.handleExceptionWithStructuredResponse(e, "照片删除失败");
+            return Result.error("照片删除失败");
         }
     }
 

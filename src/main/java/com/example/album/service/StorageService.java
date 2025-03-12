@@ -13,7 +13,7 @@ public interface StorageService {
      * @param userId 用户ID
      * @return 存储结果，包含文件URL和大小信息
      */
-    PhotoStorageResult storePhoto(MultipartFile file, Long userId) throws IOException;
+    PhotoStorageResult storePhoto(MultipartFile file, int userId) throws IOException;
 
     /**
      * 删除存储的照片

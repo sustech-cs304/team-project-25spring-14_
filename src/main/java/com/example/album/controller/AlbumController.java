@@ -42,9 +42,9 @@ public class AlbumController {
      * 创建相册
      */
     @PostMapping("/upload")
-    public Result createAlbum(
-            @RequestAttribute("userId") Integer userId,
-            @Valid @RequestBody AlbumCreateDTO createDTO) {
+    public Result<Map<String, Object>> createAlbum(
+            @RequestParam("userId") Integer userId,
+            @Valid @ModelAttribute AlbumCreateDTO createDTO) {
 
         log.info("接收到创建相册请求，用户ID: {}, 相册标题: {}", userId, createDTO.getTitle());
 
@@ -79,7 +79,7 @@ public class AlbumController {
     @GetMapping("/{albumId}")
     public Result<Map<String, Object>> getAlbumDetail(
             @PathVariable Integer albumId,
-            @RequestAttribute(value = "userId", required = false) Integer userId) {
+            @RequestParam(value = "userId", required = false) Integer userId) {
 
         try {
             // 检查访问权限
@@ -114,13 +114,12 @@ public class AlbumController {
     @PutMapping("/{albumId}")
     public Result<Map<String, Object>> updateAlbum(
             @PathVariable Integer albumId,
-            @RequestAttribute("userId") Integer userId,
-            @Valid @RequestBody AlbumUpdateDTO updateDTO) {
+            @RequestParam("userId") Integer userId,
+            @Valid @ModelAttribute AlbumUpdateDTO updateDTO) {
 
         try {
             Album album = albumService.getById(albumId);
             if (album == null) {
-
                 throw new Exception("没有访问权限");
             }
 
@@ -178,7 +177,7 @@ public class AlbumController {
     @DeleteMapping("/{albumId}")
     public Result<Map<String, Object>> deleteAlbum(
             @PathVariable Integer albumId,
-            @RequestAttribute("userId") Integer userId) {
+            @RequestParam("userId") Integer userId) {
 
         log.info("接收到删除相册请求，相册ID: {}, 用户ID: {}", albumId, userId);
 
@@ -204,7 +203,7 @@ public class AlbumController {
     @GetMapping("/user/{userId}")
     public Result<Map<String, Object>> getUserAlbums(
             @PathVariable Integer userId,
-            @RequestAttribute(value = "currentUserId", required = false) Integer currentUserId) {
+            @RequestParam(value = "currentUserId", required = false) Integer currentUserId) {
 
         try {
             List<Album> albums = albumService.getAlbumsByUserId(userId);
@@ -269,7 +268,7 @@ public class AlbumController {
     public Result<Map<String, Object>> getRecentAlbums(
             @PathVariable Integer userId,
             @RequestParam(defaultValue = "5") Integer limit,
-            @RequestAttribute(value = "currentUserId", required = false) Integer currentUserId) {
+            @RequestParam(value = "currentUserId", required = false) Integer currentUserId) {
 
         try {
             // 检查访问权限

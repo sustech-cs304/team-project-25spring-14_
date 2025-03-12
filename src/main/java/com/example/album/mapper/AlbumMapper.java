@@ -8,6 +8,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import org.apache.ibatis.annotations.*;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
@@ -30,4 +33,15 @@ public interface AlbumMapper extends BaseMapper<Album> {
      */
     @Select("SELECT * FROM tb_album WHERE privacy = 'public' ORDER BY updated_at DESC")
     IPage<Album> selectPublicAlbums(Page<Album> page);
+
+    @Insert("INSERT INTO tb_album (user_id, title, description, privacy, created_at, updated_at, cover_photo_id) " +
+            "VALUES (#{userId}, #{title}, #{description}, #{privacy}::privacy_type, #{createdAt}, #{updatedAt}, #{coverPhotoId})")
+    int insertAlbum(Integer userId, String title, String description, String privacy,
+                    LocalDateTime createdAt, LocalDateTime updatedAt, Integer coverPhotoId);
+    
+    @Update("UPDATE tb_album SET title = #{title}, description = #{description}, " +
+            "privacy = #{privacy}::privacy_type, cover_photo_id = #{coverPhotoId}, " +
+            "updated_at = #{updatedAt} WHERE album_id = #{albumId}")
+    int updateAlbumWithPrivacy(String title, String description, String privacy,
+                               Integer coverPhotoId, LocalDateTime updatedAt, Integer albumId);
 }

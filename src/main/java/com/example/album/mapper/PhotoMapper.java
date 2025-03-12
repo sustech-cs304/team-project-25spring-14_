@@ -11,8 +11,8 @@ import java.util.List;
 
 @Mapper
 public interface PhotoMapper extends BaseMapper<Photo> {
-    @Insert("INSERT INTO tb_photo(album_id, user_id, file_name, file_url, thumbnail_url, file_size, is_favorite, captured_at, created_at) " +
-            "VALUES(#{albumId}, #{userId}, #{fileName}, #{fileUrl}, #{thumbnailUrl}, #{fileSize}, #{isFavorite}, #{capturedAt}, #{createdAt})")
+    @Insert("INSERT INTO tb_photo(album_id, user_id, file_name, file_url, thumbnail_url, is_favorite, captured_at, created_at) " +
+            "VALUES(#{albumId}, #{userId}, #{fileName}, #{fileUrl}, #{thumbnailUrl},#{isFavorite}, #{capturedAt}, #{createdAt})")
     @Options(useGeneratedKeys = true, keyProperty = "photoId")
     int insert(Photo photo);
 

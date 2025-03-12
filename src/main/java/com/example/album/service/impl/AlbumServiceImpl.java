@@ -34,7 +34,21 @@ public class AlbumServiceImpl extends ServiceImpl<AlbumMapper, Album> implements
             album.setPrivacy(PrivacyTypeEnum.PRIVATE);
         }
 
-        return save(album);
+        // 获取隐私类型的值
+        String privacyValue = album.getPrivacy().getValue();
+
+        // 使用自定义SQL语句插入数据
+        int result = baseMapper.insertAlbum(
+                album.getUserId(),
+                album.getTitle(),
+                album.getDescription(),
+                privacyValue,
+                album.getCreatedAt(),
+                album.getUpdatedAt(),
+                album.getCoverPhotoId()
+        );
+
+        return result > 0;
     }
 
     @Override
@@ -47,7 +61,16 @@ public class AlbumServiceImpl extends ServiceImpl<AlbumMapper, Album> implements
             return false;
         }
         album.setUpdatedAt(LocalDateTime.now());
-        return updateById(album);
+        String privacyValue = album.getPrivacy().getValue();
+
+        return baseMapper.updateAlbumWithPrivacy(
+                album.getTitle(),
+                album.getDescription(),
+                privacyValue,
+                album.getCoverPhotoId(),
+                album.getUpdatedAt(),
+                album.getAlbumId()
+        ) > 0;
     }
 
     @Override

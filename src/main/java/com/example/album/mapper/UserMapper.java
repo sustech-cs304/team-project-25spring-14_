@@ -17,8 +17,8 @@ public interface UserMapper extends BaseMapper<User> {
     User findByUsername(String username);
 
     //add user
-    @Insert("INSERT INTO tb_user (rolename, username, password, email, avatar_url, last_login) " +
-            "VALUES ('user',#{username}, #{password}, null, null, null)")
+    @Insert("INSERT INTO tb_user (username, password, email, avatar_url, last_login) " +
+            "VALUES (#{username}, #{password}, null, null, null)")
     void add(String username, String password);
 
     //update user

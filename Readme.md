@@ -27,7 +27,9 @@ thumbnailLocation 是用于存储文件缩略图的路径。它通常指向一�
 
 ## Question: 需不需要设置filesize
 
-
+getRolename有一个文件识别不到改了一下大小写
+枚举类的sql语句需要特殊书写，具体看mapper中的方法
+接入注意顺序和内容，id要对应。且先user然后album然后photo
 
 
 

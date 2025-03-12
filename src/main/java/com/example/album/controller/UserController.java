@@ -52,12 +52,12 @@ public class UserController {
             Map<String, Object> claims = new HashMap<>();
             claims.put("id", loginUser.getUserId());
             claims.put("username", loginUser.getUsername());
-            claims.put("role", loginUser.getRoleName());  // 将角色信息放入 claims
+            claims.put("role", loginUser.getRolename());  // 将角色信息放入 claims
             String token = JwtUtil.genToken(claims);
 
             Map<String, Object> data = new HashMap<>();
             data.put("token", token);
-            data.put("role", loginUser.getRoleName());  // 让前端可以获取角色信息
+            data.put("role", loginUser.getRolename());  // 让前端可以获取角色信息
 
             return Result.success(data);
         }

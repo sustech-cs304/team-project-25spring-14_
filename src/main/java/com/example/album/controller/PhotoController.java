@@ -46,9 +46,6 @@ public class PhotoController {
         try {
             log.info("接收到照片上传请求，相册ID: {}, 文件名: {}", uploadDTO.getAlbumId(), file.getOriginalFilename());
 
-            // 获取当前用户ID (假设使用了Spring Security)
-//            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//            long userId = Long.parseLong(auth.getName()); // 假设getName()返回用户ID
             Map<String, Object> claims = ThreadLocalUtil.get();
             int userId = 0;
             if (claims != null) {
@@ -150,7 +147,7 @@ public class PhotoController {
     @PutMapping("/{photoId}")
     public Result<Map<String, Object>> updatePhoto(
             @PathVariable int photoId,
-            @Valid @RequestBody PhotoUpdateDTO updateDTO) {
+            @Valid @ModelAttribute PhotoUpdateDTO updateDTO) {
         try {
             Map<String, Object> claims = ThreadLocalUtil.get();
             int userId = 0;

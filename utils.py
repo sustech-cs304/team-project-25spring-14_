@@ -17,10 +17,10 @@ from ultralytics import YOLO
 def rotate(image_path): # 每点击一下就逆时针旋转90度，然后判断是否需要保存
     img = cv.imread(image_path)
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
-    weight = img.shape[0]
-    height = img.shape[1]
-    ro_matrix = cv.getRotationMatrix2D((weight/2, height/2), 90, 1)
-    img = cv.warpAffine(img, ro_matrix, (height, weight))
+    height = img.shape[0]
+    width = img.shape[1]
+    ro_matrix = cv.getRotationMatrix2D((width/2, height/2), 90, 1)
+    img = cv.warpAffine(img, ro_matrix, (height, width))
     return img
     # plt.imshow(img)
     # plt.axis('off')
@@ -49,7 +49,8 @@ def adjust_brightness(img_path,brightness=0,contrast=1.0):  # 调整亮度，和
     # plt.imshow(img)
     # plt.axis('off')
     # plt.show()
-def remove_object(img_path, mask_region=None):
+    
+def remove_object(img_path, mask_region=None):  # 效果还不是很好，如果不上深度学习的话这个可能就不用了
     img = cv.imread(img_path)
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
     
@@ -97,27 +98,6 @@ def sketch_effect(img_path):  # 边缘检测，然后颜色反转得到所谓的
     # plt.axis('off')
     # plt.show()
 
-
-# def detect_object_in_photos(input_dir, output_dir, confidence_threshold=0.6):  # 将出现人脸的图片全部取出来保存到某一个文件
-
-#     model = YOLO('yolov8n.pt')
-#     os.makedirs(output_dir, exist_ok=True)
-    
-#     # 获取所有图片文件
-#     image_extensions = ['.jpg', '.jpeg', '.png', '.webp']
-#     image_paths = [
-#         os.path.join(input_dir, f) for f in os.listdir(input_dir)
-#         if os.path.splitext(f)[1].lower() in image_extensions
-#     ]
-#     image_paths = image_paths[:100]  # 现在只选前一百张进行实验
-#     for image_path in tqdm(image_paths, desc="Processing Photos"):
-#         results = model.predict(image_path, verbose=False)
-#         for box in results[0].boxes:
-#             if box.cls == 0 and box.conf >= confidence_threshold:
-#                 # 复制包含人物的图片到输出目录
-#                 shutil.copy(image_path, output_dir)
-#                 break  
-
 def ai_classify_image(image_path):  # 用AI来识别图片中是否有特定的物体
     model = YOLO('yolov8n.pt')
     common_choises = ['person', 'car', 'dog', 'cat', 'book','snowboard']
@@ -130,28 +110,32 @@ def ai_classify_image(image_path):  # 用AI来识别图片中是否有特定的�
             detect.append(class_name)
     return detect
 
-def img_to_video(image_folder, audio_file, final_output_file, transition='', fps=25):  # 跟上面的方法一致，不过这个可以添加图片切换时候的特效
-
+def img_to_video(image_folder, final_output_file,audio_file = None, transition='', fps=25):  # 跟上面的方法一致，不过这个可以添加图片切换时候的特效
+    # 这里传进来的image_folder是一个列表，里面是所有需要用到数据的绝对地址
     fourcc = cv.VideoWriter_fourcc(*'mp4v')
     frame_size = (640, 480)  # 要注意resize之后是（480,640），因为传进去的是（width，height）
-    temp_output = 'temp.mp4'
+    if audio_file is not None:
+        temp_output = 'temp.mp4'
+    else:
+        temp_output = final_output_file
+
     video_writer = cv.VideoWriter(temp_output, fourcc, fps, frame_size)
 
-    image_files = sorted([f for f in os.listdir(image_folder) if f.endswith(('.png', '.jpg'))])
-    image_files = image_files[:100]
+    # image_files = sorted([f for f in os.listdir(image_folder) if f.endswith(('.png', '.jpg'))])
+    # image_files = image_files[:100]
 
     if transition == '':  # 没有特效的
-        for i in range(len(image_files) - 1):
-            img_path = os.path.join(image_folder, image_files[i])
+        for i in range(len(image_folder) - 1):
+            img_path = image_folder[i]
             img = cv.imread(img_path)
             img = cv.resize(img, frame_size)
             for _ in range(fps):
                 video_writer.write(img)
     elif transition == 'fade':  # 渐变特效
-        for i in range(len(image_files) - 1):
-            img_path1 = os.path.join(image_folder, image_files[i])
-            img_path2 = os.path.join(image_folder, image_files[i + 1])
-            
+        for i in range(len(image_folder) - 1):
+            img_path1 = image_folder[i]
+            img_path2 = image_folder[i+1]
+
             img1 = cv.imread(img_path1)
             img2 = cv.imread(img_path2)
             if img2 is None:  # 已经到了最后一张单独加上去
@@ -162,19 +146,19 @@ def img_to_video(image_folder, audio_file, final_output_file, transition='', fps
 
             for _ in range(fps):  # 静态帧，一秒25张
                 video_writer.write(img1)
-        
+
             num_transitions = fps  # 1秒的过渡帧数
             for j in range(num_transitions):
                 alpha = j / float(num_transitions)
                 blended = cv.addWeighted(img1, 1 - alpha, img2, alpha, 0)
                 video_writer.write(blended)
-        for _ in range(fps):  
+        for _ in range(fps):
             video_writer.write(img2)
     elif transition == 'slide':  # 滑动特效
-        for i in range(len(image_files) - 1):
-            img_path1 = os.path.join(image_folder, image_files[i])
-            img_path2 = os.path.join(image_folder, image_files[i + 1])
-            
+        for i in range(len(image_folder) - 1):
+            img_path1 = image_folder[i]
+            img_path2 = image_folder[i+1]
+
             img1 = cv.imread(img_path1)
             img2 = cv.imread(img_path2)
             img1 = cv.resize(img1, frame_size)
@@ -183,22 +167,22 @@ def img_to_video(image_folder, audio_file, final_output_file, transition='', fps
                 continue
             for i in range(fps // 2):  # 每张照片先显示半秒然后开始过渡
                 video_writer.write(img1)
-            
+
             for i in range(fps):  # 过渡持续一秒，是从左边向又进行滑动
                 alpha = i / float(fps)
                 x_offset = int(alpha * frame_size[0])
                 img = img1.copy()
-                img[:, frame_size[0]-x_offset:] = img2[:, :x_offset]
+                img[:, frame_size[0] - x_offset:] = img2[:, :x_offset]
                 video_writer.write(img)
         for i in range(fps // 2):
             video_writer.write(img2)
     elif transition == 'zoom':
-        col_middle = frame_size[0]//2
-        row_middle = frame_size[1]//2
-        for i in range(len(image_files) - 1):
-            img_path1 = os.path.join(image_folder, image_files[i])
-            img_path2 = os.path.join(image_folder, image_files[i + 1])
-            
+        col_middle = frame_size[0] // 2
+        row_middle = frame_size[1] // 2
+        for i in range(len(image_folder) - 1):
+            img_path1 = image_folder[i]
+            img_path2 = image_folder[i+1]
+
             img1 = cv.imread(img_path1)
             img2 = cv.imread(img_path2)
             img1 = cv.resize(img1, frame_size)
@@ -210,10 +194,12 @@ def img_to_video(image_folder, audio_file, final_output_file, transition='', fps
 
             for i in range(fps):
                 alpha = i / float(fps)
-                col_offset = int(alpha * frame_size[0])//2
-                row_offset = int(alpha * frame_size[1])//2
+                col_offset = int(alpha * frame_size[0]) // 2
+                row_offset = int(alpha * frame_size[1]) // 2
                 img = img1.copy()
-                img[row_middle-row_offset:row_middle+row_offset, col_middle-col_offset:col_middle+col_offset] = img2[row_middle-row_offset:row_middle+row_offset, col_middle-col_offset:col_middle+col_offset]
+                img[row_middle - row_offset:row_middle + row_offset,
+                col_middle - col_offset:col_middle + col_offset] = img2[row_middle - row_offset:row_middle + row_offset,
+                                                                   col_middle - col_offset:col_middle + col_offset]
                 video_writer.write(img)
         for i in range(fps // 2):
             video_writer.write(img2)
@@ -222,19 +208,20 @@ def img_to_video(image_folder, audio_file, final_output_file, transition='', fps
     print("Video saved successfully.")
 
     # 这里用ffmpeg添加音频，需要到https://www.ffmpeg.org/ 上面下载，解压后把bin目录加到环境变量里面
-    ffmpeg_cmd = [  # 用ffmpeg添加音频，但是这里得先生成视频再加音频
-        "ffmpeg",
-        "-i", temp_output,
-        "-i", audio_file,
-        "-c:v", "copy",
-        "-c:a", "aac",
-        "-shortest",
-        final_output_file
-    ]
+    if audio_file is not None:
+        ffmpeg_cmd = [  # 用ffmpeg添加音频，但是这里得先生成视频再加音频
+            "ffmpeg",
+            "-i", temp_output,
+            "-i", audio_file,
+            "-c:v", "copy",
+            "-c:a", "aac",
+            "-shortest",
+            final_output_file
+        ]
 
-    subprocess.run(ffmpeg_cmd)
-    os.remove(temp_output)
-    print("Final video with audio created.")
+        subprocess.run(ffmpeg_cmd)
+        os.remove(temp_output)
+        print("Final video with audio created.")
 
 def add_captions(input_video, output_video, subtitles_dict:dict,font_name='Arial',font_size=24,font_color='white'):
     """
@@ -273,21 +260,27 @@ def add_captions(input_video, output_video, subtitles_dict:dict,font_name='Arial
 def denoising(img_path):  # 这里用锐化的效果比较明显，高斯滤波和双边滤波的效果一般
 
     img = cv.imread(img_path)
+    img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
     sharpen_kernel = np.array([[0, -1, 0], [-1, 5,-1], [0, -1, 0]])
     sharpened_img = cv.filter2D(img, -1, sharpen_kernel)
+    sharpened_img = np.clip(sharpened_img, 0, 255).astype(np.uint8)
     return sharpened_img
-    # plt.imshow(cv.cvtColor(sharpened_img, cv.COLOR_BGR2RGB))
+    # plt.subplot(121)
+    # plt.imshow(sharpened_img)
+    # plt.axis('off')
+    # plt.subplot(122)
+    # plt.imshow(img)
     # plt.axis('off')
     # plt.show()
 
 if __name__ == '__main__':
-    # rotate('./resources/lenna.jpg',False)
+    # rotate('F:/VOCtrainval_11-May-2012/JPEGImages/2007_000027.jpg')
     # cut('./resources/lenna.jpg',((100,200),(100,200)),False)
     # adjust_brightness('./resources/lenna.jpg',False,100,1)
     # remove_object('F:/VOCtrainval_11-May-2012/JPEGImages/2007_000170.jpg',None)
     # sketch_effect('./resources/lenna.jpg',False)
     # detect_people_in_photos('F:/VOCtrainval_11-May-2012/JPEGImages','F:/VOCtrainval_11-May-2012/Output',0.6)
-    # img_to_video(r'F:/VOCtrainval_11-May-2012/JPEGImages',r'E:/bgMusic.wav','F:/VOCtrainval_11-May-2012/FinalOutput.mp4',transition='zoom')
+    img_to_video(r'F:/VOCtrainval_11-May-2012/JPEGImages',final_output_file='F:/VOCtrainval_11-May-2012/FinalOutput.mp4',audio_file='E:/bgMusic.wav',transition='zoom')
     # subtitles = {
     #     "00:00:05-00:00:10": "第一段字幕：欢迎观看！",
     #     "00:00:15-00:00:20": "第二段字幕：这是一个示例视频。"
@@ -302,4 +295,4 @@ if __name__ == '__main__':
     # )
     # play_video(temp)
     # os.remove(temp)  # 删除临时文件
-    denoising('F:/VOCtrainval_11-May-2012/JPEGImages/2007_000170.jpg')
+    # denoising('F:/VOCtrainval_11-May-2012/JPEGImages/2007_000027.jpg')

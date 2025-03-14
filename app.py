@@ -1,3 +1,5 @@
+import ast
+
 import cv2
 from flask import Flask, request, Response, jsonify, send_file
 
@@ -14,6 +16,7 @@ def rotate_app():
         return 'ERROR :Image_path dose not exists'
     try:
         img = rotate(img_path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         _,img_encoded = cv2.imencode('.jpg', img)
         return Response(img_encoded.tobytes(), mimetype='image/jpeg')
     except Exception as e:
@@ -23,12 +26,14 @@ def rotate_app():
 def cut_app():
     img_path = request.args.get('img_path')
     region = request.args.get('region')
+    region = ast.literal_eval(region)
     if not img_path:
         return 'ERROR :Image_path not provided'
     if not os.path.exists(img_path):
         return 'ERROR :Image_path dose not exists'
     try:
         img = cut(img_path, region)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         _,img_encoded = cv2.imencode('.jpg', img)
         return Response(img_encoded.tobytes(), mimetype='image/jpeg')
     except Exception as e:
@@ -37,63 +42,65 @@ def cut_app():
 @app.route('/adjust_brightness')
 def adjust_brightness_app():
     img_path = request.args.get('img_path')
-    brightness = request.args.get('brightness')
-    contrast = request.args.get('contrast')
+    brightness = int(request.args.get('brightness'))
+    contrast = float(request.args.get('contrast'))
     if not img_path:
         return 'ERROR :Image_path not provided'
     if not os.path.exists(img_path):
         return 'ERROR :Image_path dose not exists'
     try:
         img = adjust_brightness(img_path,brightness,contrast)
+        img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
         _,img_encoded = cv2.imencode('.jpg', img)
         return Response(img_encoded.tobytes(), mimetype='image/jpeg')
     except Exception as e:
         print(e)
 
-@app.route('/remove_object')
-def remove_object_app():
-    img_path = request.args.get('img_path')
-    mask_region = request.args.get('mask_region')
-    if not img_path:
-        return 'ERROR :Image_path not provided'
-    if not os.path.exists(img_path):
-        return 'ERROR :Image_path dose not exists'
-    try:
-        img = remove_object(img_path, mask_region)
-        _,img_encoded = cv2.imencode('.jpg', img)
-        return Response(img_encoded.tobytes(), mimetype='image/jpeg')
-    except Exception as e:
-        print(e)
+# @app.route('/remove_object')
+# def remove_object_app():
+#     img_path = request.args.get('img_path')
+#     mask_region = request.args.get('mask_region')
+#     if not img_path:
+#         return 'ERROR :Image_path not provided'
+#     if not os.path.exists(img_path):
+#         return 'ERROR :Image_path dose not exists'
+#     try:
+#         img = remove_object(img_path, mask_region)
+#         _,img_encoded = cv2.imencode('.jpg', img)
+#         return Response(img_encoded.tobytes(), mimetype='image/jpeg')
+#     except Exception as e:
+#         print(e)
+#
+# @app.route('/sketch_effect')
+# def sketch_app():
+#     img_path = request.args.get('img_path')
+#     if not img_path:
+#         return 'ERROR :Image_path not provided'
+#     if not os.path.exists(img_path):
+#         return 'ERROR :Image_path dose not exists'
+#     try:
+#         img = sketch_effect(img_path)
+#         _,img_encoded = cv2.imencode('.jpg', img)
+#         return Response(img_encoded.tobytes(), mimetype='image/jpeg')
+#     except Exception as e:
+#         print(e)
 
-@app.route('/sketch_effect')
-def sketch_app():
-    img_path = request.args.get('img_path')
-    if not img_path:
-        return 'ERROR :Image_path not provided'
-    if not os.path.exists(img_path):
-        return 'ERROR :Image_path dose not exists'
-    try:
-        img = sketch_effect(img_path)
-        _,img_encoded = cv2.imencode('.jpg', img)
-        return Response(img_encoded.tobytes(), mimetype='image/jpeg')
-    except Exception as e:
-        print(e)
-
-@app.route('/denoising',methods=['POST'])
+@app.route('/denoising')
 def detect_face_app():
-    input_dir = request.form.get('img_path')
-    if not input_dir:
+    img_path = request.args.get('img_path')
+    if not img_path:
         return 'ERROR :Image_path not provided'
-    if not os.path.exists(input_dir):
+    if not os.path.exists(img_path):
         return 'ERROR :Image_path dose not exists'
     try:
-        img = denoising(input_dir)
+        img = denoising(img_path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         _,img_encoded = cv2.imencode('.jpg', img)
         return Response(img_encoded.tobytes(), mimetype='image/jpeg')
     except Exception as e:
         print(e)
 
-@app.route('/image_to_video',methods=['POST'])
+@app.route('/image_to_video')
 def image_to_video_app():
     img_folder = request.form.get('img_folder')
     audio_file = request.form.get('audio_file')
@@ -109,7 +116,7 @@ def image_to_video_app():
     except Exception as e:
         print(e)
 
-@app.route('add_captions',methods=['POST'])
+@app.route('/add_captions')
 def add_captions_app():
     input_video = request.form.get('input_video')
     output_video = request.form.get('output_video')
@@ -127,7 +134,7 @@ def add_captions_app():
     except Exception as e:
         print(e)
 
-@app.route('ai_classify_image')
+@app.route('/ai_classify_image')
 def ai_classify_image_app():
     img_path = request.args.get('img_path')
     if not img_path:

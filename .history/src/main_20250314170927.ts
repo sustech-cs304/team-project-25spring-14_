@@ -10,5 +10,3 @@ const app = createApp(App);
 app.use(router);
 app.use(ElementPlus);
 app.config.globalProperties.$axios = axios;
-app.config.globalProperties.$qs = qs;
-app.mount("#app");

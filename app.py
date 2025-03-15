@@ -2,7 +2,6 @@ import ast
 
 import cv2
 from flask import Flask, request, Response, jsonify, send_file
-
 from utils import *
 
 app = Flask(__name__)
@@ -100,37 +99,42 @@ def detect_face_app():
     except Exception as e:
         print(e)
 
-@app.route('/image_to_video')
+@app.route('/image_to_video', methods=['POST'])  # 改为 POST 请求
 def image_to_video_app():
-    img_folder = request.form.get('img_folder')
-    audio_file = request.form.get('audio_file')
-    final_output_file = request.form.get('final_output_file')
-    transition = request.form.get('transition')
-    fps = request.form.get('fps')
-    if not img_folder:
-        return 'ERROR :Image_path not provided'
-    if not os.path.exists(img_folder):
-        return 'ERROR :Image_path dose not exists'
+    data = request.json
+
+    img_folder = data.get('img_folder')
+    audio_file = data.get('audio_file', None)
+    transition = data.get('transition')
+    final_output_file = data.get('final_output_file')
+    fps = int(data.get('fps', 25))  # 默认 fps 为 25
+
+    if not img_folder or not final_output_file:
+        return jsonify({'error': 'img_folder and final_output_file are required'}), 400
+
     try:
-        img_to_video(img_folder, audio_file, final_output_file, transition, fps)
+        img_to_video(img_folder, audio_file, final_output_file, transition, fps)  # 调用视频生成函数
+        return jsonify({'message': 'Video created successfully'}), 200
     except Exception as e:
         print(e)
+        return jsonify({'error': str(e)}), 500
 
-@app.route('/add_captions')
+@app.route('/add_captions',methods=['POST'])
 def add_captions_app():
-    input_video = request.form.get('input_video')
-    output_video = request.form.get('output_video')
-    subtitles_dict = request.form.get('subtitles_dict')
-    font_name = request.form.get('font_name')
-    font_size = request.form.get('font_size')
-    font_color = request.form.get('font_color')
+    data = request.json
+    input_video = data.get('input_video')
+    output_video = data.get('output_video')
+    subtitles_dict = data.get('subtitles_dict')
+    font_name = data.get('font_name')
+    font_size = int(data.get('font_size'))
+    font_color = data.get('font_color')
     if not input_video:
         return 'ERROR :Image_path not provided'
     if not os.path.exists(input_video):
         return 'ERROR :Image_path dose not exists'
     try:
-        temp_out = add_captions(input_video,subtitles_dict,font_name,font_size,font_color)  # 这里的dict需要传进去一个字典，但是这里是一个字符串，到时候看怎么转成字典
-        return send_file
+        add_captions(input_video,output_video,subtitles_dict,font_name,font_size,font_color)  # 这里的dict需要传进去一个字典，但是这里是一个字符串，到时候看怎么转成字典
+        return jsonify({'message': 'Video created successfully'}), 200
     except Exception as e:
         print(e)
 

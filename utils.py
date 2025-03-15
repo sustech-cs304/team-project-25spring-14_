@@ -1,12 +1,10 @@
 import os
-import shutil
 import subprocess
+from io import BytesIO
 from datetime import datetime, timedelta
-
 import cv2 as cv
 import matplotlib.pyplot as plt
 import numpy as np
-from tqdm import tqdm
 from ultralytics import YOLO
 
 """
@@ -110,31 +108,28 @@ def ai_classify_image(image_path):  # 用AI来识别图片中是否有特定的�
             detect.append(class_name)
     return detect
 
-def img_to_video(image_folder, final_output_file,audio_file = None, transition='', fps=25):  # 跟上面的方法一致，不过这个可以添加图片切换时候的特效
-    # 这里传进来的image_folder是一个列表，里面是所有需要用到数据的绝对地址
+
+def img_to_video(image_folder, audio_file, final_output_file, transition='', fps=25):  # 跟上面的方法一致，不过这个可以添加图片切换时候的特效
+
     fourcc = cv.VideoWriter_fourcc(*'mp4v')
     frame_size = (640, 480)  # 要注意resize之后是（480,640），因为传进去的是（width，height）
-    if audio_file is not None:
-        temp_output = 'temp.mp4'
-    else:
-        temp_output = final_output_file
-
+    temp_output = 'temp.mp4'
     video_writer = cv.VideoWriter(temp_output, fourcc, fps, frame_size)
 
-    # image_files = sorted([f for f in os.listdir(image_folder) if f.endswith(('.png', '.jpg'))])
-    # image_files = image_files[:100]
+    image_files = sorted([f for f in os.listdir(image_folder) if f.endswith(('.png', '.jpg'))])
+    image_files = image_files[:100]
 
     if transition == '':  # 没有特效的
-        for i in range(len(image_folder) - 1):
-            img_path = image_folder[i]
+        for i in range(len(image_files) - 1):
+            img_path = os.path.join(image_folder, image_files[i])
             img = cv.imread(img_path)
             img = cv.resize(img, frame_size)
             for _ in range(fps):
                 video_writer.write(img)
     elif transition == 'fade':  # 渐变特效
-        for i in range(len(image_folder) - 1):
-            img_path1 = image_folder[i]
-            img_path2 = image_folder[i+1]
+        for i in range(len(image_files) - 1):
+            img_path1 = os.path.join(image_folder, image_files[i])
+            img_path2 = os.path.join(image_folder, image_files[i + 1])
 
             img1 = cv.imread(img_path1)
             img2 = cv.imread(img_path2)
@@ -155,9 +150,9 @@ def img_to_video(image_folder, final_output_file,audio_file = None, transition='
         for _ in range(fps):
             video_writer.write(img2)
     elif transition == 'slide':  # 滑动特效
-        for i in range(len(image_folder) - 1):
-            img_path1 = image_folder[i]
-            img_path2 = image_folder[i+1]
+        for i in range(len(image_files) - 1):
+            img_path1 = os.path.join(image_folder, image_files[i])
+            img_path2 = os.path.join(image_folder, image_files[i + 1])
 
             img1 = cv.imread(img_path1)
             img2 = cv.imread(img_path2)
@@ -179,9 +174,9 @@ def img_to_video(image_folder, final_output_file,audio_file = None, transition='
     elif transition == 'zoom':
         col_middle = frame_size[0] // 2
         row_middle = frame_size[1] // 2
-        for i in range(len(image_folder) - 1):
-            img_path1 = image_folder[i]
-            img_path2 = image_folder[i+1]
+        for i in range(len(image_files) - 1):
+            img_path1 = os.path.join(image_folder, image_files[i])
+            img_path2 = os.path.join(image_folder, image_files[i + 1])
 
             img1 = cv.imread(img_path1)
             img2 = cv.imread(img_path2)
@@ -208,20 +203,19 @@ def img_to_video(image_folder, final_output_file,audio_file = None, transition='
     print("Video saved successfully.")
 
     # 这里用ffmpeg添加音频，需要到https://www.ffmpeg.org/ 上面下载，解压后把bin目录加到环境变量里面
-    if audio_file is not None:
-        ffmpeg_cmd = [  # 用ffmpeg添加音频，但是这里得先生成视频再加音频
-            "ffmpeg",
-            "-i", temp_output,
-            "-i", audio_file,
-            "-c:v", "copy",
-            "-c:a", "aac",
-            "-shortest",
-            final_output_file
-        ]
+    ffmpeg_cmd = [  # 用ffmpeg添加音频，但是这里得先生成视频再加音频
+        "ffmpeg",
+        "-i", temp_output,
+        "-i", audio_file,
+        "-c:v", "copy",
+        "-c:a", "aac",
+        "-shortest",
+        final_output_file
+    ]
 
-        subprocess.run(ffmpeg_cmd)
-        os.remove(temp_output)
-        print("Final video with audio created.")
+    subprocess.run(ffmpeg_cmd)
+    os.remove(temp_output)
+    print("Final video with audio created.")
 
 def add_captions(input_video, output_video, subtitles_dict:dict,font_name='Arial',font_size=24,font_color='white'):
     """
@@ -272,6 +266,7 @@ def denoising(img_path):  # 这里用锐化的效果比较明显，高斯滤波�
     # plt.imshow(img)
     # plt.axis('off')
     # plt.show()
+
 
 if __name__ == '__main__':
     # rotate('F:/VOCtrainval_11-May-2012/JPEGImages/2007_000027.jpg')

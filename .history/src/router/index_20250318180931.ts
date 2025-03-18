@@ -50,6 +50,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.getItem("jwtToken");
 
+  // 如果路由需要认证且用户没有登录，重定向到登录页面
   if (!isAuthenticated && to.path !== "/") {
     next("/");
   } else if (isAuthenticated && to.path === "/") {

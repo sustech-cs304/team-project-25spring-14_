@@ -4,6 +4,7 @@ import LoginView from "../views/LoginView.vue";
 import SettingsView from "@/views/home/SettingsView.vue";
 import DiscoverView from "@/views/home/DiscoverView.vue";
 import PhotosView from "@/views/home/PhotosView.vue";
+import ImageEditor from "@/views/ImageEditor.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -33,6 +34,16 @@ const routes: Array<RouteRecordRaw> = [
         component: SettingsView,
       },
     ],
+  },
+  {
+    path: "/edit", // 主界面路径
+    name: "edit", // 路由名称
+    component: ImageEditor, // 路由指向的主界面组件
+  },
+  {
+    path: "/edit", // 主界面路径
+    name: "edit", // 路由名称
+    component: ImageEditor, // 路由指向的主界面组件
   },
 ];
 

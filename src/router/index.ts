@@ -3,6 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
 import MainView from "../views/MainView.vue";
 import TryView from "@/views/TryView.vue";
+import ImageEditor from "@/views/ImageEditor.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -19,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/try", // 主界面路径
     name: "try", // 路由名称
     component: TryView, // 路由指向的主界面组件
+  },
+  {
+    path: "/edit", // 主界面路径
+    name: "edit", // 路由名称
+    component: ImageEditor, // 路由指向的主界面组件
   },
 ];
 

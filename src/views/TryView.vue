@@ -12,7 +12,7 @@
           :key="item.name"
           class="nav-item"
           :class="{ active: activeNav === item.name }"
-          @click="activeNav = item.name"
+          @click="handleNavClick(item.name)"
         >
           <i :class="['album-icons', item.icon]"></i>
           <span>{{ item.label }}</span>
@@ -95,6 +95,7 @@ export default {
         { name: "home", icon: "icon-u138", label: "发现" },
         { name: "photos", icon: "icon-quanbuzhaopian1", label: "全部照片" },
         { name: "albums", icon: "icon-xiangceji", label: "相册集" },
+        { name: "edit", icon: "icon-tianxie", label: "图片编辑" },
         { name: "share", icon: "icon-gongxiangkongjian", label: "共享空间" },
         { name: "recycle", icon: "icon-huishouzhan", label: "回收站" },
         { name: "settings", icon: "icon-shezhi", label: "设置" },
@@ -106,6 +107,17 @@ export default {
         { name: "其他", color: "#E2E8F0" },
       ],
     };
+  },
+  methods: {
+    handleNavClick(name) {
+      if (name === "edit") {
+        // 跳转到图片编辑页面
+        this.$router.push({ path: "/edit" });
+      } else {
+        // 其他导航逻辑
+        this.activeNav = name;
+      }
+    },
   },
 };
 </script>

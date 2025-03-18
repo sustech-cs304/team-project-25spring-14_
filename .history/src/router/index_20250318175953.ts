@@ -48,16 +48,13 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = localStorage.getItem("jwtToken");
+  const isAuthenticated = localStorage.getItem("jwt_oken");
 
   // 如果路由需要认证且用户没有登录，重定向到登录页面
-  if (!isAuthenticated && to.path !== "/") {
-    next("/"); // 重定向到登录页面
-  } else if (isAuthenticated && to.path === "/") {
-    // 如果已经登录，且用户尝试访问登录页面，重定向到主页
-    next("/home");
+  if (to.meta.requiresAuth && !isAuthenticated) {
+    next("/login");
   } else {
-    next(); // 继续导航
+    next();
   }
 });
 export default router;

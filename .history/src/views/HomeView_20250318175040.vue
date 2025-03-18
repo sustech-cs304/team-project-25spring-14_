@@ -88,8 +88,8 @@ export default {
       this.$router.push(path);
     },
     logout() {
-      localStorage.removeItem("jwtToken");
-      this.$router.push("/");
+      localStorage.removeItem("token");
+      this.$router.push("/login");
     },
   },
 };

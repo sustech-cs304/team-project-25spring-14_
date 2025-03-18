@@ -87,10 +87,6 @@ export default {
       this.activeNav = name;
       this.$router.push(path);
     },
-    logout() {
-      localStorage.removeItem("jwtToken");
-      this.$router.push("/");
-    },
   },
 };
 </script>

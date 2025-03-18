@@ -18,7 +18,7 @@
           <span>{{ item.label }}</span>
         </li>
       </ul>
-      <div class="user-avatar" @click="logout">
+      <div class="user-avatar" @click="">
         <img src="@/assets/images/kobe.jpg" alt="Avatar" />
       </div>
     </nav>
@@ -86,10 +86,6 @@ export default {
     navigateTo(path, name) {
       this.activeNav = name;
       this.$router.push(path);
-    },
-    logout() {
-      localStorage.removeItem("jwtToken");
-      this.$router.push("/");
     },
   },
 };

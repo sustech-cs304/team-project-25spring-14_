@@ -33,12 +33,12 @@ const routes: Array<RouteRecordRaw> = [
         name: "settings",
         component: SettingsView,
       },
+      {
+        path: "edit",
+        name: "edit",
+        component: ImageEditor,
+      },
     ],
-  },
-  {
-    path: "/edit", // 主界面路径
-    name: "edit", // 路由名称
-    component: ImageEditor, // 路由指向的主界面组件
   },
 ];
 

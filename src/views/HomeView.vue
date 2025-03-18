@@ -56,6 +56,12 @@ export default {
           path: "/home/albums",
         },
         {
+          name: "edit",
+          icon: "icon-tianxie",
+          label: "照片编辑",
+          path: "/home/edit",
+        },
+        {
           name: "share",
           icon: "icon-gongxiangkongjian",
           label: "共享空间",

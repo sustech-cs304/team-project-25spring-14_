@@ -13,32 +13,14 @@ const routes: Array<RouteRecordRaw> = [
     component: LoginView,
   },
   {
-    path: "/home",
-    name: "home",
-    component: HomeView,
-    redirect: "/home/discover",
-    children: [
-      {
-        path: "discover",
-        name: "discover",
-        component: DiscoverView,
-      },
-      {
-        path: "photos",
-        name: "photos",
-        component: PhotosView,
-      },
-      {
-        path: "settings",
-        name: "settings",
-        component: SettingsView,
-      },
-    ],
+    path: "/main", // 主界面路径
+    name: "main", // 路由名称
+    component: MainView, // 路由指向的主界面组件
   },
   {
-    path: "/edit", // 主界面路径
-    name: "edit", // 路由名称
-    component: ImageEditor, // 路由指向的主界面组件
+    path: "/try", // 主界面路径
+    name: "try", // 路由名称
+    component: TryView, // 路由指向的主界面组件
   },
 ];
 

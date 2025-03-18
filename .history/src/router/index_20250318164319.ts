@@ -6,6 +6,7 @@ import DiscoverView from "@/views/home/DiscoverView.vue";
 import PhotosView from "@/views/home/PhotosView.vue";
 import ImageEditor from "@/views/ImageEditor.vue";
 
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",

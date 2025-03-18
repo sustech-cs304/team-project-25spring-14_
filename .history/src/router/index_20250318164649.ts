@@ -40,6 +40,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "edit", // 路由名称
     component: ImageEditor, // 路由指向的主界面组件
   },
+
 ];
 
 const router = createRouter({

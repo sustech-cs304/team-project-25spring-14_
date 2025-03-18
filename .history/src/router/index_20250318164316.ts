@@ -5,6 +5,7 @@ import SettingsView from "@/views/home/SettingsView.vue";
 import DiscoverView from "@/views/home/DiscoverView.vue";
 import PhotosView from "@/views/home/PhotosView.vue";
 import ImageEditor from "@/views/ImageEditor.vue";
+>>>>>>> 5e3d76056e1c3d0f3c3af5a2c96bddabaa0fcdd4
 
 const routes: Array<RouteRecordRaw> = [
   {

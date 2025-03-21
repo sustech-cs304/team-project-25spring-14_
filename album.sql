@@ -1,6 +1,6 @@
 -- 创建数据库
-DROP DATABASE IF EXISTS smart_photo_album;
-CREATE DATABASE smart_photo_album;
+-- DROP DATABASE IF EXISTS smart_photo_album;
+-- CREATE DATABASE smart_photo_album;
 
 \c smart_photo_album;
 DROP TYPE IF EXISTS user_status CASCADE;

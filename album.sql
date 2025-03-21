@@ -1,6 +1,7 @@
 -- 创建数据库
--- DROP DATABASE IF EXISTS smart_photo_album;
--- CREATE DATABASE smart_photo_album;
+SET search_path TO public;
+DROP DATABASE IF EXISTS smart_photo_album;
+CREATE DATABASE smart_photo_album;
 
 \c smart_photo_album;
 DROP TYPE IF EXISTS user_status CASCADE;
@@ -24,7 +25,7 @@ DROP TABLE IF EXISTS tb_user CASCADE;
 
 CREATE TABLE tb_user (
   user_id SERIAL PRIMARY KEY,
-  role_name user_role DEFAULT 'user',
+  rolename user_role DEFAULT 'user',
   username VARCHAR(40) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
   email VARCHAR(60) UNIQUE,
@@ -34,7 +35,6 @@ CREATE TABLE tb_user (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   last_login TIMESTAMP
 );
-
 
 CREATE TABLE tb_album (
   album_id SERIAL PRIMARY KEY,
@@ -54,7 +54,7 @@ CREATE TABLE tb_photo (
   photo_id SERIAL PRIMARY KEY,
   album_id INTEGER NOT NULL,
   user_id INTEGER NOT NULL,
-  tag_name VARCHAR(50) NOT NULL UNIQUE,
+  tag_name VARCHAR(50) ,
   file_name VARCHAR(255) NOT NULL,
   file_url VARCHAR(255) NOT NULL,
   thumbnail_url VARCHAR(255) NOT NULL,

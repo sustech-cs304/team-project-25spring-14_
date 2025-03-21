@@ -84,14 +84,11 @@ public class AlbumController {
         try {
             // 检查访问权限
             if (!albumService.checkAlbumAccess(albumId, userId)) {
-
                 throw new Exception("没有访问权限");
-
             }
 
             Album album = albumService.getById(albumId);
             if (album == null) {
-
                 throw new Exception("相册不存在");
             }
 

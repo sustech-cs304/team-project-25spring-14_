@@ -58,6 +58,7 @@ public class UserController {
             Map<String, Object> data = new HashMap<>();
             data.put("token", token);
             data.put("role", loginUser.getRolename());  // 让前端可以获取角色信息
+            data.put("status", loginUser.getStatus());  // 让前端可以获取用户状态信息
 
             return Result.success(data);
         }

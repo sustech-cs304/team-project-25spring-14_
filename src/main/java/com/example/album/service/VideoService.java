@@ -1,6 +1,8 @@
 package com.example.album.service;
 
 import org.springframework.http.*;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.slf4j.Logger;
@@ -13,7 +15,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-
+@Service
+@Component
 public class VideoService {
     private final String FLASK_URL = "http://localhost:5000/";
     private static final Logger logger = LoggerFactory.getLogger(VideoService.class);

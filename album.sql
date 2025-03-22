@@ -117,3 +117,58 @@ CREATE TABLE tb_report (
 );
 
 CREATE INDEX idx_report_status ON tb_report(status);
+
+CREATE TABLE tb_post (
+  post_id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  photo_id INTEGER NOT NULL,
+  caption TEXT,
+  privacy privacy_type DEFAULT 'public',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES tb_user(user_id) ON DELETE CASCADE,
+  FOREIGN KEY (photo_id) REFERENCES tb_photo(photo_id) ON DELETE CASCADE
+);
+
+CREATE INDEX idx_user_post ON tb_post(user_id);
+CREATE INDEX idx_photo_post ON tb_post(photo_id);
+
+-- 评论表
+CREATE TABLE tb_comment (
+  comment_id SERIAL PRIMARY KEY,
+  post_id INTEGER NOT NULL,
+  user_id INTEGER NOT NULL,
+  content TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (post_id) REFERENCES tb_post(post_id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES tb_user(user_id) ON DELETE CASCADE
+);
+
+CREATE INDEX idx_post_comment ON tb_comment(post_id);
+CREATE INDEX idx_user_comment ON tb_comment(user_id);
+
+CREATE TABLE tb_like (
+  like_id SERIAL PRIMARY KEY,
+  post_id INTEGER NOT NULL,
+  user_id INTEGER NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (post_id) REFERENCES tb_post(post_id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES tb_user(user_id) ON DELETE CASCADE,
+  UNIQUE (post_id, user_id)
+);
+
+CREATE INDEX idx_post_like ON tb_like(post_id);
+CREATE INDEX idx_user_like ON tb_like(user_id);
+
+CREATE TABLE tb_follow (
+  follow_id SERIAL PRIMARY KEY,
+  follower_id INTEGER NOT NULL,
+  followed_id INTEGER NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (follower_id) REFERENCES tb_user(user_id) ON DELETE CASCADE,
+  FOREIGN KEY (followed_id) REFERENCES tb_user(user_id) ON DELETE CASCADE,
+  UNIQUE (follower_id, followed_id) -- 确保一个用户只能关注另一个用户一次
+);
+
+CREATE INDEX idx_follower ON tb_follow(follower_id);
+CREATE INDEX idx_followed ON tb_follow(followed_id);

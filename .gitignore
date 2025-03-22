@@ -33,3 +33,4 @@ build/
 logs/
 uploads/
 logs/album.log
+src/main/resources/application.properties

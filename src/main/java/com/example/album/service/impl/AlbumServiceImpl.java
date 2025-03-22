@@ -38,15 +38,7 @@ public class AlbumServiceImpl extends ServiceImpl<AlbumMapper, Album> implements
         String privacyValue = album.getPrivacy().getValue();
 
         // 使用自定义SQL语句插入数据
-        int result = baseMapper.insertAlbum(
-                album.getUserId(),
-                album.getTitle(),
-                album.getDescription(),
-                privacyValue,
-                album.getCreatedAt(),
-                album.getUpdatedAt(),
-                album.getCoverPhotoId()
-        );
+        int result = baseMapper.insertAlbum(album);
 
         return result > 0;
     }

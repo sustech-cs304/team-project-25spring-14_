@@ -36,8 +36,8 @@ public interface AlbumMapper extends BaseMapper<Album> {
 
     @Insert("INSERT INTO tb_album (user_id, title, description, privacy, created_at, updated_at, cover_photo_id) " +
             "VALUES (#{userId}, #{title}, #{description}, #{privacy}::privacy_type, #{createdAt}, #{updatedAt}, #{coverPhotoId})")
-    int insertAlbum(Integer userId, String title, String description, String privacy,
-                    LocalDateTime createdAt, LocalDateTime updatedAt, Integer coverPhotoId);
+    @Options(useGeneratedKeys = true, keyProperty = "albumId")
+    int insertAlbum(Album album);
     
     @Update("UPDATE tb_album SET title = #{title}, description = #{description}, " +
             "privacy = #{privacy}::privacy_type, cover_photo_id = #{coverPhotoId}, " +

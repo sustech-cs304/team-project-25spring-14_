@@ -47,6 +47,6 @@ public interface UserMapper extends BaseMapper<User> {
     @Update("UPDATE tb_user SET storage_used = storage_used + #{size} WHERE user_id = #{userId}")
     int updateStorageUsed(@Param("userId") Long userId, @Param("size") Long size);
 
-    @Select("SELECT user_id, username, email, role_name FROM tb_user")
+    @Select("SELECT user_id, username, email, rolename FROM tb_user")
     List<UserVO> findAllUsers();
 }

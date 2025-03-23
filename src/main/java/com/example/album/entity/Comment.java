@@ -1,21 +1,20 @@
 package com.example.album.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
-@TableName("messages")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Message {
-    private Integer messageId;
-    private Integer conversationId;
-    private Integer senderId;
+@TableName("tb_comment")
+public class Comment {
+    private Integer comment_id;
+    private Integer user_id;
+    private Integer post_id;
     private String content;
-    private LocalDateTime createdAt;
+    private LocalDateTime create_time;
 }
-

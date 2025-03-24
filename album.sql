@@ -117,11 +117,10 @@ CREATE TABLE tb_report
     resource_id   INTEGER       NOT NULL,
     reason        VARCHAR(255)  NOT NULL,
     status        VARCHAR(20) DEFAULT 'pending', -- pending, reviewed, resolved
-    reviewed_by   VARCHAR(50), -- 审核人
+    reviewed_by   INTEGER,
     created_at    TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
-    is_corrected     BOOLEAN     DEFAULT FALSE, -- 用户是否已经整改
     FOREIGN KEY (reporter_id) REFERENCES tb_user (user_id) ON DELETE CASCADE,
-    FOREIGN KEY (reviewed_by) REFERENCES tb_user (username) ON DELETE SET NULL
+    FOREIGN KEY (reviewed_by) REFERENCES tb_user (user_id) ON DELETE SET NULL
 );
 
 CREATE INDEX idx_report_status ON tb_report (status);
@@ -184,3 +183,24 @@ CREATE TABLE tb_follow
 
 CREATE INDEX idx_follower ON tb_follow (follower_id);
 CREATE INDEX idx_followed ON tb_follow (followed_id);
+
+CREATE TABLE conversations
+(
+    conversation_id SERIAL PRIMARY KEY,
+    user_id1        INT NOT NULL,
+    user_id2        INT NOT NULL,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id1) REFERENCES tb_user (user_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id2) REFERENCES tb_user (user_id) ON DELETE CASCADE,
+    CONSTRAINT unique_conversation UNIQUE (user_id1, user_id2) -- 确保每对用户只有一个对话
+);
+CREATE TABLE messages
+(
+    message_id      SERIAL PRIMARY KEY,
+    conversation_id INT  NOT NULL,
+    sender_id       INT  NOT NULL,
+    content         TEXT NOT NULL,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (conversation_id) REFERENCES conversations (conversation_id) ON DELETE CASCADE,
+    FOREIGN KEY (sender_id) REFERENCES tb_user (user_id) ON DELETE CASCADE
+);

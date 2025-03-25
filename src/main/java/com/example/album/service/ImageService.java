@@ -1,11 +1,13 @@
 package com.example.album.service;
 
+import com.example.album.mapper.PhotoMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
+import com.example.album.entity.Photo;
 import com.example.album.dto.ImageParamDTO;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,9 +24,11 @@ import java.util.Objects;
  * 注意的是remove_object还没有完全实现
  */
 @Service
-public class ImageService {
+public class ImageService {  // 这个是图片的一下基础操作，现在不需要用了
 
     private static final String FLASK_URL = "http://localhost:5000/";
+    @Autowired
+    private PhotoMapper photoMapper;
 
     public ResponseEntity<byte[]> GetAndSave(ImageParamDTO imageParam, String savePath, String option) {
         UriComponentsBuilder url = UriComponentsBuilder.fromUriString(FLASK_URL)
@@ -75,10 +79,12 @@ public class ImageService {
         }
     }
 
-    public List<String> ai_classify(String img_path){
+    public List<String> ai_classify(int photoId){
+        Photo photo = photoMapper.selectById(photoId);
+
         String Url = UriComponentsBuilder.fromUriString(FLASK_URL)
                 .path("ai_classify_image")
-                .queryParam("img_path",img_path)
+                .queryParam("img_path",photo.getFileUrl())
                 .build()
                 .toUriString();
 

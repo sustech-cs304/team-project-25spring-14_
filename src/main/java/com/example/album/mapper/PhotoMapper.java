@@ -51,4 +51,10 @@ public interface PhotoMapper extends BaseMapper<Photo> {
             "WHERE p.user_id = #{userId} AND t.name = #{tagName} " +
             "ORDER BY p.created_at DESC")
     List<Photo> selectByTag(@Param("userId") Integer userId, @Param("tagName") String tagName);
+
+    /**
+     * 根据id来查找图片
+     */
+    @Select("SELECT * FROM tb_photo WHERE photo_id = #{photoId}")
+    Photo selectById(@Param("photoId") Integer photoId);
 }

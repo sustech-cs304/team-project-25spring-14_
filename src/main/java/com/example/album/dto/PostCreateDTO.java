@@ -1,5 +1,6 @@
 package com.example.album.dto;
 
+import com.example.album.common.enums.PrivacyTypeEnum;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -11,5 +12,5 @@ public class PostCreateDTO {
 
     private String caption;
 
-    private String privacy = "public";  // 默认为公开
+    private PrivacyTypeEnum privacy;
 }

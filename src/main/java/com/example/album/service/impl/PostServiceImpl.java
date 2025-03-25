@@ -82,7 +82,7 @@ public class PostServiceImpl implements PostService {
         }
 
         post.setUpdatedAt(LocalDateTime.now());
-        postMapper.updateById(post);
+        postMapper.updatePost(post);
         log.info("用户 {} 更新了帖子 {}", userId, postId);
 
         return getPostById(postId, userId);
@@ -148,7 +148,11 @@ public class PostServiceImpl implements PostService {
 
         PostVO postVO = new PostVO();
         BeanUtils.copyProperties(post, postVO);
-
+        if (post.getPrivacy() != null) {
+            postVO.setPrivacy(post.getPrivacy().toString().toLowerCase());
+        } else {
+            postVO.setPrivacy("PUBLIC"); // 默认值
+        }
         // 获取照片信息
         Photo photo = photoMapper.selectById(post.getPhotoId());
         if (photo != null) {

@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface PostMapper extends BaseMapper<Post> {
     @Insert("INSERT INTO tb_post(user_id, photo_id, caption, privacy, created_at, updated_at) " +
-            "VALUES(#{userId}, #{photoId}, #{caption}, #{privacy}, #{createdAt}, #{updatedAt})")
+            "VALUES(#{userId}, #{photoId}, #{caption}, #{privacy}::privacy_type, #{createdAt}, #{updatedAt})")
     @Options(useGeneratedKeys = true, keyProperty = "postId")
     int insert(Post post);
 
@@ -30,14 +30,21 @@ public interface PostMapper extends BaseMapper<Post> {
     /**
      * 获取公开的帖子
      */
-    @Select("SELECT * FROM tb_post WHERE privacy = 'public' ORDER BY created_at DESC")
+    @Select("SELECT * FROM tb_post WHERE privacy = 'public'::privacy_type ORDER BY created_at DESC")
     List<Post> selectPublicPosts();
 
     /**
      * 分页获取公开的帖子
      */
-    @Select("SELECT * FROM tb_post WHERE privacy = 'public' ORDER BY created_at DESC")
+    @Select("SELECT * FROM tb_post WHERE privacy = 'public'::privacy_type ORDER BY created_at DESC")
     IPage<Post> selectPagePublicPosts(Page<Post> page);
+
+    /**
+     * 更新帖子
+     */
+    @Update("UPDATE tb_post SET caption = #{caption}, privacy = #{privacy}::privacy_type, " +
+            "updated_at = #{updatedAt} WHERE post_id = #{postId}")
+    int updatePost(Post post);
 
     /**
      * 获取关注用户的帖子
@@ -46,4 +53,6 @@ public interface PostMapper extends BaseMapper<Post> {
             "JOIN tb_follow f ON p.user_id = f.followed_id " +
             "WHERE f.follower_id = #{userId} ORDER BY p.created_at DESC")
     List<Post> selectFollowingPosts(@Param("userId") Integer userId);
+
+
 }

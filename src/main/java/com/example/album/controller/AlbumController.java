@@ -303,6 +303,12 @@ public class AlbumController {
         AlbumVO albumVO = new AlbumVO();
         BeanUtils.copyProperties(album, albumVO);
 
+        // 获取相册中的照片
+        List<Photo> photos = storageService.getPhotosByAlbumId(album.getAlbumId());
+
+        // 设置照片数量
+        albumVO.setPhotoCount(photos.size());
+
         try {
             if (album.getCoverPhotoId() != null) {
                 Photo coverPhoto = storageService.getById(album.getCoverPhotoId());

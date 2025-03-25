@@ -12,6 +12,8 @@ public class AlbumVO {
 
     private Integer userId;
 
+    private Integer photoCount;
+
     private String title;
 
     private String description;

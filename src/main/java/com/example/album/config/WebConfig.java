@@ -26,7 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         // 添加拦截器，登录和注册不拦截
         registry.addInterceptor(loginInterceptor)
-                .excludePathPatterns("/user/login", "/user/register");
+                .excludePathPatterns("/user/login", "/user/register", "/uploads/**");
     }
 
     @Value("${app.upload.dir}")

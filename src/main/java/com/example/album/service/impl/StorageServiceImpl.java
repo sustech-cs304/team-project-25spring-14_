@@ -65,6 +65,7 @@ public class StorageServiceImpl implements StorageService {
 
         // 存储原始文件
         Path originalFilePath = Paths.get(userDir, uniqueFilename);
+        log.info(originalFilePath.toString());
         Files.copy(file.getInputStream(), originalFilePath, StandardCopyOption.REPLACE_EXISTING);
 
         // 获取图像尺寸
@@ -83,8 +84,8 @@ public class StorageServiceImpl implements StorageService {
                 .toFile(thumbFilePath.toFile());
 
         // 生成访问URL
-        String fileUrl = domain + "/storage/" + userId + "/" + uniqueFilename;
-        String thumbUrl = domain + "/thumbnails/" + userId + "/" + thumbFilename;
+        String fileUrl = domain + "/uploads/storage/" + userId + "/" + uniqueFilename;
+        String thumbUrl = domain + "/uploads/thumbnails/" + userId + "/" + thumbFilename;
 
         // 创建结果对象
         PhotoStorageResult result = new PhotoStorageResult();

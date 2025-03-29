@@ -204,3 +204,9 @@ CREATE TABLE messages
     FOREIGN KEY (conversation_id) REFERENCES conversations (conversation_id) ON DELETE CASCADE,
     FOREIGN KEY (sender_id) REFERENCES tb_user (user_id) ON DELETE CASCADE
 );
+
+INSERT INTO tb_user (user_id,rolename,username,password,email,status,created_at)
+VALUES (0,'admin'::user_role, 'virtual','123','admin@system.com', 'active'::user_status,CURRENT_TIMESTAMP);
+
+INSERT INTO tb_album (album_id, user_id, title, description, privacy, created_at, updated_at)
+VALUES (0, 0, '社区照片', '系统自动创建的社区照片专用相册，用户不可见', 'public'::privacy_type, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);

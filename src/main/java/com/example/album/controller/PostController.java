@@ -1,6 +1,7 @@
 package com.example.album.controller;
 
 import com.example.album.dto.PostCreateDTO;
+import com.example.album.dto.PostCreateWithPhotoDTO;
 import com.example.album.dto.PostUpdateDTO;
 import com.example.album.entity.Result;
 import com.example.album.service.PostService;
@@ -50,6 +51,34 @@ public class PostController {
         }
     }
 
+    /**
+     * 创建帖子
+     */
+    @PostMapping("/upload")
+    public Result<Map<String, Object>> createPostWithPhoto(
+            @Valid @ModelAttribute PostCreateWithPhotoDTO createDTO) {
+        try {
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            int userId = 0;
+            if (claims != null) {
+                userId = ((Number) claims.get("id")).intValue();
+            } else {
+                return Result.error("未登录");
+            }
+
+            // 调用服务层方法处理照片上传和帖子创建
+            PostVO postVO = postService.createPostWithPhoto(createDTO, userId);
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("post", postVO);
+            response.put("message", "帖子创建成功");
+
+            return Result.success(response);
+        } catch (Exception e) {
+            log.error("创建帖子失败", e);
+            return Result.error(e.getMessage());
+        }
+    }
     /**
      * 更新帖子
      */

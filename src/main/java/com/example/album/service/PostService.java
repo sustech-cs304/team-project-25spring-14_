@@ -2,6 +2,7 @@ package com.example.album.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.album.dto.PostCreateDTO;
+import com.example.album.dto.PostCreateWithPhotoDTO;
 import com.example.album.dto.PostUpdateDTO;
 import com.example.album.vo.PostVO;
 
@@ -13,6 +14,10 @@ public interface PostService {
      */
     PostVO createPost(PostCreateDTO createDTO, Integer userId);
 
+    /**
+     * 直接上传照片创建帖子
+     */
+    PostVO createPostWithPhoto(PostCreateWithPhotoDTO createDTO, Integer userId);
     /**
      * 更新帖子
      */

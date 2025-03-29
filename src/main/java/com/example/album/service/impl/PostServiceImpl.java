@@ -1,7 +1,9 @@
 package com.example.album.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.example.album.dto.PhotoStorageResult;
 import com.example.album.dto.PostCreateDTO;
+import com.example.album.dto.PostCreateWithPhotoDTO;
 import com.example.album.dto.PostUpdateDTO;
 import com.example.album.entity.Photo;
 import com.example.album.entity.Post;
@@ -59,6 +61,45 @@ public class PostServiceImpl implements PostService {
         log.info("用户 {} 创建了帖子 {}", userId, post.getPostId());
 
         return getPostById(post.getPostId(), userId);
+    }
+
+    @Override
+    @Transactional
+    public PostVO createPostWithPhoto(PostCreateWithPhotoDTO createDTO, Integer userId) {
+        try {
+            PhotoStorageResult storageResult = storageService.storePhoto(createDTO.getPhoto(), 0);
+
+            Photo photo = new Photo();
+            photo.setUserId(0);
+            photo.setAlbumId(0);
+            photo.setFileName(storageResult.getOriginalFilename());
+            photo.setFileUrl(storageResult.getFileUrl());
+            photo.setThumbnailUrl(storageResult.getThumbnailUrl());
+            photo.setCapturedAt(storageResult.getCapturedAt() != null ?
+                    storageResult.getCapturedAt() : LocalDateTime.now());
+            photo.setCreatedAt(LocalDateTime.now());
+            photo.setIsFavorite(false);
+
+            photoMapper.insert(photo);
+            log.info("为社区帖子创建了照片记录，ID: {}", photo.getPhotoId());
+
+            Post post = new Post();
+            post.setUserId(userId);
+            post.setPhotoId(photo.getPhotoId());
+            post.setCaption(createDTO.getCaption());
+            post.setPrivacy(createDTO.getPrivacy());
+            post.setCreatedAt(LocalDateTime.now());
+            post.setUpdatedAt(LocalDateTime.now());
+
+            postMapper.insert(post);
+            log.info("用户 {} 创建了帖子 {}", userId, post.getPostId());
+
+            return getPostById(post.getPostId(), userId);
+
+        } catch (Exception e) {
+            log.error("创建帖子失败", e);
+            throw new RuntimeException("创建帖子失败: " + e.getMessage());
+        }
     }
 
     @Override

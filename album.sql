@@ -60,6 +60,7 @@ CREATE TABLE tb_photo
     tag_name      VARCHAR(50),
     file_name     VARCHAR(255) NOT NULL,
     file_url      VARCHAR(255) NOT NULL,
+    location VARCHAR(50) ,
     thumbnail_url VARCHAR(255) NOT NULL,
     is_favorite   BOOLEAN   DEFAULT FALSE,
     captured_at   TIMESTAMP, -- 拍摄时间

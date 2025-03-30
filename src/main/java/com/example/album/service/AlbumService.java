@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.album.entity.Album;
+import com.example.album.entity.Photo;
 
 import java.util.List;
 
@@ -44,4 +45,7 @@ public interface AlbumService extends IService<Album> {
      * 管理员删除违规相册
      */
     boolean removeViolationAlbum(Integer albumId, Integer adminId, String reason);
+
+
+    boolean savePhoto(Photo photo);
 }

@@ -80,6 +80,8 @@ public class PostServiceImpl implements PostService {
             photo.setCreatedAt(LocalDateTime.now());
             photo.setIsFavorite(false);
 
+            photo.setLocation(storageResult.getLocation());
+            photo.setTagName(storageResult.getTag());
             photoMapper.insert(photo);
             log.info("为社区帖子创建了照片记录，ID: {}", photo.getPhotoId());
 

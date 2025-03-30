@@ -14,9 +14,12 @@ import java.util.Date;
 public class PhotoStorageResult {
     private String originalFilename;
     private String fileUrl;
+
+    private String location;
+
+    private String tag;
     private String thumbnailUrl;
-//    private long fileSize;
-//    private long thumbnailSize;
+
     private LocalDateTime capturedAt;
     private Integer width;
     private Integer height;
@@ -27,7 +30,5 @@ public class PhotoStorageResult {
         this.originalFilename = originalFilename;
         this.fileUrl = fileUrl;
         this.thumbnailUrl = thumbnailUrl;
-//        this.fileSize = fileSize;
-//        this.thumbnailSize = thumbnailSize;
     }
 }

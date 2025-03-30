@@ -21,10 +21,4 @@ public class AlbumVO {
     private PrivacyTypeEnum privacy;
 
     private Integer coverPhotoId;
-
-    private String coverPhotoUrl;
-
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
 }

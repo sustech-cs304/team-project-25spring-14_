@@ -11,5 +11,5 @@ public class PhotoUpdateDTO {
 
     private Boolean isFavorite;
 
-    private LocalDateTime capturedAt;
+    private String tag;
 }

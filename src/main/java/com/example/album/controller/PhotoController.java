@@ -63,7 +63,9 @@ public class PhotoController {
             photo.setFileName(result.getOriginalFilename());
             photo.setFileUrl(result.getFileUrl());
             photo.setThumbnailUrl(result.getThumbnailUrl());
+            photo.setLocation(uploadDTO.getLocation());
 //            photo.setFileSize(result.getFileSize());
+            photo.setTagName(uploadDTO.getTag());
             photo.setCapturedAt(result.getCapturedAt());
             photo.setCreatedAt(LocalDateTime.now());
 
@@ -170,8 +172,9 @@ public class PhotoController {
 
             boolean hasUpdates = false;
 
-            if (updateDTO.getIsFavorite() != null) {
+            if (updateDTO.getIsFavorite() != null && updateDTO.getTag() != null) {
                 photo.setIsFavorite(updateDTO.getIsFavorite());
+                photo.setTagName(updateDTO.getTag());
                 hasUpdates = true;
             }
 
@@ -277,7 +280,9 @@ public class PhotoController {
                 photoVO.setThumbnailUrl(thumbnailUrl);
             }
 
-
+            photoVO.setLocation(photo.getLocation());
+            photoVO.setTag(photo.getTagName());
+            photoVO.setCreatedAt(photo.getCreatedAt());
         } catch (Exception e) {
             log.warn("转换照片VO时发生错误: {}", e.getMessage());
         }

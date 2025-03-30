@@ -1,9 +1,11 @@
 package com.example.album.controller;
 
+import com.example.album.dto.PhotoStorageResult;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.album.dto.AlbumCreateDTO;
 import com.example.album.dto.AlbumUpdateDTO;
+import com.example.album.dto.AlbumCoverUpdateDTO;
 import com.example.album.entity.Album;
 import com.example.album.entity.Photo;
 import com.example.album.entity.Result;
@@ -11,10 +13,8 @@ import com.example.album.entity.User;
 import com.example.album.mapper.UserMapper;
 import com.example.album.service.AlbumService;
 import com.example.album.service.StorageService;
-import com.example.album.vo.AlbumDetailVO;
-import com.example.album.vo.AlbumVO;
-import com.example.album.vo.PhotoVO;
-import com.example.album.vo.UserVO;
+import com.example.album.utils.ThreadLocalUtil;
+import com.example.album.vo.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -292,6 +292,81 @@ public class AlbumController {
         }
     }
 
+    @PostMapping("/{albumId}/cover/upload")
+    public Result<Map<String, Object>> updateCoverWithPhoto(
+            @PathVariable Integer albumId,
+            @Valid @ModelAttribute AlbumCoverUpdateDTO updateDTO) {
+
+        try {
+            log.info("接收到更新相册封面请求，相册ID: {}", albumId);
+
+            // 获取当前登录用户ID
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            int userId = 0;
+            if (claims != null) {
+                userId = ((Number) claims.get("id")).intValue();
+                log.info("从ThreadLocal获取的用户ID: {}", userId);
+            } else {
+                return Result.error("未登录");
+            }
+
+            // 检查相册是否存在且用户是否有权限
+            Album album = albumService.getById(albumId);
+            if (album == null) {
+                throw new Exception("相册不存在");
+            }
+
+            // 检查是否为相册所有者
+            if (!album.getUserId().equals(userId)) {
+                throw new Exception("没有修改权限");
+            }
+
+            // 存储照片文件
+            PhotoStorageResult storageResult = storageService.storePhoto(updateDTO.getPhoto(), 0);
+
+            // 创建照片记录
+            Photo photo = new Photo();
+            photo.setUserId(0);
+            photo.setAlbumId(0);
+            photo.setFileName(storageResult.getOriginalFilename());
+            photo.setFileUrl(storageResult.getFileUrl());
+            photo.setThumbnailUrl(storageResult.getThumbnailUrl());
+            photo.setCapturedAt(storageResult.getCapturedAt() != null ?
+                    storageResult.getCapturedAt() : LocalDateTime.now());
+            photo.setCreatedAt(LocalDateTime.now());
+            photo.setIsFavorite(false);
+
+            photo.setLocation(storageResult.getLocation());
+            photo.setTagName(storageResult.getTag());
+
+
+            boolean saved = albumService.savePhoto(photo);
+            if (!saved) {
+                throw new Exception("保存封面照片失败");
+            }
+
+            // 更新相册封面
+            album.setCoverPhotoId(photo.getPhotoId());
+            album.setUpdatedAt(LocalDateTime.now());
+            boolean updated = albumService.updateAlbum(album);
+            if (!updated) {
+                throw new Exception("更新相册封面失败");
+            }
+
+            // 返回更新后的相册信息
+            AlbumVO albumVO = convertToAlbumVO(album);
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("album", albumVO);
+            response.put("message", "相册封面更新成功");
+
+            return Result.success(response);
+        } catch (Exception e) {
+            log.error("更新相册封面失败", e);
+            return Result.error("更新相册封面失败：" + e.getMessage());
+        }
+    }
+
     /**
      * 将Album实体转换为AlbumVO
      */
@@ -308,24 +383,8 @@ public class AlbumController {
 
         // 设置照片数量
         albumVO.setPhotoCount(photos.size());
-
-        try {
-            if (album.getCoverPhotoId() != null) {
-                Photo coverPhoto = storageService.getById(album.getCoverPhotoId());
-                if (coverPhoto != null) {
-                    String thumbnailUrl = coverPhoto.getThumbnailUrl();
-                    // 确保URL是完整的
-                    if (thumbnailUrl != null && !thumbnailUrl.startsWith("http")) {
-                        thumbnailUrl = storageService.getFullUrl(thumbnailUrl);
-                    }
-                    albumVO.setCoverPhotoUrl(thumbnailUrl);
-                }
-            }
-
-        } catch (Exception e) {
-            log.warn("转换相册VO时发生错误: {}", e.getMessage());
-        }
-
+        albumVO.setDescription(album.getDescription());
+        albumVO.setPrivacy(album.getPrivacy());
         return albumVO;
     }
 
@@ -355,13 +414,6 @@ public class AlbumController {
 
         albumDetailVO.setLatestPhotos(latestPhotos);
 
-        // 设置封面照片URL
-        if (album.getCoverPhotoId() != null) {
-            Photo coverPhoto = storageService.getById(album.getCoverPhotoId());
-            if (coverPhoto != null) {
-                albumDetailVO.setCoverPhotoUrl(coverPhoto.getThumbnailUrl());
-            }
-        }
 
         // 设置用户信息
         UserVO userVO = new UserVO(); // 这里应该从用户服务获取用户信息

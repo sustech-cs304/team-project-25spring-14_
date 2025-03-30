@@ -13,6 +13,9 @@ public class PhotoUploadDTO {
 
     private String title;
 
+    private String tag;
+
+
     private String location;
 
     private LocalDateTime capturedAt;

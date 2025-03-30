@@ -28,6 +28,8 @@ public class Photo {
 
     private String fileUrl;
 
+    private String location;
+
     private String thumbnailUrl;
 
     private Boolean isFavorite;

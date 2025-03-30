@@ -19,18 +19,12 @@ public class PhotoVO {
 
     private String thumbnailUrl;
 
-    private Long fileSize;
-
-    private String description;
-
-    private String title;
+    private String tag;
 
     private String location;
 
     private LocalDateTime capturedAt;
 
     private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
 //    private List<TagVO> tags;
 }

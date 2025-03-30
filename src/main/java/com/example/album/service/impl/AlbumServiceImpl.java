@@ -131,4 +131,9 @@ public class AlbumServiceImpl extends ServiceImpl<AlbumMapper, Album> implements
         // 删除相册
         return removeById(albumId);
     }
+
+    @Override
+    public boolean savePhoto(Photo photo) {
+        return photoMapper.insert(photo) > 0;
+    }
 }

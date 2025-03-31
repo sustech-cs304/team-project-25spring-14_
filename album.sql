@@ -71,10 +71,12 @@ CREATE TABLE tb_photo
     is_favorite   BOOLEAN   DEFAULT FALSE,
     captured_at   TIMESTAMP, -- 拍摄时间
     created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    post_id      INTEGER,
     FOREIGN KEY (album_id) REFERENCES tb_album (album_id) ON DELETE CASCADE,
+    FOREIGN KEY (post_id) REFERENCES tb_post (post_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES tb_user (user_id) ON DELETE CASCADE
 );
-
+CREATE INDEX idx_photo_post ON tb_photo(post_id);
 CREATE INDEX idx_album_photo ON tb_photo (album_id);
 CREATE INDEX idx_user_photo ON tb_photo (user_id);
 CREATE INDEX idx_captured_at ON tb_photo (captured_at);
@@ -136,7 +138,7 @@ CREATE TABLE tb_post
 (
     post_id    SERIAL PRIMARY KEY,
     user_id    INTEGER NOT NULL,
-    photo_id   INTEGER NOT NULL,
+    photo_id   INTEGER ,
     caption    TEXT,
     privacy    privacy_type DEFAULT 'public',
     created_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,

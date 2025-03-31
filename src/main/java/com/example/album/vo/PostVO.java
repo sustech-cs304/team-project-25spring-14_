@@ -3,6 +3,7 @@ package com.example.album.vo;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class PostVO {
@@ -19,6 +20,8 @@ public class PostVO {
     private String photoUrl;
 
     private String thumbnailUrl;
+
+    private List<PhotoVO> photos;
 
     private String caption;
 

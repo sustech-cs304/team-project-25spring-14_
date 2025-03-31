@@ -68,7 +68,7 @@ public class PhotoController {
             photo.setTagName(uploadDTO.getTag());
             photo.setCapturedAt(result.getCapturedAt());
             photo.setCreatedAt(LocalDateTime.now());
-
+            photo.setPostId(uploadDTO.getPostId());
             if (uploadDTO.getIsFavorite() != null) {
                 photo.setIsFavorite(uploadDTO.getIsFavorite());
             }

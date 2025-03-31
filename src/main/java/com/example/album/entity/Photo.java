@@ -38,4 +38,5 @@ public class Photo {
 
     private LocalDateTime createdAt;
 
+    private Integer postId;
 }

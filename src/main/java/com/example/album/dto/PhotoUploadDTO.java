@@ -21,4 +21,6 @@ public class PhotoUploadDTO {
     private LocalDateTime capturedAt;
 
     private Boolean isFavorite;
+
+    private int postId;
 }

@@ -11,8 +11,8 @@ import java.util.List;
 
 @Mapper
 public interface PhotoMapper extends BaseMapper<Photo> {
-    @Insert("INSERT INTO tb_photo(album_id, user_id, file_name, file_url, thumbnail_url, is_favorite, captured_at, created_at) " +
-            "VALUES(#{albumId}, #{userId}, #{fileName}, #{fileUrl}, #{thumbnailUrl},#{isFavorite}, #{capturedAt}, #{createdAt})")
+    @Insert("INSERT INTO tb_photo(album_id, user_id, file_name, file_url, thumbnail_url, is_favorite, captured_at, created_at,post_id) " +
+            "VALUES(#{albumId}, #{userId}, #{fileName}, #{fileUrl}, #{thumbnailUrl},#{isFavorite}, #{capturedAt}, #{createdAt}, #{postId})")
     @Options(useGeneratedKeys = true, keyProperty = "photoId")
     int insert(Photo photo);
 
@@ -57,4 +57,7 @@ public interface PhotoMapper extends BaseMapper<Photo> {
      */
     @Select("SELECT * FROM tb_photo WHERE photo_id = #{photoId}")
     Photo selectById(@Param("photoId") Integer photoId);
+
+    @Select("SELECT * FROM tb_photo WHERE post_id = #{postId} ORDER BY created_at")
+    List<Photo> selectByPostId(@Param("postId") Integer postId);
 }

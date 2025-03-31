@@ -66,6 +66,14 @@ public class PostController {
                 return Result.error("未登录");
             }
 
+            if (createDTO.getPhoto() == null || createDTO.getPhoto().isEmpty()) {
+                return Result.error("请至少上传一张照片");
+            }
+
+            // 限制最大上传数量
+            if (createDTO.getPhoto().size() > 10) {
+                return Result.error("最多可上传10张照片");
+            }
             // 调用服务层方法处理照片上传和帖子创建
             PostVO postVO = postService.createPostWithPhoto(createDTO, userId);
 
@@ -79,6 +87,7 @@ public class PostController {
             return Result.error(e.getMessage());
         }
     }
+
     /**
      * 更新帖子
      */

@@ -1,55 +1,67 @@
-2025-03-30 18:56:17 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 13288 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-03-30 18:56:17 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-03-30 18:56:17 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-03-30 18:56:17 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-03-30 18:56:17 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-03-30 18:56:19 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-03-30 18:56:19 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 44 ms. Found 0 JDBC repository interfaces.
-2025-03-30 18:56:20 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-03-30 18:56:20 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-03-30 18:56:20 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-30 18:56:20 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-03-30 18:56:20 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2665 ms
-2025-03-30 18:56:22 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-03-30 18:56:22 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-03-30 18:56:23 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@68f86073
-2025-03-30 18:56:23 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-03-30 18:56:23 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-03-30 18:56:23 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-03-30 18:56:23 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 7.094 seconds (process running for 8.247)
-2025-03-30 18:56:31 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-03-30 18:56:31 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-03-30 18:56:31 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2025-03-30 18:56:45 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-03-30 18:56:45 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzMzc1MzkxfQ.nZOJHyMA_UvmH79iNPcUmboAYfOGb6GainJAqfw_TzY
-2025-03-30 18:56:45 [http-nio-8080-exec-3] INFO  c.e.album.controller.PhotoController - 接收到照片上传请求，相册ID: 123, 文件名: 屏幕截图 2024-12-27 144113.png
-2025-03-30 18:56:45 [http-nio-8080-exec-3] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
-2025-03-30 18:56:45 [http-nio-8080-exec-3] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
-2025-03-30 18:56:45 [http-nio-8080-exec-3] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\96b918d2-f1c0-4386-aa54-2ddda99d0e41.png
-2025-03-30 18:56:46 [http-nio-8080-exec-3] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/96b918d2-f1c0-4386-aa54-2ddda99d0e41.png
-2025-03-30 18:56:46 [http-nio-8080-exec-3] ERROR c.e.album.controller.PhotoController - 照片上传失败
-org.springframework.dao.DataIntegrityViolationException: 
-### Error updating database.  Cause: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
-  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
-### The error may exist in com/example/album/mapper/PhotoMapper.java (best guess)
-### The error may involve com.example.album.mapper.PhotoMapper.insert-Inline
+2025-03-31 09:51:15 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 7268 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-03-31 09:51:15 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-31 09:51:15 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-31 09:51:15 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-03-31 09:51:15 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-03-31 09:51:16 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-31 09:51:16 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 37 ms. Found 0 JDBC repository interfaces.
+2025-03-31 09:51:17 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-03-31 09:51:17 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-03-31 09:51:17 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-31 09:51:17 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-03-31 09:51:17 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2624 ms
+2025-03-31 09:51:19 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
+2025-03-31 09:51:19 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-31 09:51:20 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4e6507ba
+2025-03-31 09:51:20 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-31 09:51:20 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-03-31 09:51:20 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-03-31 09:51:20 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.503 seconds (process running for 7.439)
+2025-03-31 09:52:07 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-31 09:52:07 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-31 09:52:07 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-03-31 09:52:49 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/follow/1
+2025-03-31 09:52:49 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzNDI5MTQyfQ.hz9W6QUeuFzRVjvC48kULBdQAGhBF-KJ4H73aIssvWI
+2025-03-31 09:52:49 [http-nio-8080-exec-4] INFO  c.e.a.controller.FollowController - 接收到关注用户请求，目标用户ID: 1
+2025-03-31 09:52:54 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/follow/2
+2025-03-31 09:52:54 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzNDI5MTQyfQ.hz9W6QUeuFzRVjvC48kULBdQAGhBF-KJ4H73aIssvWI
+2025-03-31 09:52:54 [http-nio-8080-exec-6] INFO  c.e.a.controller.FollowController - 接收到关注用户请求，目标用户ID: 2
+2025-03-31 09:52:54 [http-nio-8080-exec-6] ERROR c.e.a.controller.FollowController - 关注用户失败
+org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: org.postgresql.util.PSQLException: 错误: 字段 "following_id" 不存在
+  位置：59
+### The error may exist in com/example/album/mapper/FollowMapper.java (best guess)
+### The error may involve com.example.album.mapper.FollowMapper.checkFollowExists-Inline
 ### The error occurred while setting parameters
-### SQL: INSERT INTO tb_photo(album_id, user_id, file_name, file_url, thumbnail_url, is_favorite, captured_at, created_at) VALUES(?, ?, ?, ?, ?,?, ?, ?)
-### Cause: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
-  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
-; 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
-  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:258)
+### SQL: SELECT COUNT(*) FROM tb_follow WHERE follower_id = ? AND following_id = ?
+### Cause: org.postgresql.util.PSQLException: 错误: 字段 "following_id" 不存在
+  位置：59
+; bad SQL grammar []
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:112)
 	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)
 	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
 	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
-	at jdk.proxy2/jdk.proxy2.$Proxy81.insert(Unknown Source)
-	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
-	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at jdk.proxy2/jdk.proxy2.$Proxy81.selectOne(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:160)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:87)
 	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:152)
 	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
-	at jdk.proxy3/jdk.proxy3.$Proxy94.insert(Unknown Source)
-	at com.example.album.controller.PhotoController.uploadPhoto(PhotoController.java:77)
+	at jdk.proxy3/jdk.proxy3.$Proxy101.checkFollowExists(Unknown Source)
+	at com.example.album.service.impl.FollowServiceImpl.isFollowing(FollowServiceImpl.java:94)
+	at com.example.album.service.impl.FollowServiceImpl.followUser(FollowServiceImpl.java:48)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.example.album.service.impl.FollowServiceImpl$$SpringCGLIB$$0.followUser(<generated>)
+	at com.example.album.controller.FollowController.followUser(FollowController.java:41)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
@@ -98,8 +110,8 @@ org.springframework.dao.DataIntegrityViolationException:
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:1575)
-Caused by: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
-  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+Caused by: org.postgresql.util.PSQLException: 错误: 字段 "following_id" 不存在
+  位置：59
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
@@ -112,303 +124,192 @@ Caused by: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_pho
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
-	at jdk.proxy4/jdk.proxy4.$Proxy127.execute(Unknown Source)
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48)
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75)
+	at jdk.proxy4/jdk.proxy4.$Proxy128.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:65)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:80)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
-	at jdk.proxy2/jdk.proxy2.$Proxy126.update(Unknown Source)
-	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
-	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
-	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:49)
-	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:106)
+	at jdk.proxy2/jdk.proxy2.$Proxy127.query(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:65)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110)
+	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:81)
 	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:59)
-	at jdk.proxy2/jdk.proxy2.$Proxy125.update(Unknown Source)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at jdk.proxy2/jdk.proxy2.$Proxy126.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:75)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
-	... 55 common frames omitted
-2025-03-30 18:57:22 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-03-30 18:57:22 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzMzc1MzkxfQ.nZOJHyMA_UvmH79iNPcUmboAYfOGb6GainJAqfw_TzY
-2025-03-30 18:57:22 [http-nio-8080-exec-4] INFO  c.e.album.controller.PhotoController - 接收到照片上传请求，相册ID: 2, 文件名: 屏幕截图 2024-12-27 144113.png
-2025-03-30 18:57:22 [http-nio-8080-exec-4] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
-2025-03-30 18:57:22 [http-nio-8080-exec-4] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
-2025-03-30 18:57:22 [http-nio-8080-exec-4] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\2f10d256-7d41-4635-a2f6-7f4fd357cb6f.png
-2025-03-30 18:57:22 [http-nio-8080-exec-4] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/2f10d256-7d41-4635-a2f6-7f4fd357cb6f.png
-2025-03-30 18:57:22 [http-nio-8080-exec-4] INFO  c.e.album.controller.PhotoController - 照片信息已保存到数据库，ID: 9
-2025-03-30 18:58:00 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-30 18:58:00 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-03-30 18:58:00 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-03-30 18:58:00 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-03-30 19:06:32 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 7204 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-03-30 19:06:32 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-03-30 19:06:32 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-03-30 19:06:32 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-03-30 19:06:32 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-03-30 19:06:34 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-03-30 19:06:34 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 44 ms. Found 0 JDBC repository interfaces.
-2025-03-30 19:06:35 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-03-30 19:06:35 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-03-30 19:06:35 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-30 19:06:35 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-03-30 19:06:35 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2864 ms
-2025-03-30 19:06:37 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-03-30 19:06:37 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-03-30 19:06:38 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1f7b8bac
-2025-03-30 19:06:38 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-03-30 19:06:38 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-03-30 19:06:38 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-03-30 19:06:38 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.986 seconds (process running for 8.083)
-2025-03-30 19:07:01 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-03-30 19:07:01 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-03-30 19:07:01 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
-2025-03-30 19:07:35 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-03-30 19:07:35 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzMzc2MDI3fQ.mrwgV38T7B4EKHe_meYMZg1IYIB2PhQRCh0y96sLB7k
-2025-03-30 19:07:35 [http-nio-8080-exec-4] INFO  c.e.album.controller.AlbumController - 接收到创建相册请求，用户ID: 1, 相册标题: manba
-2025-03-30 19:07:48 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-03-30 19:07:48 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzMzc1MzkxfQ.nZOJHyMA_UvmH79iNPcUmboAYfOGb6GainJAqfw_TzY
-2025-03-30 19:07:48 [http-nio-8080-exec-5] INFO  c.e.album.controller.PhotoController - 接收到照片上传请求，相册ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
-2025-03-30 19:07:48 [http-nio-8080-exec-5] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
-2025-03-30 19:07:48 [http-nio-8080-exec-5] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
-2025-03-30 19:07:48 [http-nio-8080-exec-5] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\3312615c-6836-49d3-baca-bc2c4834dbd9.png
-2025-03-30 19:07:49 [http-nio-8080-exec-5] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/3312615c-6836-49d3-baca-bc2c4834dbd9.png
-2025-03-30 19:07:49 [http-nio-8080-exec-5] INFO  c.e.album.controller.PhotoController - 照片信息已保存到数据库，ID: 1
-2025-03-30 19:08:47 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-30 19:08:47 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-03-30 19:08:47 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-03-30 19:08:47 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-03-30 19:08:56 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 10776 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-03-30 19:08:56 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-03-30 19:08:56 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-03-30 19:08:56 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-03-30 19:08:56 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-03-30 19:08:58 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-03-30 19:08:58 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 47 ms. Found 0 JDBC repository interfaces.
-2025-03-30 19:08:59 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-03-30 19:08:59 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-03-30 19:08:59 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-30 19:08:59 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-03-30 19:08:59 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2711 ms
-2025-03-30 19:09:01 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-03-30 19:09:01 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-03-30 19:09:01 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@9e81488
-2025-03-30 19:09:01 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-03-30 19:09:02 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-03-30 19:09:02 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-03-30 19:09:02 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.98 seconds (process running for 7.957)
-2025-03-30 19:09:33 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-30 19:09:33 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-03-30 19:09:33 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-03-30 19:09:33 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-03-30 19:09:43 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 17456 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-03-30 19:09:43 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-03-30 19:09:43 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-03-30 19:09:44 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-03-30 19:09:44 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-03-30 19:09:45 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-03-30 19:09:45 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 43 ms. Found 0 JDBC repository interfaces.
-2025-03-30 19:09:46 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-03-30 19:09:46 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-03-30 19:09:46 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-30 19:09:46 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-03-30 19:09:46 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2701 ms
-2025-03-30 19:09:48 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-03-30 19:09:49 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-03-30 19:09:49 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@40b86fa2
-2025-03-30 19:09:49 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-03-30 19:09:49 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-03-30 19:09:49 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-03-30 19:09:50 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.944 seconds (process running for 7.906)
-2025-03-30 19:11:35 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-30 19:11:35 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-03-30 19:11:35 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-03-30 19:11:35 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-03-30 19:11:42 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 18120 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-03-30 19:11:42 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-03-30 19:11:42 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-03-30 19:11:42 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-03-30 19:11:42 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-03-30 19:11:44 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-03-30 19:11:44 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 0 JDBC repository interfaces.
-2025-03-30 19:11:45 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-03-30 19:11:45 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-03-30 19:11:45 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-30 19:11:45 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-03-30 19:11:45 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2439 ms
-2025-03-30 19:11:47 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-03-30 19:11:47 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-03-30 19:11:47 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@706ee102
-2025-03-30 19:11:47 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-03-30 19:11:48 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-03-30 19:11:48 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-03-30 19:11:48 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.267 seconds (process running for 7.173)
-2025-03-30 19:11:59 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-03-30 19:11:59 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-03-30 19:11:59 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2025-03-30 19:11:59 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-03-30 19:11:59 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzMzc1MzkxfQ.nZOJHyMA_UvmH79iNPcUmboAYfOGb6GainJAqfw_TzY
-2025-03-30 19:11:59 [http-nio-8080-exec-1] INFO  c.e.album.controller.PhotoController - 接收到照片上传请求，相册ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
-2025-03-30 19:11:59 [http-nio-8080-exec-1] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
-2025-03-30 19:11:59 [http-nio-8080-exec-1] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
-2025-03-30 19:11:59 [http-nio-8080-exec-1] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\2f26589d-082e-470f-8803-8a3228b7604d.png
-2025-03-30 19:12:00 [http-nio-8080-exec-1] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/2f26589d-082e-470f-8803-8a3228b7604d.png
-2025-03-30 19:12:00 [http-nio-8080-exec-1] INFO  c.e.album.controller.PhotoController - 照片信息已保存到数据库，ID: 2
-2025-03-30 19:12:51 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/2
-2025-03-30 19:12:51 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YSJ9LCJleHAiOjE3NDMwODY5MjF9.skYG7-3k1dlIw4DF0xkHHHPJugpvG00v158Ra3kNo7I
-2025-03-30 19:12:58 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/1
-2025-03-30 19:12:58 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YSJ9LCJleHAiOjE3NDMwODY5MjF9.skYG7-3k1dlIw4DF0xkHHHPJugpvG00v158Ra3kNo7I
-2025-03-30 19:13:40 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/1
-2025-03-30 19:13:40 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzMzc1MzkxfQ.nZOJHyMA_UvmH79iNPcUmboAYfOGb6GainJAqfw_TzY
-2025-03-30 19:13:40 [http-nio-8080-exec-9] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
-2025-03-30 19:15:09 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-30 19:15:09 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-03-30 19:15:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-03-30 19:15:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-03-30 19:15:16 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 2168 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-03-30 19:15:16 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-03-30 19:15:16 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-03-30 19:15:16 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-03-30 19:15:16 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-03-30 19:15:17 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-03-30 19:15:17 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 32 ms. Found 0 JDBC repository interfaces.
-2025-03-30 19:15:18 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-03-30 19:15:18 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-03-30 19:15:18 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-30 19:15:18 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-03-30 19:15:18 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2358 ms
-2025-03-30 19:15:20 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-03-30 19:15:20 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-03-30 19:15:21 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@43ca4c92
-2025-03-30 19:15:21 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-03-30 19:15:21 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-03-30 19:15:21 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-03-30 19:15:21 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.013 seconds (process running for 6.854)
-2025-03-30 19:15:25 [http-nio-8080-exec-3] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-03-30 19:15:25 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-03-30 19:15:25 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2025-03-30 19:15:25 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/1
-2025-03-30 19:15:25 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzMzc1MzkxfQ.nZOJHyMA_UvmH79iNPcUmboAYfOGb6GainJAqfw_TzY
-2025-03-30 19:15:25 [http-nio-8080-exec-3] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
-2025-03-30 19:15:26 [http-nio-8080-exec-3] INFO  c.e.album.controller.PhotoController - 照片信息已更新，ID: 1
-2025-03-30 19:21:09 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-30 19:21:09 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-03-30 19:21:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-03-30 19:21:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-03-30 19:40:26 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 5400 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-03-30 19:40:26 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-03-30 19:40:26 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-03-30 19:40:26 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-03-30 19:40:26 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-03-30 19:40:28 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-03-30 19:40:28 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 0 JDBC repository interfaces.
-2025-03-30 19:40:29 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-03-30 19:40:29 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-03-30 19:40:29 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-30 19:40:29 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-03-30 19:40:29 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2889 ms
-2025-03-30 19:40:31 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-03-30 19:40:31 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-03-30 19:40:32 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@26f2803f
-2025-03-30 19:40:32 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-03-30 19:40:32 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-03-30 19:40:32 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-03-30 19:40:32 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 7.57 seconds (process running for 9.177)
-2025-03-30 19:41:52 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-03-30 19:41:52 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-03-30 19:41:52 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2025-03-30 19:41:52 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts/upload
-2025-03-30 19:41:52 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YSJ9LCJleHAiOjE3NDMwODY5MjF9.skYG7-3k1dlIw4DF0xkHHHPJugpvG00v158Ra3kNo7I
-2025-03-30 19:42:18 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts/upload
-2025-03-30 19:42:18 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YSJ9LCJleHAiOjE3NDMwODY5MjF9.skYG7-3k1dlIw4DF0xkHHHPJugpvG00v158Ra3kNo7I
-2025-03-30 19:42:51 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts/upload
-2025-03-30 19:42:51 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzMzc2MDI3fQ.mrwgV38T7B4EKHe_meYMZg1IYIB2PhQRCh0y96sLB7k
-2025-03-30 19:42:52 [http-nio-8080-exec-4] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 0, 文件名: 屏幕截图 2024-12-27 144113.png
-2025-03-30 19:42:52 [http-nio-8080-exec-4] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\0\7581d2d6-a677-4bb7-bf1a-d15439b65909.png
-2025-03-30 19:42:52 [http-nio-8080-exec-4] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/0/7581d2d6-a677-4bb7-bf1a-d15439b65909.png
-2025-03-30 19:42:52 [http-nio-8080-exec-4] INFO  c.e.a.service.impl.PostServiceImpl - 为社区帖子创建了照片记录，ID: 3
-2025-03-30 19:42:52 [http-nio-8080-exec-4] INFO  c.e.a.service.impl.PostServiceImpl - 用户 1 创建了帖子 1
-2025-03-30 19:44:55 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/1/cover/upload
-2025-03-30 19:44:55 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzMzc2MDI3fQ.mrwgV38T7B4EKHe_meYMZg1IYIB2PhQRCh0y96sLB7k
-2025-03-30 19:44:55 [http-nio-8080-exec-7] INFO  c.e.album.controller.AlbumController - 接收到更新相册封面请求，相册ID: 1
-2025-03-30 19:44:55 [http-nio-8080-exec-7] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-03-30 19:44:55 [http-nio-8080-exec-7] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 0, 文件名: 屏幕截图 2024-12-27 144113.png
-2025-03-30 19:44:55 [http-nio-8080-exec-7] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\0\bd2d47cc-bda3-49dc-a767-54332d0f91d1.png
-2025-03-30 19:44:55 [http-nio-8080-exec-7] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/0/bd2d47cc-bda3-49dc-a767-54332d0f91d1.png
-2025-03-30 19:44:55 [http-nio-8080-exec-7] WARN  c.e.album.controller.AlbumController - 转换相册VO时发生错误: null
-2025-03-30 19:46:34 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-30 19:46:34 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-03-30 19:46:34 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-03-30 19:46:34 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-03-30 19:46:43 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 19496 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-03-30 19:46:43 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-03-30 19:46:43 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-03-30 19:46:43 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-03-30 19:46:43 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-03-30 19:46:44 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-03-30 19:46:44 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 34 ms. Found 0 JDBC repository interfaces.
-2025-03-30 19:46:45 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-03-30 19:46:45 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-03-30 19:46:45 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-30 19:46:45 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-03-30 19:46:45 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2466 ms
-2025-03-30 19:46:47 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-03-30 19:46:47 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-03-30 19:46:48 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1831a9d5
-2025-03-30 19:46:48 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-03-30 19:46:48 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-03-30 19:46:48 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-03-30 19:46:48 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.097 seconds (process running for 7.009)
-2025-03-30 19:46:53 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-03-30 19:46:53 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-03-30 19:46:53 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2025-03-30 19:46:53 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/1/cover/upload
-2025-03-30 19:46:53 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzMzc2MDI3fQ.mrwgV38T7B4EKHe_meYMZg1IYIB2PhQRCh0y96sLB7k
-2025-03-30 19:46:53 [http-nio-8080-exec-2] INFO  c.e.album.controller.AlbumController - 接收到更新相册封面请求，相册ID: 1
-2025-03-30 19:46:53 [http-nio-8080-exec-2] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-03-30 19:46:53 [http-nio-8080-exec-2] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 0, 文件名: 屏幕截图 2024-12-27 144113.png
-2025-03-30 19:46:53 [http-nio-8080-exec-2] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\0\ee0c4db5-928f-4b1c-8da9-693d1fb6c9aa.png
-2025-03-30 19:46:53 [http-nio-8080-exec-2] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/0/ee0c4db5-928f-4b1c-8da9-693d1fb6c9aa.png
-2025-03-30 19:46:53 [http-nio-8080-exec-2] WARN  c.e.album.controller.AlbumController - 转换相册VO时发生错误: null
-2025-03-30 19:54:09 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-30 19:54:09 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-03-30 19:54:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-03-30 19:54:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-03-30 19:54:16 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 22460 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-03-30 19:54:16 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-03-30 19:54:16 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-03-30 19:54:16 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-03-30 19:54:16 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-03-30 19:54:17 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-03-30 19:54:17 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 0 JDBC repository interfaces.
-2025-03-30 19:54:18 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-03-30 19:54:18 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-03-30 19:54:18 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-30 19:54:18 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-03-30 19:54:18 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2362 ms
-2025-03-30 19:54:20 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-03-30 19:54:20 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-03-30 19:54:20 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5fc8fc57
-2025-03-30 19:54:20 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-03-30 19:54:21 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-03-30 19:54:21 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-03-30 19:54:21 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 5.899 seconds (process running for 6.757)
-2025-03-30 19:54:42 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-03-30 19:54:42 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-03-30 19:54:42 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2025-03-30 19:54:42 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/1/cover/upload
-2025-03-30 19:54:42 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzMzc2MDI3fQ.mrwgV38T7B4EKHe_meYMZg1IYIB2PhQRCh0y96sLB7k
-2025-03-30 19:54:42 [http-nio-8080-exec-1] INFO  c.e.album.controller.AlbumController - 接收到更新相册封面请求，相册ID: 1
-2025-03-30 19:54:42 [http-nio-8080-exec-1] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-03-30 19:54:42 [http-nio-8080-exec-1] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 0, 文件名: 屏幕截图 2024-12-27 144113.png
-2025-03-30 19:54:42 [http-nio-8080-exec-1] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\0\db139d5c-307a-4ec7-b47e-f6d176830422.png
-2025-03-30 19:54:43 [http-nio-8080-exec-1] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/0/db139d5c-307a-4ec7-b47e-f6d176830422.png
-2025-03-30 19:54:50 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-30 19:54:50 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-03-30 19:54:50 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-03-30 19:54:50 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+	... 67 common frames omitted
+2025-03-31 09:53:07 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/follow/3
+2025-03-31 09:53:07 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzNDI5MTQyfQ.hz9W6QUeuFzRVjvC48kULBdQAGhBF-KJ4H73aIssvWI
+2025-03-31 09:53:07 [http-nio-8080-exec-8] INFO  c.e.a.controller.FollowController - 接收到关注用户请求，目标用户ID: 3
+2025-03-31 09:53:07 [http-nio-8080-exec-8] WARN  c.e.a.service.impl.FollowServiceImpl - 尝试关注不存在的用户：3
+2025-03-31 09:53:11 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/follow/3
+2025-03-31 09:53:11 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzNDI5MTQyfQ.hz9W6QUeuFzRVjvC48kULBdQAGhBF-KJ4H73aIssvWI
+2025-03-31 09:53:11 [http-nio-8080-exec-5] INFO  c.e.a.controller.FollowController - 接收到关注用户请求，目标用户ID: 3
+2025-03-31 09:53:11 [http-nio-8080-exec-5] WARN  c.e.a.service.impl.FollowServiceImpl - 尝试关注不存在的用户：3
+2025-03-31 09:53:14 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/follow/2
+2025-03-31 09:53:14 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzNDI5MTQyfQ.hz9W6QUeuFzRVjvC48kULBdQAGhBF-KJ4H73aIssvWI
+2025-03-31 09:53:14 [http-nio-8080-exec-7] INFO  c.e.a.controller.FollowController - 接收到关注用户请求，目标用户ID: 2
+2025-03-31 09:53:14 [http-nio-8080-exec-7] ERROR c.e.a.controller.FollowController - 关注用户失败
+org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: org.postgresql.util.PSQLException: 错误: 字段 "following_id" 不存在
+  位置：59
+### The error may exist in com/example/album/mapper/FollowMapper.java (best guess)
+### The error may involve com.example.album.mapper.FollowMapper.checkFollowExists-Inline
+### The error occurred while setting parameters
+### SQL: SELECT COUNT(*) FROM tb_follow WHERE follower_id = ? AND following_id = ?
+### Cause: org.postgresql.util.PSQLException: 错误: 字段 "following_id" 不存在
+  位置：59
+; bad SQL grammar []
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:112)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
+	at jdk.proxy2/jdk.proxy2.$Proxy81.selectOne(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:160)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:87)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:152)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at jdk.proxy3/jdk.proxy3.$Proxy101.checkFollowExists(Unknown Source)
+	at com.example.album.service.impl.FollowServiceImpl.isFollowing(FollowServiceImpl.java:94)
+	at com.example.album.service.impl.FollowServiceImpl.followUser(FollowServiceImpl.java:48)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.example.album.service.impl.FollowServiceImpl$$SpringCGLIB$$0.followUser(<generated>)
+	at com.example.album.controller.FollowController.followUser(FollowController.java:41)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+Caused by: org.postgresql.util.PSQLException: 错误: 字段 "following_id" 不存在
+  位置：59
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:194)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:180)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
+	at jdk.proxy4/jdk.proxy4.$Proxy128.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:65)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:80)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at jdk.proxy2/jdk.proxy2.$Proxy127.query(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:65)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110)
+	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:81)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:59)
+	at jdk.proxy2/jdk.proxy2.$Proxy126.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:75)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	... 67 common frames omitted
+2025-03-31 09:55:42 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/follow/2
+2025-03-31 09:55:42 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzNDI5MTQyfQ.hz9W6QUeuFzRVjvC48kULBdQAGhBF-KJ4H73aIssvWI
+2025-03-31 09:55:42 [http-nio-8080-exec-1] INFO  c.e.a.controller.FollowController - 接收到关注用户请求，目标用户ID: 2
+2025-03-31 09:55:42 [http-nio-8080-exec-1] INFO  c.e.a.service.impl.FollowServiceImpl - 用户 1 成功关注用户 2
+2025-03-31 09:56:04 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: DELETE http://localhost:8080/follow/2
+2025-03-31 09:56:04 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YSJ9LCJleHAiOjE3NDMwODY5MjF9.skYG7-3k1dlIw4DF0xkHHHPJugpvG00v158Ra3kNo7I
+2025-03-31 09:56:16 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: DELETE http://localhost:8080/follow/2
+2025-03-31 09:56:16 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzNDI5MTQyfQ.hz9W6QUeuFzRVjvC48kULBdQAGhBF-KJ4H73aIssvWI
+2025-03-31 09:56:16 [http-nio-8080-exec-3] INFO  c.e.a.controller.FollowController - 接收到取消关注用户请求，目标用户ID: 2
+2025-03-31 09:56:16 [http-nio-8080-exec-3] INFO  c.e.a.service.impl.FollowServiceImpl - 用户 1 成功取消关注用户 2
+2025-03-31 09:56:36 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/follow/2
+2025-03-31 09:56:36 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzNDI5MTQyfQ.hz9W6QUeuFzRVjvC48kULBdQAGhBF-KJ4H73aIssvWI
+2025-03-31 09:56:36 [http-nio-8080-exec-4] INFO  c.e.a.controller.FollowController - 接收到关注用户请求，目标用户ID: 2
+2025-03-31 09:56:36 [http-nio-8080-exec-4] INFO  c.e.a.service.impl.FollowServiceImpl - 用户 1 成功关注用户 2
+2025-03-31 09:56:40 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/follow/check/2
+2025-03-31 09:56:40 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YSJ9LCJleHAiOjE3NDMwODY5MjF9.skYG7-3k1dlIw4DF0xkHHHPJugpvG00v158Ra3kNo7I
+2025-03-31 09:56:50 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/follow/check/2
+2025-03-31 09:56:50 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzNDI5MTQyfQ.hz9W6QUeuFzRVjvC48kULBdQAGhBF-KJ4H73aIssvWI
+2025-03-31 09:57:00 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/follow/following
+2025-03-31 09:57:00 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzNDI5MTQyfQ.hz9W6QUeuFzRVjvC48kULBdQAGhBF-KJ4H73aIssvWI
+2025-03-31 09:57:24 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/follow/followers
+2025-03-31 09:57:24 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzNDI5MTQyfQ.hz9W6QUeuFzRVjvC48kULBdQAGhBF-KJ4H73aIssvWI
+2025-03-31 09:57:53 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/follow/followers
+2025-03-31 09:57:53 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MiwidXNlcm5hbWUiOiJ3YW5nYmEyIn0sImV4cCI6MTc0MzQyOTQ1OX0.j_GteUCsu1GedmIuZqkX4UbsuJ0rTX5Z2Z-6_VYhtDU
+2025-03-31 09:58:18 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/follow/1/following
+2025-03-31 09:58:18 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YSJ9LCJleHAiOjE3NDMwODY5MjF9.skYG7-3k1dlIw4DF0xkHHHPJugpvG00v158Ra3kNo7I
+2025-03-31 09:58:24 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/follow/1/following
+2025-03-31 09:58:24 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MiwidXNlcm5hbWUiOiJ3YW5nYmEyIn0sImV4cCI6MTc0MzQyOTQ1OX0.j_GteUCsu1GedmIuZqkX4UbsuJ0rTX5Z2Z-6_VYhtDU
+2025-03-31 09:58:50 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/follow/2/followers
+2025-03-31 09:58:50 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YSJ9LCJleHAiOjE3NDMwODY5MjF9.skYG7-3k1dlIw4DF0xkHHHPJugpvG00v158Ra3kNo7I
+2025-03-31 09:58:54 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/follow/2/followers
+2025-03-31 09:58:54 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MiwidXNlcm5hbWUiOiJ3YW5nYmEyIn0sImV4cCI6MTc0MzQyOTQ1OX0.j_GteUCsu1GedmIuZqkX4UbsuJ0rTX5Z2Z-6_VYhtDU
+2025-03-31 09:59:37 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-31 09:59:37 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-03-31 09:59:37 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-31 09:59:37 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

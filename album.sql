@@ -25,7 +25,6 @@ DROP TABLE IF EXISTS tb_user CASCADE;
 DROP TABLE IF EXISTS tb_post CASCADE;
 DROP TABLE IF EXISTS tb_comment CASCADE;
 DROP TABLE IF EXISTS tb_like CASCADE;
-
 DROP TABLE IF EXISTS tb_follow CASCADE ;
 CREATE TABLE tb_user (
   user_id SERIAL PRIMARY KEY,
@@ -168,15 +167,15 @@ CREATE INDEX idx_user_like ON tb_like(user_id);
 CREATE TABLE tb_follow (
   follow_id SERIAL PRIMARY KEY,
   follower_id INTEGER NOT NULL,
-  followed_id INTEGER NOT NULL,
+  following_id INTEGER NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (follower_id) REFERENCES tb_user(user_id) ON DELETE CASCADE,
-  FOREIGN KEY (followed_id) REFERENCES tb_user(user_id) ON DELETE CASCADE,
-  UNIQUE (follower_id, followed_id) -- 确保一个用户只能关注另一个用户一次
+  FOREIGN KEY (following_id) REFERENCES tb_user(user_id) ON DELETE CASCADE,
+  UNIQUE (follower_id, following_id) -- 确保一个用户只能关注另一个用户一次
 );
 
 CREATE INDEX idx_follower ON tb_follow(follower_id);
-CREATE INDEX idx_followed ON tb_follow(followed_id);
+CREATE INDEX idx_followed ON tb_follow(following_id);
 
 INSERT INTO tb_user (user_id,rolename,username,password,email,status,created_at)
 VALUES (0,'admin'::user_role, 'virtual','123','admin@system.com', 'active'::user_status,CURRENT_TIMESTAMP);

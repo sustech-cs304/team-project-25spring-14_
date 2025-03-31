@@ -1,7 +1,7 @@
 import os
 import subprocess
-from io import BytesIO
 from datetime import datetime, timedelta
+
 import cv2 as cv
 import matplotlib.pyplot as plt
 import numpy as np
@@ -12,33 +12,36 @@ from ultralytics import YOLO
 然后生成的图片和视频都直接用编码的方式回传给springboot
 """
 
-def rotate(image_path): # 每点击一下就逆时针旋转90度，然后判断是否需要保存
+
+def rotate(image_path):  # 每点击一下就逆时针旋转90度，然后判断是否需要保存
     img = cv.imread(image_path)
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
     height = img.shape[0]
     width = img.shape[1]
-    ro_matrix = cv.getRotationMatrix2D((width/2, height/2), 90, 1)
+    ro_matrix = cv.getRotationMatrix2D((width / 2, height / 2), 90, 1)
     img = cv.warpAffine(img, ro_matrix, (height, width))
     return img
     # plt.imshow(img)
     # plt.axis('off')
     # plt.show()
 
-def cut(img_path,region):  # 对图片进行裁剪
+
+def cut(img_path, region):  # 对图片进行裁剪
     img = cv.imread(img_path)
-    print(img.shape)    
+    print(img.shape)
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
-    (x1,y1),(x2,y2) = region
+    (x1, y1), (x2, y2) = region
     cut_img = img[x1:y1, x2:y2]
     return cut_img
     # plt.imshow(cut_img)
     # plt.axis('off')
     # plt.show()
 
-def adjust_brightness(img_path,brightness=0,contrast=1.0):  # 调整亮度，和对比度
+
+def adjust_brightness(img_path, brightness=0, contrast=1.0):  # 调整亮度，和对比度
     img = cv.imread(img_path)
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
-    plt.figure(figsize=(8,3))
+    plt.figure(figsize=(8, 3))
     plt.subplot(121)
     plt.imshow(img)
     plt.subplot(122)
@@ -47,58 +50,10 @@ def adjust_brightness(img_path,brightness=0,contrast=1.0):  # 调整亮度，和
     # plt.imshow(img)
     # plt.axis('off')
     # plt.show()
-    
-def remove_object(img_path, mask_region=None):  # 效果还不是很好，如果不上深度学习的话这个可能就不用了
-    img = cv.imread(img_path)
-    img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
-    
-    if mask_region is None:
-        model = YOLO('yolov8n-seg.pt')  # 这里用分割模型效果会好一点
-        results = model.predict(img, verbose=False)
-        mask = np.zeros(img.shape[:2], dtype="uint8")  
-        for result in results:
-            for box in result.boxes:
-                if box.cls == 0 and result.masks:
-                    seg_mask = cv.resize(
-                        result.masks[0].data[0].numpy().astype(np.uint8) * 255,
-                        (img.shape[1], img.shape[0])  # 使用原图的宽高
-                    )
-                    mask = cv.bitwise_or(mask, seg_mask)  # 合并多个掩码
-    else:
-        (x1, y1), (x2, y2) = mask_region
-        mask = np.zeros(img.shape[:2], dtype="uint8")
-        cv.rectangle(mask, (x1, y1), (x2, y2), 255, -1)
-    mask = cv.resize(mask, (img.shape[1], img.shape[0])) if mask.shape != img.shape[:2] else mask
-    img_inpainted = cv.inpaint(img, mask, inpaintRadius=5, flags=cv.INPAINT_TELEA)
-
-    gray_inpainted = cv.cvtColor(img_inpainted, cv.COLOR_RGB2GRAY)
-    _, threshold = cv.threshold(gray_inpainted, 1, 255, cv.THRESH_BINARY)
-    kernel = np.ones((5, 5), np.uint8)
-    eroded = cv.erode(threshold, kernel,iterations=2)
-    mask_no_white = cv.bitwise_not(eroded)
-    # 合并原图和修复后的图像
-    background = cv.bitwise_and(img, img, mask=mask_no_white)
-    foreground = cv.bitwise_and(img_inpainted, img_inpainted, mask=eroded)
-    final_img = cv.add(background, foreground)
-    # return final_img
-    plt.imshow(final_img)
-    plt.axis('off')
-    plt.show()
-
-def sketch_effect(img_path):  # 边缘检测，然后颜色反转得到所谓的素描图片
-    img = cv.imread(img_path)
-    img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-
-    edges = cv.Canny(img, 100, 200)
-    inverted_edges = cv.bitwise_not(edges)
-    return inverted_edges
-    # plt.imshow(inverted_edges)
-    # plt.axis('off')
-    # plt.show()
 
 def ai_classify_image(image_path):  # 用AI来识别图片中是否有特定的物体
     model = YOLO('yolov8n.pt')
-    common_choises = ['person', 'car', 'dog', 'cat', 'book','snowboard']
+    common_choises = ['person', 'car', 'dog', 'cat', 'book', 'snowboard']
     result = model.predict(image_path, verbose=False)
     detect = []
     for box in result[0].boxes:
@@ -110,26 +65,24 @@ def ai_classify_image(image_path):  # 用AI来识别图片中是否有特定的�
 
 
 def img_to_video(image_folder, audio_file, final_output_file, transition='', fps=25):  # 跟上面的方法一致，不过这个可以添加图片切换时候的特效
-
+    # 这里直接传进来的是一个列表，然后里面包含了所有图片的地址
     fourcc = cv.VideoWriter_fourcc(*'mp4v')
     frame_size = (640, 480)  # 要注意resize之后是（480,640），因为传进去的是（width，height）
     temp_output = 'temp.mp4'
     video_writer = cv.VideoWriter(temp_output, fourcc, fps, frame_size)
 
-    image_files = sorted([f for f in os.listdir(image_folder) if f.endswith(('.png', '.jpg'))])
-    image_files = image_files[:100]
-
+    image_files = image_folder
     if transition == '':  # 没有特效的
         for i in range(len(image_files) - 1):
-            img_path = os.path.join(image_folder, image_files[i])
+            img_path = image_files[i]
             img = cv.imread(img_path)
             img = cv.resize(img, frame_size)
             for _ in range(fps):
                 video_writer.write(img)
     elif transition == 'fade':  # 渐变特效
         for i in range(len(image_files) - 1):
-            img_path1 = os.path.join(image_folder, image_files[i])
-            img_path2 = os.path.join(image_folder, image_files[i + 1])
+            img_path1 = image_files[i]
+            img_path2 = image_files[i + 1]
 
             img1 = cv.imread(img_path1)
             img2 = cv.imread(img_path2)
@@ -175,8 +128,8 @@ def img_to_video(image_folder, audio_file, final_output_file, transition='', fps
         col_middle = frame_size[0] // 2
         row_middle = frame_size[1] // 2
         for i in range(len(image_files) - 1):
-            img_path1 = os.path.join(image_folder, image_files[i])
-            img_path2 = os.path.join(image_folder, image_files[i + 1])
+            img_path1 = image_files[i]
+            img_path2 = image_files[i + 1]
 
             img1 = cv.imread(img_path1)
             img2 = cv.imread(img_path2)
@@ -217,7 +170,8 @@ def img_to_video(image_folder, audio_file, final_output_file, transition='', fps
     os.remove(temp_output)
     print("Final video with audio created.")
 
-def add_captions(input_video, output_video, subtitles_dict:dict,font_name='Arial',font_size=24,font_color='white'):
+
+def add_captions(input_video, output_video, subtitles_dict: dict, font_name='Arial', font_size=24, font_color='white'):
     """
     这里用ffmpeg来添加字幕，因为使用cv的话需要逐帧渲染太麻烦了，而且不易于前端的操作
     这里面的字典，key是输入的时间，value是字幕内容
@@ -225,10 +179,10 @@ def add_captions(input_video, output_video, subtitles_dict:dict,font_name='Arial
     但是这里的字幕必须手动加入，还没有能够自动加入的库
     """
     srt_content = []
-    for idx,(time_range,text) in enumerate(subtitles_dict.items(),1):
+    for idx, (time_range, text) in enumerate(subtitles_dict.items(), 1):
         start_time, end_time = time_range.split("-")
-        start_time =datetime.strptime(start_time, "%H:%M:%S")
-        end_time =datetime.strptime(end_time, "%H:%M:%S")
+        start_time = datetime.strptime(start_time, "%H:%M:%S")
+        end_time = datetime.strptime(end_time, "%H:%M:%S")
         # 这里转换成ffmpeg时间格式
         start_srt = start_time.strftime("%H:%M:%S,000")
         end_srt = (end_time - timedelta(seconds=1)).strftime("%H:%M:%S,999")  # 避免时间重叠
@@ -239,23 +193,24 @@ def add_captions(input_video, output_video, subtitles_dict:dict,font_name='Arial
         )
     # 这里用一个临时文件存储字幕，就不保存到本地，运行结束之后直接删掉
     temp_srt = 'temp_subtitle.srt'
-    with open(temp_srt,"w",encoding='utf-8') as f:
+    with open(temp_srt, "w", encoding='utf-8') as f:
         for item in srt_content:
             f.write(item)
 
     ffmpeg_cmd = (
         f'ffmpeg -i "{input_video}" -vf '
-        f'"subtitles={temp_srt}:force_style=\'FontName={font_name},FontSize={font_size},PrimaryColour={font_color},Alignment=2,MarginV=20" ' 
+        f'"subtitles={temp_srt}:force_style=\'FontName={font_name},FontSize={font_size},PrimaryColour={font_color},Alignment=2,MarginV=20" '
         f'-c:a copy -y "{output_video}"'
     )
     subprocess.run(ffmpeg_cmd)
     os.remove(temp_srt)
 
+
 def denoising(img_path):  # 这里用锐化的效果比较明显，高斯滤波和双边滤波的效果一般
 
     img = cv.imread(img_path)
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
-    sharpen_kernel = np.array([[0, -1, 0], [-1, 5,-1], [0, -1, 0]])
+    sharpen_kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
     sharpened_img = cv.filter2D(img, -1, sharpen_kernel)
     sharpened_img = np.clip(sharpened_img, 0, 255).astype(np.uint8)
     return sharpened_img
@@ -275,7 +230,12 @@ if __name__ == '__main__':
     # remove_object('F:/VOCtrainval_11-May-2012/JPEGImages/2007_000170.jpg',None)
     # sketch_effect('./resources/lenna.jpg',False)
     # detect_people_in_photos('F:/VOCtrainval_11-May-2012/JPEGImages','F:/VOCtrainval_11-May-2012/Output',0.6)
-    img_to_video(r'F:/VOCtrainval_11-May-2012/JPEGImages',final_output_file='F:/VOCtrainval_11-May-2012/FinalOutput.mp4',audio_file='E:/bgMusic.wav',transition='zoom')
+    image_files = sorted(
+        [f for f in os.listdir('F:/VOCtrainval_11-May-2012/JPEGImages') if f.endswith(('.png', '.jpg'))])
+    image_files = image_files[:100]
+    image_files = [os.path.join('F:/VOCtrainval_11-May-2012/JPEGImages', x) for x in image_files]
+    img_to_video(image_files, final_output_file='F:/VOCtrainval_11-May-2012/FinalOutput.mp4',
+                 audio_file='E:/bgMusic.wav', transition='fade')
     # subtitles = {
     #     "00:00:05-00:00:10": "第一段字幕：欢迎观看！",
     #     "00:00:15-00:00:20": "第二段字幕：这是一个示例视频。"
@@ -291,3 +251,4 @@ if __name__ == '__main__':
     # play_video(temp)
     # os.remove(temp)  # 删除临时文件
     # denoising('F:/VOCtrainval_11-May-2012/JPEGImages/2007_000027.jpg')
+    # black_white_filter('F:/VOCtrainval_11-May-2012/JPEGImages/2007_000042.jpg')

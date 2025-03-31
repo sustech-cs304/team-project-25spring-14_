@@ -7,6 +7,7 @@ import PhotosView from "@/views/home/PhotosView.vue";
 import ImageEditor from "@/views/ImageEditor.vue";
 import AlbumsView from "@/views/home/AlbumsView.vue";
 import AlbumDetailView from "@/views/home/AlbumDetailView.vue";
+import SharedView from "@/views/home/SharedView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -43,6 +44,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/albums/:albumId",
     name: "albumdetail",
     component: AlbumDetailView,
+  },
+  {
+    path: "/share",
+    name: "share",
+    component: SharedView,
   },
 ];
 

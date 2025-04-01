@@ -58,6 +58,19 @@ CREATE TABLE tb_album
 
 CREATE INDEX idx_user_album ON tb_album (user_id);
 
+CREATE TABLE tb_post
+(
+    post_id    SERIAL PRIMARY KEY,
+    user_id    INTEGER NOT NULL,
+    caption    TEXT,
+    privacy    privacy_type DEFAULT 'public',
+    created_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES tb_user (user_id) ON DELETE CASCADE
+);
+
+CREATE INDEX idx_user_post ON tb_post (user_id);
+
 CREATE TABLE tb_photo
 (
     photo_id      SERIAL PRIMARY KEY,
@@ -134,21 +147,6 @@ CREATE TABLE tb_report
 
 CREATE INDEX idx_report_status ON tb_report (status);
 
-CREATE TABLE tb_post
-(
-    post_id    SERIAL PRIMARY KEY,
-    user_id    INTEGER NOT NULL,
-    photo_id   INTEGER ,
-    caption    TEXT,
-    privacy    privacy_type DEFAULT 'public',
-    created_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES tb_user (user_id) ON DELETE CASCADE,
-    FOREIGN KEY (photo_id) REFERENCES tb_photo (photo_id) ON DELETE CASCADE
-);
-
-CREATE INDEX idx_user_post ON tb_post (user_id);
-CREATE INDEX idx_photo_post ON tb_post (photo_id);
 
 -- 评论表
 CREATE TABLE tb_comment

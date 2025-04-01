@@ -10,8 +10,8 @@ import java.util.List;
 
 @Mapper
 public interface PostMapper extends BaseMapper<Post> {
-    @Insert("INSERT INTO tb_post(user_id, photo_id, caption, privacy, created_at, updated_at) " +
-            "VALUES(#{userId}, #{photoId}, #{caption}, #{privacy}::privacy_type, #{createdAt}, #{updatedAt})")
+    @Insert("INSERT INTO tb_post(user_id,  caption, privacy, created_at, updated_at) " +
+            "VALUES(#{userId}, #{caption}, #{privacy}::privacy_type, #{createdAt}, #{updatedAt})")
     @Options(useGeneratedKeys = true, keyProperty = "postId")
     int insert(Post post);
 

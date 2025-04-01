@@ -53,7 +53,6 @@ public class PostServiceImpl implements PostService {
         // 创建帖子
         Post post = new Post();
         post.setUserId(userId);
-        post.setPhotoId(createDTO.getPhotoId());
         post.setCaption(createDTO.getCaption());
         post.setPrivacy(createDTO.getPrivacy());
         post.setCreatedAt(LocalDateTime.now());
@@ -72,14 +71,12 @@ public class PostServiceImpl implements PostService {
         List<String> uploadedFileUrls = new ArrayList<>();
 
         try {
-            // 先创建帖子但不设置photoId
             Post post = new Post();
             post.setUserId(userId);
             post.setCaption(createDTO.getCaption());
             post.setPrivacy(createDTO.getPrivacy());
             post.setCreatedAt(LocalDateTime.now());
             post.setUpdatedAt(LocalDateTime.now());
-            post.setPhotoId(null);  // 先设为null
 
             // 先插入帖子以获取postId
             postMapper.insert(post);
@@ -113,17 +110,6 @@ public class PostServiceImpl implements PostService {
 
                 photoMapper.insert(photo);
                 log.info("为社区帖子创建了照片记录，ID: {}", photo.getPhotoId());
-
-                // 记录第一张照片
-                if (i == 0) {
-                    firstPhoto = photo;
-                }
-            }
-
-            // 更新帖子的主照片ID为第一张照片
-            if (firstPhoto != null) {
-                post.setPhotoId(firstPhoto.getPhotoId());
-                postMapper.updateById(post);
             }
 
             return getPostById(post.getPostId(), userId);
@@ -247,24 +233,6 @@ public class PostServiceImpl implements PostService {
             postVO.setPrivacy(post.getPrivacy().toString().toLowerCase());
         } else {
             postVO.setPrivacy("PUBLIC"); // 默认值
-        }
-        // 获取照片信息
-        Photo FirstPhoto = photoMapper.selectById(post.getPhotoId());
-        if (FirstPhoto != null) {
-            // 设置照片URL
-            String photoUrl = FirstPhoto.getFileUrl();
-            String thumbnailUrl = FirstPhoto.getThumbnailUrl();
-
-            if (!photoUrl.startsWith("http")) {
-                photoUrl = storageService.getFullUrl(photoUrl);
-            }
-
-            if (!thumbnailUrl.startsWith("http")) {
-                thumbnailUrl = storageService.getFullUrl(thumbnailUrl);
-            }
-
-            postVO.setPhotoUrl(photoUrl);
-            postVO.setThumbnailUrl(thumbnailUrl);
         }
 
         List<Photo> photos = photoMapper.selectByPostId(post.getPostId());

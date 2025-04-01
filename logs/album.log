@@ -584,3 +584,189 @@ java.lang.RuntimeException: 照片不存在或无权访问
 2025-04-01 01:46:40 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
 2025-04-01 01:46:40 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-04-01 01:46:40 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-01 12:53:47 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 12856 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-04-01 12:53:47 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-04-01 12:53:47 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-01 12:53:47 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-01 12:53:47 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-01 12:53:48 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-04-01 12:53:49 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 0 JDBC repository interfaces.
+2025-04-01 12:53:50 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-04-01 12:53:50 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-01 12:53:50 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-01 12:53:50 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-01 12:53:50 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2470 ms
+2025-04-01 12:53:51 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
+2025-04-01 12:53:52 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-01 12:53:52 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3409246d
+2025-04-01 12:53:52 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-01 12:53:52 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-01 12:53:53 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-04-01 12:53:53 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.314 seconds (process running for 7.259)
+2025-04-01 12:54:45 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-01 12:54:45 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-01 12:54:45 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-04-01 12:55:08 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts/upload
+2025-04-01 12:55:08 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzNTI2NDg2fQ.pi3K3rCKAAyj4YeIWFeWhvDc7-yzfcBm90snFMDmhW0
+2025-04-01 12:55:08 [http-nio-8080-exec-3] INFO  c.e.a.service.impl.PostServiceImpl - 用户 1 创建了帖子 1
+2025-04-01 12:55:08 [http-nio-8080-exec-3] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 
+2025-04-01 12:55:08 [http-nio-8080-exec-3] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\dd78e570-a657-46f3-a156-ee8702e2135a
+2025-04-01 12:55:08 [http-nio-8080-exec-3] ERROR c.e.a.service.impl.PostServiceImpl - 创建帖子失败
+java.lang.NullPointerException: Cannot invoke "java.awt.image.BufferedImage.getWidth()" because "originalImage" is null
+	at com.example.album.service.impl.StorageServiceImpl.storePhoto(StorageServiceImpl.java:73)
+	at com.example.album.service.impl.PostServiceImpl.createPostWithPhoto(PostServiceImpl.java:92)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.example.album.service.impl.PostServiceImpl$$SpringCGLIB$$0.createPostWithPhoto(<generated>)
+	at com.example.album.controller.PostController.createPostWithPhoto(PostController.java:78)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-04-01 12:55:08 [http-nio-8080-exec-3] ERROR c.e.album.controller.PostController - 创建帖子失败
+java.lang.RuntimeException: 创建帖子失败: Cannot invoke "java.awt.image.BufferedImage.getWidth()" because "originalImage" is null
+	at com.example.album.service.impl.PostServiceImpl.createPostWithPhoto(PostServiceImpl.java:131)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.example.album.service.impl.PostServiceImpl$$SpringCGLIB$$0.createPostWithPhoto(<generated>)
+	at com.example.album.controller.PostController.createPostWithPhoto(PostController.java:78)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-04-01 12:55:52 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts/upload
+2025-04-01 12:55:52 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzNTI2NDg2fQ.pi3K3rCKAAyj4YeIWFeWhvDc7-yzfcBm90snFMDmhW0
+2025-04-01 12:55:52 [http-nio-8080-exec-4] INFO  c.e.a.service.impl.PostServiceImpl - 用户 1 创建了帖子 2
+2025-04-01 12:55:52 [http-nio-8080-exec-4] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-24 175226.png
+2025-04-01 12:55:52 [http-nio-8080-exec-4] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\7aa3df3a-b860-4d92-9d2b-4c238cb2d35e.png
+2025-04-01 12:55:52 [http-nio-8080-exec-4] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/7aa3df3a-b860-4d92-9d2b-4c238cb2d35e.png
+2025-04-01 12:55:52 [http-nio-8080-exec-4] INFO  c.e.a.service.impl.PostServiceImpl - 为社区帖子创建了照片记录，ID: 1
+2025-04-01 12:55:52 [http-nio-8080-exec-4] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-24 180131.png
+2025-04-01 12:55:52 [http-nio-8080-exec-4] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\0f8a3665-3f8f-4c51-92b2-f339527d85f5.png
+2025-04-01 12:55:52 [http-nio-8080-exec-4] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/0f8a3665-3f8f-4c51-92b2-f339527d85f5.png
+2025-04-01 12:55:52 [http-nio-8080-exec-4] INFO  c.e.a.service.impl.PostServiceImpl - 为社区帖子创建了照片记录，ID: 2
+2025-04-01 12:55:52 [http-nio-8080-exec-4] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-24 200532.png
+2025-04-01 12:55:52 [http-nio-8080-exec-4] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\ed8fbe0c-f3c2-4cf4-a7d0-efc0b86f57d2.png
+2025-04-01 12:55:52 [http-nio-8080-exec-4] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/ed8fbe0c-f3c2-4cf4-a7d0-efc0b86f57d2.png
+2025-04-01 12:55:52 [http-nio-8080-exec-4] INFO  c.e.a.service.impl.PostServiceImpl - 为社区帖子创建了照片记录，ID: 3
+2025-04-01 12:57:34 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts/upload
+2025-04-01 12:57:34 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQzNTI2NDg2fQ.pi3K3rCKAAyj4YeIWFeWhvDc7-yzfcBm90snFMDmhW0
+2025-04-01 12:57:34 [http-nio-8080-exec-7] INFO  c.e.a.service.impl.PostServiceImpl - 用户 1 创建了帖子 3
+2025-04-01 12:57:34 [http-nio-8080-exec-7] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-24 175226.png
+2025-04-01 12:57:34 [http-nio-8080-exec-7] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\d8a075e0-fbcd-4c3a-97ca-df708f29ac40.png
+2025-04-01 12:57:34 [http-nio-8080-exec-7] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/d8a075e0-fbcd-4c3a-97ca-df708f29ac40.png
+2025-04-01 12:57:34 [http-nio-8080-exec-7] INFO  c.e.a.service.impl.PostServiceImpl - 为社区帖子创建了照片记录，ID: 4
+2025-04-01 12:57:34 [http-nio-8080-exec-7] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-24 180131.png
+2025-04-01 12:57:34 [http-nio-8080-exec-7] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\5c3473a0-e625-464b-8259-8e8ec3bef9d5.png
+2025-04-01 12:57:34 [http-nio-8080-exec-7] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/5c3473a0-e625-464b-8259-8e8ec3bef9d5.png
+2025-04-01 12:57:34 [http-nio-8080-exec-7] INFO  c.e.a.service.impl.PostServiceImpl - 为社区帖子创建了照片记录，ID: 5
+2025-04-01 12:57:34 [http-nio-8080-exec-7] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-24 200532.png
+2025-04-01 12:57:34 [http-nio-8080-exec-7] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\88416229-5312-420a-8d90-70f60f2c11fa.png
+2025-04-01 12:57:34 [http-nio-8080-exec-7] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/88416229-5312-420a-8d90-70f60f2c11fa.png
+2025-04-01 12:57:34 [http-nio-8080-exec-7] INFO  c.e.a.service.impl.PostServiceImpl - 为社区帖子创建了照片记录，ID: 6
+2025-04-01 12:58:23 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-01 12:58:23 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-01 12:58:23 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-01 12:58:23 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

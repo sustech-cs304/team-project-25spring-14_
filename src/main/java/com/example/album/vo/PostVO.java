@@ -15,12 +15,6 @@ public class PostVO {
 
     private String userAvatar;
 
-    private Integer photoId;
-
-    private String photoUrl;
-
-    private String thumbnailUrl;
-
     private List<PhotoVO> photos;
 
     private String caption;

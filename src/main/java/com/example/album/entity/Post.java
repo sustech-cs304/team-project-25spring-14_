@@ -21,8 +21,6 @@ public class Post {
 
     private Integer userId;
 
-    private Integer photoId;
-
     private String caption;
 
     private PrivacyTypeEnum privacy;

@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
+import com.example.album.service.ImageService;
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class PhotoController {
     private final AlbumService albumService;
     private final StorageService storageService;
     private final PhotoMapper photoMapper;
-
+    private final ImageService imageService;
     /**
      * 上传照片
      */
@@ -55,7 +56,7 @@ public class PhotoController {
             }else return null;
             // 存储照片
             PhotoStorageResult result = storageService.storePhoto(file, userId);
-
+            String tag = imageService.ai_classify(result.getFileUrl());  //直接用这个url发送给python后端，会返回一个字符串
             // 保存照片记录到数据库
             Photo photo = new Photo();
             photo.setAlbumId(Math.toIntExact(uploadDTO.getAlbumId()));
@@ -65,7 +66,7 @@ public class PhotoController {
             photo.setThumbnailUrl(result.getThumbnailUrl());
             photo.setLocation(uploadDTO.getLocation());
 //            photo.setFileSize(result.getFileSize());
-            photo.setTagName(uploadDTO.getTag());
+            photo.setTagName(tag);  // 首先默认使用我进行分类的标签，如果需要修改，就再次调用这个方法
             photo.setCapturedAt(result.getCapturedAt());
             photo.setCreatedAt(LocalDateTime.now());
             photo.setPostId(uploadDTO.getPostId());

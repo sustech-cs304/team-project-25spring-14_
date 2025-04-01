@@ -14,14 +14,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import com.example.album.entity.Result;
+
 @Service
 @Component
 public class VideoService {
     private final String FLASK_URL = "http://localhost:5000/";
     private static final Logger logger = LoggerFactory.getLogger(VideoService.class);
 
-    public void CreateVideo(String img_folder, String audio_file, String final_output_file, String transition, String fps) {  //这个方法会直接将生成的视频保存到本地，如果需要
+    public Result CreateVideo(List<String> img_folder, String audio_file, String final_output_file, String transition, String fps) {  //这个方法会直接将生成的视频保存到本地，如果需要
         RestTemplate restTemplate = new RestTemplate();
 
         String url = UriComponentsBuilder.fromUriString(FLASK_URL)
@@ -48,13 +51,15 @@ public class VideoService {
                     String.class
             );
             logger.info(response.getBody(), response.getStatusCode());  // 用日志显示出body和状态码
+            return Result.success();
         } catch (Exception e) {
             // 处理请求失败的情况
             logger.error(e.getMessage(), e);
+            return Result.error(e.getMessage());
         }
     }
 
-    public void add_captions(CaptionParamDTO caption) {
+    public Result add_captions(CaptionParamDTO caption) {
         RestTemplate restTemplate = new RestTemplate();
         String url = UriComponentsBuilder.fromUriString(FLASK_URL)
                 .path("add_captions")
@@ -77,33 +82,35 @@ public class VideoService {
                     String.class
             );
             logger.info(response.getBody(), response.getStatusCode());
+            return Result.success();
         } catch (Exception e){
             logger.error(e.getMessage(), e);
+            return Result.error(e.getMessage());
         }
     }
 
-    public ResponseEntity<byte[]> GetVideo(String video_path) {  // 读取文件，返回一个封装好了视频二进制编码的ResponseEntity
+    public Result GetVideo(String video_path) {  // 读取文件，返回一个封装好了视频二进制编码的ResponseEntity
         try {
             File videoFile = new File(video_path);
             if (!videoFile.exists()) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return Result.error("视频路径不存在");
             }
             byte[] videoBytes = Files.readAllBytes(videoFile.toPath());
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.valueOf("video/mp4"));
-            return new ResponseEntity<>(videoBytes, headers, HttpStatus.OK);
+            return Result.success(videoBytes);
         } catch (IOException e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return Result.error(e.getMessage());
         }
     }
 
-    public void DeleteVideo(String video_path) {
+    public Result DeleteVideo(String video_path) {
         try {
             Path path = Paths.get(video_path);
             Files.delete(path);
             logger.info("delete video file from {}", video_path);
+            return Result.success();
         } catch (IOException e) {
             logger.error("Error occurred while deleting the video file", e);
+            return Result.error(e.getMessage());
         }
     }
 }

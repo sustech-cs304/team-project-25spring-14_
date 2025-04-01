@@ -79,12 +79,11 @@ public class ImageService {  // 这个是图片的一下基础操作，现在不
         }
     }
 
-    public List<String> ai_classify(int photoId){
-        Photo photo = photoMapper.selectById(photoId);
+    public String ai_classify(String url){  // 这个ai返回值是一个字符串，可以直接对应到数据库里面去
 
         String Url = UriComponentsBuilder.fromUriString(FLASK_URL)
                 .path("ai_classify_image")
-                .queryParam("img_path",photo.getFileUrl())
+                .queryParam("img_path",url)
                 .build()
                 .toUriString();
 
@@ -99,7 +98,7 @@ public class ImageService {  // 这个是图片的一下基础操作，现在不
             if (response.getStatusCode() == HttpStatus.OK || response.getBody()!=null) {
                 Object detectClassObj = Objects.requireNonNull(response.getBody()).get("detect_class");
                 if (detectClassObj instanceof List) {
-                    return (List<String>) detectClassObj;  // 返回 detect_class 列表
+                    return detectClassObj.toString();  // 返回 detect_class 列表
                 } else {
                     return null;  // 如果类型不匹配，则返回 null
                 }

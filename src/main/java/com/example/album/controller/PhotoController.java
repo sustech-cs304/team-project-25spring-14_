@@ -66,7 +66,11 @@ public class PhotoController {
             photo.setThumbnailUrl(result.getThumbnailUrl());
             photo.setLocation(uploadDTO.getLocation());
 //            photo.setFileSize(result.getFileSize());
-            photo.setTagName(tag);  // 首先默认使用我进行分类的标签，如果需要修改，就再次调用这个方法
+            if (!uploadDTO.getTag().equals("null")) {  // 如果有自己选择的tag就直接用，没有就用ai识别的
+                photo.setTagName(tag.trim());
+            } else {
+                photo.setTagName(uploadDTO.getTag());
+            }
             photo.setCapturedAt(result.getCapturedAt());
             photo.setCreatedAt(LocalDateTime.now());
             photo.setPostId(uploadDTO.getPostId());

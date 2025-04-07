@@ -1,21 +1,25 @@
 package com.example.album.controller;
 
+import com.example.album.entity.Photo;
 import com.example.album.entity.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.album.service.VideoService;
 import com.example.album.dto.CaptionParamDTO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import com.example.album.mapper.PhotoMapper;
 
 @RestController
 @RequestMapping("/video")
 @Slf4j
 public class VideoController {
-    private static VideoService videoService;
-
+    @Autowired
+    private VideoService videoService;
+    @Autowired
+    private PhotoMapper photoMapper;
     /**
      * 需要获取这个视频的地址，然后会将这个视频的二进制文件返回给前端
      * @param userId
@@ -54,8 +58,12 @@ public class VideoController {
     @PostMapping("/create_video_tag")
     public Result Create_video_tag(@RequestParam int userId, @RequestParam String Tag, @RequestParam String fps, @RequestParam String transition) {
         List<String> urls = new ArrayList<>(); // 这是通过tag找到的所有图片的url
+        List<Photo> photos = photoMapper.selectByTag(userId, Tag);
+        for (Photo photo : photos) {
+            urls.add(photo.getFileUrl());
+        }
         String audio = "temp";
-        String output = "temp";
+        String output = "temp"; //这里面的内容是需要视频数据库去进行更新的
         return videoService.CreateVideo(urls,audio,output,transition,fps);
     }
 

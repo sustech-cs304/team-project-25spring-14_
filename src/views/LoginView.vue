@@ -123,6 +123,7 @@ export default {
             this.handleLogin = false;
             const token = res.data.data.token;
             localStorage.setItem("jwtToken", token);
+            localStorage.setItem("userId", res.data.data.userId);
             this.$router.push({ path: "/discover" });
           }
         })

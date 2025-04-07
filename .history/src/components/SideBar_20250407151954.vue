@@ -17,22 +17,21 @@
         <span>{{ item.label }}</span>
       </li>
     </ul>
-    <div class="user-avatar" @click="showUserCard">
+    <div class="user-avatar" @click="toggleUserInfoCard">
       <img src="@/assets/images/kobe.jpg" alt="Avatar" />
     </div>
-    <UserInfoCard ref="userCard" />
   </nav>
 </template>
 
 <script>
-import UserInfoCard from "./UserInfoCard.vue";
+import UserInfoCard from "@/components/UserInfoCard.vue";
 
 export default {
   name: "SideBar",
-  components: { UserInfoCard },
   data() {
     return {
       activeNav: "discover",
+
       navItems: [
         {
           name: "discover",
@@ -93,36 +92,6 @@ export default {
     logout() {
       localStorage.removeItem("jwtToken");
       this.$router.push("/");
-    },
-    showUserCard(event) {
-      const rect = event.currentTarget.getBoundingClientRect();
-      const user = {
-        avatarUrl: require("@/assets/images/kobe.jpg"),
-        name: "MAJO ELAINA",
-        wechatId: "B3940772589",
-        location: "安徽 合肥",
-        photos: [
-          require("@/assets/images/老大.jpg"),
-          require("@/assets/images/老大.jpg"),
-          require("@/assets/images/老大.jpg"),
-        ],
-      };
-
-      const padding = 10;
-      const cardWidth = 350;
-      const cardHeight = 200;
-
-      const isRight = rect.left + cardWidth + padding < window.innerWidth;
-      const isBottom = rect.top + cardHeight + padding < window.innerHeight;
-
-      const left = isRight
-        ? rect.right + padding
-        : rect.left - cardWidth - padding;
-      const top = isBottom
-        ? rect.top + padding
-        : rect.bottom - cardHeight - padding;
-
-      this.$refs.userCard.showCard(user, { top, left });
     },
   },
 };

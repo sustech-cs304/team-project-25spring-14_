@@ -15,10 +15,6 @@ public interface StorageService {
      */
     PhotoStorageResult storePhoto(MultipartFile file, int userId) throws IOException;
 
-    /**
-     * 删除存储的照片
-     * @param fileUrl 文件URL
-     */
     void deletePhoto(String fileUrl) throws IOException;
 
     Photo getById(Integer coverPhotoId);

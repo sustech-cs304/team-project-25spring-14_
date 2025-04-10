@@ -14,7 +14,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class MyBatisPlusConfig {
 
     /**
-     * 配置MyBatis-Plus分页插件
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: ask for the mybatis-plus tools
+     * directly copy
      */
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {

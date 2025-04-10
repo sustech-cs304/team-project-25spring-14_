@@ -30,7 +30,13 @@ import java.util.UUID;
 public class StorageServiceImpl implements StorageService {
 
     private final PhotoMapper photoMapper;
-
+    /**
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: dont know how to user the dir in properties and ask
+     * copy
+     */
     @Value("${app.upload.dir}")
     private String uploadDir;
 
@@ -43,14 +49,18 @@ public class StorageServiceImpl implements StorageService {
     @Value("${app.thumbnail.location:${app.upload.dir}/thumbnails}")
     private String thumbnailLocation;
 
+    /**
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: ask how to deal with multipart file storage
+     * copy it and its dto
+     */
     @Override
     public PhotoStorageResult storePhoto(MultipartFile file, int userId) throws IOException {
         log.info("开始存储照片，用户ID: {}, 文件名: {}", userId, file.getOriginalFilename());
-
-        // 创建必要的目录
         createDirectories();
 
-        // 生成唯一文件名
         String originalFilename = StringUtils.cleanPath(file.getOriginalFilename());
         String fileExtension = originalFilename.contains(".") ?
                 originalFilename.substring(originalFilename.lastIndexOf(".")) : "";
@@ -101,6 +111,14 @@ public class StorageServiceImpl implements StorageService {
         return result;
     }
 
+
+    /**
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: ask how to deal with multipart file delete
+     * copy
+     */
     @Override
     public void deletePhoto(String fileUrl) throws IOException {
         log.info("删除照片: {}", fileUrl);
@@ -155,6 +173,7 @@ public class StorageServiceImpl implements StorageService {
         new File(storageLocation).mkdirs();
         new File(thumbnailLocation).mkdirs();
     }
+
     /**
      * 将相对文件路径转换为完整的URL
      * @param relativePath 相对路径，例如 "/uploads/photos/abc.jpg"

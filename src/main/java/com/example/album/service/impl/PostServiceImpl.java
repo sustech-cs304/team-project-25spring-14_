@@ -41,6 +41,14 @@ public class PostServiceImpl implements PostService {
 //    private final CommentService commentService;
     private final StorageService storageService;
 
+
+    /**
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: give it the key of photo to ask it to generate the Post construct
+     * copy
+     */
     @Override
     @Transactional
     public PostVO createPost(PostCreateDTO createDTO, Integer userId) {
@@ -50,7 +58,6 @@ public class PostServiceImpl implements PostService {
             throw new RuntimeException("照片不存在或无权访问");
         }
 
-        // 创建帖子
         Post post = new Post();
         post.setUserId(userId);
         post.setCaption(createDTO.getCaption());
@@ -64,6 +71,13 @@ public class PostServiceImpl implements PostService {
         return getPostById(post.getPostId(), userId);
     }
 
+    /**
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: give it the key of photo to ask it to generate the Photo construct
+     * copy and add the try catch part that in case it will failed
+     */
     @Override
     @Transactional
     public PostVO createPostWithPhoto(PostCreateWithPhotoDTO createDTO, Integer userId) {
@@ -131,6 +145,8 @@ public class PostServiceImpl implements PostService {
             throw new RuntimeException("创建帖子失败: " + e.getMessage());
         }
     }
+
+
     @Override
     @Transactional
     public PostVO updatePost(Integer postId, PostUpdateDTO updateDTO, Integer userId) {
@@ -194,7 +210,13 @@ public class PostServiceImpl implements PostService {
 
         return convertToPostVO(post, currentUserId);
     }
-
+    /**
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage:ask for stream operation
+     * copy
+     */
     @Override
     public List<PostVO> getPostsByUserId(Integer userId, Integer currentUserId) {
         List<Post> posts = postMapper.selectByUserId(userId);
@@ -203,6 +225,13 @@ public class PostServiceImpl implements PostService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage:ask for stream operation
+     * copy
+     */
     @Override
     public List<PostVO> getPublicPosts(Integer currentUserId) {
         List<Post> posts = postMapper.selectPublicPosts();
@@ -211,6 +240,14 @@ public class PostServiceImpl implements PostService {
                 .collect(Collectors.toList());
     }
 
+
+    /**
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage:ask for stream operation
+     * copy
+     */
     @Override
     public List<PostVO> getFollowingPosts(Integer userId) {
         List<Post> posts = postMapper.selectFollowingPosts(userId);
@@ -219,8 +256,13 @@ public class PostServiceImpl implements PostService {
                 .collect(Collectors.toList());
     }
 
+
     /**
-     * 将Post实体转换为PostVO
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage:the same as the ones in photo
+     * copy and add some corner case its uncover
      */
     private PostVO convertToPostVO(Post post, Integer currentUserId) {
         if (post == null) {

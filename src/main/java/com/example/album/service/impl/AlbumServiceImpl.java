@@ -26,6 +26,13 @@ public class AlbumServiceImpl extends ServiceImpl<AlbumMapper, Album> implements
 
     private final PhotoMapper photoMapper;
 
+    /**
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: ask it to hel me with the problem that mybatis-plus's insert cant deal with the enum type
+     * rewrite insertAlbum's sql
+     */
     @Override
     public boolean createAlbum(Album album) {
         album.setCreatedAt(LocalDateTime.now());
@@ -33,11 +40,6 @@ public class AlbumServiceImpl extends ServiceImpl<AlbumMapper, Album> implements
         if (album.getPrivacy() == null) {
             album.setPrivacy(PrivacyTypeEnum.PRIVATE);
         }
-
-        // 获取隐私类型的值
-        String privacyValue = album.getPrivacy().getValue();
-
-        // 使用自定义SQL语句插入数据
         int result = baseMapper.insertAlbum(album);
 
         return result > 0;
@@ -65,6 +67,14 @@ public class AlbumServiceImpl extends ServiceImpl<AlbumMapper, Album> implements
         ) > 0;
     }
 
+
+    /**
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: originally i want to ask for stream operation ,but it gives me a better way to solve it
+     * copy
+     */
     @Override
     @Transactional
     public boolean deleteAlbum(Integer albumId, Integer userId) {
@@ -81,6 +91,13 @@ public class AlbumServiceImpl extends ServiceImpl<AlbumMapper, Album> implements
         return removeById(albumId);
     }
 
+    /**
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: originally i want to ask for stream operation ,but it gives me a better way to solve it
+     * copy
+     */
     @Override
     public List<Album> getAlbumsByUserId(Integer userId) {
         LambdaQueryWrapper<Album> queryWrapper = new LambdaQueryWrapper<>();
@@ -101,35 +118,10 @@ public class AlbumServiceImpl extends ServiceImpl<AlbumMapper, Album> implements
         if (album == null) {
             return false;
         }
-
         if (album.getUserId().equals(userId)) {
             return true;
         }
-
         return PrivacyTypeEnum.PUBLIC.equals(album.getPrivacy());
-
-        // 共享相册的逻辑在这里添加
-        // TODO: 实现共享相册的访问检查
-    }
-
-    @Override
-    @Transactional
-    public boolean removeViolationAlbum(Integer albumId, Integer adminId, String reason) {
-        Album album = getById(albumId);
-        if (album == null) {
-            return false;
-        }
-
-        // 添加管理员日志
-//        adminService.addAdminLog(adminId, "删除违规相册", "album", albumId);
-
-        // 删除相册内的所有照片
-        LambdaQueryWrapper<Photo> photoQueryWrapper = new LambdaQueryWrapper<>();
-        photoQueryWrapper.eq(Photo::getAlbumId, albumId);
-        photoMapper.delete(photoQueryWrapper);
-
-        // 删除相册
-        return removeById(albumId);
     }
 
     @Override

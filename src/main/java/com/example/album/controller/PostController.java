@@ -24,9 +24,6 @@ public class PostController {
 
     private final PostService postService;
 
-    /**
-     * 创建帖子
-     */
     @PostMapping
     public Result<Map<String, Object>> createPost(@Valid @RequestBody PostCreateDTO createDTO) {
         try {
@@ -51,8 +48,13 @@ public class PostController {
         }
     }
 
+
     /**
-     * 创建帖子
+     * AI-generated-content
+     * tool: deepseek
+     * version: latest
+     * usage: give the DTO to it and ask for a method that can directly upload system photo
+     * copy and add userId check
      */
     @PostMapping("/upload")
     public Result<Map<String, Object>> createPostWithPhoto(
@@ -70,13 +72,10 @@ public class PostController {
                 return Result.error("请至少上传一张照片");
             }
 
-            // 限制最大上传数量
             if (createDTO.getPhoto().size() > 10) {
                 return Result.error("最多可上传10张照片");
             }
-            // 调用服务层方法处理照片上传和帖子创建
             PostVO postVO = postService.createPostWithPhoto(createDTO, userId);
-
             Map<String, Object> response = new HashMap<>();
             response.put("post", postVO);
             response.put("message", "帖子创建成功");
@@ -88,9 +87,6 @@ public class PostController {
         }
     }
 
-    /**
-     * 更新帖子
-     */
     @PutMapping("/{postId}")
     public Result<Map<String, Object>> updatePost(
             @PathVariable Integer postId,
@@ -103,9 +99,7 @@ public class PostController {
             } else {
                 return Result.error("未登录");
             }
-
             PostVO postVO = postService.updatePost(postId, updateDTO, userId);
-
             Map<String, Object> response = new HashMap<>();
             response.put("post", postVO);
             response.put("message", "帖子更新成功");
@@ -130,12 +124,9 @@ public class PostController {
             } else {
                 return Result.error("未登录");
             }
-
             postService.deletePost(postId, userId);
-
             Map<String, Object> response = new HashMap<>();
             response.put("message", "帖子删除成功");
-
             return Result.success(response);
         } catch (Exception e) {
             log.error("删除帖子失败", e);
@@ -143,9 +134,6 @@ public class PostController {
         }
     }
 
-    /**
-     * 获取帖子详情
-     */
     @GetMapping("/{postId}")
     public Result<Map<String, Object>> getPostDetail(@PathVariable Integer postId) {
         try {
@@ -156,10 +144,8 @@ public class PostController {
             }
 
             PostVO postVO = postService.getPostById(postId, userId);
-
             Map<String, Object> response = new HashMap<>();
             response.put("post", postVO);
-
             return Result.success(response);
         } catch (Exception e) {
             log.error("获取帖子详情失败", e);
@@ -167,9 +153,6 @@ public class PostController {
         }
     }
 
-    /**
-     * 获取用户的所有帖子
-     */
     @GetMapping("/user/{userId}")
     public Result<Map<String, Object>> getUserPosts(@PathVariable Integer userId) {
         try {
@@ -178,13 +161,10 @@ public class PostController {
             if (claims != null) {
                 currentUserId = ((Number) claims.get("id")).intValue();
             }
-
             List<PostVO> posts = postService.getPostsByUserId(userId, currentUserId);
-
             Map<String, Object> response = new HashMap<>();
             response.put("posts", posts);
             response.put("count", posts.size());
-
             return Result.success(response);
         } catch (Exception e) {
             log.error("获取用户帖子失败", e);
@@ -192,9 +172,6 @@ public class PostController {
         }
     }
 
-    /**
-     * 获取公开的帖子（社区主页）
-     */
     @GetMapping("/public")
     public Result<Map<String, Object>> getPublicPosts() {
         try {
@@ -205,11 +182,9 @@ public class PostController {
             }
 
             List<PostVO> posts = postService.getPublicPosts(userId);
-
             Map<String, Object> response = new HashMap<>();
             response.put("posts", posts);
             response.put("count", posts.size());
-
             return Result.success(response);
         } catch (Exception e) {
             log.error("获取公开帖子失败", e);
@@ -217,9 +192,6 @@ public class PostController {
         }
     }
 
-    /**
-     * 获取关注用户的帖子（关注的动态）
-     */
     @GetMapping("/following")
     public Result<Map<String, Object>> getFollowingPosts() {
         try {
@@ -232,7 +204,6 @@ public class PostController {
             }
 
             List<PostVO> posts = postService.getFollowingPosts(userId);
-
             Map<String, Object> response = new HashMap<>();
             response.put("posts", posts);
             response.put("count", posts.size());

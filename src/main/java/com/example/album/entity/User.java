@@ -22,8 +22,6 @@ public class User {
     @TableId(type = IdType.AUTO)
     @NotNull
     private Integer userId;
-    @NotEmpty
-    @Pattern(regexp = "^\\S{5,16}$")
     private String rolename;
     @NotEmpty
     @Pattern(regexp = "^\\S{5,16}$")

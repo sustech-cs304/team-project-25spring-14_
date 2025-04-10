@@ -142,4 +142,20 @@ public class UserController {
         userService.updatePwd(newPwd);
         return Result.success();
     }
+
+    /**
+     * 根据用户id查询用户信息
+     *
+     * @param userId 用户id
+     */
+    @GetMapping("/getUser/{userId}")
+    public Result<User> getUser(@PathVariable Integer userId) {
+        // 1. 调用service查询用户
+        User user = userService.getUserById(userId);
+        if (user == null) {
+            return Result.error("用户不存在");
+        }
+        // 2. 返回结果
+        return Result.success(user);
+    }
 }

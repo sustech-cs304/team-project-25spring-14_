@@ -15,22 +15,19 @@ import java.util.List;
 
 @Mapper
 public interface AlbumMapper extends BaseMapper<Album> {
-
     /**
-     * 获取用户的所有相册
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: ask directly with sql and requirement
+     * copy and deal with the enum type (it works really good)
      */
     @Select("SELECT * FROM tb_album WHERE user_id = #{userId} ORDER BY updated_at DESC")
     List<Album> selectByUserId(@Param("userId") Integer userId);
 
-    /**
-     * 分页获取用户的相册
-     */
     @Select("SELECT * FROM tb_album WHERE user_id = #{userId} ORDER BY updated_at DESC")
     IPage<Album> selectPageByUserId(Page<Album> page, @Param("userId") Integer userId);
 
-    /**
-     * 获取公开的相册
-     */
     @Select("SELECT * FROM tb_album WHERE privacy = 'public' ORDER BY updated_at DESC")
     IPage<Album> selectPublicAlbums(Page<Album> page);
 

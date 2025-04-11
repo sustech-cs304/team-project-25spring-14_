@@ -7,7 +7,13 @@ import java.io.File;
 
 @Component
 public class ApplicationInitializer {
-
+    /**
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: ask how to use the dir in properties to initialize the storage at the beginning
+     * directly copy
+     */
     @Value("${app.upload.dir}")
     private String uploadDir;
 

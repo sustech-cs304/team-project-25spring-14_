@@ -37,8 +37,14 @@ public class PhotoController {
     private final StorageService storageService;
     private final PhotoMapper photoMapper;
     private final ImageService imageService;
+
+
     /**
-     * 上传照片
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: give it the key of photo to ask it to generate the Photo construct
+     * copy
      */
     @PostMapping("/upload")
     public Result<Map<String, Object>> uploadPhoto(
@@ -52,11 +58,10 @@ public class PhotoController {
             if (claims != null) {
                 userId = ((Number) claims.get("id")).intValue();
                 log.info("从ThreadLocal获取的用户ID: {}", userId);
-                // 处理逻辑...
             }else return null;
             // 存储照片
             PhotoStorageResult result = storageService.storePhoto(file, userId);
-            String tag = imageService.ai_classify(result.getFileUrl());  //直接用这个url发送给python后端，会返回一个字符串
+//            String tag = imageService.ai_classify(result.getFileUrl());  //直接用这个url发送给python后端，会返回一个字符串
             // 保存照片记录到数据库
             Photo photo = new Photo();
             photo.setAlbumId(Math.toIntExact(uploadDTO.getAlbumId()));
@@ -66,26 +71,17 @@ public class PhotoController {
             photo.setThumbnailUrl(result.getThumbnailUrl());
             photo.setLocation(uploadDTO.getLocation());
 //            photo.setFileSize(result.getFileSize());
-            if (!uploadDTO.getTag().equals("null")) {  // 如果有自己选择的tag就直接用，没有就用ai识别的
-                photo.setTagName(tag.trim());
-            } else {
-                photo.setTagName(uploadDTO.getTag());
-            }
+//            photo.setTagName(tag);  // 首先默认使用我进行分类的标签，如果需要修改，就再次调用这个方法
             photo.setCapturedAt(result.getCapturedAt());
             photo.setCreatedAt(LocalDateTime.now());
-            photo.setPostId(uploadDTO.getPostId());
+//            photo.setPostId(uploadDTO.getPostId());
             if (uploadDTO.getIsFavorite() != null) {
                 photo.setIsFavorite(uploadDTO.getIsFavorite());
             }
 
-            // 使用MyBatis Mapper插入数据
             photoMapper.insert(photo);
             log.info("照片信息已保存到数据库，ID: {}", photo.getPhotoId());
-
-            // 转换为VO返回
             PhotoVO photoVO = convertToPhotoVO(photo);
-
-            // 返回结果
             Map<String, Object> response = new HashMap<>();
             response.put("photo", photoVO);
             response.put("message", "照片上传成功");
@@ -97,19 +93,13 @@ public class PhotoController {
         }
     }
 
-    /**
-     * 获取照片详情
-     */
     @GetMapping("/{photoId}")
     public Result<Map<String, Object>> getPhotoDetail(@PathVariable int photoId) {
         try {
-            // 查询照片信息
             Photo photo = photoMapper.selectById(photoId);
             if (photo == null) {
                 throw new Exception("照片未找到");
             }
-
-            // 转换为VO
             PhotoVO photoVO = convertToPhotoVO(photo);
 
             Map<String, Object> response = new HashMap<>();
@@ -122,16 +112,19 @@ public class PhotoController {
         }
     }
 
+
     /**
-     * 获取相册中的所有照片
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: ask how to do it in java's stream that in high efficiency
+     * copy directly
      */
     @GetMapping("/album/{albumId}")
     public Result<Map<String, Object>> getPhotosByAlbum(@PathVariable int albumId) {
         try {
-            // 查询相册中的所有照片
             List<Photo> photos = photoMapper.selectByAlbumId(Math.toIntExact(albumId));
 
-            // 转换为VO列表
             List<PhotoVO> photoVOList = photos.stream()
                     .map(this::convertToPhotoVO)
                     .collect(Collectors.toList());
@@ -148,8 +141,11 @@ public class PhotoController {
     }
 
     /**
-     * 更新照片信息
-     * 注：使用专用的PhotoUpdateDTO而不是复用PhotoUploadDTO
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: just give the template of update album, and it can generate
+     * copy and add userId check
      */
     @PutMapping("/{photoId}")
     public Result<Map<String, Object>> updatePhoto(
@@ -161,16 +157,13 @@ public class PhotoController {
             if (claims != null) {
                 userId = ((Number) claims.get("id")).intValue();
                 log.info("从ThreadLocal获取的用户ID: {}", userId);
-                // 处理逻辑...
             }else return null;
-            // 查找照片
             Photo photo = photoMapper.selectById(photoId);
             if (photo == null) {
                 throw new Exception("照片未找到");
             }
 
-            // 验证所有权
-            if (!Integer.valueOf(photo.getUserId()).equals(userId)) {
+            if (!photo.getUserId().equals(userId)) {
                 log.warn("用户 {} 尝试更新不属于他的照片 {}", userId, photoId);
                 throw new Exception("无权更新此照片");
             }
@@ -184,21 +177,16 @@ public class PhotoController {
             }
 
             if (updateDTO.getAlbumId() != null && !updateDTO.getAlbumId().equals(photo.getAlbumId())) {
-                // 验证用户是否有权限访问目标相册
                 albumService.checkAlbumAccess(updateDTO.getAlbumId(), Math.toIntExact(userId));
                 photo.setAlbumId(Math.toIntExact(updateDTO.getAlbumId()));
                 hasUpdates = true;
             }
 
-
-            // 只有当有更新时才执行数据库操作
             if (hasUpdates) {
-                photo.setCreatedAt(LocalDateTime.now());//直接设置创建时间
+                photo.setCreatedAt(LocalDateTime.now());
                 photoMapper.updateById(photo);
                 log.info("照片信息已更新，ID: {}", photoId);
             }
-
-            // 转换为VO
             PhotoVO photoVO = convertToPhotoVO(photo);
 
             Map<String, Object> response = new HashMap<>();
@@ -213,7 +201,11 @@ public class PhotoController {
     }
 
     /**
-     * 删除照片
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: just give the template of delete album, and it can generate
+     * copy and add userId check
      */
     @DeleteMapping("/{photoId}")
     public Result<Map<String, Object>> deletePhoto(@PathVariable int photoId) {
@@ -224,24 +216,16 @@ public class PhotoController {
             if (claims != null) {
                 userId = ((Number) claims.get("id")).intValue();
                 log.info("从ThreadLocal获取的用户ID: {}", userId);
-                // 处理逻辑...
             }else return null;
-            // 查找照片
             Photo photo = photoMapper.selectById(photoId);
             if (photo == null) {
                 throw new Exception("照片未找到");
             }
-
-            // 验证所有权
-            if (!Integer.valueOf(photo.getUserId()).equals(userId)) {
+            if (!photo.getUserId().equals(userId)) {
                 log.warn("用户 {} 尝试删除不属于他的照片 {}", userId, photoId);
                 throw new Exception("无权删除此照片");
             }
-
-            // 删除物理文件
             storageService.deletePhoto(photo.getFileUrl());
-
-            // 删除数据库记录
             photoMapper.deleteById(photoId);
             log.info("照片ID: {} 已成功删除", photoId);
 
@@ -255,11 +239,13 @@ public class PhotoController {
         }
     }
 
+
     /**
-     * 将Photo实体转换为PhotoVO
-     */
-    /**
-     * 将Photo实体转换为PhotoVO，提供全面的前端展示数据
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: just give the template of album, and it can generate
+     * copy and add some string it not cover
      */
     private PhotoVO convertToPhotoVO(Photo photo) {
         if (photo == null) {

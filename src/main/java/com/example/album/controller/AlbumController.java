@@ -39,7 +39,11 @@ public class AlbumController {
     private final StorageService storageService;
 
     /**
-     * 创建相册
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: ask it to give me a template that can give me the log and how to write the parameter
+     * just add log and correct the annotation, result use the same format that defined by other teammate
      */
     @PostMapping("/upload")
     public Result<Map<String, Object>> createAlbum(
@@ -49,6 +53,7 @@ public class AlbumController {
         log.info("接收到创建相册请求，用户ID: {}, 相册标题: {}", userId, createDTO.getTitle());
 
         try {
+
             Album album = new Album();
             BeanUtils.copyProperties(createDTO, album);
             album.setUserId(userId);
@@ -73,28 +78,20 @@ public class AlbumController {
         }
     }
 
-    /**
-     * 获取相册详情
-     */
     @GetMapping("/{albumId}")
     public Result<Map<String, Object>> getAlbumDetail(
             @PathVariable Integer albumId,
             @RequestParam(value = "userId", required = false) Integer userId) {
 
         try {
-            // 检查访问权限
             if (!albumService.checkAlbumAccess(albumId, userId)) {
                 throw new Exception("没有访问权限");
             }
-
             Album album = albumService.getById(albumId);
             if (album == null) {
                 throw new Exception("相册不存在");
             }
-
-            // 构建详细响应
             AlbumDetailVO albumDetailVO = convertToAlbumDetailVO(album);
-
             Map<String, Object> response = new HashMap<>();
             response.put("album", albumDetailVO);
 
@@ -105,9 +102,6 @@ public class AlbumController {
         }
     }
 
-    /**
-     * 更新相册
-     */
     @PutMapping("/{albumId}")
     public Result<Map<String, Object>> updateAlbum(
             @PathVariable Integer albumId,
@@ -119,15 +113,11 @@ public class AlbumController {
             if (album == null) {
                 throw new Exception("没有访问权限");
             }
-
-            // 检查是否为相册所有者
             if (!album.getUserId().equals(userId)) {
                 throw new Exception("没有修改权限");
             }
 
             boolean hasUpdates = false;
-
-            // 只更新非空字段
             if (updateDTO.getTitle() != null) {
                 album.setTitle(updateDTO.getTitle());
                 hasUpdates = true;
@@ -153,9 +143,7 @@ public class AlbumController {
                 }
             }
 
-            // 返回更新后的相册信息
             AlbumVO albumVO = convertToAlbumVO(album);
-
             Map<String, Object> response = new HashMap<>();
             response.put("album", albumVO);
             response.put("message", "相册更新成功");
@@ -168,9 +156,6 @@ public class AlbumController {
         }
     }
 
-    /**
-     * 删除相册
-     */
     @DeleteMapping("/{albumId}")
     public Result<Map<String, Object>> deleteAlbum(
             @PathVariable Integer albumId,
@@ -179,11 +164,17 @@ public class AlbumController {
         log.info("接收到删除相册请求，相册ID: {}, 用户ID: {}", albumId, userId);
 
         try {
+            Album album = albumService.getById(albumId);
+            if (album == null) {
+                throw new Exception("没有访问权限");
+            }
+            if (!album.getUserId().equals(userId)) {
+                throw new Exception("没有修改权限");
+            }
             boolean result = albumService.deleteAlbum(albumId, userId);
             if (!result) {
                 throw new Exception("删除相册失败");
             }
-
             Map<String, Object> response = new HashMap<>();
             response.put("message", "相册删除成功");
 
@@ -194,9 +185,6 @@ public class AlbumController {
         }
     }
 
-    /**
-     * 获取用户的相册列表
-     */
     @GetMapping("/user/{userId}")
     public Result<Map<String, Object>> getUserAlbums(
             @PathVariable Integer userId,
@@ -205,10 +193,8 @@ public class AlbumController {
         try {
             List<Album> albums = albumService.getAlbumsByUserId(userId);
 
-            // 转换为VO
             List<AlbumVO> albumVOList = new ArrayList<>();
             for (Album album : albums) {
-                // 检查访问权限
                 if (userId.equals(currentUserId) || album.getPrivacy().getValue().equals("public")) {
                     AlbumVO albumVO = convertToAlbumVO(album);
                     albumVOList.add(albumVO);
@@ -227,9 +213,6 @@ public class AlbumController {
         }
     }
 
-    /**
-     * 分页获取公开相册
-     */
     @GetMapping("/public")
     public Result<Map<String, Object>> getPublicAlbums(
             @RequestParam(defaultValue = "1") Integer current,
@@ -238,8 +221,6 @@ public class AlbumController {
         try {
             Page<Album> page = new Page<>(current, size);
             IPage<Album> albumPage = albumService.getPublicAlbums(page);
-
-            // 转换为VO
             List<AlbumVO> albumVOList = albumPage.getRecords().stream()
                     .map(this::convertToAlbumVO)
                     .collect(Collectors.toList());
@@ -259,7 +240,11 @@ public class AlbumController {
 
 
     /**
-     * 获取用户最近更新的相册
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: ask how to do it in java's stream that in high efficiency
+     * copy directly
      */
     @GetMapping("/recent/{userId}")
     public Result<Map<String, Object>> getRecentAlbums(
@@ -268,7 +253,7 @@ public class AlbumController {
             @RequestParam(value = "currentUserId", required = false) Integer currentUserId) {
 
         try {
-            // 检查访问权限
+
             boolean isSelf = userId.equals(currentUserId);
 
             List<Album> albums = albumService.getAlbumsByUserId(userId);
@@ -299,8 +284,6 @@ public class AlbumController {
 
         try {
             log.info("接收到更新相册封面请求，相册ID: {}", albumId);
-
-            // 获取当前登录用户ID
             Map<String, Object> claims = ThreadLocalUtil.get();
             int userId = 0;
             if (claims != null) {
@@ -309,22 +292,17 @@ public class AlbumController {
             } else {
                 return Result.error("未登录");
             }
-
-            // 检查相册是否存在且用户是否有权限
             Album album = albumService.getById(albumId);
             if (album == null) {
                 throw new Exception("相册不存在");
             }
 
-            // 检查是否为相册所有者
             if (!album.getUserId().equals(userId)) {
                 throw new Exception("没有修改权限");
             }
 
-            // 存储照片文件
             PhotoStorageResult storageResult = storageService.storePhoto(updateDTO.getPhoto(), 0);
 
-            // 创建照片记录
             Photo photo = new Photo();
             photo.setUserId(0);
             photo.setAlbumId(0);
@@ -345,15 +323,12 @@ public class AlbumController {
                 throw new Exception("保存封面照片失败");
             }
 
-            // 更新相册封面
             album.setCoverPhotoId(photo.getPhotoId());
             album.setUpdatedAt(LocalDateTime.now());
             boolean updated = albumService.updateAlbum(album);
             if (!updated) {
                 throw new Exception("更新相册封面失败");
             }
-
-            // 返回更新后的相册信息
             AlbumVO albumVO = convertToAlbumVO(album);
 
             Map<String, Object> response = new HashMap<>();
@@ -368,7 +343,11 @@ public class AlbumController {
     }
 
     /**
-     * 将Album实体转换为AlbumVO
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: first time using VO and DTO, and sak for example
+     * use the format and add some corner case it doesn't cover
      */
     private AlbumVO convertToAlbumVO(Album album) {
         if (album == null) {
@@ -389,7 +368,11 @@ public class AlbumController {
     }
 
     /**
-     * 将Album实体转换为AlbumDetailVO（包含更多详细信息）
+     * AI-generated-content
+     * tool: claude
+     * version: latest
+     * usage: first time using VO and DTO, and sak for example
+     * use the format and add some corner case it doesn't cover
      */
     private AlbumDetailVO convertToAlbumDetailVO(Album album) {
         AlbumDetailVO albumDetailVO = new AlbumDetailVO();

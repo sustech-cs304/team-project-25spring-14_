@@ -95,9 +95,9 @@ export default {
     triggerFileInput() {
       this.$refs.fileInput.click();
     },
-    /** 
-     * AI-generated-content 
-     * tool: DeepSeek 
+    /**
+     * AI-generated-content
+     * tool: DeepSeek
      * version: latest
      * usage: I asked the ai to help me optimize the upload method
      */

@@ -35,12 +35,46 @@
             </div>
 
             <div class="post-media">
-              <img
-                :src="post.photoUrl"
-                alt="帖子图片"
-                class="post-image"
-                @click="openPostDetail(post)"
-              />
+              <div class="carousel-container">
+                <!-- 图片列表 -->
+                <div class="carousel-track" :style="trackStyle(post)">
+                  <img
+                    v-for="(photo, photoIndex) in post.photos"
+                    :key="photoIndex"
+                    :src="photo.fileUrl"
+                    alt="帖子图片"
+                    class="carousel-image"
+                    :class="{ active: photoIndex === post.currentPhotoIndex }"
+                  />
+                </div>
+
+                <!-- 导航按钮 -->
+                <button
+                  v-if="post.photos.length > 1"
+                  class="carousel-btn prev-btn"
+                  @click.stop="changePhoto(post, -1)"
+                >
+                  ‹
+                </button>
+                <button
+                  v-if="post.photos.length > 1"
+                  class="carousel-btn next-btn"
+                  @click.stop="changePhoto(post, 1)"
+                >
+                  ›
+                </button>
+
+                <!-- 指示点 -->
+                <div v-if="post.photos.length > 1" class="carousel-dots">
+                  <span
+                    v-for="(dot, dotIndex) in post.photos"
+                    :key="dotIndex"
+                    class="dot"
+                    :class="{ active: dotIndex === post.currentPhotoIndex }"
+                    @click.stop="post.currentPhotoIndex = dotIndex"
+                  ></span>
+                </div>
+              </div>
             </div>
 
             <div class="post-actions">
@@ -118,19 +152,34 @@ export default {
     },
     async fetchPosts() {
       try {
-        await apiClient
-          .get("/posts/public")
-          .then((response) => {
-            this.count = response.data.data.count;
-            this.posts = response.data.data.posts;
-          })
-          .catch((error) => {
-            console.error(error);
-          });
+        await apiClient.get("/posts/public").then((response) => {
+          this.count = response.data.data.count;
+          this.posts = response.data.data.posts.map((post) => ({
+            ...post,
+            currentPhotoIndex: 0, // 添加当前图片索引
+            likeCount: post.likeCount || 0,
+            commentCount: post.commentCount || 0,
+            collects: post.collects || 0,
+            isLiked: post.isLiked || false,
+            isCollected: post.isCollected || false,
+          }));
+        });
       } catch (error) {
         console.error("获取帖子失败:", error);
         alert("获取帖子失败");
       }
+    },
+
+    changePhoto(post, direction) {
+      const length = post.photos.length;
+      post.currentPhotoIndex =
+        (post.currentPhotoIndex + direction + length) % length;
+    },
+
+    trackStyle(post) {
+      return {
+        transform: `translateX(-${post.currentPhotoIndex * 100}%)`,
+      };
     },
     async initializePage() {
       await this.fetchUserInfo();
@@ -148,27 +197,28 @@ export default {
     openPostDetail(post) {
       // 打开帖子详情逻辑
     },
-    async Postit({ photo, caption, privacy }) {
+    async Postit({ photos, caption, privacy }) {
       this.showPost = false;
-      if (!photo) return;
+      if (!photos || photos.length === 0) return;
+
       try {
         const formData = new FormData();
-        formData.append("photo", photo);
-        if (caption) {
-          formData.append("caption", caption);
-        }
-        if (privacy) {
-          formData.append("privacy", privacy);
-        }
+        photos.forEach((photo, index) => {
+          formData.append(`photo`, photo);
+        });
+        if (caption) formData.append("caption", caption);
+        if (privacy) formData.append("privacy", privacy);
+
         const response = await apiClient.post(`posts/upload`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
+
         if (response.data.code == 0) {
           this.initializePage();
         } else {
-          alert("发帖失败");
+          alert("发帖失败: " + response.data.message);
         }
       } catch (error) {
         alert("发帖失败");
@@ -180,6 +230,78 @@ export default {
 </script>
 
 <style scoped>
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 400px; /* 根据需求调整高度 */
+  border-radius: 8px;
+}
+
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.carousel-image {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-image.active {
+  opacity: 1;
+}
+
+/* 导航按钮 */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+/* 指示点 */
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dot.active {
+  background: rgba(255, 255, 255, 0.9);
+}
+
 .social-container {
   max-width: 1440px;
   margin: 0 auto;

@@ -21,6 +21,7 @@
           <input
             type="file"
             accept="image/*"
+            multiple
             @change="handleFileUpload"
             ref="fileInput"
             class="file-input"
@@ -31,9 +32,13 @@
           </div>
           <!-- 图片预览 -->
           <div class="preview-container" v-if="images.length > 0">
-            <div class="preview-item">
-              <img :src="images[0].preview" class="preview-image" />
-              <button class="remove-btn" @click="removeImage">×</button>
+            <div
+              v-for="(img, index) in images"
+              :key="index"
+              class="preview-item"
+            >
+              <img :src="img.preview" class="preview-image" />
+              <button class="remove-btn" @click="removeImage(index)">×</button>
             </div>
           </div>
         </div>
@@ -56,7 +61,9 @@
 
       <!-- 底部操作 -->
       <div class="modal-footer">
-        <button class="post-btn" @click="confirm">发布</button>
+        <button class="post-btn" @click="confirm" :disabled="isProcessing">
+          {{ isProcessing ? "正在处理图片..." : "发布" }}
+        </button>
       </div>
     </div>
   </div>
@@ -68,12 +75,15 @@ export default {
     return {
       visible: true,
       caption: "",
-      photo: null,
+      photos: null,
       images: [],
       location: "",
       privacy: "PRIVATE",
       showLocation: false,
       showPrivacy: false,
+      isProcessing: false,
+      // 新增待处理队列
+      pendingFiles: [],
     };
   },
 
@@ -85,38 +95,65 @@ export default {
     triggerFileInput() {
       this.$refs.fileInput.click();
     },
-    handleFileUpload(e) {
-      const file = e.target.files[0]; // 只取第一个文件
-      if (!file) return;
+    async handleFileUpload(e) {
+      this.isProcessing = true;
+      this.pendingFiles = [...e.target.files]; // 保存原始文件引用
 
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.images = [
-          {
-            // 直接替换数组，保持只有一张
-            file,
-            preview: e.target.result,
-          },
-        ];
-        this.photo = file;
-      };
-      reader.readAsDataURL(file);
+      try {
+        // 使用新数组替换保证响应式更新
+        const newImages = await Promise.all(
+          Array.from(e.target.files).map(
+            (file) =>
+              new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (e) =>
+                  resolve({
+                    file, // 保留原始文件对象
+                    preview: e.target.result,
+                  });
+                reader.readAsDataURL(file);
+              })
+          )
+        );
+
+        // 使用数组替换方式更新
+        this.images = newImages.filter(Boolean);
+      } catch (error) {
+        console.error("文件处理失败:", error);
+      } finally {
+        this.isProcessing = false;
+      }
     },
-    removeImage() {
-      this.images = [];
-      this.photo = null;
+
+    // 修改删除逻辑
+    removeImage(index) {
+      this.images.splice(index, 1);
     },
+
+    // 修改确认逻辑
     confirm() {
-      if (!this.photo) {
-        alert("请选择一张图片");
+      // 双重验证机制
+      if (this.isProcessing) {
+        alert("图片仍在处理中，请稍候");
         return;
       }
+
+      const validFiles = this.pendingFiles.filter((file) =>
+        file.type.startsWith("image/")
+      );
+
+      if (validFiles.length === 0) {
+        alert("请选择至少一张有效图片");
+        return;
+      }
+
       this.$emit("confirm", {
-        photo: this.photo,
+        photos: validFiles.map((f) => f),
         caption: this.caption,
         privacy: this.privacy,
       });
     },
+
     resetForm() {
       this.caption = "";
       this.images = [];
@@ -127,26 +164,27 @@ export default {
 </script>
 
 <style scoped>
-/* 原有样式保持不变，只修改预览部分 */
 .preview-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
   margin-top: 12px;
 }
 
 .preview-item {
   position: relative;
-  max-width: 100%;
-  height: 200px;
+  aspect-ratio: 1/1;
+  height: 120px;
 }
 
 .preview-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 4px;
   border: 1px solid #eee;
 }
 
-/* 其他样式保持不变 */
 .post-modal-mask {
   position: fixed;
   top: 0;

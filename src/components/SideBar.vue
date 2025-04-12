@@ -129,6 +129,12 @@ export default {
 </script>
 
 <style scoped>
+/** 
+     * AI-generated-content 
+     * tool: DeepSeek 
+     * version: latest
+     * usage: I let the ai help me beautify the look of the interface
+     */
 /* 基础样式 */
 :root {
   --primary-color: #7b61ff;

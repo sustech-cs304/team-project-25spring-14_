@@ -95,6 +95,12 @@ export default {
     triggerFileInput() {
       this.$refs.fileInput.click();
     },
+    /** 
+     * AI-generated-content 
+     * tool: DeepSeek 
+     * version: latest
+     * usage: I asked the ai to help me optimize the upload method
+     */
     async handleFileUpload(e) {
       this.isProcessing = true;
       this.pendingFiles = [...e.target.files]; // 保存原始文件引用
@@ -164,6 +170,12 @@ export default {
 </script>
 
 <style scoped>
+/** 
+     * AI-generated-content 
+     * tool: DeepSeek 
+     * version: latest
+     * usage: I let the ai help me beautify the look of the interface
+     */
 .preview-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));

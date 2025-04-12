@@ -13,7 +13,7 @@ public interface LikeMapper {
      * @param postId 帖子ID
      * @param userId 用户ID
      */
-    @Insert("INSERT INTO tb_like (post_id, user_id, create_at) VALUES (#{postId}, #{userId}, NOW())")
+    @Insert("INSERT INTO tb_like (post_id, user_id, created_at) VALUES (#{postId}, #{userId}, NOW())")
     void likePost(Integer postId, Integer userId);
 
     /**

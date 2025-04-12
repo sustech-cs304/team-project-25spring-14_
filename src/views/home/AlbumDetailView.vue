@@ -10,7 +10,12 @@
             alt="Album Cover"
             class="album-cover"
           />
-          <div v-else class="album-cover default" @click="updateAlbumCover">
+          <div
+            v-else
+            class="album-cover default"
+            :class="{ disabled: !isSelf }"
+            @click="isSelf && updateAlbumCover"
+          >
             <span class="add-cover-text">添加封面</span>
           </div>
           <!-- Hidden input for album cover update -->
@@ -24,7 +29,11 @@
         </div>
         <div class="album-info-wrapper">
           <div class="album-title-row">
-            <div v-if="!editingTitle" @click="editingTitle = true">
+            <div
+              v-if="!editingTitle"
+              :class="{ disabled: !isSelf }"
+              @click="isSelf && (editingTitle = true)"
+            >
               <h1 class="album-title">{{ album.title }}</h1>
             </div>
             <div
@@ -38,7 +47,11 @@
             >
               {{ editableTitle }}
             </div>
-            <div class="privacy-select" @click="privacySelectVisible = true">
+            <div
+              class="privacy-select"
+              :class="{ disabled: !isSelf }"
+              @click="isSelf && (privacySelectVisible = true)"
+            >
               <img
                 :src="getPrivacyIcon(editablePrivacy)"
                 class="privacy-icon"
@@ -70,7 +83,11 @@
               </el-select>
             </div>
           </div>
-          <div v-if="!editingDescription" @click="editingDescription = true">
+          <div
+            v-if="!editingDescription"
+            :class="{ disabled: !isSelf }"
+            @click="isSelf && (editingDescription = true)"
+          >
             <p class="album-description quoted">{{ album.description }}</p>
           </div>
           <div
@@ -86,7 +103,7 @@
           </div>
           <p class="photo-count">{{ album.photoCount }} 张照片</p>
         </div>
-        <div class="album-actions">
+        <div v-if="isSelf" class="album-actions">
           <el-button type="danger" @click="deleteConfirmVisible = true" plain
             >删除相册</el-button
           >
@@ -101,7 +118,11 @@
         >
           <img :src="photo.thumbnailUrl" alt="photo" class="photo-image" />
         </div>
-        <div class="photo-card add-photo-card" @click="triggerAddPhoto">
+        <div
+          v-if="isSelf"
+          class="photo-card add-photo-card"
+          @click="triggerAddPhoto"
+        >
           <span class="add-icon">+</span>
           <input
             type="file"
@@ -149,6 +170,7 @@ export default {
   },
   data() {
     return {
+      isSelf: this.$route.query.isSelf === "true",
       album: {
         photos: [],
       },
@@ -182,6 +204,7 @@ export default {
     };
   },
   async created() {
+    console.log(this.isSelf);
     const albumId = this.$route.params.albumId;
     try {
       const response = await apiClient.get(`/albums/${albumId}`, {
@@ -379,6 +402,12 @@ export default {
 </script>
 
 <style scoped>
+/** 
+     * AI-generated-content 
+     * tool: DeepSeek 
+     * version: latest
+     * usage: I let the ai help me beautify the look of the interface
+     */
 .main-container {
   display: flex;
   height: 100vh;

@@ -200,6 +200,118 @@ public class PhotoController {
         }
     }
 
+    @GetMapping("/favorites")
+    public Result<Map<String, Object>> getFavoritePhotos() {
+        try {
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            int userId = 0;
+            if (claims != null) {
+                userId = ((Number) claims.get("id")).intValue();
+                log.info("从ThreadLocal获取的用户ID: {}", userId);
+            } else return null;
+
+            List<Photo> photos = photoMapper.selectFavoritesByUserId(userId);
+            List<PhotoVO> photoVOList = photos.stream()
+                    .map(this::convertToPhotoVO)
+                    .collect(Collectors.toList());
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("photos", photoVOList);
+            response.put("count", photoVOList.size());
+
+            return Result.success(response);
+        } catch (Exception e) {
+            log.error("获取收藏照片失败", e);
+            return Result.error("获取收藏照片失败");
+        }
+    }
+
+    @GetMapping("/timeRange")
+    public Result<Map<String, Object>> getPhotosByTimeRange(
+            @RequestParam("startTime") String startTime,
+            @RequestParam("endTime") String endTime) {
+        try {
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            int userId = 0;
+            if (claims != null) {
+                userId = ((Number) claims.get("id")).intValue();
+                log.info("从ThreadLocal获取的用户ID: {}", userId);
+            } else return null;
+
+            LocalDateTime start = LocalDateTime.parse(startTime);//.substring(0, startTime.length() - 1)
+            LocalDateTime end = LocalDateTime.parse(endTime);
+            List<Photo> photos = photoMapper.selectByTimeRange(userId, start, end);
+            List<PhotoVO> photoVOList = photos.stream()
+                    .map(this::convertToPhotoVO)
+                    .collect(Collectors.toList());
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("photos", photoVOList);
+            response.put("count", photoVOList.size());
+            response.put("startTime", startTime);
+            response.put("endTime", endTime);
+
+            return Result.success(response);
+        } catch (Exception e) {
+            log.error("按时间范围获取照片失败", e);
+            return Result.error("按时间范围获取照片失败: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/search/tag")
+    public Result<Map<String, Object>> searchPhotosByTagPattern(@RequestParam String pattern) {
+        try {
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            int userId = 0;
+            if (claims != null) {
+                userId = ((Number) claims.get("id")).intValue();
+                log.info("从ThreadLocal获取的用户ID: {}", userId);
+            } else return null;
+
+            List<Photo> photos = photoMapper.searchByTagPattern(userId, pattern);
+            List<PhotoVO> photoVOList = photos.stream()
+                    .map(this::convertToPhotoVO)
+                    .collect(Collectors.toList());
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("photos", photoVOList);
+            response.put("count", photoVOList.size());
+            response.put("pattern", pattern);
+
+            return Result.success(response);
+        } catch (Exception e) {
+            log.error("搜索标签照片失败", e);
+            return Result.error("搜索标签照片失败");
+        }
+    }
+
+    @GetMapping("/search/location")
+    public Result<Map<String, Object>> searchPhotosByLocationPattern(@RequestParam String pattern) {
+        try {
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            int userId = 0;
+            if (claims != null) {
+                userId = ((Number) claims.get("id")).intValue();
+                log.info("从ThreadLocal获取的用户ID: {}", userId);
+            } else return null;
+
+            List<Photo> photos = photoMapper.searchByLocationPattern(userId, pattern);
+            List<PhotoVO> photoVOList = photos.stream()
+                    .map(this::convertToPhotoVO)
+                    .collect(Collectors.toList());
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("photos", photoVOList);
+            response.put("count", photoVOList.size());
+            response.put("pattern", pattern);
+
+            return Result.success(response);
+        } catch (Exception e) {
+            log.error("搜索位置照片失败", e);
+            return Result.error("搜索位置照片失败");
+        }
+    }
+
     /**
      * AI-generated-content
      * tool: claude

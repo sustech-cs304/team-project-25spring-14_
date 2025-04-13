@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface PhotoMapper extends BaseMapper<Photo> {
@@ -19,16 +20,13 @@ public interface PhotoMapper extends BaseMapper<Photo> {
      * copy and deal with the enum type (it works really good)
      */
 
-    @Insert("INSERT INTO tb_photo(album_id, user_id, file_name, file_url, thumbnail_url, is_favorite, captured_at, created_at,post_id) " +
-            "VALUES(#{albumId}, #{userId}, #{fileName}, #{fileUrl}, #{thumbnailUrl},#{isFavorite}, #{capturedAt}, #{createdAt}, #{postId})")
+    @Insert("INSERT INTO tb_photo(album_id, user_id, file_name, file_url, location, thumbnail_url, is_favorite, captured_at, created_at,post_id) " +
+            "VALUES(#{albumId}, #{userId}, #{fileName}, #{fileUrl}, #{location}, #{thumbnailUrl},#{isFavorite}, #{capturedAt}, #{createdAt}, #{postId})")
     @Options(useGeneratedKeys = true, keyProperty = "photoId")
     int insert(Photo photo);
 
     @Select("SELECT * FROM tb_photo WHERE album_id = #{albumId} ORDER BY created_at DESC")
     List<Photo> selectByAlbumId(@Param("albumId") Integer albumId);
-
-    @Select("SELECT * FROM tb_photo WHERE album_id = #{albumId} ORDER BY created_at DESC")
-    IPage<Photo> selectPageByAlbumId(Page<Photo> page, @Param("albumId") Integer albumId);
 
     @Select("SELECT * FROM tb_photo WHERE user_id = #{userId} AND is_favorite = true ORDER BY created_at DESC")
     List<Photo> selectFavoritesByUserId(@Param("userId") Integer userId);
@@ -38,12 +36,12 @@ public interface PhotoMapper extends BaseMapper<Photo> {
                                   @Param("startTime") LocalDateTime startTime,
                                   @Param("endTime") LocalDateTime endTime);
 
-    @Select("SELECT p.* FROM tb_photo p " +
-            "JOIN tb_photo_tag pt ON p.photo_id = pt.photo_id " +
-            "JOIN tb_tag t ON pt.tag_id = t.tag_id " +
-            "WHERE p.user_id = #{userId} AND t.name = #{tagName} " +
-            "ORDER BY p.created_at DESC")
-    List<Photo> selectByTag(@Param("userId") Integer userId, @Param("tagName") String tagName);
+    @Select("SELECT * FROM tb_photo WHERE user_id = #{userId} AND location LIKE CONCAT('%', #{locationPattern}, '%') ORDER BY created_at DESC")
+    List<Photo> searchByLocationPattern(@Param("userId") Integer userId, @Param("locationPattern") String locationPattern);
+
+    @Select("SELECT * FROM tb_photo WHERE user_id = #{userId} AND tag_name LIKE CONCAT('%', #{tagPattern}, '%') ORDER BY created_at DESC")
+    List<Photo> searchByTagPattern(@Param("userId") Integer userId, @Param("tagPattern") String tagPattern);
+
 
     @Select("SELECT * FROM tb_photo WHERE photo_id = #{photoId}")
     Photo selectById(@Param("photoId") Integer photoId);

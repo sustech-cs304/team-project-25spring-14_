@@ -1,4 +1,931 @@
-2025-04-11 01:44:36 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-04-11 01:44:36 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-04-11 01:44:36 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-04-11 01:44:36 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-13 11:50:15 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 26124 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-04-13 11:50:15 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-04-13 11:50:15 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-13 11:50:15 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-13 11:50:15 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-13 11:50:16 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-04-13 11:50:16 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 36 ms. Found 0 JDBC repository interfaces.
+2025-04-13 11:50:17 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-04-13 11:50:17 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-13 11:50:17 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-13 11:50:17 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-13 11:50:17 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2639 ms
+2025-04-13 11:50:19 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
+2025-04-13 11:50:19 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-13 11:50:20 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@320bbfde
+2025-04-13 11:50:20 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-13 11:50:20 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-13 11:50:20 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-04-13 11:50:20 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.577 seconds (process running for 7.572)
+2025-04-13 11:50:23 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-13 11:50:23 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-13 11:50:23 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-04-13 11:50:23 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/favorites
+2025-04-13 11:50:23 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: 
+2025-04-13 11:51:01 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/favorites
+2025-04-13 11:51:01 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: 
+2025-04-13 11:51:09 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/favorites
+2025-04-13 11:51:09 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 11:51:09 [http-nio-8080-exec-5] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 11:52:06 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/timeRange
+2025-04-13 11:52:06 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 11:52:06 [http-nio-8080-exec-6] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 11:52:06 [http-nio-8080-exec-6] ERROR c.e.album.controller.PhotoController - 按时间范围获取照片失败
+java.time.format.DateTimeParseException: Text '1744516326' could not be parsed at index 0
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2108)
+	at java.base/java.time.format.DateTimeFormatter.parse(DateTimeFormatter.java:2010)
+	at java.base/java.time.LocalDateTime.parse(LocalDateTime.java:494)
+	at java.base/java.time.LocalDateTime.parse(LocalDateTime.java:479)
+	at com.example.album.controller.PhotoController.getPhotosByTimeRange(PhotoController.java:241)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-04-13 11:52:44 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/timeRange
+2025-04-13 11:52:44 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 11:52:44 [http-nio-8080-exec-7] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 11:52:44 [http-nio-8080-exec-7] ERROR c.e.album.controller.PhotoController - 按时间范围获取照片失败
+java.time.format.DateTimeParseException: Text '2025-04-13T03:52:44.678Z' could not be parsed, unparsed text found at index 23
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2111)
+	at java.base/java.time.format.DateTimeFormatter.parse(DateTimeFormatter.java:2010)
+	at java.base/java.time.LocalDateTime.parse(LocalDateTime.java:494)
+	at java.base/java.time.LocalDateTime.parse(LocalDateTime.java:479)
+	at com.example.album.controller.PhotoController.getPhotosByTimeRange(PhotoController.java:241)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-04-13 11:53:35 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/timeRange
+2025-04-13 11:53:35 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 11:53:35 [http-nio-8080-exec-8] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 11:53:35 [http-nio-8080-exec-8] ERROR c.e.album.controller.PhotoController - 按时间范围获取照片失败
+java.time.format.DateTimeParseException: Text '2026-03-22' could not be parsed at index 10
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2108)
+	at java.base/java.time.format.DateTimeFormatter.parse(DateTimeFormatter.java:2010)
+	at java.base/java.time.LocalDateTime.parse(LocalDateTime.java:494)
+	at java.base/java.time.LocalDateTime.parse(LocalDateTime.java:479)
+	at com.example.album.controller.PhotoController.getPhotosByTimeRange(PhotoController.java:241)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-04-13 11:54:32 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/search/tag
+2025-04-13 11:54:32 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: 
+2025-04-13 11:54:42 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/search/tag
+2025-04-13 11:54:42 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 11:54:42 [http-nio-8080-exec-10] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 11:54:52 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/search/location
+2025-04-13 11:54:52 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: 
+2025-04-13 11:54:58 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/search/location
+2025-04-13 11:54:58 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 11:54:58 [http-nio-8080-exec-1] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 11:56:19 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/timeRange
+2025-04-13 11:56:19 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 11:56:19 [http-nio-8080-exec-4] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 11:56:19 [http-nio-8080-exec-4] ERROR c.e.album.controller.PhotoController - 按时间范围获取照片失败
+java.time.format.DateTimeParseException: Text '2025-04-13T03:56:19.252Z' could not be parsed, unparsed text found at index 23
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2111)
+	at java.base/java.time.format.DateTimeFormatter.parse(DateTimeFormatter.java:2010)
+	at java.base/java.time.LocalDateTime.parse(LocalDateTime.java:494)
+	at java.base/java.time.LocalDateTime.parse(LocalDateTime.java:479)
+	at com.example.album.controller.PhotoController.getPhotosByTimeRange(PhotoController.java:241)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-04-13 11:57:57 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/timeRange
+2025-04-13 11:57:57 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 11:57:57 [http-nio-8080-exec-8] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 11:57:57 [http-nio-8080-exec-8] ERROR c.e.album.controller.PhotoController - 按时间范围获取照片失败
+java.time.format.DateTimeParseException: Text 'America/St_Thomas' could not be parsed at index 0
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2108)
+	at java.base/java.time.format.DateTimeFormatter.parse(DateTimeFormatter.java:2010)
+	at java.base/java.time.LocalDateTime.parse(LocalDateTime.java:494)
+	at java.base/java.time.LocalDateTime.parse(LocalDateTime.java:479)
+	at com.example.album.controller.PhotoController.getPhotosByTimeRange(PhotoController.java:241)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-04-13 11:59:29 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-13 11:59:29 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-13 11:59:29 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-13 11:59:29 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-13 11:59:37 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 7356 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-04-13 11:59:37 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-04-13 11:59:37 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-13 11:59:37 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-13 11:59:37 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-13 11:59:38 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-04-13 11:59:38 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 0 JDBC repository interfaces.
+2025-04-13 11:59:39 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-04-13 11:59:39 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-13 11:59:39 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-13 11:59:39 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-13 11:59:39 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2435 ms
+2025-04-13 11:59:41 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
+2025-04-13 11:59:41 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-13 11:59:41 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3a181182
+2025-04-13 11:59:41 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-13 11:59:42 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-13 11:59:42 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-04-13 11:59:42 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.196 seconds (process running for 6.971)
+2025-04-13 11:59:59 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-13 11:59:59 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-13 11:59:59 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-04-13 11:59:59 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/timeRange
+2025-04-13 11:59:59 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 11:59:59 [http-nio-8080-exec-2] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:01:15 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-13 12:01:15 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-13 12:01:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-13 12:01:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-13 12:01:23 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 12804 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-04-13 12:01:23 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-04-13 12:01:23 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-13 12:01:23 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-13 12:01:23 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-13 12:01:24 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-04-13 12:01:24 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 35 ms. Found 0 JDBC repository interfaces.
+2025-04-13 12:01:25 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-04-13 12:01:25 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-13 12:01:25 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-13 12:01:25 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-13 12:01:25 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2499 ms
+2025-04-13 12:01:27 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
+2025-04-13 12:01:27 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-13 12:01:28 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6215c7cc
+2025-04-13 12:01:28 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-13 12:01:28 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-13 12:01:28 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-04-13 12:01:28 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.334 seconds (process running for 7.07)
+2025-04-13 12:01:38 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-13 12:01:38 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-13 12:01:38 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-04-13 12:01:38 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/timeRange
+2025-04-13 12:01:38 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:01:38 [http-nio-8080-exec-2] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:01:57 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
+2025-04-13 12:01:57 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: 
+2025-04-13 12:02:01 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/favorites
+2025-04-13 12:02:01 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:02:01 [http-nio-8080-exec-4] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:02:31 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
+2025-04-13 12:02:31 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: 
+2025-04-13 12:02:41 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
+2025-04-13 12:02:41 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:02:41 [http-nio-8080-exec-6] INFO  c.e.album.controller.PhotoController - 接收到照片上传请求，相册ID: 123, 文件名: 屏幕截图 2024-12-27 144113.png
+2025-04-13 12:02:41 [http-nio-8080-exec-6] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:02:41 [http-nio-8080-exec-6] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
+2025-04-13 12:02:41 [http-nio-8080-exec-6] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\eca87a92-a9ab-4f6b-91aa-56ff8d7ac900.png
+2025-04-13 12:02:42 [http-nio-8080-exec-6] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/eca87a92-a9ab-4f6b-91aa-56ff8d7ac900.png
+2025-04-13 12:02:42 [http-nio-8080-exec-6] ERROR c.e.album.controller.PhotoController - 照片上传失败
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+### The error may exist in com/example/album/mapper/PhotoMapper.java (best guess)
+### The error may involve com.example.album.mapper.PhotoMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO tb_photo(album_id, user_id, file_name, file_url, thumbnail_url, is_favorite, captured_at, created_at,post_id) VALUES(?, ?, ?, ?, ?,?, ?, ?, ?)
+### Cause: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+; 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:258)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
+	at jdk.proxy2/jdk.proxy2.$Proxy81.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:152)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at jdk.proxy3/jdk.proxy3.$Proxy94.insert(Unknown Source)
+	at com.example.album.controller.PhotoController.uploadPhoto(PhotoController.java:82)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+Caused by: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:194)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:180)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
+	at jdk.proxy4/jdk.proxy4.$Proxy127.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at jdk.proxy2/jdk.proxy2.$Proxy126.update(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:49)
+	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:106)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:59)
+	at jdk.proxy2/jdk.proxy2.$Proxy125.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	... 55 common frames omitted
+2025-04-13 12:02:52 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
+2025-04-13 12:02:52 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:02:52 [http-nio-8080-exec-7] INFO  c.e.album.controller.PhotoController - 接收到照片上传请求，相册ID: 123, 文件名: 屏幕截图 2024-12-27 144113.png
+2025-04-13 12:02:52 [http-nio-8080-exec-7] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:02:52 [http-nio-8080-exec-7] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
+2025-04-13 12:02:52 [http-nio-8080-exec-7] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\ebf66819-fbe6-4117-876b-7b071ddc2e97.png
+2025-04-13 12:02:52 [http-nio-8080-exec-7] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/ebf66819-fbe6-4117-876b-7b071ddc2e97.png
+2025-04-13 12:02:52 [http-nio-8080-exec-7] ERROR c.e.album.controller.PhotoController - 照片上传失败
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+### The error may exist in com/example/album/mapper/PhotoMapper.java (best guess)
+### The error may involve com.example.album.mapper.PhotoMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO tb_photo(album_id, user_id, file_name, file_url, thumbnail_url, is_favorite, captured_at, created_at,post_id) VALUES(?, ?, ?, ?, ?,?, ?, ?, ?)
+### Cause: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+; 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:258)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
+	at jdk.proxy2/jdk.proxy2.$Proxy81.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:152)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at jdk.proxy3/jdk.proxy3.$Proxy94.insert(Unknown Source)
+	at com.example.album.controller.PhotoController.uploadPhoto(PhotoController.java:82)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+Caused by: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:194)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:180)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
+	at jdk.proxy4/jdk.proxy4.$Proxy127.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at jdk.proxy2/jdk.proxy2.$Proxy126.update(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:49)
+	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:106)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:59)
+	at jdk.proxy2/jdk.proxy2.$Proxy125.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	... 55 common frames omitted
+2025-04-13 12:02:59 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
+2025-04-13 12:02:59 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:02:59 [http-nio-8080-exec-8] INFO  c.e.album.controller.PhotoController - 接收到照片上传请求，相册ID: 123, 文件名: 屏幕截图 2024-12-27 144113.png
+2025-04-13 12:02:59 [http-nio-8080-exec-8] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:02:59 [http-nio-8080-exec-8] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
+2025-04-13 12:02:59 [http-nio-8080-exec-8] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\45a8231e-24e3-44bc-aaec-2b12631e28ae.png
+2025-04-13 12:02:59 [http-nio-8080-exec-8] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/45a8231e-24e3-44bc-aaec-2b12631e28ae.png
+2025-04-13 12:02:59 [http-nio-8080-exec-8] ERROR c.e.album.controller.PhotoController - 照片上传失败
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+### The error may exist in com/example/album/mapper/PhotoMapper.java (best guess)
+### The error may involve com.example.album.mapper.PhotoMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO tb_photo(album_id, user_id, file_name, file_url, thumbnail_url, is_favorite, captured_at, created_at,post_id) VALUES(?, ?, ?, ?, ?,?, ?, ?, ?)
+### Cause: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+; 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:258)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
+	at jdk.proxy2/jdk.proxy2.$Proxy81.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:152)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at jdk.proxy3/jdk.proxy3.$Proxy94.insert(Unknown Source)
+	at com.example.album.controller.PhotoController.uploadPhoto(PhotoController.java:82)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+Caused by: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:194)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:180)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
+	at jdk.proxy4/jdk.proxy4.$Proxy127.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at jdk.proxy2/jdk.proxy2.$Proxy126.update(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:49)
+	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:106)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:59)
+	at jdk.proxy2/jdk.proxy2.$Proxy125.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	... 55 common frames omitted
+2025-04-13 12:03:22 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
+2025-04-13 12:03:22 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:03:22 [http-nio-8080-exec-9] INFO  c.e.album.controller.PhotoController - 接收到照片上传请求，相册ID: 123, 文件名: 屏幕截图 2024-12-27 144113.png
+2025-04-13 12:03:22 [http-nio-8080-exec-9] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:03:22 [http-nio-8080-exec-9] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
+2025-04-13 12:03:22 [http-nio-8080-exec-9] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\9f204f80-7863-463e-b2c8-383f74ec2d8f.png
+2025-04-13 12:03:23 [http-nio-8080-exec-9] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/9f204f80-7863-463e-b2c8-383f74ec2d8f.png
+2025-04-13 12:03:23 [http-nio-8080-exec-9] ERROR c.e.album.controller.PhotoController - 照片上传失败
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+### The error may exist in com/example/album/mapper/PhotoMapper.java (best guess)
+### The error may involve com.example.album.mapper.PhotoMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO tb_photo(album_id, user_id, file_name, file_url, thumbnail_url, is_favorite, captured_at, created_at,post_id) VALUES(?, ?, ?, ?, ?,?, ?, ?, ?)
+### Cause: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+; 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:258)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
+	at jdk.proxy2/jdk.proxy2.$Proxy81.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:152)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at jdk.proxy3/jdk.proxy3.$Proxy94.insert(Unknown Source)
+	at com.example.album.controller.PhotoController.uploadPhoto(PhotoController.java:82)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+Caused by: org.postgresql.util.PSQLException: 错误: 插入或更新表 "tb_photo" 违反外键约束 "tb_photo_album_id_fkey"
+  详细：键值对(album_id)=(123)没有在表"tb_album"中出现.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:194)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:180)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
+	at jdk.proxy4/jdk.proxy4.$Proxy127.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at jdk.proxy2/jdk.proxy2.$Proxy126.update(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:49)
+	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:106)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:59)
+	at jdk.proxy2/jdk.proxy2.$Proxy125.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	... 55 common frames omitted
+2025-04-13 12:03:47 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
+2025-04-13 12:03:47 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:03:47 [http-nio-8080-exec-10] INFO  c.e.album.controller.PhotoController - 接收到照片上传请求，相册ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
+2025-04-13 12:03:47 [http-nio-8080-exec-10] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:03:47 [http-nio-8080-exec-10] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
+2025-04-13 12:03:47 [http-nio-8080-exec-10] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\7ca563d1-7ef1-4756-b0a8-aed087db5d13.png
+2025-04-13 12:03:47 [http-nio-8080-exec-10] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/7ca563d1-7ef1-4756-b0a8-aed087db5d13.png
+2025-04-13 12:03:47 [http-nio-8080-exec-10] INFO  c.e.album.controller.PhotoController - 照片信息已保存到数据库，ID: 5
+2025-04-13 12:03:58 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/favorites
+2025-04-13 12:03:58 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:03:58 [http-nio-8080-exec-1] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:04:10 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/search/tag
+2025-04-13 12:04:10 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:04:10 [http-nio-8080-exec-2] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:04:16 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/search/tag
+2025-04-13 12:04:16 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:04:16 [http-nio-8080-exec-3] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:04:21 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/search/tag
+2025-04-13 12:04:21 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:04:21 [http-nio-8080-exec-4] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:04:27 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/search/tag
+2025-04-13 12:04:27 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:04:27 [http-nio-8080-exec-5] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:04:33 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/search/location
+2025-04-13 12:04:33 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:04:33 [http-nio-8080-exec-6] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:04:38 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/search/location
+2025-04-13 12:04:38 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:04:38 [http-nio-8080-exec-7] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:04:49 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/search/location
+2025-04-13 12:04:49 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:04:49 [http-nio-8080-exec-8] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:07:26 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
+2025-04-13 12:07:26 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:07:26 [http-nio-8080-exec-1] INFO  c.e.album.controller.PhotoController - 接收到照片上传请求，相册ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
+2025-04-13 12:07:26 [http-nio-8080-exec-1] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:07:26 [http-nio-8080-exec-1] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
+2025-04-13 12:07:26 [http-nio-8080-exec-1] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\b3858ac0-c082-4367-b1bb-0fc9af11271f.png
+2025-04-13 12:07:26 [http-nio-8080-exec-1] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/b3858ac0-c082-4367-b1bb-0fc9af11271f.png
+2025-04-13 12:07:26 [http-nio-8080-exec-1] INFO  c.e.album.controller.PhotoController - 照片信息已保存到数据库，ID: 6
+2025-04-13 12:08:37 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-13 12:08:37 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-13 12:08:37 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-13 12:08:37 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-13 12:08:43 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 29748 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-04-13 12:08:43 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-04-13 12:08:43 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-13 12:08:44 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-13 12:08:44 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-13 12:08:45 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-04-13 12:08:45 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 0 JDBC repository interfaces.
+2025-04-13 12:08:46 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-04-13 12:08:46 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-13 12:08:46 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-13 12:08:46 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-13 12:08:46 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2489 ms
+2025-04-13 12:08:48 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
+2025-04-13 12:08:48 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-13 12:08:49 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@19433b9e
+2025-04-13 12:08:49 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-13 12:08:49 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-13 12:08:49 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-04-13 12:08:49 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.373 seconds (process running for 7.175)
+2025-04-13 12:08:58 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-13 12:08:58 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-13 12:08:58 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-04-13 12:08:58 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
+2025-04-13 12:08:58 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:08:58 [http-nio-8080-exec-2] INFO  c.e.album.controller.PhotoController - 接收到照片上传请求，相册ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
+2025-04-13 12:08:58 [http-nio-8080-exec-2] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:08:58 [http-nio-8080-exec-2] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储照片，用户ID: 1, 文件名: 屏幕截图 2024-12-27 144113.png
+2025-04-13 12:08:58 [http-nio-8080-exec-2] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\1\fbeebb94-976d-48b5-8145-7793943dcddc.png
+2025-04-13 12:08:58 [http-nio-8080-exec-2] INFO  c.e.a.s.impl.StorageServiceImpl - 照片存储成功: http://localhost:8080/uploads/storage/1/fbeebb94-976d-48b5-8145-7793943dcddc.png
+2025-04-13 12:08:59 [http-nio-8080-exec-2] INFO  c.e.album.controller.PhotoController - 照片信息已保存到数据库，ID: 7
+2025-04-13 12:09:04 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/search/location
+2025-04-13 12:09:04 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ0NTU5NDQ1fQ.xq0p3fJ1OiLwJd6Q6f0A0my9a27LOb9rdXFM0u83Ts4
+2025-04-13 12:09:04 [http-nio-8080-exec-3] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 1
+2025-04-13 12:09:14 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-13 12:09:14 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-13 12:09:14 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-13 12:09:14 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

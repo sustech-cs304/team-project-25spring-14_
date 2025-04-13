@@ -5,8 +5,8 @@
       <div class="album-header">
         <div class="album-cover-wrapper">
           <img
-            v-if="album.coverPhotoUrl"
-            :src="album.coverPhotoUrl"
+            v-if="album.coverThumbnailUrl"
+            :src="album.coverThumbnailUrl"
             alt="Album Cover"
             class="album-cover"
           />
@@ -14,18 +14,16 @@
             v-else
             class="album-cover default"
             :class="{ disabled: !isSelf }"
-            @click="isSelf && updateAlbumCover"
+            @click="isSelf && updateAlbumCover()"
           >
             <span class="add-cover-text">添加封面</span>
+            <input
+              type="file"
+              ref="coverInput"
+              style="display: none"
+              @change="handleCoverChange"
+            />
           </div>
-          <!-- Hidden input for album cover update -->
-          <input
-            type="file"
-            ref="coverInput"
-            style="display: none"
-            accept="image/*"
-            @change="handleCoverChange"
-          />
         </div>
         <div class="album-info-wrapper">
           <div class="album-title-row">
@@ -223,6 +221,16 @@ export default {
         },
       });
       this.album.photos = photoRes.data.data.photos;
+
+      if (this.album.coverPhotoId) {
+        const coverRes = await apiClient.get(
+          `/photos/${this.album.coverPhotoId}`
+        );
+        this.album.coverThumbnailUrl = coverRes.data.data.photo.thumbnailUrl;
+        this.album.coverPhotoUrl = coverRes.data.data.photo.fileUrl;
+      } else {
+        this.album.coverThumbnailUrl = null;
+      }
     } catch (error) {
       console.error("获取相册详情失败：", error);
       alert("加载相册详情失败，请稍后重试！");
@@ -248,7 +256,6 @@ export default {
             "Content-Type": "multipart/form-data",
           },
         });
-
         const newPhoto = response.data.data.photo;
         this.album.photos.push(newPhoto);
         this.album.photoCount++;
@@ -256,6 +263,38 @@ export default {
       } catch (error) {
         console.error("上传失败：", error);
         this.$message.error("上传照片失败");
+      }
+    },
+    updateAlbumCover() {
+      this.$refs.coverInput.click();
+    },
+    async handleCoverChange(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      try {
+        const formData = new FormData();
+        formData.append("photo", file);
+        formData.append("albumId", this.album.albumId);
+        formData.append("userId", this.userId);
+
+        const response = await apiClient.post(
+          `/albums/${this.album.albumId}/cover/upload`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        console.log(response.data.data);
+
+        this.album.coverPhotoId = response.data.data.album.coverPhotoId;
+        this.$message.success("封面更新成功");
+        window.location.reload();
+      } catch (error) {
+        console.error("封面更新失败：", error);
+        this.$message.error("封面更新失败");
       }
     },
     async confirmDeleteAlbum() {
@@ -292,38 +331,6 @@ export default {
         this.$message.success("相册信息已更新");
       } catch (err) {
         this.$message.error("更新相册失败");
-      }
-    },
-    async updateAlbumCover() {
-      // Trigger the file input click to select a new album cover
-      this.$refs.coverInput.click();
-    },
-    async handleCoverChange(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      try {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("albumId", this.album.albumId);
-        formData.append("userId", this.userId);
-
-        // Send a request to update the album cover. Adjust the URL and method if needed.
-        const response = await apiClient.post(
-          `/albums/${this.album.albumId}/cover/upload`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-
-        // Update the album cover photo URL after a successful upload
-        this.$message.success("封面更新成功");
-      } catch (error) {
-        console.error("封面更新失败：", error);
-        this.$message.error("封面更新失败");
       }
     },
     async updateAlbumTitle() {

@@ -7,4 +7,6 @@ public interface LikeService {
     boolean likePost(Integer postId, Integer userId);
 
     boolean unlikePost(Integer postId, Integer userId);
+
+    boolean isLiked(Integer postId, Integer userId);
 }

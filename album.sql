@@ -62,6 +62,7 @@ CREATE TABLE tb_post
 (
     post_id    SERIAL PRIMARY KEY,
     user_id    INTEGER NOT NULL,
+    like_count INTEGER DEFAULT 0,
     caption    TEXT,
     privacy    privacy_type DEFAULT 'public',
     created_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,

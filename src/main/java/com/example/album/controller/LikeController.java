@@ -24,11 +24,19 @@ public class LikeController {
         return Result.success(result);
     }
 
-    @Delete("/unlike/{postId}")
+    @DeleteMapping("/unlike/{postId}")
     public Result unlikePost(@PathVariable Integer postId) {
         Map<String, Object> claims = ThreadLocalUtil.get();
         Integer userId = (Integer) claims.get("id");
         boolean result = likeService.unlikePost(postId, userId);
+        return Result.success(result);
+    }
+
+    @GetMapping("/isLiked/{postId}")
+    public Result isLiked(@PathVariable Integer postId) {
+        Map<String, Object> claims = ThreadLocalUtil.get();
+        Integer userId = (Integer) claims.get("id");
+        boolean result = likeService.isLiked(postId, userId);
         return Result.success(result);
     }
 }

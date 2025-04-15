@@ -58,7 +58,7 @@ public class PhotoController {
             if (claims != null) {
                 userId = ((Number) claims.get("id")).intValue();
                 log.info("从ThreadLocal获取的用户ID: {}", userId);
-            }else return null;
+            } else return null;
             // 存储照片
             PhotoStorageResult result = storageService.storePhoto(file, userId);
 //            String tag = imageService.ai_classify(result.getFileUrl());  //直接用这个url发送给python后端，会返回一个字符串
@@ -157,7 +157,7 @@ public class PhotoController {
             if (claims != null) {
                 userId = ((Number) claims.get("id")).intValue();
                 log.info("从ThreadLocal获取的用户ID: {}", userId);
-            }else return null;
+            } else return null;
             Photo photo = photoMapper.selectById(photoId);
             if (photo == null) {
                 throw new Exception("照片未找到");
@@ -216,7 +216,7 @@ public class PhotoController {
             if (claims != null) {
                 userId = ((Number) claims.get("id")).intValue();
                 log.info("从ThreadLocal获取的用户ID: {}", userId);
-            }else return null;
+            } else return null;
             Photo photo = photoMapper.selectById(photoId);
             if (photo == null) {
                 throw new Exception("照片未找到");

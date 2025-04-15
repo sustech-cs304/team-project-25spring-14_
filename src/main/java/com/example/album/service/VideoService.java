@@ -1,21 +1,35 @@
 package com.example.album.service;
 
+import com.example.album.dto.PhotoStorageResult;
+import com.example.album.entity.Photo;
+import com.example.album.vo.PhotoVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.example.album.dto.CaptionParamDTO;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.example.album.entity.Result;
 
 @Service
@@ -24,7 +38,8 @@ public class VideoService {
     private final String FLASK_URL = "http://localhost:5000/";
     private static final Logger logger = LoggerFactory.getLogger(VideoService.class);
 
-    public Result CreateVideo(List<String> img_folder, String audio_file, String final_output_file, String transition, String fps) {  //这个方法会直接将生成的视频保存到本地，如果需要
+
+    public MultipartFile CreateVideo(List<String> img_folder, String audio_file, String final_output_file, String transition, String fps) {  //这个方法会直接将生成的视频保存到本地，如果需要
         RestTemplate restTemplate = new RestTemplate();
 
         String url = UriComponentsBuilder.fromUriString(FLASK_URL)
@@ -34,7 +49,7 @@ public class VideoService {
         Map<String, Object> requestBody = new HashMap<>();  // 需要给前端发送一个json格式的参数
         requestBody.put("img_folder", img_folder);
         requestBody.put("audio_file", audio_file);
-        requestBody.put("final_output_file", final_output_file);
+//        requestBody.put("final_output_file", final_output_file);
         requestBody.put("transition", transition);
         requestBody.put("fps", fps);
 
@@ -44,18 +59,33 @@ public class VideoService {
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
 
         try {
-            ResponseEntity<String> response = restTemplate.exchange(
+            ResponseEntity<byte[]> response = restTemplate.exchange(
                     url,
                     HttpMethod.POST,
                     requestEntity,
-                    String.class
+                    byte[].class
             );
-            logger.info(response.getBody(), response.getStatusCode());  // 用日志显示出body和状态码
-            return Result.success();
+            byte[] videoData = response.getBody();
+//            if (videoData != null) {
+//                // 将二进制数据保存为本地的 mp4 文件
+//                try (FileOutputStream fos = new FileOutputStream(final_output_file)) {
+//                    fos.write(videoData);
+//                    logger.info("Video saved successfully to: " + final_output_file);
+//                } catch (IOException e) {
+//                    logger.error("Error saving video file: " + e.getMessage(), e);
+//                    return Result.error("Error saving video file: " + e.getMessage());
+//                }
+//            }
+//            logger.info(response.getBody(), response.getStatusCode());  // 用日志显示出body和状态码
+            if (videoData != null){
+                return convert(videoData);
+            } else {
+                throw new RuntimeException("no video data");
+            }
         } catch (Exception e) {
             // 处理请求失败的情况
             logger.error(e.getMessage(), e);
-            return Result.error(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 
@@ -112,5 +142,56 @@ public class VideoService {
             logger.error("Error occurred while deleting the video file", e);
             return Result.error(e.getMessage());
         }
+    }
+
+    public String storeAudio(MultipartFile audio) {
+        try{
+            String upload = "/temp";
+            String fileName = audio.getOriginalFilename();
+            File file = new File(upload + fileName);
+            audio.transferTo(file);
+            return file.getAbsolutePath();
+        } catch (IOException e) {
+            logger.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
+    public boolean deleteTempo(String video_path) {
+        File file = new File(video_path);
+        return file.delete();
+    }
+
+    /**
+     * 这是测试类使用的方法
+     */
+    public List<String> getPath(String image_folder) {
+        try{
+            return Files.walk(Paths.get(image_folder))
+                    .filter(Files::isRegularFile)
+                    .filter(file -> file.toString().endsWith(".jpg") || file.toString().endsWith(".png"))
+                    .limit(100)
+                    .map(Path::toString)
+                    .collect(Collectors.toList());
+        } catch (IOException e){
+            logger.error(e.getMessage(), e);
+            return Collections.emptyList();
+        }
+    }
+
+    /**
+     * 讲二进制文件转换成Multipartfile
+     * @param video
+     * @return
+     */
+    public MultipartFile convert(byte[] video){
+        FileItemFactory factory = new DiskFileItemFactory();
+        FileItem item = factory.createItem("file", "video/mp4", true, "output_video.mp4");
+        try (OutputStream os = item.getOutputStream()){
+            os.write(video);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return (MultipartFile) item;
     }
 }

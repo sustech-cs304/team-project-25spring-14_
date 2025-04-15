@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.album.service.VideoService;
 import com.example.album.dto.CaptionParamDTO;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import com.example.album.mapper.PhotoMapper;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/video")
@@ -40,11 +43,21 @@ public class VideoController {
      * @return
      */
     @PostMapping("/create_photo")
-    public Result CreateVideo(@RequestParam int userId, @RequestParam int[] PhotoId, @RequestParam String transition, @RequestParam String fps) {
+    public Result CreateVideo(
+            @RequestParam int userId,
+            @RequestParam int[] PhotoId,
+            @RequestParam String transition,
+            @RequestParam String fps,
+            @RequestPart("audio") MultipartFile audioFile
+            ) {
         List<String> urls = new ArrayList<>(); // 这个需要用userid和photoid从表格里面取出所哟图片的url
-        String audio = "temp";  // 上传的音频路径，python是直接从本地读取音频，可以尝试弄一个专门用来缓存的文件夹，用完再删掉
+        String audio = videoService.storeAudio(audioFile);
         String output = "temp";  //存到本地的路径
-        return videoService.CreateVideo(urls,audio,output,transition,fps);
+        try {
+            return Result.success(videoService.CreateVideo(urls,audio,output,transition,fps).getBytes());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -56,15 +69,25 @@ public class VideoController {
      * @return Result
      */
     @PostMapping("/create_video_tag")
-    public Result Create_video_tag(@RequestParam int userId, @RequestParam String Tag, @RequestParam String fps, @RequestParam String transition) {
+    public Result Create_video_tag(
+            @RequestParam int userId,
+            @RequestParam String Tag,
+            @RequestParam String fps,
+            @RequestParam String transition,
+            @RequestPart("audio") MultipartFile audioFile
+            ) {
         List<String> urls = new ArrayList<>(); // 这是通过tag找到的所有图片的url
-        List<Photo> photos = photoMapper.selectByTag(userId, Tag);
+        List<Photo> photos = photoMapper.findPhotosByTag(Tag);
         for (Photo photo : photos) {
             urls.add(photo.getFileUrl());
         }
-        String audio = "temp";
+        String audio = videoService.storeAudio(audioFile);
         String output = "temp"; //这里面的内容是需要视频数据库去进行更新的
-        return videoService.CreateVideo(urls,audio,output,transition,fps);
+        try {
+            return Result.success(videoService.CreateVideo(urls,audio,output,transition,fps).getBytes());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**

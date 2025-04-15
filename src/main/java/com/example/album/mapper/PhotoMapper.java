@@ -50,4 +50,7 @@ public interface PhotoMapper extends BaseMapper<Photo> {
 
     @Select("SELECT * FROM tb_photo WHERE post_id = #{postId} ORDER BY created_at")
     List<Photo> selectByPostId(@Param("postId") Integer postId);
+
+    @Select("SELECT * FROM tb_photo WHERE tag_name LIKE CONCAT('%', #{searchString}, '%')")
+    List<Photo> findPhotosByTag(String searchString);
 }

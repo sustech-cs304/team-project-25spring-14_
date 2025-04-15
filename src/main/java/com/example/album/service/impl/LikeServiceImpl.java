@@ -13,12 +13,19 @@ public class LikeServiceImpl implements LikeService {
     @Override
     public boolean likePost(Integer postId, Integer userId) {
         likeMapper.likePost(postId, userId);
+        likeMapper.addLikeCount(postId);
         return true;
     }
 
     @Override
     public boolean unlikePost(Integer postId, Integer userId) {
         likeMapper.unLikePost(postId, userId);
+        likeMapper.deleteLikeCount(postId);
         return true;
+    }
+
+    @Override
+    public boolean isLiked(Integer postId, Integer userId) {
+        return likeMapper.isLiked(postId, userId);
     }
 }

@@ -58,7 +58,7 @@ public class StorageServiceImpl implements StorageService {
      */
     @Override
     public PhotoStorageResult storePhoto(MultipartFile file, int userId) throws IOException {
-        log.info("开始存储照片，用户ID: {}, 文件名: {}", userId, file.getOriginalFilename());
+        log.info("开始存储文件，用户ID: {}, 文件名: {}", userId, file.getOriginalFilename());
         createDirectories();
 
         String originalFilename = StringUtils.cleanPath(file.getOriginalFilename());
@@ -78,37 +78,62 @@ public class StorageServiceImpl implements StorageService {
         log.info(originalFilePath.toString());
         Files.copy(file.getInputStream(), originalFilePath, StandardCopyOption.REPLACE_EXISTING);
 
-        // 获取图像尺寸
-        BufferedImage originalImage = ImageIO.read(file.getInputStream());
-        int width = originalImage.getWidth();
-        int height = originalImage.getHeight();
-
-        // 生成缩略图
-        String thumbFilename = "thumb_" + uniqueFilename;
-        String thumbnailDir = thumbnailLocation + "/" + userId;
-        new File(thumbnailDir).mkdirs();
-        Path thumbFilePath = Paths.get(thumbnailDir, thumbFilename);
-
-        Thumbnails.of(originalFilePath.toFile())
-                .size(200, 200)
-                .toFile(thumbFilePath.toFile());
-
-        // 生成访问URL
-        String fileUrl = domain + "/uploads/storage/" + userId + "/" + uniqueFilename;
-        String thumbUrl = domain + "/uploads/thumbnails/" + userId + "/" + thumbFilename;
+        // 检测是否为视频文件
+        boolean isVideo = isVideoFile(file);
+        log.info("文件类型: {}", isVideo ? "视频" : "图片");
 
         // 创建结果对象
         PhotoStorageResult result = new PhotoStorageResult();
         result.setOriginalFilename(originalFilename);
-        result.setFileUrl(fileUrl);
-        result.setThumbnailUrl(thumbUrl);
-//        result.setFileSize(Files.size(originalFilePath));
-        result.setWidth(width);
-        result.setHeight(height);
-        result.setCapturedAt(LocalDateTime.now()); // 在实际实现中，应从EXIF数据中提取
 
-        log.info("照片存储成功: {}", fileUrl);
+        // 生成访问URL
+        String fileUrl = domain + "/uploads/storage/" + userId + "/" + uniqueFilename;
+        result.setFileUrl(fileUrl);
+
+        if (!isVideo) {
+            BufferedImage originalImage = ImageIO.read(file.getInputStream());
+            int width = originalImage.getWidth();
+            int height = originalImage.getHeight();
+
+            // 生成缩略图
+            String thumbFilename = "thumb_" + uniqueFilename;
+            String thumbnailDir = thumbnailLocation + "/" + userId;
+            new File(thumbnailDir).mkdirs();
+            Path thumbFilePath = Paths.get(thumbnailDir, thumbFilename);
+
+            Thumbnails.of(originalFilePath.toFile())
+                    .size(200, 200)
+                    .toFile(thumbFilePath.toFile());
+
+            String thumbUrl = domain + "/uploads/thumbnails/" + userId + "/" + thumbFilename;
+            result.setThumbnailUrl(thumbUrl);
+            result.setWidth(width);
+            result.setHeight(height);
+        } else {
+            result.setThumbnailUrl(null);
+        }
+
+        result.setCapturedAt(LocalDateTime.now());
+        log.info("文件存储成功: {}", fileUrl);
         return result;
+    }
+
+    private boolean isVideoFile(MultipartFile file) {
+        String contentType = file.getContentType();
+        if (contentType != null && contentType.startsWith("video/")) {
+            return true;
+        }
+
+        String filename = file.getOriginalFilename();
+        if (filename != null) {
+            String extension = filename.toLowerCase();
+            return extension.endsWith(".mp4") || extension.endsWith(".avi") ||
+                    extension.endsWith(".mov") || extension.endsWith(".wmv") ||
+                    extension.endsWith(".flv") || extension.endsWith(".mkv") ||
+                    extension.endsWith(".webm");
+        }
+
+        return false;
     }
 
 

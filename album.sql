@@ -62,6 +62,7 @@ CREATE TABLE tb_post
 (
     post_id    SERIAL PRIMARY KEY,
     user_id    INTEGER NOT NULL,
+    like_count INTEGER DEFAULT 0,
     caption    TEXT,
     privacy    privacy_type DEFAULT 'public',
     created_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
@@ -80,7 +81,7 @@ CREATE TABLE tb_photo
     file_name     VARCHAR(255) NOT NULL,
     file_url      VARCHAR(255) NOT NULL,
     location VARCHAR(50) ,
-    thumbnail_url VARCHAR(255) NOT NULL,
+    thumbnail_url VARCHAR(255),
     is_favorite   BOOLEAN   DEFAULT FALSE,
     captured_at   TIMESTAMP, -- 拍摄时间
     created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

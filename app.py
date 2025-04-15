@@ -1,4 +1,5 @@
 import ast
+import io
 
 import cv2
 from flask import Flask, request, Response, jsonify, send_file
@@ -106,15 +107,16 @@ def image_to_video_app():
     img_folder = data.get('img_folder')
     audio_file = data.get('audio_file', None)
     transition = data.get('transition')
-    final_output_file = data.get('final_output_file')
+    # final_output_file = data.get('final_output_file')
     fps = int(data.get('fps', 25))  # 默认 fps 为 25
 
-    if not img_folder or not final_output_file:
-        return jsonify({'error': 'img_folder and final_output_file are required'}), 400
+    # if not img_folder or not final_output_file:
+    #     return jsonify({'error': 'img_folder and final_output_file are required'}), 400
 
     try:
-        img_to_video(img_folder, audio_file, final_output_file, transition, fps)  # 调用视频生成函数
-        return jsonify({'message': 'Video created successfully'}), 200
+        file_data = img_to_video(img_folder, audio_file, transition, fps)  # 调用视频生成函数
+        file_stream = io.BytesIO(file_data)
+        return send_file(file_stream,mimetype='video/mp4',download_name="ouput.mp4")
     except Exception as e:
         print(e)
         return jsonify({'error': str(e)}), 500
@@ -123,7 +125,7 @@ def image_to_video_app():
 def add_captions_app():
     data = request.json
     input_video = data.get('input_video')
-    output_video = data.get('output_video')
+    # output_video = data.get('output_video')
     subtitles_dict = data.get('subtitles_dict')
     font_name = data.get('font_name')
     font_size = int(data.get('font_size'))
@@ -133,7 +135,7 @@ def add_captions_app():
     if not os.path.exists(input_video):
         return 'ERROR :Image_path dose not exists'
     try:
-        add_captions(input_video,output_video,subtitles_dict,font_name,font_size,font_color)  # 这里的dict需要传进去一个字典，但是这里是一个字符串，到时候看怎么转成字典
+        add_captions(input_video,subtitles_dict,font_name,font_size,font_color)  # 这里的dict需要传进去一个字典，但是这里是一个字符串，到时候看怎么转成字典
         return jsonify({'message': 'Video created successfully'}), 200
     except Exception as e:
         print(e)

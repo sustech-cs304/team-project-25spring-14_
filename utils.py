@@ -1,5 +1,7 @@
 import os
+import random
 import subprocess
+import time
 from datetime import datetime, timedelta
 
 import cv2 as cv
@@ -64,11 +66,11 @@ def ai_classify_image(image_path):  # 用AI来识别图片中是否有特定的�
     return detect
 
 
-def img_to_video(image_folder, audio_file, final_output_file, transition='', fps=25):  # 跟上面的方法一致，不过这个可以添加图片切换时候的特效
+def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面的方法一致，不过这个可以添加图片切换时候的特效
     # 这里直接传进来的是一个列表，然后里面包含了所有图片的地址
     fourcc = cv.VideoWriter_fourcc(*'mp4v')
     frame_size = (640, 480)  # 要注意resize之后是（480,640），因为传进去的是（width，height）
-    temp_output = 'temp.mp4'
+    temp_output = f'temp_{int(time.time())}_{random.randint(1000, 9999)}.mp4'  # 确保每一个请求都会有唯一的临时文件名
     video_writer = cv.VideoWriter(temp_output, fourcc, fps, frame_size)
 
     image_files = image_folder
@@ -154,8 +156,13 @@ def img_to_video(image_folder, audio_file, final_output_file, transition='', fps
 
     video_writer.release()  # 释放资源，不然最后会报警告
     print("Video saved successfully.")
-
+    if audio_file is None :
+        with open(temp_output, 'rb') as f:
+            file_data = f.read()
+        os.remove(temp_output)
+        return file_data
     # 这里用ffmpeg添加音频，需要到https://www.ffmpeg.org/ 上面下载，解压后把bin目录加到环境变量里面
+    final_output_file = f'temp_{int(time.time())}_{random.randint(1000, 9999)}.mp4' # 也随机命名一个文件名称
     ffmpeg_cmd = [  # 用ffmpeg添加音频，但是这里得先生成视频再加音频
         "ffmpeg",
         "-i", temp_output,
@@ -167,11 +174,15 @@ def img_to_video(image_folder, audio_file, final_output_file, transition='', fps
     ]
 
     subprocess.run(ffmpeg_cmd)
+    with open(final_output_file, 'rb') as f:
+        file_data = f.read()
+    os.remove(final_output_file)
     os.remove(temp_output)
     print("Final video with audio created.")
+    return file_data
 
 
-def add_captions(input_video, output_video, subtitles_dict: dict, font_name='Arial', font_size=24, font_color='white'):
+def add_captions(input_video, subtitles_dict: dict, font_name='Arial', font_size=24, font_color='white'):
     """
     这里用ffmpeg来添加字幕，因为使用cv的话需要逐帧渲染太麻烦了，而且不易于前端的操作
     这里面的字典，key是输入的时间，value是字幕内容
@@ -196,14 +207,18 @@ def add_captions(input_video, output_video, subtitles_dict: dict, font_name='Ari
     with open(temp_srt, "w", encoding='utf-8') as f:
         for item in srt_content:
             f.write(item)
-
+    output_video = f'temp_{int(time.time())}_{random.randint(1000, 9999)}.mp4' # 也随机命名一个文件名称
     ffmpeg_cmd = (
         f'ffmpeg -i "{input_video}" -vf '
         f'"subtitles={temp_srt}:force_style=\'FontName={font_name},FontSize={font_size},PrimaryColour={font_color},Alignment=2,MarginV=20" '
         f'-c:a copy -y "{output_video}"'
     )
     subprocess.run(ffmpeg_cmd)
+    with open(output_video, 'rb') as f:
+        file_data = f.read()
+    os.remove(output_video)
     os.remove(temp_srt)
+    return file_data
 
 
 def denoising(img_path):  # 这里用锐化的效果比较明显，高斯滤波和双边滤波的效果一般

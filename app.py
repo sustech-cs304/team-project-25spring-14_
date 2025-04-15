@@ -56,35 +56,6 @@ def adjust_brightness_app():
     except Exception as e:
         print(e)
 
-# @app.route('/remove_object')
-# def remove_object_app():
-#     img_path = request.args.get('img_path')
-#     mask_region = request.args.get('mask_region')
-#     if not img_path:
-#         return 'ERROR :Image_path not provided'
-#     if not os.path.exists(img_path):
-#         return 'ERROR :Image_path dose not exists'
-#     try:
-#         img = remove_object(img_path, mask_region)
-#         _,img_encoded = cv2.imencode('.jpg', img)
-#         return Response(img_encoded.tobytes(), mimetype='image/jpeg')
-#     except Exception as e:
-#         print(e)
-#
-# @app.route('/sketch_effect')
-# def sketch_app():
-#     img_path = request.args.get('img_path')
-#     if not img_path:
-#         return 'ERROR :Image_path not provided'
-#     if not os.path.exists(img_path):
-#         return 'ERROR :Image_path dose not exists'
-#     try:
-#         img = sketch_effect(img_path)
-#         _,img_encoded = cv2.imencode('.jpg', img)
-#         return Response(img_encoded.tobytes(), mimetype='image/jpeg')
-#     except Exception as e:
-#         print(e)
-
 @app.route('/denoising')
 def detect_face_app():
     img_path = request.args.get('img_path')
@@ -135,8 +106,9 @@ def add_captions_app():
     if not os.path.exists(input_video):
         return 'ERROR :Image_path dose not exists'
     try:
-        add_captions(input_video,subtitles_dict,font_name,font_size,font_color)  # 这里的dict需要传进去一个字典，但是这里是一个字符串，到时候看怎么转成字典
-        return jsonify({'message': 'Video created successfully'}), 200
+        file_data = add_captions(input_video,subtitles_dict,font_name,font_size,font_color)  # 这里的dict需要传进去一个字典，但是这里是一个字符串，到时候看怎么转成字典
+        file_stream = io.BytesIO(file_data)
+        return send_file(file_stream,mimetype='video/mp4',download_name="ouput.mp4")
     except Exception as e:
         print(e)
 

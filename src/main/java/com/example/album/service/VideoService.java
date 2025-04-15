@@ -1,9 +1,5 @@
 package com.example.album.service;
 
-import com.example.album.dto.PhotoStorageResult;
-import com.example.album.entity.Photo;
-import com.example.album.vo.PhotoVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -17,17 +13,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.example.album.dto.CaptionParamDTO;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.example.album.entity.Result;
@@ -39,26 +30,25 @@ public class VideoService {
     private static final Logger logger = LoggerFactory.getLogger(VideoService.class);
 
 
-    public MultipartFile CreateVideo(List<String> img_folder, String audio_file, String final_output_file, String transition, String fps) {  //这个方法会直接将生成的视频保存到本地，如果需要
-        RestTemplate restTemplate = new RestTemplate();
-
-        String url = UriComponentsBuilder.fromUriString(FLASK_URL)
-                .path("/image_to_video")
-                .toUriString();
-
-        Map<String, Object> requestBody = new HashMap<>();  // 需要给前端发送一个json格式的参数
-        requestBody.put("img_folder", img_folder);
-        requestBody.put("audio_file", audio_file);
-//        requestBody.put("final_output_file", final_output_file);
-        requestBody.put("transition", transition);
-        requestBody.put("fps", fps);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
-
+    public Result<byte[]> CreateVideo(List<String> img_folder, String audio_file, String transition, String fps) {  //这个方法会直接将生成的视频保存到本地，如果需要
         try {
+            RestTemplate restTemplate = new RestTemplate();
+
+            String url = UriComponentsBuilder.fromUriString(FLASK_URL)
+                    .path("/image_to_video")
+                    .toUriString();
+
+            Map<String, Object> requestBody = new HashMap<>();  // 需要给前端发送一个json格式的参数
+            requestBody.put("img_folder", img_folder);
+            requestBody.put("audio_file", audio_file);
+//        requestBody.put("final_output_file", final_output_file);
+            requestBody.put("transition", transition);
+            requestBody.put("fps", fps);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
             ResponseEntity<byte[]> response = restTemplate.exchange(
                     url,
                     HttpMethod.POST,
@@ -78,7 +68,7 @@ public class VideoService {
 //            }
 //            logger.info(response.getBody(), response.getStatusCode());  // 用日志显示出body和状态码
             if (videoData != null){
-                return convert(videoData);
+                return Result.success(videoData);
             } else {
                 throw new RuntimeException("no video data");
             }
@@ -89,14 +79,13 @@ public class VideoService {
         }
     }
 
-    public Result add_captions(CaptionParamDTO caption) {
+    public Result<byte[]> add_captions(CaptionParamDTO caption) {
         RestTemplate restTemplate = new RestTemplate();
         String url = UriComponentsBuilder.fromUriString(FLASK_URL)
                 .path("add_captions")
                 .toUriString();
         Map<String,Object> requestBody = new HashMap<>();
         requestBody.put("input_video",caption.getInput_video());
-        requestBody.put("output_video",caption.getOutput_video());
         requestBody.put("subtitles_dict",caption.getSubtitles_dict());
         requestBody.put("font_name",caption.getFont_name());
         requestBody.put("font_size",caption.getFont_size());
@@ -105,21 +94,25 @@ public class VideoService {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
         try{
-            ResponseEntity<String> response = restTemplate.exchange(
+            ResponseEntity<byte[]> response = restTemplate.exchange(
                     url,
                     HttpMethod.POST,
                     requestEntity,
-                    String.class
+                    byte[].class
             );
-            logger.info(response.getBody(), response.getStatusCode());
-            return Result.success();
+            byte[] video_data = response.getBody();
+            if (video_data != null){
+                return Result.success(video_data);
+            } else {
+                throw new RuntimeException("no video data");
+            }
         } catch (Exception e){
             logger.error(e.getMessage(), e);
-            return Result.error(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 
-    public Result GetVideo(String video_path) {  // 读取文件，返回一个封装好了视频二进制编码的ResponseEntity
+    public Result<byte[]> GetVideo(String video_path) {  // 读取文件，返回一个封装好了视频二进制编码的ResponseEntity
         try {
             File videoFile = new File(video_path);
             if (!videoFile.exists()) {
@@ -186,7 +179,8 @@ public class VideoService {
      */
     public MultipartFile convert(byte[] video){
         FileItemFactory factory = new DiskFileItemFactory();
-        FileItem item = factory.createItem("file", "video/mp4", true, "output_video.mp4");
+        String fileName = UUID.randomUUID().toString() + ".mp4";  //随机生成一个名字，避免重复
+        FileItem item = factory.createItem("file", "video/mp4", true, fileName);
         try (OutputStream os = item.getOutputStream()){
             os.write(video);
         } catch (IOException e) {

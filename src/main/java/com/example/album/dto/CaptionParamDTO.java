@@ -11,7 +11,6 @@ import java.util.Map;
 @AllArgsConstructor
 public class CaptionParamDTO {
     private String input_video;
-    private String output_video;
     private Map<String, String> subtitles_dict;
     private String font_name;
     private String font_size;

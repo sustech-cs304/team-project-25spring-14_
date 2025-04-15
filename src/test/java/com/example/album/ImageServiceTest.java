@@ -41,19 +41,19 @@ public class ImageServiceTest {
 //        assertTrue(Files.exists(outputPath));
 
 
-    @Test
-    public void test3() {
-        String img_folder = "F:/VOCtrainval_11-May-2012/JPEGImages";
-        String audio_file = "E:/bgMusic.wav";
-        String transition = "fade";
-        String fps = "25";
-        String final_output_file = "F:/VOCtrainval_11-May-2012/FinalOutput.mp4";
-        VideoService videoService = new VideoService();
-        List<String> imgpaths = videoService.getPath(img_folder);
-        videoService.CreateVideo(imgpaths, audio_file, final_output_file, transition, fps);
-        Path outputPath = Paths.get(final_output_file);
-        assertTrue(Files.exists(outputPath));
-    }
+//    @Test
+//    public void test3() {
+//        String img_folder = "F:/VOCtrainval_11-May-2012/JPEGImages";
+//        String audio_file = "E:/bgMusic.wav";
+//        String transition = "fade";
+//        String fps = "25";
+//        String final_output_file = "F:/VOCtrainval_11-May-2012/FinalOutput.mp4";
+//        VideoService videoService = new VideoService();
+//        List<String> imgpaths = videoService.getPath(img_folder);
+//        videoService.CreateVideo(imgpaths, audio_file, final_output_file, transition, fps);
+//        Path outputPath = Paths.get(final_output_file);
+//        assertTrue(Files.exists(outputPath));
+//    }
 }
 //
 //    @Test

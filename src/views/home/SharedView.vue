@@ -20,6 +20,12 @@
 
       <!-- 内容区域 -->
       <main class="content-wrapper">
+        <ChatModal
+          v-if="showChat"
+          :recipient-id="selectedRecipientId"
+          :current-user-id="currentUserId"
+          @close="showChat = false"
+        />
         <PostModal
           v-if="showPost"
           @confirm="Postit"
@@ -39,7 +45,9 @@
                 @click="showUserCard($event, post.userId)"
               />
               <span class="author-name">{{ post.username }}</span>
-              <button class="follow-btn">关注</button>
+              <button class="follow-btn" @click="openChatModal(post.userId)">
+                私信
+              </button>
             </div>
 
             <div class="post-media">
@@ -125,11 +133,13 @@ import SideBar from "@/components/SideBar.vue";
 import apiClient from "@/apiClient";
 import PostModal from "@/components/PostModal.vue";
 import UserInfoCard from "@/components/UserInfoCard.vue";
+import ChatModal from "@/components/ChatModal.vue";
 export default {
   components: {
     SideBar,
     PostModal,
     UserInfoCard,
+    ChatModal,
   },
   data() {
     return {
@@ -137,6 +147,9 @@ export default {
       posts: [],
       userInfo: {},
       count: 0,
+      showChat: false,
+      selectedRecipientId: null,
+      currentUserId: localStorage.getItem("userId") || "",
     };
   },
   mounted() {
@@ -253,6 +266,10 @@ export default {
         : rect.bottom - cardHeight - padding;
 
       this.$refs.userCard.showCard(userId, { top, left });
+    },
+    openChatModal(recipientId) {
+      this.selectedRecipientId = recipientId;
+      this.showChat = true;
     },
   },
 };

@@ -4,6 +4,7 @@ import com.example.album.dto.PhotoStorageResult;
 import com.example.album.entity.Photo;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 public interface StorageService {
@@ -15,9 +16,7 @@ public interface StorageService {
      */
     PhotoStorageResult storePhoto(MultipartFile file, int userId) throws IOException;
 
-    void deletePhoto(String fileUrl) throws IOException;
-
-    Photo getById(Integer coverPhotoId);
+    void deletePhoto(String fileUrl) throws IOException, URISyntaxException;
 
     List<Photo> getPhotosByAlbumId(Integer albumId);
 

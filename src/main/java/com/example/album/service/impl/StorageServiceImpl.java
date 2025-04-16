@@ -16,6 +16,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -145,18 +147,26 @@ public class StorageServiceImpl implements StorageService {
      * copy
      */
     @Override
-    public void deletePhoto(String fileUrl) throws IOException {
+    public void deletePhoto(String fileUrl) throws IOException, URISyntaxException {
         log.info("删除照片: {}", fileUrl);
 
         if (fileUrl == null || fileUrl.isEmpty()) {
             return;
         }
 
-        // 从URL中提取路径
-        String relativePath = fileUrl.replace(domain + "/storage/", "");
-        Path filePath = Paths.get(storageLocation, relativePath);
+        // 1. 从URL中提取相对路径（移除协议和域名部分）
+        URI uri = new URI(fileUrl);
+        String relativePath = uri.getPath(); // 例如: "/uploads/storage/1/xxx.png"
 
-        // 尝试删除原始文件
+        if (relativePath.startsWith("/")) {
+            relativePath = relativePath.substring(1);
+        }
+        Path filePath = Paths.get(storageLocation, relativePath).normalize();
+
+        if (!filePath.startsWith(Paths.get(storageLocation).normalize())) {
+            throw new SecurityException("非法路径访问: " + filePath);
+        }
+
         if (Files.exists(filePath)) {
             Files.delete(filePath);
             log.info("原始文件已删除: {}", filePath);
@@ -164,11 +174,10 @@ public class StorageServiceImpl implements StorageService {
             log.warn("文件不存在: {}", filePath);
         }
 
-        // 尝试删除缩略图
-        String userId = relativePath.substring(0, relativePath.indexOf('/'));
+        String userId = relativePath.substring(relativePath.indexOf("storage/") + 8, relativePath.indexOf('/', relativePath.indexOf("storage/") + 8));
         String filename = relativePath.substring(relativePath.lastIndexOf('/') + 1);
         String thumbFilename = "thumb_" + filename;
-        Path thumbFilePath = Paths.get(thumbnailLocation, userId, thumbFilename);
+        Path thumbFilePath = Paths.get(thumbnailLocation, userId, thumbFilename).normalize();
 
         if (Files.exists(thumbFilePath)) {
             Files.delete(thumbFilePath);
@@ -176,14 +185,6 @@ public class StorageServiceImpl implements StorageService {
         } else {
             log.warn("缩略图不存在: {}", thumbFilePath);
         }
-    }
-
-    @Override
-    public Photo getById(Integer photoId) {
-        if (photoId == null) {
-            return null;
-        }
-        return photoMapper.selectById(Long.valueOf(photoId));
     }
 
     @Override

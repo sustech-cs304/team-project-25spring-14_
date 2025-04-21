@@ -178,6 +178,7 @@ def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面�
         file_data = f.read()
     os.remove(final_output_file)
     os.remove(temp_output)
+    os.remove(audio_file)
     print("Final video with audio created.")
     return file_data
 

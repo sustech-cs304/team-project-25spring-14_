@@ -24,13 +24,12 @@ public class VideoController {
 
     /**
      * 需要获取这个视频的地址，然后会将这个视频的二进制文件返回给前端
-     * @param userId 用户id
      * @param PhotoId 图片对应的id
      * @return 返回一个二进制文件
      */
     @GetMapping("/get")
-    public Result<byte[]> GetVideo(@RequestParam int userId, @RequestParam int PhotoId) {
-        String url = "temp";
+    public Result<byte[]> GetVideo(@RequestParam int PhotoId) {
+        String url = photoMapper.selectById(PhotoId).getFileUrl();
         return videoService.GetVideo(url);
     }
 
@@ -81,13 +80,13 @@ public class VideoController {
 
     @PostMapping("/add_caption")
     public Result<byte[]> add_caption(
-            @RequestParam String photoid,
+            @RequestParam int photoId,
             @RequestParam Map<String,String> tag,
             @RequestParam String font_name,
             @RequestParam String font_size,
             @RequestParam String font_color
     ){
-        Photo photo = photoMapper.selectById(photoid);
+        Photo photo = photoMapper.selectById(photoId);
         String url = photo.getFileUrl();
         CaptionParamDTO captionParamDTO = new CaptionParamDTO(url,tag,font_name,font_size,font_color);
         return videoService.add_captions(captionParamDTO);

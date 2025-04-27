@@ -1,14 +1,11 @@
 package com.example.album.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.album.entity.Photo;
 import org.apache.ibatis.annotations.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface PhotoMapper extends BaseMapper<Photo> {
@@ -48,4 +45,7 @@ public interface PhotoMapper extends BaseMapper<Photo> {
 
     @Select("SELECT * FROM tb_photo WHERE post_id = #{postId} ORDER BY created_at")
     List<Photo> selectByPostId(@Param("postId") Integer postId);
+
+    @Select("SELECT * FROM tb_photo WHERE tag_name LIKE CONCAT('%', #{searchString}, '%')")
+    List<Photo> findPhotosByTag(String searchString);
 }

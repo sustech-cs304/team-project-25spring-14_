@@ -97,7 +97,7 @@ public class ImageService {  // 这个是图片的一下基础操作，现在不
             );
             if (response.getStatusCode() == HttpStatus.OK || response.getBody()!=null) {
                 Object detectClassObj = Objects.requireNonNull(response.getBody()).get("detect_class");
-                if (detectClassObj instanceof List) {
+                if (detectClassObj instanceof String) {
                     return detectClassObj.toString();  // 返回 detect_class 列表
                 } else {
                     return null;  // 如果类型不匹配，则返回 null

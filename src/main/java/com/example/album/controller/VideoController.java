@@ -1,85 +1,94 @@
 package com.example.album.controller;
 
+import com.example.album.entity.Photo;
 import com.example.album.entity.Result;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.album.service.VideoService;
 import com.example.album.dto.CaptionParamDTO;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import com.example.album.mapper.PhotoMapper;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/video")
 @Slf4j
+@RequiredArgsConstructor()
 public class VideoController {
-    private static VideoService videoService;
+    private final VideoService videoService;
+    private final PhotoMapper photoMapper;
 
     /**
      * 需要获取这个视频的地址，然后会将这个视频的二进制文件返回给前端
-     * @param userId
-     * @param videoId
-     * @return
+     * @param PhotoId 图片对应的id
+     * @return 返回一个二进制文件
      */
     @GetMapping("/get")
-    public Result GetVideo(@RequestParam int userId, @RequestParam int videoId) {
-        String url = "temp";
+    public Result<byte[]> GetVideo(@RequestParam int PhotoId) {
+        String url = photoMapper.selectById(PhotoId).getFileUrl();
         return videoService.GetVideo(url);
     }
 
     /**
      * 用户可以自己选择一些图片来生成视频，后面的数组是对应的photoid
      * 然后还需要上传一个音频文件的参数，需要决定是否存到本地（数据库）
-     * @param userId
-     * @param PhotoId
-     * @return
+     * @param PhotoId 图片对应的id
+     * @return 返回二进制文件
      */
     @PostMapping("/create_photo")
-    public Result CreateVideo(@RequestParam int userId, @RequestParam int[] PhotoId, @RequestParam String transition, @RequestParam String fps) {
+    public Result<byte[]> CreateVideo(
+            @RequestParam int[] PhotoId,
+            @RequestParam String transition,
+            @RequestParam String fps,
+            @RequestPart("audio") MultipartFile audioFile
+            ) {
         List<String> urls = new ArrayList<>(); // 这个需要用userid和photoid从表格里面取出所哟图片的url
-        String audio = "temp";  // 上传的音频路径，python是直接从本地读取音频，可以尝试弄一个专门用来缓存的文件夹，用完再删掉
-        String output = "temp";  //存到本地的路径
-        return videoService.CreateVideo(urls,audio,output,transition,fps);
+        for (int j : PhotoId) {
+            Photo photo = photoMapper.selectById(j);
+            urls.add(photo.getFileUrl());
+        }
+        String audio = videoService.storeAudio(audioFile);
+        return videoService.CreateVideo(urls,audio,transition,fps);
     }
 
     /**
      * 通过tag来找图片并且生成视频
-     * @param userId
-     * @param Tag
-     * @param fps
-     * @param transition
+     * @param Tag 选择生成视频的标签
+     * @param fps 帧率，默认25
+     * @param transition 变换的方式
      * @return Result
      */
     @PostMapping("/create_video_tag")
-    public Result Create_video_tag(@RequestParam int userId, @RequestParam String Tag, @RequestParam String fps, @RequestParam String transition) {
+    public Result<byte[]> Create_video_tag(
+            @RequestParam String Tag,
+            @RequestParam String fps,
+            @RequestParam String transition,
+            @RequestPart("audio") MultipartFile audioFile
+            ) {
         List<String> urls = new ArrayList<>(); // 这是通过tag找到的所有图片的url
-        String audio = "temp";
-        String output = "temp";
-        return videoService.CreateVideo(urls,audio,output,transition,fps);
+        List<Photo> photos = photoMapper.findPhotosByTag(Tag);
+        for (Photo photo : photos) {
+            urls.add(photo.getFileUrl());
+        }
+        String audio = videoService.storeAudio(audioFile);
+        return videoService.CreateVideo(urls,audio,transition,fps);
     }
 
-    /**
-     * 这是添加弹幕的方法，需要已经生成的视频路径以及这些从前端传过来的参数
-     * 前端可能会传一个userid或者其他参数，主要是看你video怎么数据库怎么设计和怎么存到本地
-     * @param input_video
-     * @param output_video
-     * @param tag
-     * @param font_name
-     * @param font_size
-     * @param font_color
-     * @return
-     */
     @PostMapping("/add_caption")
-    public Result add_caption(
-            @RequestParam String input_video,
-            @RequestParam String output_video,
+    public Result<byte[]> add_caption(
+            @RequestParam int photoId,
             @RequestParam Map<String,String> tag,
             @RequestParam String font_name,
             @RequestParam String font_size,
             @RequestParam String font_color
     ){
-        CaptionParamDTO captionParamDTO = new CaptionParamDTO(input_video,output_video,tag,font_name,font_size,font_color);
+        Photo photo = photoMapper.selectById(photoId);
+        String url = photo.getFileUrl();
+        CaptionParamDTO captionParamDTO = new CaptionParamDTO(url,tag,font_name,font_size,font_color);
         return videoService.add_captions(captionParamDTO);
     }
 }

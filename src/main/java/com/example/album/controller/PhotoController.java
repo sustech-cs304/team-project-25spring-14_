@@ -3,6 +3,7 @@ package com.example.album.controller;
 import com.example.album.dto.PhotoUploadDTO;
 import com.example.album.dto.PhotoUpdateDTO;
 import com.example.album.dto.PhotoStorageResult;
+import com.example.album.entity.Album;
 import com.example.album.entity.Photo;
 import com.example.album.entity.Result;
 import com.example.album.mapper.PhotoMapper;
@@ -325,19 +326,44 @@ public class PhotoController {
             log.info("接收到照片删除请求，照片ID: {}", photoId);
             Map<String, Object> claims = ThreadLocalUtil.get();
             int userId = 0;
+            String role = "";
             if (claims != null) {
                 userId = ((Number) claims.get("id")).intValue();
-                log.info("从ThreadLocal获取的用户ID: {}", userId);
-            }else return null;
+                role = (String) claims.get("role");
+                log.info("从ThreadLocal获取的用户ID: {}, 角色: {}", userId, role);
+            } else return null;
+
+            // 查找照片
             Photo photo = photoMapper.selectById(photoId);
             if (photo == null) {
                 throw new Exception("照片未找到");
             }
-            if (!photo.getUserId().equals(userId)) {
-                log.warn("用户 {} 尝试删除不属于他的照片 {}", userId, photoId);
+
+            // 验证权限：自己的照片可以删除，管理员可以删除公开照片
+            boolean hasPermission = false;
+
+            // 如果是照片所有者
+            if (Integer.valueOf(photo.getUserId()).equals(userId)) {
+                hasPermission = true;
+            }
+            // 如果是管理员且照片所在相册是公开的
+            else if ("admin".equals(role)) {
+                // 获取照片所在相册信息
+                Album album = albumService.getById(photo.getAlbumId());
+                if (album != null && "public".equals(album.getPrivacy().getValue())) {
+                    hasPermission = true;
+                }
+            }
+
+            if (!hasPermission) {
+                log.warn("用户 {} 尝试删除照片 {}, 权限不足", userId, photoId);
                 throw new Exception("无权删除此照片");
             }
+
+            // 删除物理文件
             storageService.deletePhoto(photo.getFileUrl());
+
+            // 删除数据库记录
             photoMapper.deleteById(photoId);
             log.info("照片ID: {} 已成功删除", photoId);
 
@@ -347,7 +373,7 @@ public class PhotoController {
             return Result.success(response);
         } catch (Exception e) {
             log.error("照片删除失败", e);
-            return Result.error("照片删除失败");
+            return Result.error("照片删除失败：" + e.getMessage());
         }
     }
 

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.album.entity.Album;
 import com.example.album.entity.Photo;
 
+import java.security.Permission;
 import java.util.List;
 
 public interface AlbumService extends IService<Album> {
@@ -14,7 +15,7 @@ public interface AlbumService extends IService<Album> {
 
     boolean updateAlbum(Album album);
 
-    boolean deleteAlbum(Integer albumId, Integer userId);
+    boolean deleteAlbum(Integer albumId, Integer userId , boolean hasPermission);
 
     List<Album> getAlbumsByUserId(Integer userId);
 

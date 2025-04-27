@@ -77,12 +77,12 @@ public class AlbumServiceImpl extends ServiceImpl<AlbumMapper, Album> implements
      */
     @Override
     @Transactional
-    public boolean deleteAlbum(Integer albumId, Integer userId) {
+    public boolean deleteAlbum(Integer albumId, Integer userId,boolean hasPermission) {
         Album album = getById(albumId);
         if (album == null) {
             return false;
         }
-        if (!album.getUserId().equals(userId)) {
+        if (!album.getUserId().equals(userId) && !hasPermission) {
             return false;
         }
         LambdaQueryWrapper<Photo> photoQueryWrapper = new LambdaQueryWrapper<>();

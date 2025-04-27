@@ -47,12 +47,17 @@ public class AlbumController {
      */
     @PostMapping("/upload")
     public Result<Map<String, Object>> createAlbum(
-            @RequestParam("userId") Integer userId,
             @Valid @ModelAttribute AlbumCreateDTO createDTO) {
 
-        log.info("接收到创建相册请求，用户ID: {}, 相册标题: {}", userId, createDTO.getTitle());
-
         try {
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            int userId = 0;
+            if (claims != null) {
+                userId = ((Number) claims.get("id")).intValue();
+                log.info("从ThreadLocal获取的用户ID: {}", userId);
+            } else return null;
+
+            log.info("接收到创建相册请求，用户ID: {}, 相册标题: {}", userId, createDTO.getTitle());
 
             Album album = new Album();
             BeanUtils.copyProperties(createDTO, album);
@@ -80,10 +85,16 @@ public class AlbumController {
 
     @GetMapping("/{albumId}")
     public Result<Map<String, Object>> getAlbumDetail(
-            @PathVariable Integer albumId,
-            @RequestParam(value = "userId", required = false) Integer userId) {
+            @PathVariable Integer albumId) {
 
         try {
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            int userId = 0;
+            if (claims != null) {
+                userId = ((Number) claims.get("id")).intValue();
+                log.info("从ThreadLocal获取的用户ID: {}", userId);
+            } else return null;
+
             if (!albumService.checkAlbumAccess(albumId, userId)) {
                 throw new Exception("没有访问权限");
             }
@@ -105,10 +116,16 @@ public class AlbumController {
     @PutMapping("/{albumId}")
     public Result<Map<String, Object>> updateAlbum(
             @PathVariable Integer albumId,
-            @RequestParam("userId") Integer userId,
             @Valid @ModelAttribute AlbumUpdateDTO updateDTO) {
 
         try {
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            int userId = 0;
+            if (claims != null) {
+                userId = ((Number) claims.get("id")).intValue();
+                log.info("从ThreadLocal获取的用户ID: {}", userId);
+            } else return null;
+
             Album album = albumService.getById(albumId);
             if (album == null) {
                 throw new Exception("没有访问权限");
@@ -157,45 +174,74 @@ public class AlbumController {
     }
 
     @DeleteMapping("/{albumId}")
-    public Result<Map<String, Object>> deleteAlbum(
-            @PathVariable Integer albumId,
-            @RequestParam("userId") Integer userId) {
-
-        log.info("接收到删除相册请求，相册ID: {}, 用户ID: {}", albumId, userId);
+    public Result<Map<String, Object>> deleteAlbum(@PathVariable Integer albumId) {
+        log.info("接收到删除相册请求，相册ID: {}", albumId);
 
         try {
+            // 从ThreadLocal获取用户信息
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            if (claims == null) {
+                return Result.error("未登录");
+            }
+
+            Integer currentUserId = ((Number) claims.get("id")).intValue();
+            String role = (String) claims.get("role");
+            log.info("从ThreadLocal获取的用户ID: {}, 角色: {}", currentUserId, role);
+
             Album album = albumService.getById(albumId);
             if (album == null) {
-                throw new Exception("没有访问权限");
+                throw new Exception("相册不存在");
             }
-            if (!album.getUserId().equals(userId)) {
-                throw new Exception("没有修改权限");
+
+            // 验证权限：自己的相册可以删除，管理员可以删除公开相册
+            boolean hasPermission = false;
+
+            // 如果是相册所有者
+            if (album.getUserId().equals(currentUserId)) {
+                hasPermission = true;
             }
-            boolean result = albumService.deleteAlbum(albumId, userId);
+            // 如果是管理员且相册是公开的
+            else if ("admin".equals(role) && "public".equals(album.getPrivacy().getValue())) {
+                hasPermission = true;
+            }
+
+            if (!hasPermission) {
+                log.warn("用户 {} 尝试删除相册 {}, 权限不足", currentUserId, albumId);
+                throw new Exception("无权删除此相册");
+            }
+            boolean result = albumService.deleteAlbum(albumId,currentUserId,hasPermission);
             if (!result) {
                 throw new Exception("删除相册失败");
             }
+
             Map<String, Object> response = new HashMap<>();
             response.put("message", "相册删除成功");
 
             return Result.success(response);
         } catch (Exception e) {
             log.error("删除相册失败", e);
-            return Result.error("删除相册失败");
+            return Result.error("删除相册失败：" + e.getMessage());
         }
     }
 
     @GetMapping("/user/{userId}")
     public Result<Map<String, Object>> getUserAlbums(
-            @PathVariable Integer userId,
             @RequestParam(value = "currentUserId", required = false) Integer currentUserId) {
 
         try {
+
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            int userId = 0;
+            if (claims != null) {
+                userId = ((Number) claims.get("id")).intValue();
+                log.info("从ThreadLocal获取的用户ID: {}", userId);
+            } else return null;
+
             List<Album> albums = albumService.getAlbumsByUserId(userId);
 
             List<AlbumVO> albumVOList = new ArrayList<>();
             for (Album album : albums) {
-                if (userId.equals(currentUserId) || album.getPrivacy().getValue().equals("public")) {
+                if (album.getPrivacy().getValue().equals("public")) {
                     AlbumVO albumVO = convertToAlbumVO(album);
                     albumVOList.add(albumVO);
                 }
@@ -246,21 +292,25 @@ public class AlbumController {
      * usage: ask how to do it in java's stream that in high efficiency
      * copy directly
      */
-    @GetMapping("/recent/{userId}")
+    @GetMapping("/recent")
     public Result<Map<String, Object>> getRecentAlbums(
-            @PathVariable Integer userId,
-            @RequestParam(defaultValue = "5") Integer limit,
-            @RequestParam(value = "currentUserId", required = false) Integer currentUserId) {
+            @RequestParam(defaultValue = "5") Integer limit) {
 
         try {
+            // 从ThreadLocal获取当前用户ID
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            if (claims == null) {
+                return Result.error("未登录");
+            }
 
-            boolean isSelf = userId.equals(currentUserId);
+            int userId = ((Number) claims.get("id")).intValue();
+            String role = (String) claims.get("role");
+            log.info("从ThreadLocal获取的用户ID: {}, 角色: {}", userId, role);
 
             List<Album> albums = albumService.getAlbumsByUserId(userId);
 
-            // 按更新时间排序并限制数量
+            // 按更新时间排序并限制数量（用户自己可以看到所有相册）
             List<AlbumVO> albumVOList = albums.stream()
-                    .filter(album -> isSelf || album.getPrivacy().getValue().equals("public"))
                     .sorted((a1, a2) -> a2.getUpdatedAt().compareTo(a1.getUpdatedAt()))
                     .limit(limit)
                     .map(this::convertToAlbumVO)

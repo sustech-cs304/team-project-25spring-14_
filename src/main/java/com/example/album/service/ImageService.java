@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import com.example.album.entity.Photo;
@@ -103,9 +104,14 @@ public class ImageService {  // 这个是图片的一下基础操作，现在不
                     return null;  // 如果类型不匹配，则返回 null
                 }
             }
+
             else{
                 return null;
             }
+        }
+        catch (ResourceAccessException e) {
+            // 捕获连接相关异常（如连接被拒绝、无法连接到服务器等）
+            return null;
         }
         catch (Exception e) {
             throw new RuntimeException(e);

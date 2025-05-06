@@ -14,7 +14,7 @@
 	<name>album</name>
 	<description>software engineering project</description>
 	<properties>
-		<java.version>23</java.version>
+		<java.version>21</java.version>
 	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->

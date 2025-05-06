@@ -1,10 +1,5 @@
 pipeline {
     agent any
-
-    tools {
-        nodejs "nodejs" // 确保 Jenkins 中配置了名为 "nodejs" 的 Node.js 工具
-    }
-
     environment {
         // 定义环境变量
         ACCESS_TOKEN = 'APS-JELjYY5mE2KJVBIpvmO2Ez9zJvpvpMCT'

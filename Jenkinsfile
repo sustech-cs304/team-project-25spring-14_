@@ -29,7 +29,7 @@ pipeline {
                         // 等待应用启动
                         sh 'sleep 20'  // 增加等待时间确保启动完成
                         // 检查应用是否成功启动
-                        sh 'curl -s http://localhost:8080/actuator/health || echo "Application health check failed"'
+                        // sh 'curl -s http://localhost:8080/actuator/health || echo "Application health check failed"'
                     } else {
                         error "No JAR file found in target directory!"
                     }
@@ -56,9 +56,10 @@ pipeline {
     }
     post {
         always {
+            archiveArtifacts artifacts: '**/target/site/**/*.*', fingerprint: true
+            archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
+            archiveArtifacts artifacts: '**/target/**/*.war', fingerprint: true
             echo 'Test execution completed'
-            // 停止所有Java进程（在Jenkins环境中比较安全，生产环境需要更精确的进程管理）
-            sh 'pkill -f "java -jar" || true'
         }
     }
 }

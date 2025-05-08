@@ -1,406 +1,151 @@
-2025-05-05 19:46:41 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 31880 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-05-05 19:46:41 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-05-05 19:46:41 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-05-05 19:46:41 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-05-05 19:46:41 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-05-05 19:46:43 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-05-05 19:46:43 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 37 ms. Found 0 JDBC repository interfaces.
-2025-05-05 19:46:44 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-05-05 19:46:44 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-05-05 19:46:44 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-05-05 19:46:44 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-05-05 19:46:44 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2469 ms
-2025-05-05 19:46:45 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-05-05 19:46:45 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-05-05 19:46:46 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1ce21a69
-2025-05-05 19:46:46 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-05-05 19:46:46 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-05-05 19:46:46 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
-2025-05-05 19:46:46 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-05-05 19:46:46 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-05-05 19:46:46 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2025-05-05 19:46:46 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Web server failed to start. Port 8080 was already in use.
-
-Action:
-
-Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
-
-2025-05-05 19:47:12 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 20172 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-05-05 19:47:12 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-05-05 19:47:12 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-05-05 19:47:12 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-05-05 19:47:12 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-05-05 19:47:13 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-05-05 19:47:14 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 0 JDBC repository interfaces.
-2025-05-05 19:47:15 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-05-05 19:47:15 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-05-05 19:47:15 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-05-05 19:47:15 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-05-05 19:47:15 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2514 ms
-2025-05-05 19:47:16 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-05-05 19:47:17 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-05-05 19:47:17 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@e19ef46
-2025-05-05 19:47:17 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-05-05 19:47:17 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-05-05 19:47:18 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
-2025-05-05 19:47:18 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-05-05 19:47:18 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-05-05 19:47:18 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2025-05-05 19:47:18 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Web server failed to start. Port 8080 was already in use.
-
-Action:
-
-Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
-
-2025-05-05 19:47:46 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 32596 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-05-05 19:47:46 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-05-05 19:47:46 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-05-05 19:47:46 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-05-05 19:47:46 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-05-05 19:47:48 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-05-05 19:47:48 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 36 ms. Found 0 JDBC repository interfaces.
-2025-05-05 19:47:49 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
-2025-05-05 19:47:49 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-05-05 19:47:49 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-05-05 19:47:49 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-05-05 19:47:49 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2694 ms
-2025-05-05 19:47:51 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-05-05 19:47:51 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-05-05 19:47:52 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@12ffd94e
-2025-05-05 19:47:52 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-05-05 19:47:52 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-05-05 19:47:52 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8082 (http) with context path '/'
-2025-05-05 19:47:52 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 7.023 seconds (process running for 8.047)
-2025-05-05 19:51:06 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-05-05 19:51:06 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-05-05 19:51:06 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-05-05 19:51:06 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-05-05 20:11:07 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 27756 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-05-05 20:11:07 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-05-05 20:11:07 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-05-05 20:11:07 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-05-05 20:11:07 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-05-05 20:11:09 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-05-05 20:11:09 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 36 ms. Found 0 JDBC repository interfaces.
-2025-05-05 20:11:10 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-05-05 20:11:10 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-05-05 20:11:10 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-05-05 20:11:10 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-05-05 20:11:10 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2365 ms
-2025-05-05 20:11:11 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-05-05 20:11:12 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-05-05 20:11:12 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2c786abf
-2025-05-05 20:11:12 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-05-05 20:11:12 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-05-05 20:11:13 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-05-05 20:11:13 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.223 seconds (process running for 7.238)
-2025-05-05 20:11:18 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-05-05 20:11:18 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-05-05 20:11:18 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2025-05-05 20:11:18 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [jakarta.validation.ConstraintViolationException: register.username: 需要匹配正则表达式"^\S{5,16}$"]
-2025-05-05 20:11:18 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [jakarta.validation.ConstraintViolationException: login.username: 需要匹配正则表达式"^\S{5,16}$"]
-2025-05-05 20:11:19 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:11:19 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:11:19 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:11:19 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:11:19 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:11:19 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:11:19 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:11:19 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:11:19 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:11:19 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:11:19 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:11:19 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:11:19 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:11:19 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:11:19 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:11:19 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:12:20 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:12:20 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:12:20 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:12:20 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:12:20 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:12:20 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:12:20 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:12:20 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:12:20 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:12:20 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:12:20 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:12:20 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:12:20 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:12:20 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:12:20 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:12:20 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:13:31 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:13:31 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: {{$.2.response.body.token}}
-2025-05-05 20:13:31 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:13:31 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:13:31 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:13:31 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:13:31 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:13:31 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:13:31 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:13:31 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:13:32 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:13:32 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:13:32 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:13:32 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:13:32 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:13:32 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:15:22 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:15:22 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:15:22 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:15:22 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:15:23 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:15:23 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:15:23 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:15:23 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:15:23 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:15:23 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:15:23 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:15:23 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:15:23 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:15:23 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:15:23 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:15:23 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:00 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:16:00 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:00 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:16:00 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:00 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:16:00 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:00 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:16:00 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:00 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:16:00 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:00 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:16:00 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:00 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:16:00 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:00 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:16:00 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:14 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:16:14 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:14 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:16:14 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:14 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:16:14 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:14 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:16:14 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:14 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:16:14 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:14 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:16:14 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:14 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:16:14 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:16:14 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:16:14 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:18:13 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:18:13 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:18:13 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:18:13 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:18:13 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:18:13 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:18:13 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:18:13 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:18:13 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:18:13 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:18:13 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:18:13 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:18:13 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:18:13 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:18:13 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:18:13 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:21:15 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:21:15 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:21:15 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:21:15 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:21:15 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:21:15 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:21:15 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:21:15 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:21:15 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:21:15 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:21:15 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:21:15 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:21:15 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:21:15 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:21:15 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:21:15 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:17 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:22:17 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:17 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:22:17 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:17 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:22:17 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:17 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:22:17 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:17 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:22:17 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:17 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:22:17 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:17 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:22:17 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:17 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:22:17 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:33 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:22:33 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:33 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:22:33 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:33 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:22:33 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:33 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:22:33 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:33 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:22:33 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:33 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:22:33 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:33 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:22:33 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:22:33 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:22:33 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:25:09 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:25:09 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:25:09 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:25:09 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:25:09 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:25:09 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:25:09 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:25:09 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:25:09 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:25:09 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:25:09 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:25:09 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:25:09 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:25:09 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:25:09 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:25:09 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ1Nzc5OTMyfQ.zy0sED3IWKubBE3Ho0u2e2ThnRcz3OBxEWLSanId9fw
-2025-05-05 20:26:16 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:26:16 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: {{token}}
-2025-05-05 20:26:16 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:26:16 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: {{token}}
-2025-05-05 20:26:16 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:26:16 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: {{token}}
-2025-05-05 20:26:16 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:26:16 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: {{token}}
-2025-05-05 20:26:17 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:26:17 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: {{token}}
-2025-05-05 20:26:17 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:26:17 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: {{token}}
-2025-05-05 20:26:17 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:26:17 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: {{token}}
-2025-05-05 20:26:17 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:26:17 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: {{token}}
-2025-05-05 20:26:45 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:26:45 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTIwNX0.7BjHRjRwySSMSQnB3HOyFIq0FcE34HDLTIrsUvE9yzY
-2025-05-05 20:26:45 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:26:45 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTIwNX0.7BjHRjRwySSMSQnB3HOyFIq0FcE34HDLTIrsUvE9yzY
-2025-05-05 20:26:45 [http-nio-8080-exec-9] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 3
-2025-05-05 20:26:45 [http-nio-8080-exec-9] INFO  c.e.album.controller.AlbumController - 接收到创建相册请求，用户ID: 3, 相册标题: manbatest
-2025-05-05 20:26:45 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:26:45 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTIwNX0.7BjHRjRwySSMSQnB3HOyFIq0FcE34HDLTIrsUvE9yzY
-2025-05-05 20:26:45 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'file' is not present.]
-2025-05-05 20:26:45 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:26:45 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTIwNX0.7BjHRjRwySSMSQnB3HOyFIq0FcE34HDLTIrsUvE9yzY
-2025-05-05 20:26:45 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource photos.]
-2025-05-05 20:26:45 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:26:45 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTIwNX0.7BjHRjRwySSMSQnB3HOyFIq0FcE34HDLTIrsUvE9yzY
-2025-05-05 20:26:45 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource photos.]
-2025-05-05 20:26:45 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:26:45 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTIwNX0.7BjHRjRwySSMSQnB3HOyFIq0FcE34HDLTIrsUvE9yzY
-2025-05-05 20:26:45 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource albums.]
-2025-05-05 20:26:45 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:26:45 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTIwNX0.7BjHRjRwySSMSQnB3HOyFIq0FcE34HDLTIrsUvE9yzY
-2025-05-05 20:26:45 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character (',' (code 44)): expected a value]
-2025-05-05 20:26:45 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:26:45 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTIwNX0.7BjHRjRwySSMSQnB3HOyFIq0FcE34HDLTIrsUvE9yzY
-2025-05-05 20:26:45 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource posts.]
-2025-05-05 20:27:41 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:27:41 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTI2MX0.jSvd3Xc7ceYaY8Z_aSTuwGskHw5CmDEbJPdD3aJvbDc
-2025-05-05 20:27:41 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:27:41 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTI2MX0.jSvd3Xc7ceYaY8Z_aSTuwGskHw5CmDEbJPdD3aJvbDc
-2025-05-05 20:27:41 [http-nio-8080-exec-9] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 3
-2025-05-05 20:27:41 [http-nio-8080-exec-9] INFO  c.e.album.controller.AlbumController - 接收到创建相册请求，用户ID: 3, 相册标题: manbatest
-2025-05-05 20:27:41 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:27:41 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTI2MX0.jSvd3Xc7ceYaY8Z_aSTuwGskHw5CmDEbJPdD3aJvbDc
-2025-05-05 20:27:41 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'file' is not present.]
-2025-05-05 20:27:41 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:27:41 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTI2MX0.jSvd3Xc7ceYaY8Z_aSTuwGskHw5CmDEbJPdD3aJvbDc
-2025-05-05 20:27:41 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource photos.]
-2025-05-05 20:27:41 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:27:41 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTI2MX0.jSvd3Xc7ceYaY8Z_aSTuwGskHw5CmDEbJPdD3aJvbDc
-2025-05-05 20:27:41 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource photos.]
-2025-05-05 20:27:41 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:27:41 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTI2MX0.jSvd3Xc7ceYaY8Z_aSTuwGskHw5CmDEbJPdD3aJvbDc
-2025-05-05 20:27:41 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource albums.]
-2025-05-05 20:27:41 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:27:41 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTI2MX0.jSvd3Xc7ceYaY8Z_aSTuwGskHw5CmDEbJPdD3aJvbDc
-2025-05-05 20:27:41 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character (',' (code 44)): expected a value]
-2025-05-05 20:27:41 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:27:41 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTI2MX0.jSvd3Xc7ceYaY8Z_aSTuwGskHw5CmDEbJPdD3aJvbDc
-2025-05-05 20:27:41 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource posts.]
-2025-05-05 20:28:36 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:28:36 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTMxNn0.rYw2mwRAdrwYquKcstkvnOLBGzijUTQ_dVjz47YFj54
-2025-05-05 20:28:36 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:28:36 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTMxNn0.rYw2mwRAdrwYquKcstkvnOLBGzijUTQ_dVjz47YFj54
-2025-05-05 20:28:36 [http-nio-8080-exec-9] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 3
-2025-05-05 20:28:36 [http-nio-8080-exec-9] INFO  c.e.album.controller.AlbumController - 接收到创建相册请求，用户ID: 3, 相册标题: manbatest
-2025-05-05 20:28:36 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:28:36 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTMxNn0.rYw2mwRAdrwYquKcstkvnOLBGzijUTQ_dVjz47YFj54
-2025-05-05 20:28:36 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'file' is not present.]
-2025-05-05 20:28:36 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:28:36 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTMxNn0.rYw2mwRAdrwYquKcstkvnOLBGzijUTQ_dVjz47YFj54
-2025-05-05 20:28:36 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource photos.]
-2025-05-05 20:28:36 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:28:36 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTMxNn0.rYw2mwRAdrwYquKcstkvnOLBGzijUTQ_dVjz47YFj54
-2025-05-05 20:28:36 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource photos.]
-2025-05-05 20:28:36 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:28:36 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTMxNn0.rYw2mwRAdrwYquKcstkvnOLBGzijUTQ_dVjz47YFj54
-2025-05-05 20:28:36 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource albums.]
-2025-05-05 20:28:36 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:28:36 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTMxNn0.rYw2mwRAdrwYquKcstkvnOLBGzijUTQ_dVjz47YFj54
-2025-05-05 20:28:36 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character (',' (code 44)): expected a value]
-2025-05-05 20:28:36 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:28:36 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTMxNn0.rYw2mwRAdrwYquKcstkvnOLBGzijUTQ_dVjz47YFj54
-2025-05-05 20:28:36 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource posts.]
-2025-05-05 20:29:01 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
-2025-05-05 20:29:01 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTM0MX0.jRW4xogVki8QyImxDYNwxGIvKh6-UmYhC0HlH0o439M
-2025-05-05 20:29:01 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/albums/upload
-2025-05-05 20:29:01 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTM0MX0.jRW4xogVki8QyImxDYNwxGIvKh6-UmYhC0HlH0o439M
-2025-05-05 20:29:01 [http-nio-8080-exec-9] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 3
-2025-05-05 20:29:01 [http-nio-8080-exec-9] INFO  c.e.album.controller.AlbumController - 接收到创建相册请求，用户ID: 3, 相册标题: manbatest
-2025-05-05 20:29:01 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/photos/upload
-2025-05-05 20:29:01 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTM0MX0.jRW4xogVki8QyImxDYNwxGIvKh6-UmYhC0HlH0o439M
-2025-05-05 20:29:01 [http-nio-8080-exec-10] INFO  c.e.album.controller.PhotoController - 接收到照片上传请求，相册ID: 7, 文件名: 屏幕截图 2025-04-15 133754.png
-2025-05-05 20:29:01 [http-nio-8080-exec-10] INFO  c.e.album.controller.PhotoController - 从ThreadLocal获取的用户ID: 3
-2025-05-05 20:29:01 [http-nio-8080-exec-10] INFO  c.e.a.s.impl.StorageServiceImpl - 开始存储文件，用户ID: 3, 文件名: 屏幕截图 2025-04-15 133754.png
-2025-05-05 20:29:01 [http-nio-8080-exec-10] INFO  c.e.a.s.impl.StorageServiceImpl - uploads\storage\3\497fb8a9-5497-4256-a8db-decbc20050a5.png
-2025-05-05 20:29:01 [http-nio-8080-exec-10] INFO  c.e.a.s.impl.StorageServiceImpl - 文件类型: 图片
-2025-05-05 20:29:02 [http-nio-8080-exec-10] INFO  c.e.a.s.impl.StorageServiceImpl - 文件存储成功: http://localhost:8080/uploads/storage/3/497fb8a9-5497-4256-a8db-decbc20050a5.png
-2025-05-05 20:29:02 [http-nio-8080-exec-10] ERROR c.e.album.controller.PhotoController - 照片上传失败
-java.lang.RuntimeException: org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:5000/ai_classify_image": Connection refused: connect
-	at com.example.album.service.ImageService.ai_classify(ImageService.java:111)
-	at com.example.album.controller.PhotoController.uploadPhoto(PhotoController.java:65)
+2025-05-08 17:53:22 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 15020 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-05-08 17:53:22 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-05-08 17:53:22 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-05-08 17:53:22 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-08 17:53:22 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-08 17:53:24 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-08 17:53:24 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 0 JDBC repository interfaces.
+2025-05-08 17:53:25 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-08 17:53:25 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-08 17:53:25 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-08 17:53:25 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-08 17:53:25 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2668 ms
+2025-05-08 17:53:27 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
+2025-05-08 17:53:27 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-08 17:53:28 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7b971b5b
+2025-05-08 17:53:28 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-08 17:53:28 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-05-08 17:53:28 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-08 17:53:28 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.902 seconds (process running for 7.98)
+2025-05-08 17:55:54 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-08 17:55:54 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-08 17:55:54 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-05-08 17:56:28 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/1
+2025-05-08 17:56:28 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ2NzQxMzU0fQ.Aqnwn_duSTreOOylhwsXzaGpm2tCmYf0T4_YUBinilo
+2025-05-08 17:56:28 [http-nio-8080-exec-3] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-08 17:56:57 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/1
+2025-05-08 17:56:57 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ2NzQxMzU0fQ.Aqnwn_duSTreOOylhwsXzaGpm2tCmYf0T4_YUBinilo
+2025-05-08 17:56:57 [http-nio-8080-exec-5] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-08 17:59:34 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/1
+2025-05-08 17:59:34 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ2NzQxMzU0fQ.Aqnwn_duSTreOOylhwsXzaGpm2tCmYf0T4_YUBinilo
+2025-05-08 17:59:34 [http-nio-8080-exec-7] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-08 18:00:05 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/1
+2025-05-08 18:00:05 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
+2025-05-08 18:00:05 [http-nio-8080-exec-8] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-08 18:00:38 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/albums/1
+2025-05-08 18:00:38 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
+2025-05-08 18:00:38 [http-nio-8080-exec-9] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-08 18:00:42 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/1
+2025-05-08 18:00:42 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
+2025-05-08 18:00:42 [http-nio-8080-exec-10] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-08 18:06:55 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-08 18:06:55 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-08 18:06:55 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-08 18:06:55 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-08 18:07:02 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 30436 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-05-08 18:07:02 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-05-08 18:07:02 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-05-08 18:07:03 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-08 18:07:03 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-08 18:07:04 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-08 18:07:04 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 29 ms. Found 0 JDBC repository interfaces.
+2025-05-08 18:07:05 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-08 18:07:05 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-08 18:07:05 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-08 18:07:05 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-08 18:07:05 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2593 ms
+2025-05-08 18:07:07 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
+2025-05-08 18:07:07 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-08 18:07:07 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7f3761bc
+2025-05-08 18:07:07 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-08 18:07:08 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-05-08 18:07:08 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-08 18:07:08 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.267 seconds (process running for 7.145)
+2025-05-08 18:07:10 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-08 18:07:10 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-08 18:07:10 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-05-08 18:07:10 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/1
+2025-05-08 18:07:10 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
+2025-05-08 18:07:10 [http-nio-8080-exec-1] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-08 18:07:15 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/2
+2025-05-08 18:07:15 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
+2025-05-08 18:07:15 [http-nio-8080-exec-3] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-08 18:07:22 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/2
+2025-05-08 18:07:22 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
+2025-05-08 18:07:22 [http-nio-8080-exec-4] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-08 18:07:32 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/3
+2025-05-08 18:07:32 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
+2025-05-08 18:07:32 [http-nio-8080-exec-5] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-08 18:07:43 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/0
+2025-05-08 18:07:43 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
+2025-05-08 18:07:43 [http-nio-8080-exec-6] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-08 18:10:13 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/0
+2025-05-08 18:10:13 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0Njc0MjIwMX0.lWq9pICVGLXSK7Bn-4FP0GXCBaWYNVazbXtoVapi2vw
+2025-05-08 18:10:13 [http-nio-8080-exec-10] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 3
+2025-05-08 18:10:50 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/0
+2025-05-08 18:10:50 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ2NzQyMjQxfQ.KACdLYFqEn58jFv-7SokRTe_P0GuHavQ2mg_gzhkp-I
+2025-05-08 18:10:50 [http-nio-8080-exec-1] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 5
+2025-05-08 18:11:52 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-08 18:11:52 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-08 18:11:52 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-08 18:11:52 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-08 18:11:59 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 17780 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-05-08 18:11:59 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-05-08 18:11:59 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-05-08 18:11:59 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-08 18:11:59 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-08 18:12:01 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-08 18:12:01 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 34 ms. Found 0 JDBC repository interfaces.
+2025-05-08 18:12:02 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-08 18:12:02 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-08 18:12:02 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-08 18:12:02 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-08 18:12:02 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2374 ms
+2025-05-08 18:12:03 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
+2025-05-08 18:12:04 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-08 18:12:04 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@320bbfde
+2025-05-08 18:12:04 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-08 18:12:05 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-05-08 18:12:05 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-08 18:12:05 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.034 seconds (process running for 6.888)
+2025-05-08 18:12:25 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-08 18:12:25 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-08 18:12:25 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-05-08 18:12:25 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/0
+2025-05-08 18:12:25 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ2NzQyMjQxfQ.KACdLYFqEn58jFv-7SokRTe_P0GuHavQ2mg_gzhkp-I
+2025-05-08 18:12:25 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource albums/user/0.]
+2025-05-08 18:12:43 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-08 18:12:43 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-08 18:12:43 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-08 18:12:43 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-08 18:12:51 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 16616 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-05-08 18:12:51 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-05-08 18:12:51 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-05-08 18:12:51 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-08 18:12:51 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-08 18:12:52 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-08 18:12:52 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 0 JDBC repository interfaces.
+2025-05-08 18:12:53 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-08 18:12:53 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-08 18:12:53 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-08 18:12:54 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-08 18:12:54 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2471 ms
+2025-05-08 18:12:55 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
+2025-05-08 18:12:56 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-08 18:12:56 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@48f24978
+2025-05-08 18:12:56 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-08 18:12:57 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-05-08 18:12:57 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-08 18:12:57 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.561 seconds (process running for 7.419)
+2025-05-08 18:13:02 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-08 18:13:02 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-08 18:13:02 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-05-08 18:13:02 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/1
+2025-05-08 18:13:02 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ2NzQxMzU0fQ.Aqnwn_duSTreOOylhwsXzaGpm2tCmYf0T4_YUBinilo
+2025-05-08 18:13:03 [http-nio-8080-exec-1] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-08 18:13:03 [http-nio-8080-exec-1] ERROR c.e.album.controller.AlbumController - 获取相册详情失败
+java.lang.Exception: 没有访问权限
+	at com.example.album.controller.AlbumController.getAlbumDetail(AlbumController.java:99)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
@@ -412,8 +157,8 @@ java.lang.RuntimeException: org.springframework.web.client.ResourceAccessExcepti
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
 	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
@@ -449,51 +194,227 @@ java.lang.RuntimeException: org.springframework.web.client.ResourceAccessExcepti
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:1575)
-Caused by: org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:5000/ai_classify_image": Connection refused: connect
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:925)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:905)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:800)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:682)
-	at com.example.album.service.ImageService.ai_classify(ImageService.java:92)
-	... 49 common frames omitted
-Caused by: java.net.ConnectException: Connection refused: connect
-	at java.base/sun.nio.ch.Net.connect0(Native Method)
-	at java.base/sun.nio.ch.Net.connect(Net.java:589)
-	at java.base/sun.nio.ch.Net.connect(Net.java:578)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:583)
-	at java.base/java.net.Socket.connect(Socket.java:760)
-	at java.base/java.net.Socket.connect(Socket.java:695)
-	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:183)
-	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:531)
-	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:636)
-	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:280)
-	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:386)
-	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:408)
-	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1310)
-	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1243)
-	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1129)
-	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1058)
-	at org.springframework.http.client.SimpleClientHttpRequest.executeInternal(SimpleClientHttpRequest.java:79)
-	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:71)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:899)
-	... 52 common frames omitted
-2025-05-05 20:29:02 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/photos/
-2025-05-05 20:29:02 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTM0MX0.jRW4xogVki8QyImxDYNwxGIvKh6-UmYhC0HlH0o439M
-2025-05-05 20:29:02 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource photos.]
-2025-05-05 20:29:02 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/photos/
-2025-05-05 20:29:02 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTM0MX0.jRW4xogVki8QyImxDYNwxGIvKh6-UmYhC0HlH0o439M
-2025-05-05 20:29:02 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource photos.]
-2025-05-05 20:29:02 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/
-2025-05-05 20:29:02 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTM0MX0.jRW4xogVki8QyImxDYNwxGIvKh6-UmYhC0HlH0o439M
-2025-05-05 20:29:02 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource albums.]
-2025-05-05 20:29:02 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/posts
-2025-05-05 20:29:02 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTM0MX0.jRW4xogVki8QyImxDYNwxGIvKh6-UmYhC0HlH0o439M
-2025-05-05 20:29:02 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character (',' (code 44)): expected a value]
-2025-05-05 20:29:02 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/posts/
-2025-05-05 20:29:02 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0NjQ5MTM0MX0.jRW4xogVki8QyImxDYNwxGIvKh6-UmYhC0HlH0o439M
-2025-05-05 20:29:02 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource posts.]
-2025-05-05 20:33:18 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-05-05 20:33:18 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-05-05 20:33:18 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-05-05 20:33:18 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-08 18:13:08 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/1
+2025-05-08 18:13:08 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ2NzQyMjQxfQ.KACdLYFqEn58jFv-7SokRTe_P0GuHavQ2mg_gzhkp-I
+2025-05-08 18:13:08 [http-nio-8080-exec-3] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 5
+2025-05-08 18:13:08 [http-nio-8080-exec-3] ERROR c.e.album.controller.AlbumController - 获取相册详情失败
+java.lang.Exception: 没有访问权限
+	at com.example.album.controller.AlbumController.getAlbumDetail(AlbumController.java:99)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-05-08 18:14:05 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/1
+2025-05-08 18:14:05 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ2NzQyNDMxfQ.fNEp9h_0WDijEGi4_j8K-y0ilpEX-hW-ve7wK_bdxHk
+2025-05-08 18:14:05 [http-nio-8080-exec-5] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-08 18:14:05 [http-nio-8080-exec-5] ERROR c.e.album.controller.AlbumController - 获取相册详情失败
+java.lang.Exception: 没有访问权限
+	at com.example.album.controller.AlbumController.getAlbumDetail(AlbumController.java:99)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-05-08 18:14:21 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-08 18:14:21 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-08 18:14:21 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-08 18:14:21 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-08 18:14:29 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 24828 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-05-08 18:14:29 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-05-08 18:14:29 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-05-08 18:14:29 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-08 18:14:29 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-08 18:14:30 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-08 18:14:30 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 0 JDBC repository interfaces.
+2025-05-08 18:14:31 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-08 18:14:31 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-08 18:14:31 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-08 18:14:31 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-08 18:14:31 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2366 ms
+2025-05-08 18:14:33 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
+2025-05-08 18:14:33 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-08 18:14:34 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@73648f73
+2025-05-08 18:14:34 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-08 18:14:34 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-05-08 18:14:34 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-08 18:14:34 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.174 seconds (process running for 7.026)
+2025-05-08 18:15:04 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-08 18:15:04 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-08 18:15:04 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-08 18:15:04 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-08 18:15:12 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 15428 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
+2025-05-08 18:15:12 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-05-08 18:15:12 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-05-08 18:15:12 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-08 18:15:12 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-08 18:15:14 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-08 18:15:14 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 37 ms. Found 0 JDBC repository interfaces.
+2025-05-08 18:15:15 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-08 18:15:15 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-08 18:15:15 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-08 18:15:15 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-08 18:15:15 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2324 ms
+2025-05-08 18:15:16 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
+2025-05-08 18:15:17 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-08 18:15:17 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54e2e282
+2025-05-08 18:15:17 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-08 18:15:17 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-05-08 18:15:17 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-08 18:15:17 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 5.856 seconds (process running for 6.569)
+2025-05-08 18:15:21 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-08 18:15:21 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-08 18:15:21 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-05-08 18:15:21 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/1
+2025-05-08 18:15:21 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ2NzQyNDMxfQ.fNEp9h_0WDijEGi4_j8K-y0ilpEX-hW-ve7wK_bdxHk
+2025-05-08 18:15:21 [http-nio-8080-exec-1] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-08 18:15:26 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/0
+2025-05-08 18:15:26 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ2NzQyNDMxfQ.fNEp9h_0WDijEGi4_j8K-y0ilpEX-hW-ve7wK_bdxHk
+2025-05-08 18:15:26 [http-nio-8080-exec-3] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-08 18:15:47 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/1
+2025-05-08 18:15:47 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ2NzQyNTM3fQ.-KYoKN-kafcxrGhNPZob5y1RtUmS7LuV8xikHf0j8DY
+2025-05-08 18:15:47 [http-nio-8080-exec-5] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 5
+2025-05-08 18:15:47 [http-nio-8080-exec-5] ERROR c.e.album.controller.AlbumController - 获取相册详情失败
+java.lang.Exception: 没有访问权限
+	at com.example.album.controller.AlbumController.getAlbumDetail(AlbumController.java:99)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-05-08 18:15:54 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/0
+2025-05-08 18:15:54 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ2NzQyNTM3fQ.-KYoKN-kafcxrGhNPZob5y1RtUmS7LuV8xikHf0j8DY
+2025-05-08 18:15:54 [http-nio-8080-exec-6] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 5
+2025-05-08 18:16:09 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-08 18:16:09 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-08 18:16:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-08 18:16:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

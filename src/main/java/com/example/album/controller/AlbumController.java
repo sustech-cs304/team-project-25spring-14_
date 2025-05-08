@@ -241,7 +241,7 @@ public class AlbumController {
 
             List<AlbumVO> albumVOList = new ArrayList<>();
             for (Album album : albums) {
-                if (album.getPrivacy().getValue().equals("public")) {
+                if (album.getPrivacy().getValue().equals("public")|| album.getUserId().equals(userId)) {
                     AlbumVO albumVO = convertToAlbumVO(album);
                     albumVOList.add(albumVO);
                 }

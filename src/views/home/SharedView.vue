@@ -20,6 +20,12 @@
 
       <!-- 内容区域 -->
       <main class="content-wrapper">
+        <CommentModal
+          v-if="showComment"
+          :postId="selectedpostId"
+          :currentUserId="currentUserId"
+          @close="showComment = false"
+        />
         <ChatModal
           v-if="showChat"
           :recipient-id="selectedRecipientId"
@@ -101,7 +107,7 @@
               >
                 <i class="album-icons icon-zantong"></i> {{ post.likeCount }}
               </button>
-              <button class="action-btn">
+              <button class="action-btn" @click="openCommentModal(post.postId)">
                 <i class="album-icons icon-pinglun"></i> {{ post.commentCount }}
               </button>
               <button
@@ -134,12 +140,14 @@ import apiClient from "@/apiClient";
 import PostModal from "@/components/PostModal.vue";
 import UserInfoCard from "@/components/UserInfoCard.vue";
 import ChatModal from "@/components/ChatModal.vue";
+import CommentModal from "@/components/CommentModal.vue";
 export default {
   components: {
     SideBar,
     PostModal,
     UserInfoCard,
     ChatModal,
+    CommentModal,
   },
   data() {
     return {
@@ -148,7 +156,9 @@ export default {
       userInfo: {},
       count: 0,
       showChat: false,
+      showComment: false,
       selectedRecipientId: null,
+      selectedpostId: null,
       currentUserId: localStorage.getItem("userId") || "",
     };
   },
@@ -270,6 +280,10 @@ export default {
     openChatModal(recipientId) {
       this.selectedRecipientId = recipientId;
       this.showChat = true;
+    },
+    openCommentModal(postId) {
+      this.selectedpostId = postId;
+      this.showComment = true;
     },
   },
 };

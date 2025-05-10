@@ -67,7 +67,7 @@ router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.getItem("jwtToken");
 
   if (!isAuthenticated && to.path !== "/") {
-    next("/");
+    next("/login");
   } else if (isAuthenticated && to.path === "/") {
     next("/albums");
   } else {

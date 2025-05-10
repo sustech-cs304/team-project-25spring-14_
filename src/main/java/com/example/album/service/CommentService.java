@@ -20,8 +20,8 @@ public class CommentService {
     @Transactional
     public Comment addComment(int postId,int userId,String content) {
         Comment comment = new Comment();
-        comment.setPost_id(postId);
-        comment.setUser_id(userId);
+        comment.setPostId(postId);
+        comment.setUserId(userId);
         comment.setContent(content);
         commentMapper.insertComment(comment);
         return comment;

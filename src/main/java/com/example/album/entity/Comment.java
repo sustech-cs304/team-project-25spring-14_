@@ -12,9 +12,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @TableName("tb_comment")
 public class Comment {
-    private Integer comment_id;
-    private Integer user_id;
-    private Integer post_id;
+    private Integer commentId;
+    private Integer userId;
+    private Integer postId;
     private String content;
     private LocalDateTime create_time;
 }

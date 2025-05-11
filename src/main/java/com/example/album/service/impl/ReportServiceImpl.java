@@ -19,7 +19,7 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public void createReport(Integer reporterId, ReportRequestDTO request) {
         // 将举报信息插入到tb_report表中
-        reportMapper.insertReport(reporterId, request.getResourceId(), request.getReason(), request.getResourceType());
+        reportMapper.insertReport(reporterId, request.getResourceId(), request.getReporteeId(), request.getReason(), request.getResourceType());
     }
 
     @Override

@@ -16,4 +16,6 @@ public class ReportRequestDTO {
     private String reason;
     @NotNull
     private String resourceType;
+    @NotNull
+    private Integer reporteeId;
 }

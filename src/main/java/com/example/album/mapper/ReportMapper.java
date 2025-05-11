@@ -24,9 +24,9 @@ public interface ReportMapper extends BaseMapper<Report> {
     int updateReportStatus( Integer reportId, String status, String reviewedBy);
 
     //insert the report
-    @Insert("INSERT INTO tb_report (reporter_id, resource_id, reason, resource_type) " +
-            "VALUES (#{reporterId}, #{resourceId}, #{reason}, #{resourceType}::resource_type)")
-    void insertReport(Integer reporterId, Integer resourceId, String reason, String resourceType);
+    @Insert("INSERT INTO tb_report (reporter_id, resource_id, reportee_id, reason, resource_type) " +
+            "VALUES (#{reporterId}, #{resourceId}, #{reporteeId}, #{reason}, #{resourceType}::resource_type)")
+    void insertReport(Integer reporterId, Integer resourceId, Integer reporteeId, String reason, String resourceType);
 
     //get all reports
     @Select("SELECT * FROM tb_report")

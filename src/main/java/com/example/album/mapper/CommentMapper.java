@@ -18,6 +18,13 @@ public interface CommentMapper {
 
 
     @Select("SELECT * FROM tb_comment WHERE post_id = #{postId}")
+    @Results({
+            @Result(property = "commentId", column = "comment_id"),
+            @Result(property = "postId", column = "post_id"),
+            @Result(property = "userId", column = "user_id"),
+            @Result(property = "content", column = "content"),
+            @Result(property = "created_at", column = "created_at")
+    })
     List<Comment> selectCommentsByPostId(@Param("postId") int postId);
 
 

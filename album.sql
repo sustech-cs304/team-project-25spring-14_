@@ -137,7 +137,8 @@ CREATE TABLE tb_report
     report_id     SERIAL PRIMARY KEY,
     reporter_id   INTEGER       NOT NULL,
     resource_type resource_type NOT NULL,
-    resource_id   INTEGER       NOT NULL,
+    resource_id   INTEGER       NOT NULL,       -- 被举报的资源的ID
+    reportee_id   INTEGER       NOT NULL,       -- 被举报的用户的ID
     reason        VARCHAR(255)  NOT NULL,
     status        VARCHAR(20) DEFAULT 'pending', -- pending, reviewed, resolved
     reviewed_by   INTEGER,

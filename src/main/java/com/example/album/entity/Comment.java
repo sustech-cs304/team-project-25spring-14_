@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -16,5 +17,7 @@ public class Comment {
     private Integer userId;
     private Integer postId;
     private String content;
-    private LocalDateTime create_time;
+    private LocalDateTime created_at;
+
+
 }

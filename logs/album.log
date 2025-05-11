@@ -1,420 +1,466 @@
-2025-05-08 17:53:22 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 15020 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-05-08 17:53:22 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-05-08 17:53:22 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-05-08 17:53:22 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-05-08 17:53:22 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-05-08 17:53:24 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-05-08 17:53:24 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 0 JDBC repository interfaces.
-2025-05-08 17:53:25 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-05-08 17:53:25 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-05-08 17:53:25 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-05-08 17:53:25 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-05-08 17:53:25 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2668 ms
-2025-05-08 17:53:27 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-05-08 17:53:27 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-05-08 17:53:28 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7b971b5b
-2025-05-08 17:53:28 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-05-08 17:53:28 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-05-08 17:53:28 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-05-08 17:53:28 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.902 seconds (process running for 7.98)
-2025-05-08 17:55:54 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-05-08 17:55:54 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-05-08 17:55:54 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2025-05-08 17:56:28 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/1
-2025-05-08 17:56:28 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ2NzQxMzU0fQ.Aqnwn_duSTreOOylhwsXzaGpm2tCmYf0T4_YUBinilo
-2025-05-08 17:56:28 [http-nio-8080-exec-3] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-05-08 17:56:57 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/1
-2025-05-08 17:56:57 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ2NzQxMzU0fQ.Aqnwn_duSTreOOylhwsXzaGpm2tCmYf0T4_YUBinilo
-2025-05-08 17:56:57 [http-nio-8080-exec-5] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-05-08 17:59:34 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/1
-2025-05-08 17:59:34 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ2NzQxMzU0fQ.Aqnwn_duSTreOOylhwsXzaGpm2tCmYf0T4_YUBinilo
-2025-05-08 17:59:34 [http-nio-8080-exec-7] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-05-08 18:00:05 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/1
-2025-05-08 18:00:05 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
-2025-05-08 18:00:05 [http-nio-8080-exec-8] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-05-08 18:00:38 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: PUT http://localhost:8080/albums/1
-2025-05-08 18:00:38 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
-2025-05-08 18:00:38 [http-nio-8080-exec-9] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-05-08 18:00:42 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/1
-2025-05-08 18:00:42 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
-2025-05-08 18:00:42 [http-nio-8080-exec-10] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-05-08 18:06:55 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-05-08 18:06:55 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-05-08 18:06:55 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-05-08 18:06:55 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-05-08 18:07:02 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 30436 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-05-08 18:07:02 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-05-08 18:07:02 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-05-08 18:07:03 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-05-08 18:07:03 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-05-08 18:07:04 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-05-08 18:07:04 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 29 ms. Found 0 JDBC repository interfaces.
-2025-05-08 18:07:05 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-05-08 18:07:05 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-05-08 18:07:05 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-05-08 18:07:05 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-05-08 18:07:05 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2593 ms
-2025-05-08 18:07:07 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-05-08 18:07:07 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-05-08 18:07:07 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7f3761bc
-2025-05-08 18:07:07 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-05-08 18:07:08 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-05-08 18:07:08 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-05-08 18:07:08 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.267 seconds (process running for 7.145)
-2025-05-08 18:07:10 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-05-08 18:07:10 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-05-08 18:07:10 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2025-05-08 18:07:10 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/1
-2025-05-08 18:07:10 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
-2025-05-08 18:07:10 [http-nio-8080-exec-1] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-05-08 18:07:15 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/2
-2025-05-08 18:07:15 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
-2025-05-08 18:07:15 [http-nio-8080-exec-3] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-05-08 18:07:22 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/2
-2025-05-08 18:07:22 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
-2025-05-08 18:07:22 [http-nio-8080-exec-4] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-05-08 18:07:32 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/3
-2025-05-08 18:07:32 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
-2025-05-08 18:07:32 [http-nio-8080-exec-5] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-05-08 18:07:43 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/0
-2025-05-08 18:07:43 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzM2NTM5fQ.xLBUoY91JVVyN-UCSBcYAGxv76GVgyRFlxkc5v6yPRM
-2025-05-08 18:07:43 [http-nio-8080-exec-6] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-05-08 18:10:13 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/0
-2025-05-08 18:10:13 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MywidXNlcm5hbWUiOiJ3YW5nYmExIn0sImV4cCI6MTc0Njc0MjIwMX0.lWq9pICVGLXSK7Bn-4FP0GXCBaWYNVazbXtoVapi2vw
-2025-05-08 18:10:13 [http-nio-8080-exec-10] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 3
-2025-05-08 18:10:50 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/0
-2025-05-08 18:10:50 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ2NzQyMjQxfQ.KACdLYFqEn58jFv-7SokRTe_P0GuHavQ2mg_gzhkp-I
-2025-05-08 18:10:50 [http-nio-8080-exec-1] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 5
-2025-05-08 18:11:52 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-05-08 18:11:52 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-05-08 18:11:52 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-05-08 18:11:52 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-05-08 18:11:59 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 17780 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-05-08 18:11:59 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-05-08 18:11:59 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-05-08 18:11:59 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-05-08 18:11:59 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-05-08 18:12:01 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-05-08 18:12:01 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 34 ms. Found 0 JDBC repository interfaces.
-2025-05-08 18:12:02 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-05-08 18:12:02 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-05-08 18:12:02 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-05-08 18:12:02 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-05-08 18:12:02 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2374 ms
-2025-05-08 18:12:03 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-05-08 18:12:04 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-05-08 18:12:04 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@320bbfde
-2025-05-08 18:12:04 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-05-08 18:12:05 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-05-08 18:12:05 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-05-08 18:12:05 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.034 seconds (process running for 6.888)
-2025-05-08 18:12:25 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-05-08 18:12:25 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-05-08 18:12:25 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2025-05-08 18:12:25 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/0
-2025-05-08 18:12:25 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ2NzQyMjQxfQ.KACdLYFqEn58jFv-7SokRTe_P0GuHavQ2mg_gzhkp-I
-2025-05-08 18:12:25 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource albums/user/0.]
-2025-05-08 18:12:43 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-05-08 18:12:43 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-05-08 18:12:43 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-05-08 18:12:43 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-05-08 18:12:51 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 16616 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-05-08 18:12:51 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-05-08 18:12:51 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-05-08 18:12:51 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-05-08 18:12:51 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-05-08 18:12:52 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-05-08 18:12:52 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 0 JDBC repository interfaces.
-2025-05-08 18:12:53 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-05-08 18:12:53 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-05-08 18:12:53 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-05-08 18:12:54 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-05-08 18:12:54 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2471 ms
-2025-05-08 18:12:55 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-05-08 18:12:56 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-05-08 18:12:56 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@48f24978
-2025-05-08 18:12:56 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-05-08 18:12:57 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-05-08 18:12:57 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-05-08 18:12:57 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.561 seconds (process running for 7.419)
-2025-05-08 18:13:02 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-05-08 18:13:02 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-05-08 18:13:02 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2025-05-08 18:13:02 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/1
-2025-05-08 18:13:02 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ2NzQxMzU0fQ.Aqnwn_duSTreOOylhwsXzaGpm2tCmYf0T4_YUBinilo
-2025-05-08 18:13:03 [http-nio-8080-exec-1] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-05-08 18:13:03 [http-nio-8080-exec-1] ERROR c.e.album.controller.AlbumController - 获取相册详情失败
-java.lang.Exception: 没有访问权限
-	at com.example.album.controller.AlbumController.getAlbumDetail(AlbumController.java:99)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
-	at java.base/java.lang.Thread.run(Thread.java:1575)
-2025-05-08 18:13:08 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/1
-2025-05-08 18:13:08 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ2NzQyMjQxfQ.KACdLYFqEn58jFv-7SokRTe_P0GuHavQ2mg_gzhkp-I
-2025-05-08 18:13:08 [http-nio-8080-exec-3] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 5
-2025-05-08 18:13:08 [http-nio-8080-exec-3] ERROR c.e.album.controller.AlbumController - 获取相册详情失败
-java.lang.Exception: 没有访问权限
-	at com.example.album.controller.AlbumController.getAlbumDetail(AlbumController.java:99)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
-	at java.base/java.lang.Thread.run(Thread.java:1575)
-2025-05-08 18:14:05 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/1
-2025-05-08 18:14:05 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ2NzQyNDMxfQ.fNEp9h_0WDijEGi4_j8K-y0ilpEX-hW-ve7wK_bdxHk
-2025-05-08 18:14:05 [http-nio-8080-exec-5] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-05-08 18:14:05 [http-nio-8080-exec-5] ERROR c.e.album.controller.AlbumController - 获取相册详情失败
-java.lang.Exception: 没有访问权限
-	at com.example.album.controller.AlbumController.getAlbumDetail(AlbumController.java:99)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
-	at java.base/java.lang.Thread.run(Thread.java:1575)
-2025-05-08 18:14:21 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-05-08 18:14:21 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-05-08 18:14:21 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-05-08 18:14:21 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-05-08 18:14:29 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 24828 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-05-08 18:14:29 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-05-08 18:14:29 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-05-08 18:14:29 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-05-08 18:14:29 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-05-08 18:14:30 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-05-08 18:14:30 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 0 JDBC repository interfaces.
-2025-05-08 18:14:31 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-05-08 18:14:31 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-05-08 18:14:31 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-05-08 18:14:31 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-05-08 18:14:31 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2366 ms
-2025-05-08 18:14:33 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-05-08 18:14:33 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-05-08 18:14:34 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@73648f73
-2025-05-08 18:14:34 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-05-08 18:14:34 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-05-08 18:14:34 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-05-08 18:14:34 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 6.174 seconds (process running for 7.026)
-2025-05-08 18:15:04 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-05-08 18:15:04 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-05-08 18:15:04 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-05-08 18:15:04 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-05-08 18:15:12 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 23.0.1 with PID 15428 (D:\Code\code\software\album\album\target\classes started by 83876 in D:\Code\code\software\album\album)
-2025-05-08 18:15:12 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
-2025-05-08 18:15:12 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
-2025-05-08 18:15:12 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-05-08 18:15:12 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-05-08 18:15:14 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-05-08 18:15:14 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 37 ms. Found 0 JDBC repository interfaces.
-2025-05-08 18:15:15 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2025-05-08 18:15:15 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-05-08 18:15:15 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-05-08 18:15:15 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-05-08 18:15:15 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2324 ms
-2025-05-08 18:15:16 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\Code\code\software\album\album\uploads
-2025-05-08 18:15:17 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-05-08 18:15:17 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54e2e282
-2025-05-08 18:15:17 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-05-08 18:15:17 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2025-05-08 18:15:17 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2025-05-08 18:15:17 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 5.856 seconds (process running for 6.569)
-2025-05-08 18:15:21 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-05-08 18:15:21 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-05-08 18:15:21 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
-2025-05-08 18:15:21 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/1
-2025-05-08 18:15:21 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ2NzQyNDMxfQ.fNEp9h_0WDijEGi4_j8K-y0ilpEX-hW-ve7wK_bdxHk
-2025-05-08 18:15:21 [http-nio-8080-exec-1] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-05-08 18:15:26 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/0
-2025-05-08 18:15:26 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJ3YW5nYmEifSwiZXhwIjoxNzQ2NzQyNDMxfQ.fNEp9h_0WDijEGi4_j8K-y0ilpEX-hW-ve7wK_bdxHk
-2025-05-08 18:15:26 [http-nio-8080-exec-3] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
-2025-05-08 18:15:47 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/1
-2025-05-08 18:15:47 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ2NzQyNTM3fQ.-KYoKN-kafcxrGhNPZob5y1RtUmS7LuV8xikHf0j8DY
-2025-05-08 18:15:47 [http-nio-8080-exec-5] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 5
-2025-05-08 18:15:47 [http-nio-8080-exec-5] ERROR c.e.album.controller.AlbumController - 获取相册详情失败
-java.lang.Exception: 没有访问权限
-	at com.example.album.controller.AlbumController.getAlbumDetail(AlbumController.java:99)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
-	at java.base/java.lang.Thread.run(Thread.java:1575)
-2025-05-08 18:15:54 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/0
-2025-05-08 18:15:54 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6ImFkbWluIiwiaWQiOjUsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzQ2NzQyNTM3fQ.-KYoKN-kafcxrGhNPZob5y1RtUmS7LuV8xikHf0j8DY
-2025-05-08 18:15:54 [http-nio-8080-exec-6] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 5
-2025-05-08 18:16:09 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-05-08 18:16:09 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-05-08 18:16:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-05-08 18:16:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-11 00:00:02 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:00:02 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:00:02 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:00:07 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:00:07 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:00:07 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:00:12 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:00:12 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:00:12 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:00:17 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:00:17 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:00:17 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:00:22 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:00:22 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:00:22 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:00:27 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:00:27 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:00:27 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:00:32 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:00:32 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:00:32 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:00:37 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:00:37 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:00:37 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:00:42 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:00:42 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:00:42 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:00:47 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:00:47 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:00:47 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:00:52 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:00:52 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:00:52 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:00:57 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:00:57 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:00:57 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:01:02 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:01:02 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:01:02 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:01:07 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:01:07 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:01:07 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:01:12 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:01:12 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:01:12 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:01:17 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:01:17 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:01:17 [http-nio-8080-exec-6] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:01:22 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:01:22 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:01:22 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:01:27 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:01:27 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:01:27 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:01:32 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:01:32 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:01:32 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:01:37 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:01:37 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:01:37 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:01:42 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:01:42 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:01:42 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:01:47 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:01:47 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:01:47 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:01:52 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:01:52 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:01:52 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:01:57 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:01:57 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:01:57 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:02:02 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:02:02 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:02:02 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:02:07 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:02:07 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:02:07 [http-nio-8080-exec-6] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:02:12 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:02:12 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:02:12 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:02:17 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:02:17 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:02:17 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:02:22 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:02:22 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:02:22 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:02:27 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:02:27 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:02:27 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:02:32 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:02:32 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:02:32 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:02:37 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:02:37 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:02:37 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:03:21 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post
+2025-05-11 00:03:21 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:03:21 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post"]
+2025-05-11 00:03:38 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: OPTIONS http://localhost:8080/community/comments/post1
+2025-05-11 00:03:38 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - ✅ 放行 OPTIONS 预检请求
+2025-05-11 00:03:38 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post1
+2025-05-11 00:03:38 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:03:38 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'commentId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "post1"]
+2025-05-11 00:03:39 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: OPTIONS http://localhost:8080/community/comments/post/1
+2025-05-11 00:03:39 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - ✅ 放行 OPTIONS 预检请求
+2025-05-11 00:03:39 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:03:39 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:03:45 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:03:45 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:03:46 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
+2025-05-11 00:03:46 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:03:46 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
+2025-05-11 00:03:46 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:03:46 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/posts/public
+2025-05-11 00:03:46 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:03:46 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
+2025-05-11 00:03:46 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:03:46 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
+2025-05-11 00:03:46 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:03:46 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/posts/public
+2025-05-11 00:03:46 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:03:48 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:03:48 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:03:53 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:03:53 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:03:59 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:03:59 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:04:04 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:04:04 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:04:09 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:04:09 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:04:14 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:04:14 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:04:19 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:04:19 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:04:19 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:04:19 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:04:24 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:04:24 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:04:29 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:04:29 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:04:34 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:04:34 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:04:34 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: OPTIONS http://localhost:8080/community/comments
+2025-05-11 00:04:34 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - ✅ 放行 OPTIONS 预检请求
+2025-05-11 00:04:34 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/community/comments
+2025-05-11 00:04:34 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:04:34 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:04:34 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:04:39 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:04:39 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:04:44 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:04:44 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:04:50 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:04:50 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:04:54 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:04:54 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:04:59 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:04:59 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:05:05 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:05:05 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:05:09 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:05:09 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:05:15 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:05:15 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:05:20 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:05:20 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:05:25 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:05:25 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:05:30 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:05:30 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:05:35 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:05:35 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:05:40 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:05:40 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:05:45 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:05:45 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:05:50 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:05:50 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:05:55 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:05:55 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:06:00 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:06:00 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:06:05 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:06:05 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:06:21 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:06:21 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:06:47 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:06:47 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:06:50 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:06:50 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:06:56 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:06:56 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:07:05 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:07:05 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:07:21 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:07:21 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:07:57 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
+2025-05-11 00:07:57 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:07:57 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
+2025-05-11 00:07:57 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:07:57 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/posts/public
+2025-05-11 00:07:57 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:07:58 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
+2025-05-11 00:07:58 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:07:58 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
+2025-05-11 00:07:58 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:07:58 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/getUser/1
+2025-05-11 00:07:58 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:07:58 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/albums/user/1
+2025-05-11 00:07:58 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:07:58 [http-nio-8080-exec-6] INFO  c.e.album.controller.AlbumController - 从ThreadLocal获取的用户ID: 1
+2025-05-11 00:08:00 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
+2025-05-11 00:08:00 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:08:00 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/user/userInfo
+2025-05-11 00:08:00 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:08:00 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/posts/public
+2025-05-11 00:08:00 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:08:01 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:08:01 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:08:06 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:08:06 [http-nio-8080-exec-2] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:08:07 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: OPTIONS http://localhost:8080/community/comments
+2025-05-11 00:08:07 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - ✅ 放行 OPTIONS 预检请求
+2025-05-11 00:08:07 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/community/comments
+2025-05-11 00:08:07 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:08:07 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:08:07 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:08:11 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:08:11 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:08:16 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:08:16 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:08:35 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:08:35 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:08:47 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:08:47 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:09:56 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:09:56 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkxNTk4NX0.ni1xrf_JVmomAp_tZYCkNqRbpz2StjxqZ3_eGyAs8Ss
+2025-05-11 00:18:26 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11 00:18:26 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-11 00:18:26 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-11 00:18:26 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-11 00:38:04 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 22.0.2 with PID 29760 (D:\javasixsix\team-project-25spring-14_\target\classes started by 86132 in D:\javasixsix\team-project-25spring-14_)
+2025-05-11 00:38:04 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-05-11 00:38:04 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-05-11 00:38:04 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-11 00:38:04 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-11 00:38:05 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-11 00:38:05 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23 ms. Found 0 JDBC repository interfaces.
+2025-05-11 00:38:06 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-11 00:38:06 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-11 00:38:06 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-11 00:38:06 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-11 00:38:06 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1515 ms
+2025-05-11 00:38:07 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\javasixsix\team-project-25spring-14_\uploads
+2025-05-11 00:38:07 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-11 00:38:07 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6656f206
+2025-05-11 00:38:07 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-11 00:38:07 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-05-11 00:38:07 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-11 00:38:07 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 3.775 seconds (process running for 4.301)
+2025-05-11 00:38:53 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11 00:38:53 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-11 00:38:53 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-05-11 00:39:09 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:39:09 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkzODMzNH0.IJhiLWTht0FRT1B-sTiopQCCBTSLQUNw6bgmlnP4On4
+2025-05-11 00:39:16 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:39:16 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkzODMzNH0.IJhiLWTht0FRT1B-sTiopQCCBTSLQUNw6bgmlnP4On4
+2025-05-11 00:39:51 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/community/comments
+2025-05-11 00:39:51 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzQzMTk1fQ.5ZHf3M6_GfyrHPqQbd_kmlmSP3wdVsuTrdGukOI-sqQ
+2025-05-11 00:39:56 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/community/comments
+2025-05-11 00:39:56 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkzODMzNH0.IJhiLWTht0FRT1B-sTiopQCCBTSLQUNw6bgmlnP4On4
+2025-05-11 00:40:04 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 00:40:04 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0NjkzODMzNH0.IJhiLWTht0FRT1B-sTiopQCCBTSLQUNw6bgmlnP4On4
+2025-05-11 00:42:08 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11 00:42:08 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-11 00:42:08 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-11 00:42:08 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-11 10:18:22 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 22.0.2 with PID 44220 (D:\javasixsix\team-project-25spring-14_\target\classes started by 86132 in D:\javasixsix\team-project-25spring-14_)
+2025-05-11 10:18:22 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-05-11 10:18:22 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-05-11 10:18:22 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-11 10:18:22 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-11 10:18:23 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-11 10:18:23 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 0 JDBC repository interfaces.
+2025-05-11 10:18:24 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-11 10:18:24 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-11 10:18:24 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-11 10:18:24 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-11 10:18:24 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2043 ms
+2025-05-11 10:18:25 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\javasixsix\team-project-25spring-14_\uploads
+2025-05-11 10:18:26 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-11 10:18:26 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@81fd004
+2025-05-11 10:18:26 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-11 10:18:26 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-05-11 10:18:26 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-11 10:18:26 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 5.002 seconds (process running for 5.7)
+2025-05-11 10:18:38 [http-nio-8080-exec-3] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11 10:18:38 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-11 10:18:38 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-05-11 10:19:56 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 10:19:56 [http-nio-8080-exec-10] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzQzMTk1fQ.5ZHf3M6_GfyrHPqQbd_kmlmSP3wdVsuTrdGukOI-sqQ
+2025-05-11 10:20:27 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 10:20:27 [http-nio-8080-exec-1] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0Njk3MzE3MX0.uTydWrNHQ6z92gzd-ralBjBsPU3Rne8Jfk2CRsbyrTo
+2025-05-11 10:20:39 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/community/comments
+2025-05-11 10:20:39 [http-nio-8080-exec-4] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzQzMTk1fQ.5ZHf3M6_GfyrHPqQbd_kmlmSP3wdVsuTrdGukOI-sqQ
+2025-05-11 10:20:51 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/community/comments
+2025-05-11 10:20:51 [http-nio-8080-exec-5] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0Njk3MzE3MX0.uTydWrNHQ6z92gzd-ralBjBsPU3Rne8Jfk2CRsbyrTo
+2025-05-11 10:20:59 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 10:20:59 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0Njk3MzE3MX0.uTydWrNHQ6z92gzd-ralBjBsPU3Rne8Jfk2CRsbyrTo
+2025-05-11 10:24:48 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11 10:24:48 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-11 10:24:48 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-11 10:24:48 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-11 10:25:12 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 22.0.2 with PID 26216 (D:\javasixsix\team-project-25spring-14_\target\classes started by 86132 in D:\javasixsix\team-project-25spring-14_)
+2025-05-11 10:25:12 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-05-11 10:25:12 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-05-11 10:25:12 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-11 10:25:12 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-11 10:25:13 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-11 10:25:13 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22 ms. Found 0 JDBC repository interfaces.
+2025-05-11 10:25:14 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-11 10:25:14 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-11 10:25:14 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-11 10:25:14 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-11 10:25:14 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1694 ms
+2025-05-11 10:25:15 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\javasixsix\team-project-25spring-14_\uploads
+2025-05-11 10:25:15 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-11 10:25:15 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@9151db5
+2025-05-11 10:25:15 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-11 10:25:15 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-05-11 10:25:16 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-11 10:25:16 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 4.288 seconds (process running for 4.837)
+2025-05-11 10:25:24 [http-nio-8080-exec-4] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11 10:25:24 [http-nio-8080-exec-4] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-11 10:25:24 [http-nio-8080-exec-4] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-05-11 10:29:39 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/community/comments
+2025-05-11 10:29:39 [http-nio-8080-exec-8] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJuYW95YTEifSwiZXhwIjoxNzQ2NzQzMTk1fQ.5ZHf3M6_GfyrHPqQbd_kmlmSP3wdVsuTrdGukOI-sqQ
+2025-05-11 10:29:49 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: POST http://localhost:8080/community/comments
+2025-05-11 10:29:49 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0Njk3Mzc2MX0.F9viDECO1K8bOQIDdt8NmkDwnHU19-C6tdGVxw0nKFw
+2025-05-11 10:29:56 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 10:29:56 [http-nio-8080-exec-9] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0Njk3MzE3MX0.uTydWrNHQ6z92gzd-ralBjBsPU3Rne8Jfk2CRsbyrTo
+2025-05-11 10:30:07 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 10:30:07 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0Njk3Mzc2MX0.F9viDECO1K8bOQIDdt8NmkDwnHU19-C6tdGVxw0nKFw
+2025-05-11 10:32:22 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11 10:32:22 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-11 10:32:22 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-11 10:32:22 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-11 10:32:48 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 22.0.2 with PID 44264 (D:\javasixsix\team-project-25spring-14_\target\classes started by 86132 in D:\javasixsix\team-project-25spring-14_)
+2025-05-11 10:32:48 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-05-11 10:32:48 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-05-11 10:32:48 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-11 10:32:48 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-11 10:32:50 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-11 10:32:50 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 35 ms. Found 0 JDBC repository interfaces.
+2025-05-11 10:32:51 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-11 10:32:51 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-11 10:32:51 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-11 10:32:51 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-11 10:32:51 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3328 ms
+2025-05-11 10:32:52 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\javasixsix\team-project-25spring-14_\uploads
+2025-05-11 10:32:52 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-11 10:32:53 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4db8b852
+2025-05-11 10:32:53 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-11 10:32:53 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-05-11 10:32:53 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-11 10:32:53 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 5.964 seconds (process running for 6.752)
+2025-05-11 10:33:13 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11 10:33:13 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-11 10:33:13 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-05-11 10:33:34 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 10:33:34 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0Njk3Mzk5M30.cjA87GIYEj0Tg1olNFtfl3ZoFQWQrnVOomfjzubISQc
+2025-05-11 10:34:15 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11 10:34:15 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-11 10:34:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-11 10:34:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-11 10:52:58 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 22.0.2 with PID 15044 (D:\javasixsix\team-project-25spring-14_\target\classes started by 86132 in D:\javasixsix\team-project-25spring-14_)
+2025-05-11 10:52:58 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-05-11 10:52:58 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-05-11 10:52:58 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-11 10:52:58 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-11 10:52:59 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-11 10:52:59 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 27 ms. Found 0 JDBC repository interfaces.
+2025-05-11 10:53:00 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-11 10:53:00 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-11 10:53:00 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-11 10:53:00 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-11 10:53:00 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2011 ms
+2025-05-11 10:53:01 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\javasixsix\team-project-25spring-14_\uploads
+2025-05-11 10:53:02 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-11 10:53:02 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@65da4ec7
+2025-05-11 10:53:02 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-11 10:53:02 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-05-11 10:53:02 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-11 10:53:02 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 4.96 seconds (process running for 5.512)
+2025-05-11 10:53:07 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11 10:53:07 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-11 10:53:07 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-05-11 10:53:25 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 10:53:25 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0Njk3NTE4N30.Q4L2CMTkP70kRuz8WotZvtR23A2BOTa0lnt8WpNbzFQ
+2025-05-11 10:53:25 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.mybatis.spring.MyBatisSystemException]
+2025-05-11 10:57:34 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 10:57:34 [http-nio-8080-exec-6] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0Njk3NTE4N30.Q4L2CMTkP70kRuz8WotZvtR23A2BOTa0lnt8WpNbzFQ
+2025-05-11 10:57:34 [http-nio-8080-exec-6] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.mybatis.spring.MyBatisSystemException]
+2025-05-11 11:00:43 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11 11:00:43 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-11 11:00:43 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-11 11:00:43 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-11 11:00:49 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 22.0.2 with PID 31720 (D:\javasixsix\team-project-25spring-14_\target\classes started by 86132 in D:\javasixsix\team-project-25spring-14_)
+2025-05-11 11:00:49 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-05-11 11:00:49 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-05-11 11:00:49 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-11 11:00:49 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-11 11:00:50 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-11 11:00:50 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 28 ms. Found 0 JDBC repository interfaces.
+2025-05-11 11:00:50 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-11 11:00:50 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-11 11:00:50 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-11 11:00:50 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-11 11:00:50 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1624 ms
+2025-05-11 11:00:52 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\javasixsix\team-project-25spring-14_\uploads
+2025-05-11 11:00:52 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-11 11:00:52 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@31638d60
+2025-05-11 11:00:52 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-11 11:00:52 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-05-11 11:00:52 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-11 11:00:52 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 4.095 seconds (process running for 4.56)
+2025-05-11 11:01:01 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11 11:01:01 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-11 11:01:01 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-05-11 11:01:29 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 11:01:29 [http-nio-8080-exec-3] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0Njk3NTY2Mn0.fVALPh7xeSuNp50WeF979hPFtK4InFXe9mMGbG_bc9g
+2025-05-11 11:01:29 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.mybatis.spring.MyBatisSystemException]
+2025-05-11 11:02:04 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11 11:02:04 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-11 11:02:04 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-11 11:02:04 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-11 11:02:11 [restartedMain] INFO  com.example.album.AlbumApplication - Starting AlbumApplication using Java 22.0.2 with PID 11780 (D:\javasixsix\team-project-25spring-14_\target\classes started by 86132 in D:\javasixsix\team-project-25spring-14_)
+2025-05-11 11:02:11 [restartedMain] DEBUG com.example.album.AlbumApplication - Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-05-11 11:02:11 [restartedMain] INFO  com.example.album.AlbumApplication - No active profile set, falling back to 1 default profile: "default"
+2025-05-11 11:02:11 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-11 11:02:11 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-11 11:02:12 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-11 11:02:12 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 26 ms. Found 0 JDBC repository interfaces.
+2025-05-11 11:02:12 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-11 11:02:12 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-11 11:02:12 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-11 11:02:12 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-11 11:02:12 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1625 ms
+2025-05-11 11:02:13 [restartedMain] INFO  com.example.album.config.WebConfig - 配置静态资源路径: /uploads/** -> D:\javasixsix\team-project-25spring-14_\uploads
+2025-05-11 11:02:13 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-11 11:02:14 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1d27311c
+2025-05-11 11:02:14 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-11 11:02:14 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-05-11 11:02:14 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-11 11:02:14 [restartedMain] INFO  com.example.album.AlbumApplication - Started AlbumApplication in 4.084 seconds (process running for 4.608)
+2025-05-11 11:02:24 [http-nio-8080-exec-3] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11 11:02:24 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-11 11:02:24 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-05-11 11:03:48 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 收到请求: GET http://localhost:8080/community/comments/post/1
+2025-05-11 11:03:48 [http-nio-8080-exec-7] INFO  c.e.a.interceptors.LoginInterceptor - 📌 请求头: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsicm9sZSI6InVzZXIiLCJpZCI6MSwidXNlcm5hbWUiOiJjaGVueml5dWFuIn0sImV4cCI6MTc0Njk3NTc0NH0.Z5YdqjgWqep0w4jhWPGGBjnP3QFYrF7IpfWcUAdP1Yo
+2025-05-11 11:05:53 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11 11:05:53 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-11 11:05:53 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-11 11:05:53 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

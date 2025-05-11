@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,9 +22,10 @@ public class CommentService {
     @Transactional
     public Comment addComment(int postId,int userId,String content) {
         Comment comment = new Comment();
-        comment.setPost_id(postId);
-        comment.setUser_id(userId);
+        comment.setPostId(postId);
+        comment.setUserId(userId);
         comment.setContent(content);
+        comment.setCreated_at(LocalDateTime.now());
         commentMapper.insertComment(comment);
         return comment;
     }

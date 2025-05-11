@@ -224,6 +224,7 @@ public class AlbumController {
         }
     }
 
+    
     @GetMapping("/user/{userId}")
     public Result<Map<String, Object>> getUserAlbums(
             @RequestParam(value = "currentUserId", required = false) Integer currentUserId) {

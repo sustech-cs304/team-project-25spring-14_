@@ -116,7 +116,7 @@ def add_captions_app():
 def ai_classify_image_app():
     img_path = request.args.get('img_path')
     if not img_path:
-        return jsonify({'error': 'Image_path not provided'}), 400
+        return 'ERROR :Image_path not provided'
     # if not os.path.exists(img_path):
     #     return 'ERROR :Image_path dose not exists'
     try:

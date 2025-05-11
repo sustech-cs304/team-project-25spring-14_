@@ -115,12 +115,18 @@ def add_captions_app():
 @app.route('/ai_classify_image')
 def ai_classify_image_app():
     img_path = request.args.get('img_path')
+    print(img_path)
     if not img_path:
-        return jsonify({'error': 'Image_path not provided'}), 400
-    # if not os.path.exists(img_path):
-    #     return 'ERROR :Image_path dose not exists'
+        print("debug3")
+        return 'ERROR :Image_path not provided'
+    if not os.path.exists(img_path):
+        print
+        return 'ERROR :Image_path dose not exists'
     try:
+        print("debug1")
         result = ai_classify_image(img_path)
+        print("debug2")
+        print(result)
         return jsonify({'detect_class' : result})
     except Exception as e:
         print(e)

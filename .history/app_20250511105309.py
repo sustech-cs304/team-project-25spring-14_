@@ -117,10 +117,11 @@ def ai_classify_image_app():
     img_path = request.args.get('img_path')
     if not img_path:
         return jsonify({'error': 'Image_path not provided'}), 400
-    # if not os.path.exists(img_path):
-    #     return 'ERROR :Image_path dose not exists'
+    if not os.path.exists(img_path):
+        return jsonify({'error': 'Image_path does not exist'}), 400
     try:
         result = ai_classify_image(img_path)
+        
         return jsonify({'detect_class' : result})
     except Exception as e:
         print(e)

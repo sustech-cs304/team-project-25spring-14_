@@ -32,5 +32,5 @@ build/
 .vscode/
 logs/
 uploads/
-logs/
+logs
 src/main/resources/application.properties

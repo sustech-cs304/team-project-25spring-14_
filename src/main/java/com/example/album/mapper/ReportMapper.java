@@ -42,4 +42,5 @@ public interface ReportMapper extends BaseMapper<Report> {
 
     @Update("UPDATE tb_report SET is_corrected = true WHERE resource_id = #{resourceId}")
     int updateIsCorrected(Integer resourceId);
+
 }

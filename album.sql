@@ -141,10 +141,11 @@ CREATE TABLE tb_report
     reportee_id   INTEGER       NOT NULL,       -- 被举报的用户的ID
     reason        VARCHAR(255)  NOT NULL,
     status        VARCHAR(20) DEFAULT 'pending', -- pending, reviewed, resolved
-    reviewed_by   INTEGER,
+    reviewed_by   VARCHAR(40),
+    is_corrected  BOOLEAN DEFAULT FALSE,
     created_at    TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (reporter_id) REFERENCES tb_user (user_id) ON DELETE CASCADE,
-    FOREIGN KEY (reviewed_by) REFERENCES tb_user (user_id) ON DELETE SET NULL
+    FOREIGN KEY (reviewed_by) REFERENCES tb_user (username) ON DELETE SET NULL
 );
 
 CREATE INDEX idx_report_status ON tb_report (status);

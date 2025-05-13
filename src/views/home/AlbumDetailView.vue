@@ -106,6 +106,9 @@
             >删除相册</el-button
           >
         </div>
+        <div v-if="!isSelf" class="album-actions">
+          <el-button type="warning" @click="reportAlbum">举报相册</el-button>
+        </div>
       </div>
       <div class="photo-grid">
         <div
@@ -149,7 +152,32 @@
     :photo="selectedPhoto"
     @edit="editPhoto"
     @delete="deletePhoto"
+    @report="handlePhotoReport"
   />
+  <el-dialog v-model="photoReportDialogVisible" title="举报照片" width="400px">
+    <el-input
+      type="textarea"
+      v-model="photoReportReason"
+      placeholder="请输入举报理由"
+      rows="4"
+    />
+    <template #footer>
+      <el-button @click="photoReportDialogVisible = false">取消</el-button>
+      <el-button type="danger" @click="submitPhotoReport">提交举报</el-button>
+    </template>
+  </el-dialog>
+  <el-dialog v-model="reportDialogVisible" title="举报相册" width="400px">
+    <el-input
+      type="textarea"
+      v-model="reportReason"
+      placeholder="请输入举报理由"
+      rows="4"
+    />
+    <template #footer>
+      <el-button @click="reportDialogVisible = false">取消</el-button>
+      <el-button type="danger" @click="submitAlbumReport">提交举报</el-button>
+    </template>
+  </el-dialog>
 </template>
 
 <script>
@@ -199,6 +227,10 @@ export default {
       deleteConfirmVisible: false,
       viewerVisible: false,
       selectedPhoto: null,
+      reportDialogVisible: false,
+      reportReason: "",
+      photoReportDialogVisible: false,
+      photoReportReason: "",
     };
   },
   async created() {
@@ -264,6 +296,7 @@ export default {
         console.error("上传失败：", error);
         this.$message.error("上传照片失败");
       }
+      window.location.reload();
     },
     updateAlbumCover() {
       this.$refs.coverInput.click();
@@ -390,6 +423,25 @@ export default {
     editPhoto(photo) {
       this.$message.info(`准备编辑照片 ${photo.photoId}`);
     },
+    reportAlbum() {
+      this.reportDialogVisible = true;
+    },
+    async submitAlbumReport() {
+      try {
+        await apiClient.post("/reports/user", {
+          resourceId: this.album.albumId,
+          reason: this.reportReason,
+          resourceType: "album",
+          reporteeId: this.album.userId,
+        });
+        this.$message.success("举报已提交");
+        this.reportDialogVisible = false;
+        this.reportReason = "";
+      } catch (error) {
+        console.error("举报失败：", error);
+        this.$message.error("举报失败，请稍后再试");
+      }
+    },
     async deletePhoto(photo) {
       try {
         await apiClient.delete(`/photos/${photo.photoId}`);
@@ -402,6 +454,26 @@ export default {
       } catch (error) {
         console.error("删除失败：", error);
         this.$message.error("删除照片失败");
+      }
+    },
+    handlePhotoReport(photo) {
+      this.selectedPhoto = photo;
+      this.photoReportDialogVisible = true;
+    },
+    async submitPhotoReport() {
+      try {
+        await apiClient.post("/reports/user", {
+          resourceId: this.selectedPhoto.photoId,
+          reason: this.photoReportReason,
+          resourceType: "photo",
+          reporteeId: this.selectedPhoto.userId,
+        });
+        this.$message.success("举报已提交");
+        this.photoReportDialogVisible = false;
+        this.photoReportReason = "";
+      } catch (error) {
+        console.error("举报失败：", error);
+        this.$message.error("举报失败，请稍后再试");
       }
     },
   },

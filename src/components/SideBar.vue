@@ -7,7 +7,7 @@
     </div>
     <ul class="nav-list">
       <li
-        v-for="item in navItems"
+        v-for="item in filteredNavItems"
         :key="item.name"
         class="nav-item"
         :class="{ active: activeNav === item.name }"
@@ -25,6 +25,15 @@
     </div>
     <UserInfoCard ref="userCard" />
   </nav>
+  <el-dialog v-model="showAppealDialog" title="账户申诉" width="400px">
+    <p>
+      您的账户已被封禁，请完成整改后点击下方按钮提交申诉请求，管理员将进行审核。
+    </p>
+    <template #footer>
+      <el-button @click="showAppealDialog = false">取消</el-button>
+      <el-button type="primary" @click="submitAppeal">提交申诉</el-button>
+    </template>
+  </el-dialog>
 </template>
 
 <script>
@@ -76,19 +85,44 @@ export default {
           path: "/admin",
         },
       ],
-      chartData: [
-        { name: "人物", color: "#7B61FF" },
-        { name: "风景", color: "#4B70E2" },
-        { name: "美食", color: "#FF7E5C" },
-        { name: "其他", color: "#E2E8F0" },
-      ],
+      showAppealDialog: false,
     };
+  },
+  computed: {
+    filteredNavItems() {
+      return this.navItems
+        .filter((item) => {
+          if (item.name === "admin") {
+            return this.userInfo.rolename === "admin";
+          }
+          if (item.name === "share") {
+            return this.userInfo.status !== "disabled";
+          }
+          return true;
+        })
+        .concat(
+          this.userInfo.status === "disabled"
+            ? [
+                {
+                  name: "appeal",
+                  icon: "icon-shenqing",
+                  label: "申诉",
+                  path: "#appeal",
+                },
+              ]
+            : []
+        );
+    },
   },
   mounted() {
     this.fetchUserInfo();
   },
   methods: {
     navigateTo(path, name) {
+      if (path === "#appeal") {
+        this.showAppealDialog = true;
+        return;
+      }
       this.activeNav = name;
       this.$router.push(path);
       localStorage.setItem("activeNav", name);
@@ -128,9 +162,22 @@ export default {
           });
         console.log("用户信息获取成功，ID:", this.userInfo.userId);
         localStorage.setItem("userId", this.userInfo.userId);
+        if (this.userInfo.status === "disabled") {
+          alert("您的账号已被禁用，请整改后向管理员申诉");
+        }
       } catch (error) {
         console.error("用户信息获取失败:", error);
         this.$router.push("/home/dicover");
+      }
+    },
+    async submitAppeal() {
+      try {
+        await apiClient.put("/reports/user/mend");
+        this.$message.success("申诉请求已提交");
+        this.showAppealDialog = false;
+      } catch (error) {
+        console.error("申诉失败：", error);
+        this.$message.error("申诉失败，请稍后再试");
       }
     },
   },

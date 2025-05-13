@@ -37,8 +37,6 @@ public class PostServiceImpl implements PostService {
     private final PostMapper postMapper;
     private final PhotoMapper photoMapper;
     private final UserMapper userMapper;
-//    private final LikeService likeService;
-//    private final CommentService commentService;
     private final StorageService storageService;
 
 
@@ -62,6 +60,7 @@ public class PostServiceImpl implements PostService {
         post.setUserId(userId);
         post.setCaption(createDTO.getCaption());
         post.setPrivacy(createDTO.getPrivacy());
+        post.setLikeCount(0);
         post.setCreatedAt(LocalDateTime.now());
         post.setUpdatedAt(LocalDateTime.now());
 
@@ -89,6 +88,7 @@ public class PostServiceImpl implements PostService {
             post.setUserId(userId);
             post.setCaption(createDTO.getCaption());
             post.setPrivacy(createDTO.getPrivacy());
+            post.setLikeCount(0);
             post.setCreatedAt(LocalDateTime.now());
             post.setUpdatedAt(LocalDateTime.now());
 
@@ -121,7 +121,6 @@ public class PostServiceImpl implements PostService {
                 photo.setIsFavorite(false);
                 photo.setLocation(storageResult.getLocation());
                 photo.setTagName(storageResult.getTag());
-
                 photoMapper.insert(photo);
                 log.info("为社区帖子创建了照片记录，ID: {}", photo.getPhotoId());
             }
@@ -298,7 +297,7 @@ public class PostServiceImpl implements PostService {
 
             photoVO.setFileUrl(photoUrl);
             photoVO.setThumbnailUrl(thumbnailUrl);
-
+            postVO.setLikeCount(post.getLikeCount());
             photoVOs.add(photoVO);
         }
 
@@ -310,17 +309,16 @@ public class PostServiceImpl implements PostService {
             postVO.setUserAvatar(user.getAvatarUrl());
         }
 
-        // 获取点赞和评论数
-//        postVO.setLikeCount(likeService.getLikeCountByPostId(post.getPostId()));
-//        postVO.setCommentCount(commentService.getCommentCountByPostId(post.getPostId()));
-//
-//        // 检查当前用户是否点赞
-//        if (currentUserId != null) {
-//            postVO.setIsLiked(likeService.isPostLikedByUser(post.getPostId(), currentUserId));
-//        } else {
-//            postVO.setIsLiked(false);
-//        }
-
         return postVO;
+    }
+
+    @Override
+    public int getLikeCount(Integer postId) {
+        Post post = postMapper.selectById(postId);
+        if (post == null) {
+            throw new RuntimeException("帖子不存在");
+        }
+
+        return post.getLikeCount();
     }
 }

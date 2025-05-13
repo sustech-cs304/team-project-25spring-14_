@@ -44,5 +44,6 @@ public interface PostMapper extends BaseMapper<Post> {
             "WHERE f.follower_id = #{userId} ORDER BY p.created_at DESC")
     List<Post> selectFollowingPosts(@Param("userId") Integer userId);
 
-
+    @Select("SELECT like_count FROM tb_post WHERE post_id = #{postId}")
+    int getLikeCountByPostId(@Param("postId") Integer postId);
 }

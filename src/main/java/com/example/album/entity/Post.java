@@ -21,6 +21,8 @@ public class Post {
 
     private Integer userId;
 
+    private Integer likeCount = 0;
+
     private String caption;
 
     private PrivacyTypeEnum privacy;

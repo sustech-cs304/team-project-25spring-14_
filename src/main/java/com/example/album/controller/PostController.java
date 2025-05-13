@@ -214,4 +214,19 @@ public class PostController {
             return Result.error(e.getMessage());
         }
     }
+
+    @GetMapping("/{postId}/like")
+    public Result<Map<String, Object>> getLikeCount(@PathVariable Integer postId) {
+        try {
+            int likeCount = postService.getLikeCount(postId);
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("likeCount", likeCount);
+
+            return Result.success(response);
+        } catch (Exception e) {
+            log.error("获取点赞数失败", e);
+            return Result.error(e.getMessage());
+        }
+    }
 }

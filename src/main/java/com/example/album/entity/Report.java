@@ -25,7 +25,7 @@ public class Report {
 
     private String status;
 
-    private Integer reviewedBy;
+    private String reviewedBy;
 
     private LocalDateTime createdAt;
 }

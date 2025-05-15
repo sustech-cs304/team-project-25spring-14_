@@ -44,7 +44,7 @@ pipeline {
         stage('Running Test Scenario') {
             steps {
                 withCredentials([string(credentialsId: 'apifox-access-token', variable: 'APIFOX_ACCESS_TOKEN')]) {
-                    sh 'apifox run --access-token $APIFOX_ACCESS_TOKEN -t 6481280 -e 29829338 -n 1 -r html,cli'
+                    sh 'apifox run --access-token $APIFOX_ACCESS_TOKEN -t 6481280 -e 29829339 -n 1 -r html,cli'
                     sh 'apifox run --access-token $APIFOX_ACCESS_TOKEN -t 6518316 -e 29829338 -n 1 -r html,cli'
                 }
             }

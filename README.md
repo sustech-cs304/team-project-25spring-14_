@@ -1,8 +1,17 @@
-# login
+# How to use
 
 ## Project setup
+
+### Dependencies
 ```
+npm == 11.2.0
+node.js == v22.14.0
+```
+
+```
+cd path/to/front-end
 npm install
+npm install -g serve
 ```
 
 ### Compiles and hot-reloads for development
@@ -13,21 +22,12 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Run your end-to-end tests
-```
-npm run test:e2e
+serve -s dist
 ```
 
 ### Lints and fixes files
 ```
-npm run lint
+npm run lint -fix
 ```
 
 ### Customize configuration

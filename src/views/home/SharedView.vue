@@ -11,7 +11,9 @@
         </div>
 
         <div class="nav-right">
-          <button class="refresh-btn" @click="initializePage()">刷新</button>
+          <button class="refresh-btn" @click="initializePage()">
+            <i class="album-icons icon-shuaxin"></i>
+          </button>
           <button class="upload-btn" @click="showPost = true">
             + 发布内容
           </button>
@@ -51,8 +53,19 @@
                 @click="showUserCard($event, post.userId)"
               />
               <span class="author-name">{{ post.username }}</span>
-              <button class="follow-btn" @click="openChatModal(post.userId)">
-                私信
+              <button
+                class="follow-btn"
+                @click="openChatModal(post.userId)"
+                v-if="post.userId != currentUserId"
+              >
+                <i class="album-icons icon-duihua"></i>
+              </button>
+              <button
+                v-if="post.userId == currentUserId"
+                class="delete-btn"
+                @click="deletePost(post.postId, index)"
+              >
+                <i class="album-icons icon-huishouzhan"></i>
               </button>
             </div>
 
@@ -110,13 +123,6 @@
               <button class="action-btn" @click="openCommentModal(post.postId)">
                 <i class="album-icons icon-pinglun"></i> {{ post.commentCount }}
               </button>
-              <button
-                class="action-btn"
-                @click="toggleCollect(post)"
-                :class="{ collected: post.isCollected }"
-              >
-                <i class="album-icons icon-shoucang"></i> {{ post.collects }}
-              </button>
             </div>
 
             <div class="post-content">
@@ -160,10 +166,12 @@ export default {
       selectedRecipientId: null,
       selectedpostId: null,
       currentUserId: localStorage.getItem("userId") || "",
+      pollInterval: null,
     };
   },
   mounted() {
     this.initializePage();
+    this.startPolling();
   },
   methods: {
     async fetchUserInfo() {
@@ -183,19 +191,30 @@ export default {
         this.$router.push("/home/dicover");
       }
     },
+    startPolling() {
+      this.pollInterval = setInterval(async () => {
+        await this.initializePage();
+      }, 5000);
+    },
     async fetchPosts() {
       try {
-        await apiClient.get("/posts/public").then((response) => {
+        await apiClient.get("/posts/public").then(async (response) => {
           this.count = response.data.data.count;
-          this.posts = response.data.data.posts.map((post) => ({
-            ...post,
-            currentPhotoIndex: 0, // 添加当前图片索引
-            likeCount: post.likeCount || 0,
-            commentCount: post.commentCount || 0,
-            collects: post.collects || 0,
-            isLiked: post.isLiked || false,
-            isCollected: post.isCollected || false,
-          }));
+          this.posts = await Promise.all(
+            response.data.data.posts.map(async (post) => {
+              // 检查当前用户是否点赞过该帖子
+              const isLiked = await this.checkLikeStatus(post.postId);
+              return {
+                ...post,
+                currentPhotoIndex: 0,
+                likeCount: post.likeCount || 0,
+                commentCount: post.commentCount || 0,
+                collects: post.collects || 0,
+                isLiked: isLiked,
+                isCollected: post.isCollected || false,
+              };
+            })
+          );
         });
       } catch (error) {
         console.error("获取帖子失败:", error);
@@ -219,13 +238,43 @@ export default {
       await this.fetchPosts();
     },
 
-    toggleLike(post) {
-      post.isLiked = !post.isLiked;
-      post.likes += post.isLiked ? 1 : -1;
+    async deletePost(postId, index) {
+      if (!confirm("确定要删除这条帖子吗？")) return;
+      try {
+        const response = await apiClient.delete(`/posts/${postId}`);
+        if (response.data.code === 0) {
+          // 从posts数组中移除已删除的帖子
+          this.initializePage();
+          this.$message.success("删除成功");
+        } else {
+          this.$message.error(response.data.message || "删除失败");
+        }
+      } catch (error) {
+        console.error("删除帖子失败:", error);
+        this.$message.error("删除失败，请重试");
+      }
     },
-    toggleCollect(post) {
-      post.isCollected = !post.isCollected;
-      post.collects += post.isCollected ? 1 : -1;
+
+    async toggleLike(post) {
+      try {
+        const response = await apiClient.post(`/likes/like/${post.postId}`);
+        if (response.data.code == 0) {
+          this.initializePage();
+        }
+      } catch (error) {
+        console.error("点赞操作失败:", error);
+        alert(`操作失败: ${error.message}`);
+      }
+    },
+    async checkLikeStatus(postId) {
+      try {
+        if (!this.currentUserId) return false; // 用户未登录则直接返回false
+        const response = await apiClient.get(`/likes/isLiked/${postId}`);
+        return response.data.code == 0 && response.data.data;
+      } catch (error) {
+        console.error("检查点赞状态失败:", error);
+        return false; // 出错时默认返回未点赞
+      }
     },
     openPostDetail(post) {
       // 打开帖子详情逻辑
@@ -433,8 +482,7 @@ export default {
 }
 
 .refresh-btn {
-  background: #91fd03;
-  color: white;
+  background: white;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   border: none;
@@ -506,6 +554,18 @@ export default {
   font-size: 14px;
   color: #fff;
   background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.delete-btn {
+  margin-left: auto;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #007bff;
+  background-color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;

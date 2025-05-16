@@ -33,6 +33,13 @@
             <div class="user-info">
               <span class="username">{{ comment.userId }}</span>
               <span class="time">{{ formatTime(comment.createTime) }}</span>
+              <button
+                v-if="comment.userId == currentUserId"
+                class="delete-btn"
+                @click="deleteComment(comment.commentId)"
+              >
+                <i class="album-icons icon-huishouzhan"></i>
+              </button>
             </div>
             <div class="content">{{ comment.content }}</div>
           </div>
@@ -130,7 +137,10 @@ export default {
         this.comments = response.data
           .map((comment) => ({
             ...comment,
-            createTime: new Date(comment.create_time),
+            // 确保正确解析日期字段（注意字段名可能是 created_at 而不是 createTime）
+            createTime: comment.created_at
+              ? new Date(comment.created_at)
+              : new Date(),
           }))
           .reverse();
       } catch (error) {
@@ -156,12 +166,43 @@ export default {
         console.error("提交评论失败", error);
       }
     },
-
-    // 其他方法
     formatTime(date) {
-      return date.toLocaleString();
-    },
+      if (!(date instanceof Date) || isNaN(date.getTime())) {
+        return "未知时间";
+      }
+      const now = new Date();
+      const diffInSeconds = Math.floor((now - date) / 1000);
 
+      if (diffInSeconds < 60) {
+        return "刚刚";
+      } else if (diffInSeconds < 3600) {
+        return `${Math.floor(diffInSeconds / 60)}分钟前`;
+      } else if (diffInSeconds < 86400) {
+        return `${Math.floor(diffInSeconds / 3600)}小时前`;
+      } else if (diffInSeconds < 2592000) {
+        return `${Math.floor(diffInSeconds / 86400)}天前`;
+      } else {
+        return date.toLocaleDateString("zh-CN", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      }
+    },
+    async deleteComment(commentId) {
+      if (!confirm("确定要删除这条评论吗？")) return;
+      try {
+        const response = await apiClient.delete(
+          `/community/comments/${commentId}`
+        );
+        this.loadComments();
+      } catch (error) {
+        console.error("删除评论失败:", error);
+        this.$message.error("删除失败，请重试");
+      }
+    },
     scrollToBottom() {
       const container = this.$refs.commentList;
       container.scrollTop = container.scrollHeight;
@@ -285,17 +326,23 @@ textarea:focus {
 }
 
 .user-info {
+  display: flex;
+  align-items: center;
   margin-bottom: 4px;
+  position: relative; /* 添加定位上下文 */
+  padding-right: 40px; /* 为删除按钮预留空间 */
 }
 
 .username {
   color: #2d3436;
   font-weight: 600;
+  margin-right: 8px; /* 用户名和时间的间距 */
 }
 
 .time {
   color: #adb5bd;
   font-size: 12px;
+  flex-grow: 1; /* 让时间占据剩余空间 */
 }
 
 .content {
@@ -335,5 +382,27 @@ textarea:focus {
 .reply-to {
   color: #4dabf7;
   font-weight: 500;
+}
+
+.delete-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 2px 6px;
+  font-size: 12px;
+  color: #4dabf7;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.delete-btn:hover {
+  color: #e84118; /* 悬停时加深红色 */
+}
+
+.delete-btn i {
+  font-size: 16px; /* 图标大小 */
 }
 </style>

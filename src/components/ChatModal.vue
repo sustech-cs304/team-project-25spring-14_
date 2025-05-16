@@ -96,7 +96,9 @@ export default {
     },
     scrollToBottom() {
       const container = this.$refs.messageList;
-      container.scrollTop = container.scrollHeight;
+      if (container && container.scrollHeight) {
+        container.scrollTop = container.scrollHeight;
+      }
     },
   },
 };

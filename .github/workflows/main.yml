@@ -1,0 +1,171 @@
+name: Smart Photo Album CI/CD
+
+on:
+  push:
+    branches: [ master, vue, python ]
+  pull_request:
+    branches: [ master, vue, python ]
+
+jobs:
+  backend-build:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Build with Maven
+        run: mvn -B clean package -DskipTests
+      
+      - name: Run tests
+        run: mvn test
+      
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: backend-jar
+          path: target/*.jar
+  
+  frontend-build:
+    if: github.ref == 'refs/heads/vue'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run linter
+        run: npm run lint --if-present
+      
+      - name: Build frontend
+        run: npm run build
+      
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontend-dist
+          path: dist/
+  
+  python-build:
+    if: github.ref == 'refs/heads/python'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      
+      - name: Run linter
+        run: |
+          # 如果有配置flake8或pylint，可以在这里运行
+          # pip install flake8
+          # flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+      
+      - name: Run tests
+        run: |
+          # 如果有Python测试，可以在这里运行
+          # pytest
+      
+      - name: Upload Python service
+        uses: actions/upload-artifact@v3
+        with:
+          name: python-service
+          path: |
+            *.py
+            **/*.py
+            requirements.txt
+  
+  docker-build:
+    needs: [backend-build, frontend-build, python-build]
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: master
+      
+      - name: Download backend artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: backend-jar
+          path: backend-jar
+      
+      - name: Checkout frontend code
+        uses: actions/checkout@v3
+        with:
+          ref: vue
+          path: frontend
+      
+      - name: Checkout python code
+        uses: actions/checkout@v3
+        with:
+          ref: python
+          path: python-service
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Build and push backend Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile.backend
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/photo-album-backend:latest
+      
+      - name: Build and push frontend Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./frontend
+          file: ./frontend/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/photo-album-frontend:latest
+      
+      - name: Build and push Python service Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./python-service
+          file: ./python-service/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/photo-album-python:latest
+  
+  apifox-test:
+    needs: [backend-build]
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Apifox Tests
+        uses: apifox/apifox-cli-action@main
+        with:
+          token: ${{ secrets.APIFOX_TOKEN }}
+          project-id: "a472ed7f-c497-42c9-977f-b67fde9e980d"
+          collection-id: "all"
+          environment-id: "dev"
+          timeout-seconds: 300

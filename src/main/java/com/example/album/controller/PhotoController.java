@@ -249,6 +249,11 @@ public class PhotoController {
                 hasUpdates = true;
             }
 
+            if (updateDTO.getLocation() != null) {
+                photo.setLocation(updateDTO.getLocation());
+                hasUpdates = true;
+            }
+
             if (hasUpdates) {
                 photo.setCreatedAt(LocalDateTime.now());
                 photoMapper.updateById(photo);
@@ -295,6 +300,38 @@ public class PhotoController {
 
     @GetMapping("/timeRange")
     public Result<Map<String, Object>> getPhotosByTimeRange(
+            @RequestParam("startTime") String startTime,
+            @RequestParam("endTime") String endTime) {
+        try {
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            int userId = 0;
+            if (claims != null) {
+                userId = ((Number) claims.get("id")).intValue();
+                log.info("从ThreadLocal获取的用户ID: {}", userId);
+            } else return null;
+
+            LocalDateTime start = LocalDateTime.parse(startTime);//.substring(0, startTime.length() - 1)
+            LocalDateTime end = LocalDateTime.parse(endTime);
+            List<Photo> photos = photoMapper.selectByTimeRange(userId, start, end);
+            List<PhotoVO> photoVOList = photos.stream()
+                    .map(this::convertToPhotoVO)
+                    .collect(Collectors.toList());
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("photos", photoVOList);
+            response.put("count", photoVOList.size());
+            response.put("startTime", startTime);
+            response.put("endTime", endTime);
+
+            return Result.success(response);
+        } catch (Exception e) {
+            log.error("按时间范围获取照片失败", e);
+            return Result.error("按时间范围获取照片失败: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/createTime")
+    public Result<Map<String, Object>> getPhotosByCreateTime(
             @RequestParam("startTime") String startTime,
             @RequestParam("endTime") String endTime) {
         try {

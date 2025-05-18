@@ -33,6 +33,11 @@ public interface PhotoMapper extends BaseMapper<Photo> {
                                   @Param("startTime") LocalDateTime startTime,
                                   @Param("endTime") LocalDateTime endTime);
 
+    @Select("SELECT * FROM tb_photo WHERE user_id = #{userId} AND captured_at BETWEEN #{startTime} AND #{endTime} ORDER BY created_at")
+    List<Photo> selectByCreateTime(@Param("userId") Integer userId,
+                                  @Param("startTime") LocalDateTime startTime,
+                                  @Param("endTime") LocalDateTime endTime);
+
     @Select("SELECT * FROM tb_photo WHERE user_id = #{userId} AND location LIKE CONCAT('%', #{locationPattern}, '%') ORDER BY created_at DESC")
     List<Photo> searchByLocationPattern(@Param("userId") Integer userId, @Param("locationPattern") String locationPattern);
 

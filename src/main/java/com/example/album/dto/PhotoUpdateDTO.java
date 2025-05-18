@@ -14,4 +14,6 @@ public class PhotoUpdateDTO {
     private String tag;
 
     private String fileName;
+
+    private String location;
 }

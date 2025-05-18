@@ -12,4 +12,6 @@ public class PhotoUpdateDTO {
     private Boolean isFavorite;
 
     private String tag;
+
+    private String fileName;
 }

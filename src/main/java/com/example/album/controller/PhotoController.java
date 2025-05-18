@@ -244,6 +244,11 @@ public class PhotoController {
                 hasUpdates = true;
             }
 
+            if (updateDTO.getFileName() != null) {
+                photo.setFileName(updateDTO.getFileName());
+                hasUpdates = true;
+            }
+
             if (hasUpdates) {
                 photo.setCreatedAt(LocalDateTime.now());
                 photoMapper.updateById(photo);

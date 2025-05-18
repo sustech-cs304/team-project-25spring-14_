@@ -41,10 +41,16 @@
 虽然我们的方法专注于功能完整性验证，但对复杂边界条件的覆盖有待增强。未来计划引入更多单元测试和模糊测试，提升对边界情况的测试覆盖。
 
 本地：
-https://github.com/sustech-cs304/team-project-25spring-14_/blob/master/sprint2/apifox.png
-https://github.com/sustech-cs304/team-project-25spring-14_/blob/master/sprint2/apiox.png
-https://github.com/sustech-cs304/team-project-25spring-14_/blob/master/sprint2/html-test1.png
+[team-project-25spring-14_/sprint2/apifox.png at master · sustech-cs304/team-project-25spring-14_](https://github.com/sustech-cs304/team-project-25spring-14_/blob/master/sprint2/apifox.png)
+[team-project-25spring-14_/sprint2/apiox.png at master · sustech-cs304/team-project-25spring-14_](https://github.com/sustech-cs304/team-project-25spring-14_/blob/master/sprint2/apiox.png)
+
+生成报告：
+[team-project-25spring-14_/sprint2/html-test1.png at master · sustech-cs304/team-project-25spring-14_](https://github.com/sustech-cs304/team-project-25spring-14_/blob/master/sprint2/html-test1.png)
+
 jenkins：
+[team-project-25spring-14_/sprint2/jenkins-apifox.png at master · sustech-cs304/team-project-25spring-14_](https://github.com/sustech-cs304/team-project-25spring-14_/blob/master/sprint2/jenkins-apifox.png)
+
+运行后也生成和上边一样的报告
 
 ## 4. 构建与部署 (Build & Deployment)
 
@@ -90,7 +96,9 @@ jenkins：
 - **数据库容器**：PostgreSQL容器，配置数据持久化与自动初始化脚本
 - **网络隔离**：通过Docker网络实现容器间安全通信
 
-链接：
+[team-project-25spring-14_/sprint2/docker_image.png at master · sustech-cs304/team-project-25spring-14_](https://github.com/sustech-cs304/team-project-25spring-14_/blob/master/sprint2/docker_image.png)
+
+[team-project-25spring-14_/sprint2/docker_running_iamge.png at master · sustech-cs304/team-project-25spring-14_](https://github.com/sustech-cs304/team-project-25spring-14_/blob/master/sprint2/docker_running_iamge.png)
 
 
 
@@ -111,4 +119,6 @@ Jenkins流水线实现了端到端的自动化构建与部署：
 
 通过这套完整的CI/CD流程，我们实现了一键式部署，显著提升了交付效率和系统可靠性。每次代码提交后，应用可在30分钟内完成从构建到部署的全流程，确保产品快速迭代与持续交付。
 
-链接
+[team-project-25spring-14_/sprint2/pipeline2.png at master · sustech-cs304/team-project-25spring-14_](https://github.com/sustech-cs304/team-project-25spring-14_/blob/master/sprint2/pipeline2.png)
+
+[team-project-25spring-14_/sprint2/jenkins_generate_docker_container.png at master · sustech-cs304/team-project-25spring-14_](https://github.com/sustech-cs304/team-project-25spring-14_/blob/master/sprint2/jenkins_generate_docker_container.png)

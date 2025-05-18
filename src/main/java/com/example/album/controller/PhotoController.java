@@ -94,6 +94,67 @@ public class PhotoController {
         }
     }
 
+    /**
+     * 获取指定用户的所有照片
+     */
+    @GetMapping("/user/{userId}")
+    public Result<Map<String, Object>> getPhotosByUser(@PathVariable int userId) {
+        try {
+            log.info("接收到获取用户照片请求，用户ID: {}", userId);
+
+            // 查询用户的所有照片
+            List<Photo> photos = photoMapper.selectByUserId(userId);
+
+            // 转换为VO列表
+            List<PhotoVO> photoVOList = photos.stream()
+                    .map(this::convertToPhotoVO)
+                    .collect(Collectors.toList());
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("photos", photoVOList);
+            response.put("count", photoVOList.size());
+
+            return Result.success(response);
+        } catch (Exception e) {
+            log.error("获取用户照片失败", e);
+            return Result.error("获取用户照片失败");
+        }
+    }
+
+    /**
+     * 获取当前登录用户的所有照片
+     */
+    @GetMapping("/my")
+    public Result<Map<String, Object>> getMyPhotos() {
+        try {
+            Map<String, Object> claims = ThreadLocalUtil.get();
+            int userId = 0;
+            if (claims != null) {
+                userId = ((Number) claims.get("id")).intValue();
+                log.info("获取当前用户的照片，用户ID: {}", userId);
+            } else {
+                return Result.error("未登录");
+            }
+
+            // 查询当前用户的所有照片
+            List<Photo> photos = photoMapper.selectByUserId(userId);
+
+            // 转换为VO列表
+            List<PhotoVO> photoVOList = photos.stream()
+                    .map(this::convertToPhotoVO)
+                    .collect(Collectors.toList());
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("photos", photoVOList);
+            response.put("count", photoVOList.size());
+
+            return Result.success(response);
+        } catch (Exception e) {
+            log.error("获取我的照片失败", e);
+            return Result.error("获取我的照片失败");
+        }
+    }
+
     @GetMapping("/{photoId}")
     public Result<Map<String, Object>> getPhotoDetail(@PathVariable int photoId) {
         try {

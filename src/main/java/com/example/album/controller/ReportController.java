@@ -72,8 +72,8 @@ public class ReportController {
     @PutMapping("/user/mend")
     public Result updateIsMended() {
         Map<String, Object> claims = ThreadLocalUtil.get();
-        Integer resourceId = (Integer) claims.get("id");
-        reportService.updateIsCorrected(resourceId);
+        Integer reporteeId = (Integer) claims.get("id");
+        reportService.updateIsCorrected(reporteeId);
         return Result.success();
     }
 }

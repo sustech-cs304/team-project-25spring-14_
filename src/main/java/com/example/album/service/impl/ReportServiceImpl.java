@@ -43,7 +43,7 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public void updateIsCorrected(Integer resourceId) {
-        reportMapper.updateIsCorrected(resourceId);
+    public void updateIsCorrected(Integer reprteeId) {
+        reportMapper.updateIsCorrected(reprteeId);
     }
 }

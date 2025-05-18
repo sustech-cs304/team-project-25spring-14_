@@ -16,5 +16,5 @@ public interface ReportService {
 
     void activeUser(Integer userId);
 
-    void updateIsCorrected(Integer resourceId);
+    void updateIsCorrected(Integer reporteeId);
 }

@@ -40,7 +40,7 @@ public interface ReportMapper extends BaseMapper<Report> {
     @Update("UPDATE tb_user SET status = 'active' WHERE user_id = #{userId}")
     int activeUser(Integer userId);
 
-    @Update("UPDATE tb_report SET is_corrected = true WHERE resource_id = #{resourceId}")
-    int updateIsCorrected(Integer resourceId);
+    @Update("UPDATE tb_report SET is_corrected = true WHERE reportee_id = #{reporteeId}")
+    int updateIsCorrected(Integer reporteeId);
 
 }

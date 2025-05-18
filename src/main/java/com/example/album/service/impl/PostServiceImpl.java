@@ -50,22 +50,34 @@ public class PostServiceImpl implements PostService {
     @Override
     @Transactional
     public PostVO createPost(PostCreateDTO createDTO, Integer userId) {
-        // 验证照片存在且属于当前用户
-        Photo photo = photoMapper.selectById(createDTO.getPhotoId());
-        if (photo == null || !photo.getUserId().equals(userId)) {
-            throw new RuntimeException("照片不存在或无权访问");
+        // 验证所有照片是否存在且属于当前用户
+        for (Integer photoId : createDTO.getPhotoIds()) {
+            Photo photo = photoMapper.selectById(photoId);
+            if (photo == null || !photo.getUserId().equals(userId)) {
+                throw new RuntimeException("照片ID为 " + photoId + " 的照片不存在或无权访问");
+            }
         }
 
+        // 创建帖子
         Post post = new Post();
         post.setUserId(userId);
         post.setCaption(createDTO.getCaption());
         post.setPrivacy(createDTO.getPrivacy());
-        post.setLikeCount(0);
+        post.setLikeCount(0); // 初始化点赞数
         post.setCreatedAt(LocalDateTime.now());
         post.setUpdatedAt(LocalDateTime.now());
 
+        // 插入帖子
         postMapper.insert(post);
         log.info("用户 {} 创建了帖子 {}", userId, post.getPostId());
+
+        // 更新照片关联到此帖子
+        for (Integer photoId : createDTO.getPhotoIds()) {
+            Photo photo = photoMapper.selectById(photoId);
+            photo.setPostId(post.getPostId()); // 设置帖子ID
+            photoMapper.updateById(photo); // 更新照片
+            log.info("照片 {} 已关联到帖子 {}", photoId, post.getPostId());
+        }
 
         return getPostById(post.getPostId(), userId);
     }

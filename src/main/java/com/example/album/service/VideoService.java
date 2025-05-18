@@ -139,10 +139,19 @@ public class VideoService {
 
     public String storeAudio(MultipartFile audio) {
         try{
-            String upload = "/temp";
+            String upload = "./temp";
             String fileName = audio.getOriginalFilename();
-            File file = new File(upload + fileName);
-            audio.transferTo(file);
+
+            File directory = new File(upload);
+            if (!directory.exists()) {
+                boolean mkdirs = directory.mkdirs();
+                if (!mkdirs) {
+                    logger.error("mkdirs failed");
+                    return null;
+                }
+            }
+            File file = new File(upload + File.separator + fileName);
+            audio.transferTo(file);  // 将音频文件保存到该路径
             return file.getAbsolutePath();
         } catch (IOException e) {
             logger.error(e.getMessage(), e);

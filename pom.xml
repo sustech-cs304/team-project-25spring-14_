@@ -14,7 +14,7 @@
 	<name>album</name>
 	<description>software engineering project</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
@@ -125,6 +125,24 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.14.0</version>
+				<configuration>
+					<rulesets>
+						<ruleset>customize-rules.xml</ruleset>  <!-- 引用自定义规则集 -->
+					</rulesets>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>pmd</goal>
+<!--							<goal>check</goal>-->
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

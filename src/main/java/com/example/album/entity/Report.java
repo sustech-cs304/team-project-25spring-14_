@@ -17,6 +17,8 @@ public class Report {
 
     private Integer reporterId;
 
+    private Integer reporteeId;
+
     private ResourceTypeEnum resourceType;
 
     private Integer resourceId;
@@ -25,7 +27,9 @@ public class Report {
 
     private String status;
 
-    private Integer reviewedBy;
+    private String reviewedBy;
+
+    private Boolean isCorrected;
 
     private LocalDateTime createdAt;
 }

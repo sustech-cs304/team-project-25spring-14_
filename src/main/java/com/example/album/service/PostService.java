@@ -25,4 +25,6 @@ public interface PostService {
     List<PostVO> getPublicPosts(Integer currentUserId);
 
     List<PostVO> getFollowingPosts(Integer userId);
+
+    int getLikeCount(Integer postId);
 }

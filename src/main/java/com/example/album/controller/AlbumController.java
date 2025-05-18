@@ -224,6 +224,7 @@ public class AlbumController {
         }
     }
 
+    
     @GetMapping("/user/{userId}")
     public Result<Map<String, Object>> getUserAlbums(
             @RequestParam(value = "currentUserId", required = false) Integer currentUserId) {
@@ -237,11 +238,11 @@ public class AlbumController {
                 log.info("从ThreadLocal获取的用户ID: {}", userId);
             } else return null;
 
-            List<Album> albums = albumService.getAlbumsByUserId(userId);
+            List<Album> albums = albumService.getAlbumsByUserId(currentUserId);
 
             List<AlbumVO> albumVOList = new ArrayList<>();
             for (Album album : albums) {
-                if (album.getPrivacy().getValue().equals("public")|| album.getUserId().equals(userId)) {
+                if (album.getPrivacy().getValue().equals("public")|| currentUserId == userId) {
                     AlbumVO albumVO = convertToAlbumVO(album);
                     albumVOList.add(albumVO);
                 }

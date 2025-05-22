@@ -196,6 +196,7 @@ const customTheme = {
   "loadButton.fontFamily": "NotoSans, sans-serif",
 
   "loadButton.fontSize": "12px",
+  "loadButton.display": "none",
 
   // download button
 
@@ -297,6 +298,13 @@ export default {
     };
   },
 
+  props: {
+    fileUrl: {
+      type: String,
+      required: true,
+    },
+  },
+
   mounted() {
     this.init();
     this.$nextTick(() => {
@@ -307,12 +315,13 @@ export default {
 
   methods: {
     init() {
+      console.log(typeof this.fileUrl);
       this.instance = new ImageEditor(
         document.querySelector("#tui-image-editor"),
         {
           includeUI: {
             loadImage: {
-              path: "",
+              path: this.fileUrl,
 
               name: "image",
             },
@@ -371,6 +380,18 @@ export default {
       form.append("image", blob);
 
       // upload file
+    },
+
+    async getEditorImageData() {
+      // 获取编辑后的图片数据
+      const base64String = this.instance.toDataURL();
+      const data = window.atob(base64String.split(",")[1]);
+      const ia = new Uint8Array(data.length);
+      for (let i = 0; i < data.length; i++) {
+        ia[i] = data.charCodeAt(i);
+      }
+      const blob = new Blob([ia], { type: "image/png" });
+      return { blob };
     },
   },
 };

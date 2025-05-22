@@ -154,6 +154,11 @@
     @delete="deletePhoto"
     @report="handlePhotoReport"
   />
+  <ImageEditorModal
+    v-model="editorVisible"
+    :file-url="editingPhotoUrl"
+    @save="handlePhotoSave"
+  />
   <el-dialog v-model="photoReportDialogVisible" title="举报照片" width="400px">
     <el-input
       type="textarea"
@@ -185,6 +190,7 @@ import SideBar from "@/components/SideBar.vue";
 import apiClient from "@/apiClient";
 import { ElButton, ElSelect, ElOption } from "element-plus";
 import PhotoViewerModal from "@/components/PhotoViewerModal.vue";
+import ImageEditorModal from "@/components/ImageEditorModal.vue";
 
 export default {
   components: {
@@ -193,6 +199,7 @@ export default {
     ElSelect,
     ElOption,
     PhotoViewerModal,
+    ImageEditorModal,
   },
   data() {
     return {
@@ -207,6 +214,9 @@ export default {
       editableDescription: "",
       editablePrivacy: "",
       privacySelectVisible: false,
+      editorVisible: false,
+      editingPhoto: null,
+      editingPhotoUrl: "",
       privacyOptions: [
         {
           label: "公开",
@@ -421,7 +431,14 @@ export default {
       this.viewerVisible = true;
     },
     editPhoto(photo) {
-      this.$message.info(`准备编辑照片 ${photo.photoId}`);
+      console.log("photo.fileUrl:", photo.fileUrl);
+      console.log("typeof photo.fileUrl:", typeof photo.fileUrl);
+      console.log("photo.fileUrl?.type:", photo.fileUrl?.type);
+      this.editingPhoto = photo;
+      this.editingPhotoUrl = photo.fileUrl;
+      this.editorVisible = true;
+      console.log(this.editingPhoto);
+      this.viewerVisible = false;
     },
     reportAlbum() {
       this.reportDialogVisible = true;
@@ -474,6 +491,29 @@ export default {
       } catch (error) {
         console.error("举报失败：", error);
         this.$message.error("举报失败，请稍后再试");
+      }
+    },
+    async handlePhotoSave(blob) {
+      try {
+        const formData = new FormData();
+        formData.append("file", blob, "edited.png");
+        formData.append("albumId", this.album.albumId); // 当前相册ID
+        formData.append("userId", this.userId); // 当前用户ID
+
+        // 调用上传新照片的接口
+        await apiClient.post("/photos/upload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        this.$message.success("编辑后的照片已作为新照片上传");
+        this.editorVisible = false;
+        // 刷新照片列表
+        window.location.reload();
+      } catch (error) {
+        this.$message.error("上传失败");
+        console.error(error);
       }
     },
   },

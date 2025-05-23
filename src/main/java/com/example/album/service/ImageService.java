@@ -27,7 +27,7 @@ import java.util.Objects;
 @Service
 public class ImageService {  // 这个是图片的一下基础操作，现在不需要用了
 
-    private static final String FLASK_URL = "http://localhost:5000/";
+    private static final String FLASK_URL = "http://photo-python:5000/";
     @Autowired
     private PhotoMapper photoMapper;
 

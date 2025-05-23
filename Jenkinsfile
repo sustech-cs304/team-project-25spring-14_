@@ -78,73 +78,40 @@ EOF
                     '''
                 }
                 
-                // Python Dockerfile - 使用多阶段构建处理重型依赖
+                // Python Dockerfile - 使用国内镜像源的简化版本
                 dir("${PYTHON_DIR}") {
                     sh '''
                         cat > Dockerfile << 'EOF'
-# 第一阶段：构建环境，处理重型依赖
-FROM python:3.11-slim as builder
+FROM python:3.11-slim
 
-# 安装系统依赖
-RUN apt-get update && apt-get install -y \\
-    build-essential \\
-    cmake \\
-    pkg-config \\
-    libopencv-dev \\
-    libgl1-mesa-glx \\
-    libglib2.0-0 \\
-    libsm6 \\
-    libxext6 \\
-    libxrender-dev \\
+# 配置使用阿里云镜像源
+RUN echo "deb https://mirrors.aliyun.com/debian/ bookworm main contrib non-free non-free-firmware" > /etc/apt/sources.list && \\
+    echo "deb https://mirrors.aliyun.com/debian/ bookworm-updates main contrib non-free non-free-firmware" >> /etc/apt/sources.list && \\
+    echo "deb https://mirrors.aliyun.com/debian-security bookworm-security main contrib non-free non-free-firmware" >> /etc/apt/sources.list
+
+# 安装最小运行时依赖
+RUN apt-get update && apt-get install -y --no-install-recommends \\
     libgomp1 \\
-    git \\
-    wget \\
+    libglib2.0-0 \\
+    libgl1-mesa-glx \\
     && rm -rf /var/lib/apt/lists/*
 
-# 设置工作目录
 WORKDIR /app
 
 # 复制requirements.txt
 COPY requirements.txt .
 
-# 创建虚拟环境并安装依赖
-RUN python -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
+# 创建修改后的requirements文件，使用headless版本的opencv
+RUN sed 's/opencv-python/opencv-python-headless/g' requirements.txt > requirements_modified.txt || cp requirements.txt requirements_modified.txt
 
-# 升级pip并安装依赖，使用多个镜像源和重试机制
-RUN pip install --upgrade pip && \\
-    pip install --no-cache-dir \\
-    -i https://pypi.tuna.tsinghua.edu.cn/simple \\
-    --trusted-host pypi.tuna.tsinghua.edu.cn \\
-    --timeout 300 \\
-    -r requirements.txt || \\
-    pip install --no-cache-dir \\
-    -i https://mirrors.aliyun.com/pypi/simple/ \\
-    --trusted-host mirrors.aliyun.com \\
-    --timeout 300 \\
-    -r requirements.txt || \\
-    pip install --no-cache-dir --timeout 300 -r requirements.txt
-
-# 第二阶段：运行环境
-FROM python:3.11-slim
-
-# 安装运行时依赖
-RUN apt-get update && apt-get install -y \\
-    libgl1-mesa-glx \\
-    libglib2.0-0 \\
-    libsm6 \\
-    libxext6 \\
-    libxrender-dev \\
-    libgomp1 \\
-    libgcc-s1 \\
-    && rm -rf /var/lib/apt/lists/*
-
-# 从构建阶段复制虚拟环境
-COPY --from=builder /opt/venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
-
-# 设置工作目录
-WORKDIR /app
+# 使用国内pip源安装Python包
+RUN pip config set global.index-url https://pypi.doubanio.com/simple/ && \\
+    pip config set install.trusted-host pypi.doubanio.com && \\
+    pip install --upgrade pip && \\
+    pip install --no-cache-dir -r requirements_modified.txt || \\
+    (pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \\
+     pip config set install.trusted-host pypi.tuna.tsinghua.edu.cn && \\
+     pip install --no-cache-dir -r requirements_modified.txt)
 
 # 复制应用代码
 COPY . .

@@ -6,22 +6,15 @@
         <div class="stats-card">
           <i class="album-icons icon-xiangce"></i>
           <div>
-            <h3>6,234</h3>
+            <h3>{{ this.myPhotoCounts }}</h3>
             <p>照片数量</p>
           </div>
         </div>
         <div class="stats-card">
           <i class="album-icons icon-tubiaozhizuomoban"></i>
           <div>
-            <h3>12</h3>
+            <h3>{{ this.myAlbumCounts }}</h3>
             <p>相册数量</p>
-          </div>
-        </div>
-        <div class="stats-card">
-          <i class="album-icons icon-1"></i>
-          <div>
-            <h3>28</h3>
-            <p>拍摄地点</p>
           </div>
         </div>
       </div>
@@ -29,15 +22,28 @@
       <!-- 公告卡片 -->
       <div class="announcement-card">
         <div class="announcement-image">
-          <img src="@/assets/images/老大.jpg" alt="公告" />
+          <img :src="this.latestPhoto.fileUrl" alt="公告" />
           <div class="announcement-time">
             <i class="album-icons icon-shizhongclock73"></i>
-            <span>2024-06-17 22:05:21</span>
+            <span>{{
+              this.latestPhoto.capturedAt
+                ? this.latestPhoto.capturedAt.split("T")[0]
+                : ""
+            }}</span>
           </div>
         </div>
         <div class="announcement-content">
-          <h3>最新动态</h3>
-          <p>夏日回忆精选相册已生成 →</p>
+          <h3>最新照片</h3>
+          <p
+            @click="
+              this.$router.push({
+                path: `/albums/${this.latestPhoto.albumId}`,
+                query: { isSelf: true },
+              })
+            "
+          >
+            去看看吧 →
+          </p>
         </div>
       </div>
 
@@ -54,7 +60,7 @@
         </div>
         <div class="chart-container">
           <!-- 这里接入实际图表 -->
-          <div class="chart-placeholder"></div>
+          <div ref="chart" class="chart-placeholder"></div>
         </div>
       </div>
     </div>
@@ -63,6 +69,8 @@
 
 <script>
 import SideBar from "@/components/SideBar.vue";
+import apiClient from "@/apiClient";
+import * as echarts from "echarts";
 export default {
   name: "TryView",
   components: {
@@ -71,12 +79,125 @@ export default {
   data() {
     return {
       chartData: [
-        { name: "人物", color: "#7B61FF" },
-        { name: "风景", color: "#4B70E2" },
-        { name: "美食", color: "#FF7E5C" },
-        { name: "其他", color: "#E2E8F0" },
+        { name: "人物", color: "#7B61FF", value: 0 },
+        { name: "风景", color: "#4B70E2", value: 0 },
+        { name: "美食", color: "#FF7E5C", value: 0 },
+        { name: "动物", color: "#FFD600", value: 0 },
+        { name: "交通工具", color: "#00C9A7", value: 0 },
+        { name: "书籍", color: "#FFB6B9", value: 0 },
+        { name: "其他", color: "#E2E8F0", value: 0 },
       ],
+      chartInstance: null,
+      userInfo: {},
+      myPhotoCounts: 0,
+      myAlbumCounts: 0,
+      latestPhoto: {},
+      person: 0,
+      cat: 0,
+      dog: 0,
+      car: 0,
+      book: 0,
+      airplane: 0,
     };
+  },
+  methods: {
+    async fetchUserInfo() {
+      try {
+        await apiClient
+          .get("/user/userInfo")
+          .then((response) => {
+            this.userInfo = response.data.data;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+        console.log("用户信息获取成功，ID:", this.userInfo.userId);
+        localStorage.setItem("userId", this.userInfo.userId);
+        this.currentUserId = this.userInfo.userId;
+      } catch (error) {
+        console.error("用户信息获取失败:", error);
+        this.$router.push("/");
+      }
+    },
+    async fetchData() {
+      try {
+        const photosRes = await apiClient.get("/photos/my");
+        const albumsRes = await apiClient.get(
+          `/albums/user/${this.userInfo.userId}`,
+          {
+            params: { currentUserId: this.userInfo.userId },
+          }
+        );
+        this.myPhotoCounts = photosRes.data.data.count;
+        this.myAlbumCounts = albumsRes.data.data.count;
+        this.latestPhoto = photosRes.data.data.photos[0];
+
+        // 聚合标签到 chartData
+        const tagMap = {
+          person: "人物",
+          scenery: "风景",
+          food: "美食",
+          cat: "动物",
+          dog: "动物",
+          car: "交通工具",
+          airplane: "交通工具",
+          book: "书籍",
+        };
+        const counts = {
+          人物: 0,
+          风景: 0,
+          美食: 0,
+          动物: 0,
+          交通工具: 0,
+          书籍: 0,
+          其他: 0,
+        };
+        photosRes.data.data.photos.forEach((photo) => {
+          const tag = (photo.tag || "").trim();
+          const category = tagMap[tag] || "其他";
+          counts[category]++;
+        });
+        this.chartData = this.chartData.map((item) => ({
+          ...item,
+          value: counts[item.name] || 0,
+        }));
+        this.$nextTick(this.renderChart);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
+    renderChart() {
+      const dom = this.$refs.chart;
+      if (!dom) return;
+      if (!this.chartInstance) {
+        this.chartInstance = echarts.init(dom);
+      }
+      const option = {
+        tooltip: { trigger: "item" },
+        legend: { orient: "vertical", left: "left" },
+        series: [
+          {
+            name: "照片分类",
+            type: "pie",
+            radius: "50%",
+            data: this.chartData.map((i) => ({ name: i.name, value: i.value })),
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)",
+              },
+            },
+          },
+        ],
+        color: this.chartData.map((i) => i.color),
+      };
+      this.chartInstance.setOption(option);
+    },
+  },
+  mounted() {
+    this.fetchUserInfo();
+    this.fetchData();
   },
 };
 </script>

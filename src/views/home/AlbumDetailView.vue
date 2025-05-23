@@ -99,7 +99,7 @@
           >
             {{ editableDescription }}
           </div>
-          <p class="photo-count">{{ album.photoCount }} 张照片</p>
+          <p class="photo-count">{{ filterPhotos.length }} 张照片</p>
         </div>
         <div v-if="isSelf" class="album-actions">
           <el-button type="danger" @click="deleteConfirmVisible = true" plain
@@ -109,15 +109,65 @@
         <div v-if="!isSelf" class="album-actions">
           <el-button type="warning" @click="reportAlbum">举报相册</el-button>
         </div>
+        <div class="album-actions">
+          <el-button type="primary" @click="filterDialogVisible = true"
+            >筛选</el-button
+          >
+        </div>
+      </div>
+      <div v-if="filterDialogVisible" class="filter-form">
+        <el-form :model="filterCriteria" label-width="80px" inline>
+          <el-form-item label="开始日期">
+            <el-date-picker
+              v-model="filterCriteria.startDate"
+              type="date"
+              placeholder="开始日期"
+              value-format="YYYY-MM-DD"
+            />
+          </el-form-item>
+          <el-form-item label="结束日期">
+            <el-date-picker
+              v-model="filterCriteria.endDate"
+              type="date"
+              placeholder="结束日期"
+              value-format="YYYY-MM-DD"
+            />
+          </el-form-item>
+          <el-form-item label="标签">
+            <el-input v-model="filterCriteria.tag" placeholder="标签" />
+          </el-form-item>
+          <el-form-item label="地点">
+            <el-input v-model="filterCriteria.location" placeholder="地点" />
+          </el-form-item>
+          <el-form-item label="收藏">
+            <el-switch
+              v-model="filterCriteria.isFavorite"
+              :active-value="true"
+              :inactive-value="null"
+            />
+          </el-form-item>
+          <el-form-item>
+            <el-button size="small" @click="cancerFilter">取消</el-button>
+            <el-button size="small" type="primary" @click="applyFilter"
+              >应用筛选</el-button
+            >
+          </el-form-item>
+        </el-form>
       </div>
       <div class="photo-grid">
         <div
           class="photo-card"
-          v-for="photo in album.photos"
+          v-for="photo in filterPhotos"
           :key="photo.photoId"
           @click="openPhotoViewer(photo)"
         >
-          <img :src="photo.thumbnailUrl" alt="photo" class="photo-image" />
+          <img
+            v-if="!isVideo(photo.fileUrl)"
+            :src="photo.thumbnailUrl"
+            alt="photo"
+            class="photo-image"
+          />
+          <video v-else :src="photo.fileUrl" controls class="photo-image" />
         </div>
         <div
           v-if="isSelf"
@@ -129,6 +179,7 @@
             type="file"
             ref="photoInput"
             style="display: none"
+            multiple
             @change="handlePhotoChange"
           />
         </div>
@@ -153,6 +204,7 @@
     @edit="editPhoto"
     @delete="deletePhoto"
     @report="handlePhotoReport"
+    @editInfo="handlePhotoInfoUpdate"
   />
   <ImageEditorModal
     v-model="editorVisible"
@@ -241,6 +293,15 @@ export default {
       reportReason: "",
       photoReportDialogVisible: false,
       photoReportReason: "",
+      filterDialogVisible: false,
+      // 筛选条件模型
+      filterCriteria: {
+        startDate: "",
+        endDate: "",
+        tag: "",
+        location: "",
+        isFavorite: null,
+      },
     };
   },
   async created() {
@@ -252,7 +313,7 @@ export default {
           userId: this.userId,
         },
       });
-      this.album = response.data.data.album;
+      Object.assign(this.album, response.data.data.album);
       this.editableTitle = this.album.title;
       this.editableDescription = this.album.description;
       this.editablePrivacy = this.album.privacy;
@@ -284,28 +345,33 @@ export default {
       this.$refs.photoInput.click();
     },
     async handlePhotoChange(event) {
-      const file = event.target.files[0];
-      if (!file) return;
+      const files = event.target.files;
+      if (!files.length) return;
 
       try {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("albumId", this.album.albumId);
-        formData.append("userId", this.userId);
+        for (const file of files) {
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("albumId", this.album.albumId);
+          formData.append("userId", this.userId);
 
-        const response = await apiClient.post("/photos/upload", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        const newPhoto = response.data.data.photo;
-        this.album.photos.push(newPhoto);
-        this.album.photoCount++;
-        this.$message.success("照片上传成功");
+          const response = await apiClient.post("/photos/upload", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+
+          const newPhoto = response.data.data.photo;
+          this.album.photos.push(newPhoto);
+          this.album.photoCount++;
+        }
+
+        this.$message.success("所有照片上传成功");
       } catch (error) {
         console.error("上传失败：", error);
-        this.$message.error("上传照片失败");
+        this.$message.error("部分照片上传失败");
       }
+
       window.location.reload();
     },
     updateAlbumCover() {
@@ -515,6 +581,78 @@ export default {
         this.$message.error("上传失败");
         console.error(error);
       }
+    },
+    async handlePhotoInfoUpdate(updatedPhoto) {
+      try {
+        console.log("更新照片信息：", updatedPhoto);
+        const formData = new FormData();
+        formData.append("fileName", updatedPhoto.fileName);
+        formData.append("tag", updatedPhoto.tag);
+        formData.append("location", updatedPhoto.location);
+        formData.append("isFavorite", updatedPhoto.isFavorite);
+
+        await apiClient.put(`/photos/${updatedPhoto.photoId}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        const index = this.album.photos.findIndex(
+          (photo) => photo.photoId === updatedPhoto.photoId
+        );
+        if (index !== -1) {
+          this.album.photos[index] = { ...updatedPhoto };
+          this.$message.success("照片信息已更新");
+        }
+      } catch (error) {
+        console.error("更新照片信息失败：", error);
+        this.$message.error("更新照片信息失败");
+      }
+    },
+    isVideo(url) {
+      return /\.(mp4|webm|ogg|mov|avi|mkv|mpeg|wmv)$/i.test(url);
+    },
+    applyFilter() {
+      this.filterDialogVisible = false;
+    },
+    cancerFilter() {
+      this.filterCriteria = {
+        startDate: "",
+        endDate: "",
+        tag: "",
+        location: "",
+        isFavorite: null,
+      };
+      this.filterDialogVisible = false;
+    },
+  },
+  computed: {
+    filterPhotos() {
+      const { startDate, endDate, tag, location, isFavorite } =
+        this.filterCriteria;
+      return (this.album.photos || []).filter((photo) => {
+        // 取照片的日期部分（去掉T之后的时间）
+        const date = photo.capturedAt ? photo.capturedAt.split("T")[0] : "";
+        const photoTag = photo.tag === null ? "" : photo.tag;
+        const photoLocation = photo.location === null ? "" : photo.location;
+        if (startDate && date < startDate) return false;
+        if (endDate && date > endDate) return false;
+        if (
+          tag &&
+          !(photoTag || "").toLowerCase().includes(tag.trim().toLowerCase())
+        )
+          return false;
+        if (
+          location &&
+          !(photoLocation || "")
+            .toLowerCase()
+            .includes(location.trim().toLowerCase())
+        )
+          return false;
+        if (isFavorite !== null && photo.isFavorite !== isFavorite)
+          return false;
+        return true;
+      });
     },
   },
 };

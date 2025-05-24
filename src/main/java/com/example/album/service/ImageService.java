@@ -26,14 +26,15 @@ import java.util.Objects;
 @Service
 public class ImageService {  // 这个是图片的一下基础操作，现在不需要用了
 
-    private static final String FLASK_URL = "http://localhost:5000/";
+    private static final String FLASK_URL = "http://photo-python:5000/";
     @Autowired
     private PhotoMapper photoMapper;
 
     public ResponseEntity<byte[]> GetAndSave(ImageParamDTO imageParam, String savePath, String option) {
+        String containerPath = convertUrlToContainerPath(imageParam.getImg_path());
         UriComponentsBuilder url = UriComponentsBuilder.fromUriString(FLASK_URL)
                 .path(option)
-                .queryParam("img_path",imageParam.getImg_path());
+                .queryParam("img_path",containerPath);
 
         if (imageParam.getRegion() != null) {
             url.queryParam("region", imageParam.getRegion());
@@ -80,7 +81,7 @@ public class ImageService {  // 这个是图片的一下基础操作，现在不
     }
 
     public String ai_classify(String url){  // 这个ai返回值是一个字符串，可以直接对应到数据库里面去
-
+        String url = convertUrlToContainerPath(url);
         String Url = UriComponentsBuilder.fromUriString(FLASK_URL)
                 .path("ai_classify_image")
                 .queryParam("img_path",url)
@@ -110,5 +111,16 @@ public class ImageService {  // 这个是图片的一下基础操作，现在不
         catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * 将HTTP URL转换为Docker容器内路径
+     * http://localhost:8080/uploads/storage/1/xxx.jpg -> /app/uploads/storage/1/xxx.jpg
+     */
+    private String convertUrlToContainerPath(String httpUrl) {
+        if (httpUrl != null && httpUrl.startsWith("http://localhost:8080")) {
+        return httpUrl.replace("http://localhost:8080", "/app");
+        }
+        return httpUrl;
     }
 }

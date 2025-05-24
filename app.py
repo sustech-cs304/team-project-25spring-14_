@@ -117,6 +117,13 @@ def ai_classify_image_app():
     img_path = request.args.get('img_path')
     if not img_path:
         return jsonify({'error': 'Image_path not provided'}), 400
+    if img_path.startswith('http://localhost:8080/uploads'):
+        img_path = img_path.replace('http://localhost:8080/uploads', '/app/storage')
+    
+    print(f"🔍 处理图片路径: {img_path}")
+    
+    if not os.path.exists(img_path):
+        return jsonify({'error': f'Image file does not exist: {img_path}'}), 400
     # if not os.path.exists(img_path):
     #     return 'ERROR :Image_path dose not exists'
     try:

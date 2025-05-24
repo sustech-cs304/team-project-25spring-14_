@@ -7,6 +7,12 @@ from utils import *
 
 app = Flask(__name__)
 
+def convert_url_to_container_path(img_path):
+    """将HTTP URL转换为容器内路径"""
+    if img_path and img_path.startswith('http://localhost:8080'):
+        return img_path.replace('http://localhost:8080', '/app')
+    return img_path
+    
 @app.route('/rotate')  # 是否保存：都会返回一个图像的信息
 def rotate_app():
     img_path = request.args.get('img_path')
@@ -117,6 +123,7 @@ def ai_classify_image_app():
     img_path = request.args.get('img_path')
     if not img_path:
         return jsonify({'error': 'Image_path not provided'}), 400
+    img_path = convert_url_to_container_path(img_path)
     # if not os.path.exists(img_path):
     #     return 'ERROR :Image_path dose not exists'
     try:

@@ -139,7 +139,7 @@ public class VideoService {
 
     public String storeAudio(MultipartFile audio) {
         try{
-            String upload = "./temp";
+            String upload = "temp";
             String fileName = audio.getOriginalFilename();
 
             File directory = new File(upload);

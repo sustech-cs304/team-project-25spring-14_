@@ -24,6 +24,7 @@ import java.util.Objects;
  * 这个的返回值也是一个完整的http响应，内容就是flask传过来的二进制文件<br/>
  * 注意的是remove_object还没有完全实现
  */
+@Slf4j
 @Service
 public class ImageService {  // 这个是图片的一下基础操作，现在不需要用了
 

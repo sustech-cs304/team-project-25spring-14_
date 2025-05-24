@@ -28,6 +28,7 @@ import java.util.Objects;
 public class ImageService {  // 这个是图片的一下基础操作，现在不需要用了
 
     private static final String FLASK_URL = "http://photo-python:5000/";
+    private static final String SHARED_STORAGE_PATH = "/app/storage";
     @Autowired
     private PhotoMapper photoMapper;
 
@@ -81,17 +82,26 @@ public class ImageService {  // 这个是图片的一下基础操作，现在不
     }
 
     public String ai_classify(String url){  // 这个ai返回值是一个字符串，可以直接对应到数据库里面去
+        String containerFilePath = convertUrlToContainerPath(url);
+        // String Url = UriComponentsBuilder.fromUriString(FLASK_URL)
+        //         .path("ai_classify_image")
+        //         .queryParam("img_path",url)
+        //         .build()
+        //         .toUriString();
 
-        String Url = UriComponentsBuilder.fromUriString(FLASK_URL)
+        log.info("🔍 原始URL: {}", url);
+        log.info("🔍 容器内路径: {}", containerFilePath);
+        String requestUrl = UriComponentsBuilder.fromUriString(FLASK_URL)
                 .path("ai_classify_image")
-                .queryParam("img_path",url)
+                .queryParam("img_path", containerFilePath)  // 传递容器内路径
                 .build()
                 .toUriString();
-
+        
         RestTemplate restTemplate = new RestTemplate();
+        log.info("🔍 请求Python服务: {}", requestUrl);
         try {
             ResponseEntity<Map> response = restTemplate.exchange(
-                    Url,
+                    requestUrl,
                     HttpMethod.GET,
                     null,
                     Map.class
@@ -116,5 +126,18 @@ public class ImageService {  // 这个是图片的一下基础操作，现在不
         catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * 将HTTP URL转换为容器内文件路径
+     * http://localhost:8080/uploads/storage/1/xxx.jpg -> /app/storage/1/xxx.jpg
+     */
+    private String convertUrlToContainerPath(String fileUrl) {
+        if (fileUrl.startsWith("http://localhost:8080/uploads")) {
+            // 提取相对路径部分
+            String relativePath = fileUrl.replace("http://localhost:8080/uploads", "");
+            return SHARED_STORAGE_PATH + relativePath;
+        }
+        return fileUrl; // 如果已经是文件路径，直接返回
     }
 }

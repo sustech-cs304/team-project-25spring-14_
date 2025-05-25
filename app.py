@@ -87,7 +87,21 @@ def image_to_video_app():
     audio_filename = data.get('audio_filename', 'audio.mp3')
     transition = data.get('transition')
     fps = int(data.get('fps', 25))
+    if not img_folder:
+        return jsonify({'error': 'img_folder is required'}), 400
     
+    # 🔑 需要添加：图片路径转换
+    if isinstance(img_folder, list):
+        # 图片URL列表需要转换
+        container_paths = []
+        for img_url in img_folder:
+            container_path = convert_url_to_container_path(img_url)
+            container_paths.append(container_path)
+        img_folder = container_paths
+    elif isinstance(img_folder, str):
+        # 单个路径需要转换
+        img_folder = convert_url_to_container_path(img_folder)
+        
     audio_file_path = None
     try:
         # 如果有音频数据，创建临时文件
@@ -129,6 +143,7 @@ def add_captions_app():
     font_color = data.get('font_color')
     if not input_video:
         return 'ERROR :Image_path not provided'
+    input_video = convert_url_to_container_path(input_video)
     subtitles_dict = json.loads(subtitles_dict)
     try:
         file_data = add_captions(input_video,subtitles_dict,font_name,font_size,font_color)  # 这里的dict需要传进去一个字典，但是这里是一个字符串，到时候看怎么转成字典

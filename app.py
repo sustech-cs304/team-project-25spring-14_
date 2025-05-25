@@ -1,6 +1,7 @@
 import ast
 import io
-
+import base64
+import tempfile
 import cv2
 from flask import Flask, request, Response, jsonify, send_file
 from utils import *
@@ -71,26 +72,44 @@ def detect_face_app():
     except Exception as e:
         print(e)
 
-@app.route('/image_to_video', methods=['POST'])  # 改为 POST 请求
+@app.route('/image_to_video', methods=['POST'])
 def image_to_video_app():
     data = request.json
-
     img_folder = data.get('img_folder')
-    audio_file = data.get('audio_file', None)
+    audio_base64 = data.get('audio_base64', None)
+    audio_filename = data.get('audio_filename', 'audio.mp3')
     transition = data.get('transition')
-    # final_output_file = data.get('final_output_file')
-    fps = int(data.get('fps', 25))  # 默认 fps 为 25
-
-    # if not img_folder or not final_output_file:
-    #     return jsonify({'error': 'img_folder and final_output_file are required'}), 400
-
+    fps = int(data.get('fps', 25))
+    
+    audio_file_path = None
     try:
-        file_data = img_to_video(img_folder, audio_file, transition, fps)  # 调用视频生成函数
+        # 如果有音频数据，创建临时文件
+        if audio_base64:
+            audio_data = base64.b64decode(audio_base64)
+            # 根据原文件名确定文件扩展名
+            file_extension = os.path.splitext(audio_filename)[1] if audio_filename else '.mp3'
+            # 创建临时文件
+            temp_audio = tempfile.NamedTemporaryFile(delete=False, suffix=file_extension)
+            temp_audio.write(audio_data)
+            temp_audio.close()
+            audio_file_path = temp_audio.name
+        
+        # 调用视频生成函数
+        file_data = img_to_video(img_folder, audio_file_path, transition, fps)
         file_stream = io.BytesIO(file_data)
-        return send_file(file_stream,mimetype='video/mp4',download_name="ouput.mp4")
+        
+        return send_file(file_stream, mimetype='video/mp4', download_name="output.mp4")
+        
     except Exception as e:
         print(e)
         return jsonify({'error': str(e)}), 500
+    finally:
+        # 清理临时音频文件（如果创建了的话）
+        if audio_file_path and os.path.exists(audio_file_path):
+            try:
+                os.unlink(audio_file_path)
+            except:
+                pass  # 忽略删除失败的情况
 
 @app.route('/add_captions',methods=['POST'])
 def add_captions_app():
@@ -117,12 +136,13 @@ def ai_classify_image_app():
     img_path = request.args.get('img_path')
     if not img_path:
         return 'ERROR :Image_path not provided'
-    if not os.path.exists(img_path):
-        return 'ERROR :Image_path dose not exists'
+    # if not os.path.exists(img_path):
+    #     return 'ERROR :Image_path dose not exists'
     try:
         result = ai_classify_image(img_path)
         return jsonify({'detect_class' : result})
     except Exception as e:
         print(e)
+        return jsonify({'error': 'Internal server error'}), 500
 if __name__ == '__main__':
     app.run()

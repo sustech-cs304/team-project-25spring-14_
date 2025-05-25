@@ -3,7 +3,7 @@ import random
 import subprocess
 import time
 from datetime import datetime, timedelta
-
+import requests
 import cv2 as cv
 import matplotlib.pyplot as plt
 import numpy as np
@@ -53,18 +53,57 @@ def adjust_brightness(img_path, brightness=0, contrast=1.0):  # 调整亮度，�
     # plt.axis('off')
     # plt.show()
 
-def ai_classify_image(image_path):  # 用AI来识别图片中是否有特定的物体
+def ai_classify_image(image_url):  # image_url 是网络图片地址
     model = YOLO('yolov8n.pt')
-    common_choises = ['person', 'car', 'dog', 'cat', 'book', 'airplane']
-    result = model.predict(image_path, verbose=False)
-    detect = ''
-    for box in result[0].boxes:
-        class_id = int(box.cls[0].item())
-        class_name = model.names[class_id]
-        if class_name in common_choises and class_name not in detect:
-            detect  = f'{detect} {class_name}' # 还是沿用字符串，中间加上一个空格
-    return detect
+    common_choices = ['person', 'car', 'dog', 'cat', 'book', 'airplane']
 
+    try:
+        response = requests.get(image_url)
+        if response.status_code != 200:
+            print(f"Failed to fetch image from {image_url}, status code: {response.status_code}")
+            return ''
+        img_array = np.asarray(bytearray(response.content), dtype=np.uint8)
+        img = cv.imdecode(img_array, cv.IMREAD_COLOR)
+
+        img_rgb = cv.cvtColor(img, cv.COLOR_BGR2RGB)
+
+        result = model.predict(img_rgb, verbose=False)
+
+        detect = ''
+        for box in result[0].boxes:
+            class_id = int(box.cls[0].item())
+            class_name = model.names[class_id]
+            if class_name in common_choices and class_name not in detect:
+                detect += f' {class_name}'
+        return detect.strip()
+
+    except Exception as e:
+        print(f"Error processing image URL {image_url}: {e}")
+        return ''
+    
+def get_image_from_url(image_url):
+    try:
+        response = requests.get(image_url)
+        if response.status_code == 200:
+            img_array = np.asarray(bytearray(response.content), dtype=np.uint8)
+            img = cv.imdecode(img_array, cv.IMREAD_COLOR)
+            return img
+        else:
+            print(f"Error: Failed to fetch {image_url} (Status Code: {response.status_code})")
+            return None
+    except Exception as e:
+        print(f"Error: {e} while fetching {image_url}")
+        return None
+    
+def download_audio(audio_url):
+    resp = requests.get(audio_url, stream=True)
+    resp.raise_for_status()
+    suffix = os.path.splitext(audio_url)[1] or '.wav'
+    tmp_name = f"temp_audio_{int(time.time())}_{random.randint(1000,9999)}{suffix}"
+    with open(tmp_name, 'wb') as f:
+        for chunk in resp.iter_content(8192):
+            f.write(chunk)
+    return tmp_name
 
 def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面的方法一致，不过这个可以添加图片切换时候的特效
     # 这里直接传进来的是一个列表，然后里面包含了所有图片的地址
@@ -77,7 +116,10 @@ def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面�
     if transition == '':  # 没有特效的
         for i in range(len(image_files) - 1):
             img_path = image_files[i]
-            img = cv.imread(img_path)
+            # img = cv.imread(img_path)
+            img = get_image_from_url(img_path)
+            if img is None:
+                continue
             img = cv.resize(img, frame_size)
             for _ in range(fps):
                 video_writer.write(img)
@@ -86,9 +128,10 @@ def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面�
             img_path1 = image_files[i]
             img_path2 = image_files[i + 1]
 
-            img1 = cv.imread(img_path1)
-            img2 = cv.imread(img_path2)
-            if img2 is None:  # 已经到了最后一张单独加上去
+            img1 = get_image_from_url(img_path1)
+            img2 = get_image_from_url(img_path2)
+
+            if img2 is None or img1 is None:  # 已经到了最后一张单独加上去
                 continue
 
             img1 = cv.resize(img1, frame_size)
@@ -106,11 +149,15 @@ def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面�
             video_writer.write(img2)
     elif transition == 'slide':  # 滑动特效
         for i in range(len(image_files) - 1):
-            img_path1 = os.path.join(image_folder, image_files[i])
-            img_path2 = os.path.join(image_folder, image_files[i + 1])
+            img_path1 = image_files[i]
+            img_path2 = image_files[i + 1]
 
-            img1 = cv.imread(img_path1)
-            img2 = cv.imread(img_path2)
+            img1 = get_image_from_url(img_path1)
+            img2 = get_image_from_url(img_path2)
+
+            if img2 is None or img1 is None:  # 已经到了最后一张单独加上去
+                continue
+
             img1 = cv.resize(img1, frame_size)
             img2 = cv.resize(img2, frame_size)
             if img2 is None:
@@ -133,8 +180,12 @@ def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面�
             img_path1 = image_files[i]
             img_path2 = image_files[i + 1]
 
-            img1 = cv.imread(img_path1)
-            img2 = cv.imread(img_path2)
+            img1 = get_image_from_url(img_path1)
+            img2 = get_image_from_url(img_path2)
+
+            if img2 is None or img1 is None:  # 已经到了最后一张单独加上去
+                continue
+
             img1 = cv.resize(img1, frame_size)
             img2 = cv.resize(img2, frame_size)
             if img2 is None:
@@ -156,14 +207,15 @@ def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面�
 
     video_writer.release()  # 释放资源，不然最后会报警告
     print("Video saved successfully.")
-    if audio_file is None :
+    if audio_file is None:  # 没有音频文件
         with open(temp_output, 'rb') as f:
             file_data = f.read()
         os.remove(temp_output)
         return file_data
-    # 这里用ffmpeg添加音频，需要到https://www.ffmpeg.org/ 上面下载，解压后把bin目录加到环境变量里面
-    final_output_file = f'temp_{int(time.time())}_{random.randint(1000, 9999)}.mp4' # 也随机命名一个文件名称
-    ffmpeg_cmd = [  # 用ffmpeg添加音频，但是这里得先生成视频再加音频
+    
+    # 有音频文件，使用ffmpeg合并
+    final_output_file = f'temp_{int(time.time())}_{random.randint(1000, 9999)}.mp4'
+    ffmpeg_cmd = [
         "ffmpeg",
         "-i", temp_output,
         "-i", audio_file,
@@ -172,13 +224,17 @@ def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面�
         "-shortest",
         final_output_file
     ]
-
+    
     subprocess.run(ffmpeg_cmd)
     with open(final_output_file, 'rb') as f:
         file_data = f.read()
+    
+    # 清理临时文件
     os.remove(final_output_file)
     os.remove(temp_output)
-    os.remove(audio_file)
+    # 注意：这里不再删除audio_file，因为它是由调用方创建的临时文件
+    # os.remove(audio_file)  # 删除这行
+    
     print("Final video with audio created.")
     return file_data
 

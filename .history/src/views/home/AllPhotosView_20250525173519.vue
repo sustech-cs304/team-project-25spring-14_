@@ -1,24 +1,5 @@
 <template>
   <div class="main-container">
-    <el-dialog
-      v-model="showVideo"
-      title="回忆视频"
-      width="60%"
-      :before-close="() => (showVideo = false)"
-      ref="videoDialog"
-    >
-      <video
-        v-if="VideoByte"
-        controls
-        autoplay
-        style="width: 100%; height: auto"
-        :src="`data:video/mp4;base64,${VideoByte}`"
-      ></video>
-      <template #footer>
-        <el-button @click="showVideo = false">关闭</el-button>
-        <el-button type="primary" @click="downloadVideo">保存</el-button>
-      </template>
-    </el-dialog>
     <SideBar />
     <div class="content-wrapper">
       <div class="album-header">
@@ -27,6 +8,28 @@
           <p class="photo-count">共{{ filterPhotos.length }}张照片</p>
         </div>
         <div class="header-actions">
+          <el-button type="primary" @click="showVideo = true"
+            >查看回忆</el-button
+          >
+          <!-- 回忆视频弹窗 -->
+          <el-dialog v-model="showVideo" title="已生成的回忆视频" width="60%">
+            <div class="selected-photos-grid">
+              <div
+                class="photo-card"
+                v-for="(video, index) in VideoByteList"
+                :key="index"
+              >
+                <video
+                  :src="`data:video/mp4;base64,${video}`"
+                  controls
+                  class="photo-image"
+                />
+              </div>
+            </div>
+            <template #footer>
+              <el-button @click="showVideo = false">关闭</el-button>
+            </template>
+          </el-dialog>
           <el-button type="primary" @click="multiSelectMode = !multiSelectMode">
             {{ multiSelectMode ? "取消多选" : "多选" }}
           </el-button>
@@ -72,9 +75,6 @@
           </el-form-item>
           <el-form-item label="地点">
             <el-input v-model="filterCriteria.location" placeholder="地点" />
-          </el-form-item>
-          <el-form-item label="主题">
-            <el-input v-model="filterCriteria.fileName" placeholder="主题" />
           </el-form-item>
           <el-form-item label="收藏">
             <el-switch
@@ -277,7 +277,7 @@ export default {
         fps: 25,
         audioFile: null,
       },
-      VideoByte: null,
+      VideoByte:
       showVideo: false,
     };
   },
@@ -427,7 +427,6 @@ export default {
         endDate: "",
         tag: "",
         location: "",
-        fileName: "",
         isFavorite: null,
       };
       this.filterDialogVisible = false;
@@ -483,48 +482,22 @@ export default {
         this.$message.success("回忆生成成功");
         this.memoryDialogVisible = false;
         this.showSelectedDialog = false;
-        // 播放生成的视频
-        this.showVideo = true;
-        this.$nextTick(() => {
-          const dialogEl = this.$refs.videoDialog?.$el;
-          if (dialogEl && dialogEl.scrollIntoView) {
-            dialogEl.scrollIntoView({ behavior: "smooth" });
-          }
-        });
-        this.VideoByte = res.data.data;
-        console.log("生成的视频字节：", this.VideoByte);
+        this.VideoByteList.push(res.data.data);
       } catch (error) {
         console.error("生成失败", error);
         this.$message.error("生成回忆失败");
       }
     },
-    async downloadVideo() {
-      if (!this.VideoByte) return;
-      const byteCharacters = atob(this.VideoByte);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: "video/mp4" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "memory_video.mp4";
-      a.click();
-      URL.revokeObjectURL(url);
-    },
   },
   computed: {
     filterPhotos() {
-      const { startDate, endDate, tag, location, fileName, isFavorite } =
+      const { startDate, endDate, tag, location, isFavorite } =
         this.filterCriteria;
       return this.photos.filter((photo) => {
         // 取照片的日期部分（去掉T之后的时间）
         const date = photo.capturedAt ? photo.capturedAt.split("T")[0] : "";
         const photoTag = photo.tag === null ? "" : photo.tag;
         const photoLocation = photo.location === null ? "" : photo.location;
-        const photoFileName = photo.fileName === null ? "" : photo.fileName;
         if (startDate && date < startDate) return false;
         if (endDate && date > endDate) return false;
         if (
@@ -537,13 +510,6 @@ export default {
           !(photoLocation || "")
             .toLowerCase()
             .includes(location.trim().toLowerCase())
-        )
-          return false;
-        if (
-          fileName &&
-          !(photoFileName || "")
-            .toLowerCase()
-            .includes(fileName.trim().toLowerCase())
         )
           return false;
         if (isFavorite !== null && photo.isFavorite !== isFavorite)

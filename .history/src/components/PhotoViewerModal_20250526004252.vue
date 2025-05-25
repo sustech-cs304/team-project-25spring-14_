@@ -146,7 +146,6 @@
           v-if="VideoByte"
           controls
           autoplay
-          muted
           style="width: 100%; height: auto"
           :src="`data:video/mp4;base64,${VideoByte}`"
         ></video>

@@ -7,16 +7,9 @@
       :before-close="() => (showVideo = false)"
       ref="videoDialog"
     >
-      <video
-        v-if="VideoByte"
-        controls
-        autoplay
-        style="width: 100%; height: auto"
-        :src="`data:video/mp4;base64,${VideoByte}`"
-      ></video>
+     
       <template #footer>
         <el-button @click="showVideo = false">关闭</el-button>
-        <el-button type="primary" @click="downloadVideo">保存</el-button>
       </template>
     </el-dialog>
     <SideBar />
@@ -72,9 +65,6 @@
           </el-form-item>
           <el-form-item label="地点">
             <el-input v-model="filterCriteria.location" placeholder="地点" />
-          </el-form-item>
-          <el-form-item label="主题">
-            <el-input v-model="filterCriteria.fileName" placeholder="主题" />
           </el-form-item>
           <el-form-item label="收藏">
             <el-switch
@@ -427,7 +417,6 @@ export default {
         endDate: "",
         tag: "",
         location: "",
-        fileName: "",
         isFavorite: null,
       };
       this.filterDialogVisible = false;
@@ -483,48 +472,30 @@ export default {
         this.$message.success("回忆生成成功");
         this.memoryDialogVisible = false;
         this.showSelectedDialog = false;
-        // 播放生成的视频
-        this.showVideo = true;
+        // 先设置 VideoByte，再在 nextTick 后显示视频
+        this.VideoByte = res.data.data;
         this.$nextTick(() => {
+          this.showVideo = true;
           const dialogEl = this.$refs.videoDialog?.$el;
           if (dialogEl && dialogEl.scrollIntoView) {
             dialogEl.scrollIntoView({ behavior: "smooth" });
           }
         });
-        this.VideoByte = res.data.data;
-        console.log("生成的视频字节：", this.VideoByte);
       } catch (error) {
         console.error("生成失败", error);
         this.$message.error("生成回忆失败");
       }
     },
-    async downloadVideo() {
-      if (!this.VideoByte) return;
-      const byteCharacters = atob(this.VideoByte);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: "video/mp4" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "memory_video.mp4";
-      a.click();
-      URL.revokeObjectURL(url);
-    },
   },
   computed: {
     filterPhotos() {
-      const { startDate, endDate, tag, location, fileName, isFavorite } =
+      const { startDate, endDate, tag, location, isFavorite } =
         this.filterCriteria;
       return this.photos.filter((photo) => {
         // 取照片的日期部分（去掉T之后的时间）
         const date = photo.capturedAt ? photo.capturedAt.split("T")[0] : "";
         const photoTag = photo.tag === null ? "" : photo.tag;
         const photoLocation = photo.location === null ? "" : photo.location;
-        const photoFileName = photo.fileName === null ? "" : photo.fileName;
         if (startDate && date < startDate) return false;
         if (endDate && date > endDate) return false;
         if (
@@ -537,13 +508,6 @@ export default {
           !(photoLocation || "")
             .toLowerCase()
             .includes(location.trim().toLowerCase())
-        )
-          return false;
-        if (
-          fileName &&
-          !(photoFileName || "")
-            .toLowerCase()
-            .includes(fileName.trim().toLowerCase())
         )
           return false;
         if (isFavorite !== null && photo.isFavorite !== isFavorite)

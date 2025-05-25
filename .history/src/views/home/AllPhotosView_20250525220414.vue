@@ -73,9 +73,6 @@
           <el-form-item label="地点">
             <el-input v-model="filterCriteria.location" placeholder="地点" />
           </el-form-item>
-          <el-form-item label="主题">
-            <el-input v-model="filterCriteria.fileName" placeholder="主题" />
-          </el-form-item>
           <el-form-item label="收藏">
             <el-switch
               v-model="filterCriteria.isFavorite"
@@ -427,7 +424,6 @@ export default {
         endDate: "",
         tag: "",
         location: "",
-        fileName: "",
         isFavorite: null,
       };
       this.filterDialogVisible = false;
@@ -492,39 +488,50 @@ export default {
           }
         });
         this.VideoByte = res.data.data;
-        console.log("生成的视频字节：", this.VideoByte);
       } catch (error) {
         console.error("生成失败", error);
         this.$message.error("生成回忆失败");
       }
     },
-    async downloadVideo() {
-      if (!this.VideoByte) return;
-      const byteCharacters = atob(this.VideoByte);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
+    async uploadVideo() {
+      if (!this.VideoByte) {
+        this.$message.error("没有可上传的视频");
+        return;
       }
-      const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: "video/mp4" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "memory_video.mp4";
-      a.click();
-      URL.revokeObjectURL(url);
+      try {
+        // 将base64转为Blob
+        const byteString = atob(this.VideoByte);
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
+        }
+        const blob = new Blob([ab], { type: "video/mp4" });
+
+        const formData = new FormData();
+        formData.append("file", blob, "memory.mp4");
+        formData.append("albumId", this.albumId || "0");
+        formData.append("userId", this.userId);
+
+        await apiClient.post("/photos/upload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        this.$message.success("视频上传成功");
+      } catch (error) {
     },
   },
   computed: {
     filterPhotos() {
-      const { startDate, endDate, tag, location, fileName, isFavorite } =
+      const { startDate, endDate, tag, location, isFavorite } =
         this.filterCriteria;
       return this.photos.filter((photo) => {
         // 取照片的日期部分（去掉T之后的时间）
         const date = photo.capturedAt ? photo.capturedAt.split("T")[0] : "";
         const photoTag = photo.tag === null ? "" : photo.tag;
         const photoLocation = photo.location === null ? "" : photo.location;
-        const photoFileName = photo.fileName === null ? "" : photo.fileName;
         if (startDate && date < startDate) return false;
         if (endDate && date > endDate) return false;
         if (
@@ -537,13 +544,6 @@ export default {
           !(photoLocation || "")
             .toLowerCase()
             .includes(location.trim().toLowerCase())
-        )
-          return false;
-        if (
-          fileName &&
-          !(photoFileName || "")
-            .toLowerCase()
-            .includes(fileName.trim().toLowerCase())
         )
           return false;
         if (isFavorite !== null && photo.isFavorite !== isFavorite)

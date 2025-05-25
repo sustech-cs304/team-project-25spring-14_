@@ -73,9 +73,6 @@
           <el-form-item label="地点">
             <el-input v-model="filterCriteria.location" placeholder="地点" />
           </el-form-item>
-          <el-form-item label="主题">
-            <el-input v-model="filterCriteria.fileName" placeholder="主题" />
-          </el-form-item>
           <el-form-item label="收藏">
             <el-switch
               v-model="filterCriteria.isFavorite"
@@ -293,238 +290,49 @@ export default {
     }
   },
   methods: {
-    async handlePhotoChange(event) {
-      const files = event.target.files;
-      if (!files.length) return;
+    // ...其他方法...
 
+    async uploadVideo() {
+      if (!this.VideoByte) {
+        this.$message.error("没有可下载的视频");
+        return;
+      }
       try {
-        for (const file of files) {
-          const formData = new FormData();
-          formData.append("file", file);
-          formData.append("albumId", this.album.albumId);
-          formData.append("userId", this.userId);
-
-          const response = await apiClient.post("/photos/upload", formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
-
-          const newPhoto = response.data.data.photo;
-          this.album.photos.push(newPhoto);
-          this.album.photoCount++;
+        // 将base64转为Blob
+        const byteString = atob(this.VideoByte);
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
         }
+        const blob = new Blob([ab], { type: "video/mp4" });
 
-        this.$message.success("所有照片上传成功");
+        // 创建下载链接并自动下载
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "memory.mp4";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        this.$message.success("视频已保存到本地");
       } catch (error) {
-        console.error("上传失败：", error);
-        this.$message.error("部分照片上传失败");
+        console.error("视频保存失败：", error);
+        this.$message.error("视频保存失败");
       }
-
-      window.location.reload();
-    },
-
-    openPhotoViewer(photo) {
-      this.selectedPhoto = photo;
-      this.viewerVisible = true;
-    },
-    editPhoto(photo) {
-      console.log("photo.fileUrl:", photo.fileUrl);
-      console.log("typeof photo.fileUrl:", typeof photo.fileUrl);
-      console.log("photo.fileUrl?.type:", photo.fileUrl?.type);
-      this.editingPhoto = photo;
-      this.editingPhotoUrl = photo.fileUrl;
-      this.editorVisible = true;
-      console.log(this.editingPhoto);
-      this.viewerVisible = false;
-    },
-    async deletePhoto(photo) {
-      try {
-        await apiClient.delete(`/photos/${photo.photoId}`);
-        this.album.photos = this.album.photos.filter(
-          (p) => p.photoId !== photo.photoId
-        );
-        this.album.photoCount--;
-        this.viewerVisible = false;
-        this.$message.success("照片已删除");
-      } catch (error) {
-        console.error("删除失败：", error);
-        this.$message.error("删除照片失败");
-      }
-    },
-    handlePhotoReport(photo) {
-      this.selectedPhoto = photo;
-      this.photoReportDialogVisible = true;
-    },
-    async submitPhotoReport() {
-      try {
-        await apiClient.post("/reports/user", {
-          resourceId: this.selectedPhoto.photoId,
-          reason: this.photoReportReason,
-          resourceType: "photo",
-          reporteeId: this.selectedPhoto.userId,
-        });
-        this.$message.success("举报已提交");
-        this.photoReportDialogVisible = false;
-        this.photoReportReason = "";
-      } catch (error) {
-        console.error("举报失败：", error);
-        this.$message.error("举报失败，请稍后再试");
-      }
-    },
-    async handlePhotoSave(blob) {
-      try {
-        const formData = new FormData();
-        formData.append("file", blob, "edited.png");
-        formData.append("albumId", this.albumId); // 当前相册ID
-        formData.append("userId", this.userId); // 当前用户ID
-
-        // 调用上传新照片的接口
-        await apiClient.post("/photos/upload", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-
-        this.$message.success("编辑后的照片已作为新照片上传");
-        this.editorVisible = false;
-        // 刷新照片列表
-        window.location.reload();
-      } catch (error) {
-        this.$message.error("上传失败");
-        console.error(error);
-      }
-    },
-    async handlePhotoInfoUpdate(updatedPhoto) {
-      try {
-        console.log("更新照片信息：", updatedPhoto);
-        const formData = new FormData();
-        formData.append("fileName", updatedPhoto.fileName);
-        formData.append("tag", updatedPhoto.tag);
-        formData.append("location", updatedPhoto.location);
-        formData.append("isFavorite", updatedPhoto.isFavorite);
-
-        await apiClient.put(`/photos/${updatedPhoto.photoId}`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        this.$message.success("照片信息已更新");
-      } catch (error) {
-        console.error("更新照片信息失败：", error);
-        this.$message.error("更新照片信息失败");
-      }
-    },
-    isVideo(url) {
-      return /\.(mp4|webm|ogg|mov|avi|mkv|mpeg|wmv)$/i.test(url);
-    },
-    applyFilter() {
-      this.filterDialogVisible = false;
-    },
-    cancerFilter() {
-      this.filterCriteria = {
-        startDate: "",
-        endDate: "",
-        tag: "",
-        location: "",
-        fileName: "",
-        isFavorite: null,
-      };
-      this.filterDialogVisible = false;
-    },
-    togglePhotoSelection(photo) {
-      const idx = this.selectedPhotos.findIndex(
-        (p) => p.photoId === photo.photoId
-      );
-      if (idx >= 0) {
-        this.selectedPhotos.splice(idx, 1);
-      } else {
-        this.selectedPhotos.push(photo);
-      }
-    },
-    /**
-     * Toggle select all: if all are already selected, clear; otherwise select all.
-     */
-    selectAllPhotos() {
-      const allPhotos = this.filterPhotos;
-      // If currently all are selected, clear selection
-      if (this.selectedPhotos.length === allPhotos.length) {
-        this.selectedPhotos = [];
-      } else {
-        // Otherwise select all
-        this.selectedPhotos = allPhotos.slice();
-      }
-    },
-    generateMemory() {
-      this.memoryDialogVisible = true;
-    },
-    handleAudioChange(event) {
-      const file = event.target.files[0];
-      if (file) {
-        this.memoryOptions.audioFile = file;
-      }
-    },
-
-    async submitMemoryRequest() {
-      const photoIds = this.selectedPhotos.map((p) => p.photoId);
-      const formData = new FormData();
-      formData.append(
-        "PhotoId",
-        photoIds.map((id) => parseInt(id, 10))
-      );
-      formData.append("transition", this.memoryOptions.transition);
-      formData.append("fps", this.memoryOptions.fps);
-      if (this.memoryOptions.audioFile) {
-        formData.append("audio", this.memoryOptions.audioFile);
-      }
-
-      try {
-        const res = await apiClient.post("/video/create_photo", formData);
-        this.$message.success("回忆生成成功");
-        this.memoryDialogVisible = false;
-        this.showSelectedDialog = false;
-        // 播放生成的视频
-        this.showVideo = true;
-        this.$nextTick(() => {
-          const dialogEl = this.$refs.videoDialog?.$el;
-          if (dialogEl && dialogEl.scrollIntoView) {
-            dialogEl.scrollIntoView({ behavior: "smooth" });
-          }
-        });
-        this.VideoByte = res.data.data;
-        console.log("生成的视频字节：", this.VideoByte);
-      } catch (error) {
-        console.error("生成失败", error);
-        this.$message.error("生成回忆失败");
-      }
-    },
-    async downloadVideo() {
-      if (!this.VideoByte) return;
-      const byteCharacters = atob(this.VideoByte);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: "video/mp4" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "memory_video.mp4";
-      a.click();
-      URL.revokeObjectURL(url);
     },
   },
   computed: {
     filterPhotos() {
-      const { startDate, endDate, tag, location, fileName, isFavorite } =
+      const { startDate, endDate, tag, location, isFavorite } =
         this.filterCriteria;
       return this.photos.filter((photo) => {
         // 取照片的日期部分（去掉T之后的时间）
         const date = photo.capturedAt ? photo.capturedAt.split("T")[0] : "";
         const photoTag = photo.tag === null ? "" : photo.tag;
         const photoLocation = photo.location === null ? "" : photo.location;
-        const photoFileName = photo.fileName === null ? "" : photo.fileName;
         if (startDate && date < startDate) return false;
         if (endDate && date > endDate) return false;
         if (
@@ -537,13 +345,6 @@ export default {
           !(photoLocation || "")
             .toLowerCase()
             .includes(location.trim().toLowerCase())
-        )
-          return false;
-        if (
-          fileName &&
-          !(photoFileName || "")
-            .toLowerCase()
-            .includes(fileName.trim().toLowerCase())
         )
           return false;
         if (isFavorite !== null && photo.isFavorite !== isFavorite)

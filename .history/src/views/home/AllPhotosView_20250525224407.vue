@@ -73,9 +73,6 @@
           <el-form-item label="地点">
             <el-input v-model="filterCriteria.location" placeholder="地点" />
           </el-form-item>
-          <el-form-item label="主题">
-            <el-input v-model="filterCriteria.fileName" placeholder="主题" />
-          </el-form-item>
           <el-form-item label="收藏">
             <el-switch
               v-model="filterCriteria.isFavorite"
@@ -427,7 +424,7 @@ export default {
         endDate: "",
         tag: "",
         location: "",
-        fileName: "",
+        file
         isFavorite: null,
       };
       this.filterDialogVisible = false;
@@ -492,7 +489,6 @@ export default {
           }
         });
         this.VideoByte = res.data.data;
-        console.log("生成的视频字节：", this.VideoByte);
       } catch (error) {
         console.error("生成失败", error);
         this.$message.error("生成回忆失败");
@@ -517,14 +513,13 @@ export default {
   },
   computed: {
     filterPhotos() {
-      const { startDate, endDate, tag, location, fileName, isFavorite } =
+      const { startDate, endDate, tag, location, isFavorite } =
         this.filterCriteria;
       return this.photos.filter((photo) => {
         // 取照片的日期部分（去掉T之后的时间）
         const date = photo.capturedAt ? photo.capturedAt.split("T")[0] : "";
         const photoTag = photo.tag === null ? "" : photo.tag;
         const photoLocation = photo.location === null ? "" : photo.location;
-        const photoFileName = photo.fileName === null ? "" : photo.fileName;
         if (startDate && date < startDate) return false;
         if (endDate && date > endDate) return false;
         if (
@@ -537,13 +532,6 @@ export default {
           !(photoLocation || "")
             .toLowerCase()
             .includes(location.trim().toLowerCase())
-        )
-          return false;
-        if (
-          fileName &&
-          !(photoFileName || "")
-            .toLowerCase()
-            .includes(fileName.trim().toLowerCase())
         )
           return false;
         if (isFavorite !== null && photo.isFavorite !== isFavorite)

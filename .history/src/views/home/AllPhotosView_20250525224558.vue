@@ -74,7 +74,7 @@
             <el-input v-model="filterCriteria.location" placeholder="地点" />
           </el-form-item>
           <el-form-item label="主题">
-            <el-input v-model="filterCriteria.fileName" placeholder="主题" />
+            <el-input v-model="filterCriteria.fileName" placeholder="地点" />
           </el-form-item>
           <el-form-item label="收藏">
             <el-switch
@@ -492,7 +492,6 @@ export default {
           }
         });
         this.VideoByte = res.data.data;
-        console.log("生成的视频字节：", this.VideoByte);
       } catch (error) {
         console.error("生成失败", error);
         this.$message.error("生成回忆失败");

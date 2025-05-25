@@ -136,23 +136,27 @@
       </el-dialog>
 
       <el-dialog
-        v-model="showVideo"
+        v-model="encodedVideoDialogVisible"
         title="字幕视频预览"
         width="60%"
-        :before-close="() => (showVideo = false)"
-        ref="videoDialog"
       >
         <video
           v-if="VideoByte"
           controls
           autoplay
-          muted
           style="width: 100%; height: auto"
           :src="`data:video/mp4;base64,${VideoByte}`"
         ></video>
         <template #footer>
-          <el-button @click="showVideo = false">关闭</el-button>
-          <el-button type="primary" @click="downloadVideo">保存</el-button>
+          <el-button
+            @click="
+              encodedVideoDialogVisible = false;
+              encodedVideoBase64 = '';
+            "
+          >
+            关闭
+          </el-button>
+          <el-button type="primary" @click="downloadVideo"> 保存 </el-button>
         </template>
       </el-dialog>
 
@@ -237,8 +241,7 @@ export default {
       finalSubtitleObject: "",
       showFontStyleForm: false,
       encodedVideoDialogVisible: false,
-      VideoByte: "",
-      showVideo: false,
+      V: "",
     };
   },
   watch: {
@@ -329,25 +332,27 @@ export default {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
             },
+            responseType: "arraybuffer",
           }
         );
-        this.showVideo = true;
-        this.$nextTick(() => {
-          const dialogEl = this.$refs.videoDialog?.$el;
-          if (dialogEl && dialogEl.scrollIntoView) {
-            dialogEl.scrollIntoView({ behavior: "smooth" });
-          }
-        });
-        this.VideoByte = res.data.data;
+        if (res.data && res.data) {
+          const reader = new FileReader();
+          const blob = new Blob([res.data], { type: "video/mp4" });
+          reader.onloadend = () => {
+            const base64Data = reader.result.split(",")[1];
+            this.encodedVideoBase64 = base64Data;
+            this.encodedVideoDialogVisible = true;
+          };
+          reader.readAsDataURL(blob);
+        }
         this.$message.success("字幕已提交并处理成功");
         this.videoEditDialogVisible = false;
-        this.subtitleEntries = [];
       } catch (err) {
         console.error("字幕提交失败", err);
         this.$message.error("提交失败，请稍后重试");
       }
     },
-    downloadVideo() {
+    async downloadVideo() {
       if (!this.VideoByte) return;
       const byteCharacters = atob(this.VideoByte);
       const byteNumbers = new Array(byteCharacters.length);
@@ -359,10 +364,9 @@ export default {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "subtitle_video.mp4";
+      a.download = "memory_video.mp4";
       a.click();
       URL.revokeObjectURL(url);
-      this.showVideo = false;
     },
     handleLoadedMetadata() {
       const video = this.$refs.videoPlayer;

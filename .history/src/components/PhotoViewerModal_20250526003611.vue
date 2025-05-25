@@ -146,7 +146,6 @@
           v-if="VideoByte"
           controls
           autoplay
-          muted
           style="width: 100%; height: auto"
           :src="`data:video/mp4;base64,${VideoByte}`"
         ></video>
@@ -329,6 +328,7 @@ export default {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
             },
+          
           }
         );
         this.showVideo = true;
@@ -339,9 +339,9 @@ export default {
           }
         });
         this.VideoByte = res.data.data;
+        console.log("视频字节数据:", this.VideoByte);
         this.$message.success("字幕已提交并处理成功");
         this.videoEditDialogVisible = false;
-        this.subtitleEntries = [];
       } catch (err) {
         console.error("字幕提交失败", err);
         this.$message.error("提交失败，请稍后重试");

@@ -46,113 +46,52 @@
         title="视频编辑设置"
         width="400px"
       >
-        <template v-if="!showFontStyleForm">
-          <div style="text-align: center; padding: 20px">
-            <el-button type="primary" @click="enableSubtitleEdit"
-              >添加字幕</el-button
-            >
-          </div>
-          <div
-            v-if="subtitleEntries.length > 0"
-            style="margin-top: 10px; padding: 0 20px"
+        <div style="text-align: center; padding: 20px">
+          <el-button type="primary" @click="enableSubtitleEdit"
+            >添加字幕</el-button
           >
-            <div
-              v-for="entry in subtitleEntries"
-              :key="entry.id"
-              style="margin-bottom: 16px"
-            >
-              <span style="margin-right: 10px">#{{ entry.id }}</span>
-              <el-input
-                v-model="entry.text"
-                placeholder="请输入字幕内容"
-                style="width: 300px; margin-bottom: 8px"
-              />
-              <el-time-picker
-                v-model="entry.timeRange"
-                is-range
-                format="HH:mm:ss"
-                value-format="HH:mm:ss"
-                range-separator="至"
-                start-placeholder="开始时间"
-                end-placeholder="结束时间"
-                style="width: 300px"
-                :disabled-hours="getDisabledTimeMethods().disabledHours"
-                :disabled-minutes="getDisabledTimeMethods().disabledMinutes"
-                :disabled-seconds="getDisabledTimeMethods().disabledSeconds"
-                @change="
-                  (val) => {
-                    if (val && checkTimeOverlap(val, entry.id)) {
-                      entry.timeRange = [];
-                      $message.warning('该时间段与现有字幕重叠');
-                    }
+        </div>
+        <div
+          v-if="subtitleEntries.length > 0"
+          style="margin-top: 10px; padding: 0 20px"
+        >
+          <div
+            v-for="entry in subtitleEntries"
+            :key="entry.id"
+            style="margin-bottom: 16px"
+          >
+            <span style="margin-right: 10px">#{{ entry.id }}</span>
+            <el-input
+              v-model="entry.text"
+              placeholder="请输入字幕内容"
+              style="width: 300px; margin-bottom: 8px"
+            />
+            <el-time-picker
+              v-model="entry.timeRange"
+              is-range
+              format="HH:mm:ss"
+              value-format="HH:mm:ss"
+              range-separator="至"
+              start-placeholder="开始时间"
+              end-placeholder="结束时间"
+              style="width: 300px"
+              :disabled-hours="getDisabledTimeMethods().disabledHours"
+              :disabled-minutes="getDisabledTimeMethods().disabledMinutes"
+              :disabled-seconds="getDisabledTimeMethods().disabledSeconds"
+              @change="
+                (val) => {
+                  if (val && checkTimeOverlap(val, entry.id)) {
+                    entry.timeRange = [];
+                    $message.warning('该时间段与现有字幕重叠');
                   }
-                "
-              />
-            </div>
+                }
+              "
+            />
           </div>
-        </template>
-        <template v-else>
-          <el-form label-width="80px" style="padding: 0 20px">
-            <el-form-item label="字体名称">
-              <el-select
-                v-model="videoEditOptions.font_name"
-                placeholder="请选择字体"
-              >
-                <el-option label="Arial" value="Arial" />
-                <el-option label="Helvetica" value="Helvetica" />
-                <el-option label="Times New Roman" value="Times New Roman" />
-                <el-option label="Courier New" value="Courier New" />
-                <el-option label="Verdana" value="Verdana" />
-              </el-select>
-            </el-form-item>
-            <el-form-item label="字体大小">
-              <el-input-number v-model="videoEditOptions.font_size" :min="1" />
-            </el-form-item>
-            <el-form-item label="字体颜色">
-              <el-select
-                v-model="videoEditOptions.font_color"
-                placeholder="请选择颜色"
-              >
-                <el-option label="白色" value="white" />
-                <el-option label="黑色" value="black" />
-                <el-option label="红色" value="red" />
-                <el-option label="黄色" value="yellow" />
-                <el-option label="蓝色" value="blue" />
-              </el-select>
-            </el-form-item>
-          </el-form>
-        </template>
+        </div>
         <template #footer>
           <el-button @click="videoEditDialogVisible = false">取消</el-button>
-          <el-button
-            type="primary"
-            @click="
-              showFontStyleForm ? finalizeSubtitleEdit() : submitVideoEdit()
-            "
-          >
-            {{ showFontStyleForm ? "完成" : "下一步" }}
-          </el-button>
-        </template>
-      </el-dialog>
-
-      <el-dialog
-        v-model="showVideo"
-        title="字幕视频预览"
-        width="60%"
-        :before-close="() => (showVideo = false)"
-        ref="videoDialog"
-      >
-        <video
-          v-if="VideoByte"
-          controls
-          autoplay
-          muted
-          style="width: 100%; height: auto"
-          :src="`data:video/mp4;base64,${VideoByte}`"
-        ></video>
-        <template #footer>
-          <el-button @click="showVideo = false">关闭</el-button>
-          <el-button type="primary" @click="downloadVideo">保存</el-button>
+          <el-button type="primary" @click="submitVideoEdit">确认</el-button>
         </template>
       </el-dialog>
 
@@ -206,8 +145,6 @@
 </template>
 
 <script>
-import apiClient from "@/apiClient";
-import qs from "qs";
 export default {
   name: "PhotoViewerModal",
   props: {
@@ -234,11 +171,7 @@ export default {
       },
       subtitleEntries: [],
       videoDuration: 0,
-      finalSubtitleObject: "",
-      showFontStyleForm: false,
-      encodedVideoDialogVisible: false,
-      VideoByte: "",
-      showVideo: false,
+      finalSubtitleObject: {},
     };
   },
   watch: {
@@ -280,7 +213,6 @@ export default {
     openVideoEditDialog() {
       this.showSubtitleForm = false;
       this.videoEditDialogVisible = true;
-      this.showFontStyleForm = false;
     },
     enableSubtitleEdit() {
       // 先验证当前已有时间段是否完整
@@ -305,64 +237,10 @@ export default {
           result[key] = entry.text.trim();
         }
       }
-      this.finalSubtitleObject = JSON.stringify(result);
-      this.showFontStyleForm = true;
-
-      // 控制台打印所有内容
-      console.log("字幕内容:", this.finalSubtitleObject);
-      console.log("样式设置:", this.videoEditOptions);
-    },
-    async finalizeSubtitleEdit() {
-      try {
-        const payload = {
-          tag: this.finalSubtitleObject,
-          font_name: this.videoEditOptions.font_name,
-          font_size: this.videoEditOptions.font_size,
-          font_color: this.videoEditOptions.font_color,
-          photoId: this.photo.photoId,
-        };
-        console.log("提交的字幕数据:", qs.stringify(payload));
-        const res = await apiClient.post(
-          "/video/add_caption",
-          qs.stringify(payload),
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-          }
-        );
-        this.showVideo = true;
-        this.$nextTick(() => {
-          const dialogEl = this.$refs.videoDialog?.$el;
-          if (dialogEl && dialogEl.scrollIntoView) {
-            dialogEl.scrollIntoView({ behavior: "smooth" });
-          }
-        });
-        this.VideoByte = res.data.data;
-        this.$message.success("字幕已提交并处理成功");
-        this.videoEditDialogVisible = false;
-        this.subtitleEntries = [];
-      } catch (err) {
-        console.error("字幕提交失败", err);
-        this.$message.error("提交失败，请稍后重试");
-      }
-    },
-    downloadVideo() {
-      if (!this.VideoByte) return;
-      const byteCharacters = atob(this.VideoByte);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: "video/mp4" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "subtitle_video.mp4";
-      a.click();
-      URL.revokeObjectURL(url);
-      this.showVideo = false;
+      this.finalSubtitleObject = result;
+      c
+      this.videoEditDialogVisible = false;
+      this.$message.success("已确认字幕内容");
     },
     handleLoadedMetadata() {
       const video = this.$refs.videoPlayer;

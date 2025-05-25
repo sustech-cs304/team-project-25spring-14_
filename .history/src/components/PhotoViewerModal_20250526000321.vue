@@ -136,23 +136,38 @@
       </el-dialog>
 
       <el-dialog
-        v-model="showVideo"
+        v-model="encodedVideoDialogVisible"
         title="字幕视频预览"
-        width="60%"
-        :before-close="() => (showVideo = false)"
-        ref="videoDialog"
+        width="600px"
       >
         <video
-          v-if="VideoByte"
+          v-if="encodedVideoBlobUrl"
+          :src="encodedVideoBlobUrl"
           controls
-          autoplay
-          muted
-          style="width: 100%; height: auto"
-          :src="`data:video/mp4;base64,${VideoByte}`"
+          style="width: 100%"
         ></video>
         <template #footer>
-          <el-button @click="showVideo = false">关闭</el-button>
-          <el-button type="primary" @click="downloadVideo">保存</el-button>
+          <el-button
+            @click="
+              encodedVideoDialogVisible = false;
+              encodedVideoBlobUrl = '';
+            "
+          >
+            取消
+          </el-button>
+          <el-button
+            type="primary"
+            @click="
+              (() => {
+                const a = document.createElement('a');
+                a.href = encodedVideoBlobUrl;
+                a.download = 'encoded_video.mp4';
+                a.click();
+              })
+            "
+          >
+            保存
+          </el-button>
         </template>
       </el-dialog>
 
@@ -236,9 +251,8 @@ export default {
       videoDuration: 0,
       finalSubtitleObject: "",
       showFontStyleForm: false,
+      encodedVideoBlobUrl: "",
       encodedVideoDialogVisible: false,
-      VideoByte: "",
-      showVideo: false,
     };
   },
   watch: {
@@ -319,7 +333,7 @@ export default {
           font_name: this.videoEditOptions.font_name,
           font_size: this.videoEditOptions.font_size,
           font_color: this.videoEditOptions.font_color,
-          photoId: this.photo.photoId,
+          PhotoId: this.photo.photoId,
         };
         console.log("提交的字幕数据:", qs.stringify(payload));
         const res = await apiClient.post(
@@ -329,40 +343,21 @@ export default {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
             },
+            responseType: "blob",
           }
         );
-        this.showVideo = true;
-        this.$nextTick(() => {
-          const dialogEl = this.$refs.videoDialog?.$el;
-          if (dialogEl && dialogEl.scrollIntoView) {
-            dialogEl.scrollIntoView({ behavior: "smooth" });
-          }
-        });
-        this.VideoByte = res.data.data;
         this.$message.success("字幕已提交并处理成功");
         this.videoEditDialogVisible = false;
-        this.subtitleEntries = [];
+
+        if (res.data && res.data) {
+          const blob = new Blob([res.data], { type: "video/mp4" });
+          this.encodedVideoBlobUrl = URL.createObjectURL(blob);
+          this.encodedVideoDialogVisible = true;
+        }
       } catch (err) {
         console.error("字幕提交失败", err);
         this.$message.error("提交失败，请稍后重试");
       }
-    },
-    downloadVideo() {
-      if (!this.VideoByte) return;
-      const byteCharacters = atob(this.VideoByte);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: "video/mp4" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "subtitle_video.mp4";
-      a.click();
-      URL.revokeObjectURL(url);
-      this.showVideo = false;
     },
     handleLoadedMetadata() {
       const video = this.$refs.videoPlayer;

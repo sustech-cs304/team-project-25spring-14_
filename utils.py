@@ -264,6 +264,7 @@ def add_captions(input_video, subtitles_dict: dict, font_name='Arial', font_size
     with open(temp_srt, "w", encoding='utf-8') as f:
         for item in srt_content:
             f.write(item)
+    input_video = download_video(input_video=input_video)
     output_video = f'temp_{int(time.time())}_{random.randint(1000, 9999)}.mp4' # 也随机命名一个文件名称
     ffmpeg_cmd = (
         f'ffmpeg -i "{input_video}" -vf '
@@ -275,8 +276,17 @@ def add_captions(input_video, subtitles_dict: dict, font_name='Arial', font_size
         file_data = f.read()
     os.remove(output_video)
     os.remove(temp_srt)
+    os.remove(input_video)
     return file_data
 
+def download_video(input_video):
+    local_path = f"video_{int(time.time())}_{random.randint(0,999)}.mp4"
+    resp = requests.get(input_video, stream=True)
+    resp.raise_for_status()
+    with open(local_path, "wb") as fw:
+        for chunk in resp.iter_content(chunk_size=8192):
+            fw.write(chunk)
+    return local_path    
 
 def denoising(img_path):  # 这里用锐化的效果比较明显，高斯滤波和双边滤波的效果一般
 

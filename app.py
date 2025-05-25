@@ -5,6 +5,7 @@ import tempfile
 import cv2
 from flask import Flask, request, Response, jsonify, send_file
 from utils import *
+import json
 
 app = Flask(__name__)
 
@@ -128,8 +129,7 @@ def add_captions_app():
     font_color = data.get('font_color')
     if not input_video:
         return 'ERROR :Image_path not provided'
-    if not os.path.exists(input_video):
-        return 'ERROR :Image_path dose not exists'
+    subtitles_dict = json.loads(subtitles_dict)
     try:
         file_data = add_captions(input_video,subtitles_dict,font_name,font_size,font_color)  # 这里的dict需要传进去一个字典，但是这里是一个字符串，到时候看怎么转成字典
         file_stream = io.BytesIO(file_data)

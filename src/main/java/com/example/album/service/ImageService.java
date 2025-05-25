@@ -1,6 +1,8 @@
 package com.example.album.service;
 
 import com.example.album.mapper.PhotoMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
@@ -90,14 +92,17 @@ public class ImageService {  // 这个是图片的一下基础操作，现在不
 
         RestTemplate restTemplate = new RestTemplate();
         try {
-            ResponseEntity<Map> response = restTemplate.exchange(
+            ResponseEntity<String> response = restTemplate.exchange(
                     Url,
                     HttpMethod.GET,
                     null,
-                    Map.class
+                    String.class
             );
+            ObjectMapper mapper = new ObjectMapper();
             if (response.getStatusCode() == HttpStatus.OK || response.getBody()!=null) {
-                Object detectClassObj = Objects.requireNonNull(response.getBody()).get("detect_class");
+                String body = response.getBody();
+                Map<String, Object> map = mapper.readValue(body, new TypeReference<Map<String, Object>>() {});
+                Object detectClassObj = map.get("detect_class");
                 if (detectClassObj instanceof String) {
                     return detectClassObj.toString();  // 返回 detect_class 列表
                 } else {

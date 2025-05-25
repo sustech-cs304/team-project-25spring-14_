@@ -239,41 +239,47 @@ def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面�
     return file_data
 
 
-def add_captions(input_video, subtitles_dict: dict, font_name='Arial', font_size=24, font_color='white'):
+def add_captions(input_video, subtitles_dict: dict, font_name='Arial', font_size=24, font_color='&H00FFFFFF'):
     """
-    这里用ffmpeg来添加字幕，因为使用cv的话需要逐帧渲染太麻烦了，而且不易于前端的操作
-    这里面的字典，key是输入的时间，value是字幕内容
-    将字典转换成.srt字幕文件，将字幕硬编码到视频
-    但是这里的字幕必须手动加入，还没有能够自动加入的库
+    使用 ffmpeg 硬编码字幕到视频，支持自定义字体样式
     """
     srt_content = []
     for idx, (time_range, text) in enumerate(subtitles_dict.items(), 1):
         start_time, end_time = time_range.split("-")
         start_time = datetime.strptime(start_time, "%H:%M:%S")
         end_time = datetime.strptime(end_time, "%H:%M:%S")
-        # 这里转换成ffmpeg时间格式
         start_srt = start_time.strftime("%H:%M:%S,000")
-        end_srt = (end_time - timedelta(seconds=1)).strftime("%H:%M:%S,999")  # 避免时间重叠
-        srt_content.append(
-            f"{idx}\n"
-            f"{start_srt} --> {end_srt}\n"
-            f"{text}\n\n"
-        )
-    # 这里用一个临时文件存储字幕，就不保存到本地，运行结束之后直接删掉
+        end_srt = (end_time - timedelta(seconds=1)).strftime("%H:%M:%S,999")
+        srt_content.append(f"{idx}\n{start_srt} --> {end_srt}\n{text}\n\n")
+
     temp_srt = 'temp_subtitle.srt'
     with open(temp_srt, "w", encoding='utf-8') as f:
-        for item in srt_content:
-            f.write(item)
+        f.writelines(srt_content)
+
     input_video = download_video(input_video=input_video)
-    output_video = f'temp_{int(time.time())}_{random.randint(1000, 9999)}.mp4' # 也随机命名一个文件名称
-    ffmpeg_cmd = (
-        f'ffmpeg -i "{input_video}" -vf '
-        f'"subtitles={temp_srt}:force_style=\'FontName={font_name},FontSize={font_size},PrimaryColour={font_color},Alignment=2,MarginV=20" '
-        f'-c:a copy -y "{output_video}"'
+    output_video = f'temp_{int(time.time())}_{random.randint(1000, 9999)}.mp4'
+
+    subtitles_filter = (
+        f"subtitles={os.path.abspath(temp_srt)}:"
+        f"force_style='FontName={font_name},FontSize={font_size},"
+        f"PrimaryColour={font_color},Alignment=2,MarginV=20'"
     )
-    subprocess.run(ffmpeg_cmd)
+
+    try:
+        subprocess.run(
+            ["ffmpeg", "-i", input_video, "-vf", subtitles_filter,
+             "-c:a", "copy", "-y", output_video],
+            check=True
+        )
+    except subprocess.CalledProcessError as e:
+        print(f"FFmpeg error: {e}")
+        os.remove(temp_srt)
+        os.remove(input_video)
+        raise
+
     with open(output_video, 'rb') as f:
         file_data = f.read()
+
     os.remove(output_video)
     os.remove(temp_srt)
     os.remove(input_video)

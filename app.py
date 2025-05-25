@@ -142,7 +142,7 @@ def ai_classify_image_app():
     img_path = request.args.get('img_path')
     if not img_path:
         return jsonify({'error': 'Image_path not provided'}), 400
-    img_path = convert_url_to_container_path(img_path)
+    # img_path = convert_url_to_container_path(img_path)
     # if not os.path.exists(img_path):
     #     return 'ERROR :Image_path dose not exists'
     try:
@@ -152,5 +152,5 @@ def ai_classify_image_app():
         print(e)
         return jsonify({'error': 'Internal server error'}), 500
 if __name__ == '__main__':
-    # app.run()
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run()
+    # app.run(host='0.0.0.0', port=5000, debug=False)

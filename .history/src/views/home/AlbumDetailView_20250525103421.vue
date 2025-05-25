@@ -386,10 +386,7 @@ export default {
         formData.append("file", file);
         formData.append("albumId", this.album.albumId);
         formData.append("userId", this.userId);
-        formData.append(
-          "capturedAt",
-          this.photoMetaForm.capturedAt + "T00:00:00"
-        );
+        formData.append("capturedAt", this.photoMetaForm.capturedAt);
         formData.append("location", this.photoMetaForm.location);
 
         try {

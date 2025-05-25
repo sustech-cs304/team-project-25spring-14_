@@ -259,7 +259,6 @@ export default {
         audioFile: null,
       },
       VideoByte: null,
-      showVideo: false,
     };
   },
   async created() {

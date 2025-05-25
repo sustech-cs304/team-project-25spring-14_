@@ -184,19 +184,10 @@
           />
         </div>
       </div>
-      <el-dialog
-        v-model="photoMetaDialogVisible"
-        title="设置照片信息"
-        width="400px"
-      >
+      <el-dialog v-model="photoMetaDialogVisible" title="设置照片信息" width="400px">
         <el-form :model="photoMetaForm" label-width="80px">
           <el-form-item label="拍摄时间">
-            <el-date-picker
-              v-model="photoMetaForm.capturedAt"
-              type="date"
-              placeholder="选择日期"
-              value-format="YYYY-MM-DD"
-            />
+            <el-date-picker v-model="photoMetaForm.capturedAt" type="date" placeholder="选择日期" value-format="YYYY-MM-DD" />
           </el-form-item>
           <el-form-item label="拍摄地点">
             <el-input v-model="photoMetaForm.location" placeholder="输入地点" />
@@ -327,8 +318,8 @@ export default {
       },
       photoMetaDialogVisible: false,
       photoMetaForm: {
-        capturedAt: "",
-        location: "",
+        capturedAt: '',
+        location: '',
       },
       photoUploadQueue: [],
     };
@@ -386,10 +377,7 @@ export default {
         formData.append("file", file);
         formData.append("albumId", this.album.albumId);
         formData.append("userId", this.userId);
-        formData.append(
-          "capturedAt",
-          this.photoMetaForm.capturedAt + "T00:00:00"
-        );
+        formData.append("capturedAt", this.photoMetaForm.capturedAt);
         formData.append("location", this.photoMetaForm.location);
 
         try {

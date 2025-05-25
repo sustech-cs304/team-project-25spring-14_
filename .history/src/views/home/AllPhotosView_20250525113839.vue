@@ -8,9 +8,6 @@
           <p class="photo-count">共{{ filterPhotos.length }}张照片</p>
         </div>
         <div class="header-actions">
-          <el-button type="primary" @click="showVideo = true"
-            >查看回忆</el-button
-          >
           <el-button type="primary" @click="multiSelectMode = !multiSelectMode">
             {{ multiSelectMode ? "取消多选" : "多选" }}
           </el-button>
@@ -259,7 +256,6 @@ export default {
         audioFile: null,
       },
       VideoByte: null,
-      showVideo: false,
     };
   },
   async created() {
@@ -463,7 +459,7 @@ export default {
         this.$message.success("回忆生成成功");
         this.memoryDialogVisible = false;
         this.showSelectedDialog = false;
-        this.VideoByte = res.data.data;
+        co
       } catch (error) {
         console.error("生成失败", error);
         this.$message.error("生成回忆失败");

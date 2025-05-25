@@ -3,113 +3,12 @@
     <SideBar />
     <div class="content-wrapper">
       <div class="album-header">
-        <div class="album-cover-wrapper">
-          <img
-            v-if="album.coverThumbnailUrl"
-            :src="album.coverThumbnailUrl"
-            alt="Album Cover"
-            class="album-cover"
-          />
-          <div
-            v-else
-            class="album-cover default"
-            :class="{ disabled: !isSelf }"
-            @click="isSelf && updateAlbumCover()"
-          >
-            <span class="add-cover-text">添加封面</span>
-            <input
-              type="file"
-              ref="coverInput"
-              style="display: none"
-              @change="handleCoverChange"
-            />
-          </div>
-        </div>
         <div class="album-info-wrapper">
-          <div class="album-title-row">
-            <div
-              v-if="!editingTitle"
-              :class="{ disabled: !isSelf }"
-              @click="isSelf && (editingTitle = true)"
-            >
-              <h1 class="album-title">{{ album.title }}</h1>
-            </div>
-            <div
-              v-else
-              class="album-title editable"
-              contenteditable="true"
-              @blur="cancelOrUpdateTitle"
-              @keydown.enter.prevent="updateAlbumTitle"
-              @focus="selectAllContent('titleEditor')"
-              ref="titleEditor"
-            >
-              {{ editableTitle }}
-            </div>
-            <div
-              class="privacy-select"
-              :class="{ disabled: !isSelf }"
-              @click="isSelf && (privacySelectVisible = true)"
-            >
-              <img
-                :src="getPrivacyIcon(editablePrivacy)"
-                class="privacy-icon"
-                alt="privacy"
-              />
-              <el-select
-                v-if="privacySelectVisible"
-                v-model="editablePrivacy"
-                size="small"
-                @change="updateAlbumPrivacy"
-                :placeholder="''"
-                :teleported="false"
-                :suffix-icon="null"
-                class="privacy-dropdown"
-                @blur="privacySelectVisible = false"
-                @visible-change="
-                  (visible) => !visible && (privacySelectVisible = false)
-                "
-              >
-                <el-option
-                  v-for="item in privacyOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                >
-                  <img :src="item.icon" class="privacy-icon" />
-                  <span style="margin-left: 6px">{{ item.label }}</span>
-                </el-option>
-              </el-select>
-            </div>
-          </div>
-          <div
-            v-if="!editingDescription"
-            :class="{ disabled: !isSelf }"
-            @click="isSelf && (editingDescription = true)"
-          >
-            <p class="album-description quoted">{{ album.description }}</p>
-          </div>
-          <div
-            v-else
-            class="album-description editable"
-            contenteditable="true"
-            @blur="cancelOrUpdateDescription"
-            @keydown.enter.prevent="updateAlbumDescription"
-            @focus="selectAllContent('descriptionEditor')"
-            ref="descriptionEditor"
-          >
-            {{ editableDescription }}
-          </div>
-          <p class="photo-count">{{ filterPhotos.length }} 张照片</p>
+          <h1 class="album-title">我的照片</h1>
+          <p class="photo-count">共{{ filterPhotos.length }}张照片</p>
         </div>
-        <div v-if="isSelf" class="album-actions">
-          <el-button type="danger" @click="deleteConfirmVisible = true" plain
-            >删除相册</el-button
-          >
-        </div>
-        <div v-if="!isSelf" class="album-actions">
-          <el-button type="warning" @click="reportAlbum">举报相册</el-button>
-        </div>
-        <div class="album-actions">
+        <div class="header-actions">
+          <el-button ></el-button>
           <el-button type="primary" @click="filterDialogVisible = true"
             >筛选</el-button
           >
@@ -169,56 +68,7 @@
           />
           <video v-else :src="photo.fileUrl" controls class="photo-image" />
         </div>
-        <div
-          v-if="isSelf"
-          class="photo-card add-photo-card"
-          @click="triggerAddPhoto"
-        >
-          <span class="add-icon">+</span>
-          <input
-            type="file"
-            ref="photoInput"
-            style="display: none"
-            multiple
-            @change="handlePhotoChange"
-          />
-        </div>
       </div>
-      <el-dialog
-        v-model="photoMetaDialogVisible"
-        title="设置照片信息"
-        width="400px"
-      >
-        <el-form :model="photoMetaForm" label-width="80px">
-          <el-form-item label="拍摄时间">
-            <el-date-picker
-              v-model="photoMetaForm.capturedAt"
-              type="date"
-              placeholder="选择日期"
-              value-format="YYYY-MM-DD"
-            />
-          </el-form-item>
-          <el-form-item label="拍摄地点">
-            <el-input v-model="photoMetaForm.location" placeholder="输入地点" />
-          </el-form-item>
-        </el-form>
-        <template #footer>
-          <el-button @click="photoMetaDialogVisible = false">取消</el-button>
-          <el-button type="primary" @click="confirmPhotoMeta">确认</el-button>
-        </template>
-      </el-dialog>
-      <el-dialog
-        v-model="deleteConfirmVisible"
-        title="确认删除"
-        width="300px"
-        center
-      >
-        <span>你确定要删除该相册吗？此操作不可恢复。</span>
-        <template #footer>
-          <el-button @click="deleteConfirmVisible = false">取消</el-button>
-          <el-button type="danger" @click="confirmDeleteAlbum">删除</el-button>
-        </template>
-      </el-dialog>
     </div>
   </div>
   <PhotoViewerModal
@@ -263,7 +113,7 @@
 <script>
 import SideBar from "@/components/SideBar.vue";
 import apiClient from "@/apiClient";
-import { ElButton, ElSelect, ElOption } from "element-plus";
+import { ElButton } from "element-plus";
 import PhotoViewerModal from "@/components/PhotoViewerModal.vue";
 import ImageEditorModal from "@/components/ImageEditorModal.vue";
 
@@ -271,44 +121,18 @@ export default {
   components: {
     SideBar,
     ElButton,
-    ElSelect,
-    ElOption,
     PhotoViewerModal,
     ImageEditorModal,
   },
   data() {
     return {
       isSelf: this.$route.query.isSelf === "true",
-      album: {
-        photos: [],
-      },
+      photos: [],
+      count: 0,
       userId: localStorage.getItem("userId"),
-      editingTitle: false,
-      editingDescription: false,
-      editableTitle: "",
-      editableDescription: "",
-      editablePrivacy: "",
-      privacySelectVisible: false,
       editorVisible: false,
       editingPhoto: null,
       editingPhotoUrl: "",
-      privacyOptions: [
-        {
-          label: "公开",
-          value: "PUBLIC",
-          icon: require("@/assets/images/PUBLIC.svg"),
-        },
-        {
-          label: "私密",
-          value: "PRIVATE",
-          icon: require("@/assets/images/PRIVATE.svg"),
-        },
-        {
-          label: "共享",
-          value: "SHARED",
-          icon: require("@/assets/images/SHARED.svg"),
-        },
-      ],
       deleteConfirmVisible: false,
       viewerVisible: false,
       selectedPhoto: null,
@@ -316,6 +140,7 @@ export default {
       reportReason: "",
       photoReportDialogVisible: false,
       photoReportReason: "",
+      // 筛选对话框可见性
       filterDialogVisible: false,
       // 筛选条件模型
       filterCriteria: {
@@ -325,205 +150,49 @@ export default {
         location: "",
         isFavorite: null,
       },
-      photoMetaDialogVisible: false,
-      photoMetaForm: {
-        capturedAt: "",
-        location: "",
-      },
-      photoUploadQueue: [],
     };
   },
   async created() {
-    console.log(this.isSelf);
-    const albumId = this.$route.params.albumId;
     try {
-      const response = await apiClient.get(`/albums/${albumId}`, {
-        params: {
-          userId: this.userId,
-        },
-      });
-      Object.assign(this.album, response.data.data.album);
-      this.editableTitle = this.album.title;
-      this.editableDescription = this.album.description;
-      this.editablePrivacy = this.album.privacy;
-
-      const photoRes = await apiClient.get(`/photos/album/${albumId}`, {
-        params: {
-          userId: this.userId,
-        },
-      });
-      this.album.photos = photoRes.data.data.photos;
-
-      if (this.album.coverPhotoId) {
-        const coverRes = await apiClient.get(
-          `/photos/${this.album.coverPhotoId}`
-        );
-        this.album.coverThumbnailUrl = coverRes.data.data.photo.thumbnailUrl;
-        this.album.coverPhotoUrl = coverRes.data.data.photo.fileUrl;
-      } else {
-        this.album.coverThumbnailUrl = null;
-      }
+      const photoRes = await apiClient.get(`/photos/my`);
+      this.photos = photoRes.data.data.photos;
+      this.count = photoRes.data.data.count;
     } catch (error) {
-      console.error("获取相册详情失败：", error);
-      alert("加载相册详情失败，请稍后重试！");
+      console.error("获取照片详情失败：", error);
+      alert("加载照片详情失败，请稍后重试！");
       this.$router.push("/albums");
     }
   },
   methods: {
-    triggerAddPhoto() {
-      this.$refs.photoInput.click();
-    },
-    handlePhotoChange(event) {
-      const files = Array.from(event.target.files);
+    async handlePhotoChange(event) {
+      const files = event.target.files;
       if (!files.length) return;
-      this.photoUploadQueue = files;
-      this.photoMetaDialogVisible = true;
-    },
-    async confirmPhotoMeta() {
-      this.photoMetaDialogVisible = false;
-      for (const file of this.photoUploadQueue) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("albumId", this.album.albumId);
-        formData.append("userId", this.userId);
-        formData.append(
-          "capturedAt",
-          this.photoMetaForm.capturedAt + "T00:00:00"
-        );
-        formData.append("location", this.photoMetaForm.location);
-
-        try {
-          const response = await apiClient.post("/photos/upload", formData, {
-            headers: { "Content-Type": "multipart/form-data" },
-          });
-          const newPhoto = response.data.data.photo;
-          this.album.photos.push(newPhoto);
-          this.album.photoCount++;
-        } catch (error) {
-          console.error("上传失败：", error);
-          this.$message.error("部分照片上传失败");
-        }
-      }
-      this.photoUploadQueue = [];
-      this.$message.success("所有照片上传成功");
-      window.location.reload();
-    },
-    updateAlbumCover() {
-      this.$refs.coverInput.click();
-    },
-    async handleCoverChange(event) {
-      const file = event.target.files[0];
-      if (!file) return;
 
       try {
-        const formData = new FormData();
-        formData.append("photo", file);
-        formData.append("albumId", this.album.albumId);
-        formData.append("userId", this.userId);
+        for (const file of files) {
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("albumId", this.album.albumId);
+          formData.append("userId", this.userId);
 
-        const response = await apiClient.post(
-          `/albums/${this.album.albumId}/cover/upload`,
-          formData,
-          {
+          const response = await apiClient.post("/photos/upload", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
-          }
-        );
-        console.log(response.data.data);
+          });
 
-        this.album.coverPhotoId = response.data.data.album.coverPhotoId;
-        this.$message.success("封面更新成功");
-        window.location.reload();
-      } catch (error) {
-        console.error("封面更新失败：", error);
-        this.$message.error("封面更新失败");
-      }
-    },
-    async confirmDeleteAlbum() {
-      try {
-        await apiClient.delete(`/albums/${this.album.albumId}`, {
-          params: {
-            userId: localStorage.getItem("userId"),
-          },
-        });
-        this.$message.success("相册已删除");
-        this.$router.push("/albums");
-      } catch (error) {
-        console.error("删除相册失败：", error);
-        this.$message.error("删除相册失败");
-      } finally {
-        this.deleteConfirmVisible = false;
-      }
-    },
-    async updateAlbum(fields) {
-      try {
-        const formData = new FormData();
-        for (const key in fields) {
-          formData.append(key, fields[key]);
+          const newPhoto = response.data.data.photo;
+          this.album.photos.push(newPhoto);
+          this.album.photoCount++;
         }
-        await apiClient.put(`/albums/${this.album.albumId}`, formData, {
-          params: {
-            userId: localStorage.getItem("userId"),
-          },
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        this.album = { ...this.album, ...fields };
-        this.$message.success("相册信息已更新");
-      } catch (err) {
-        this.$message.error("更新相册失败");
+
+        this.$message.success("所有照片上传成功");
+      } catch (error) {
+        console.error("上传失败：", error);
+        this.$message.error("部分照片上传失败");
       }
-    },
-    async updateAlbumTitle() {
-      this.editingTitle = false;
-      if (this.editableTitle !== this.album.title) {
-        await this.updateAlbum({ title: this.editableTitle });
-      }
-    },
-    async updateAlbumDescription() {
-      this.editingDescription = false;
-      if (this.editableDescription !== this.album.description) {
-        await this.updateAlbum({ description: this.editableDescription });
-      }
-    },
-    async updateAlbumPrivacy() {
-      if (this.editablePrivacy !== this.album.privacy) {
-        await this.updateAlbum({ privacy: this.editablePrivacy });
-      }
-    },
-    async cancelOrUpdateTitle(event) {
-      const newText = event.target.innerText.trim();
-      this.editingTitle = false;
-      if (newText !== this.album.title) {
-        this.editableTitle = newText;
-        await this.updateAlbumTitle();
-      }
-    },
-    async cancelOrUpdateDescription(event) {
-      const newText = event.target.innerText.trim();
-      this.editingDescription = false;
-      if (newText !== this.album.description) {
-        this.editableDescription = newText;
-        await this.updateAlbumDescription();
-      }
-    },
-    selectAllContent(refName) {
-      this.$nextTick(() => {
-        const el = this.$refs[refName];
-        if (el && window.getSelection && document.createRange) {
-          const range = document.createRange();
-          range.selectNodeContents(el);
-          const selection = window.getSelection();
-          selection.removeAllRanges();
-          selection.addRange(range);
-        }
-      });
-    },
-    getPrivacyIcon(privacy) {
-      const item = this.privacyOptions.find((opt) => opt.value === privacy);
-      return item ? item.icon : "";
+
+      window.location.reload();
     },
 
     openPhotoViewer(photo) {
@@ -539,25 +208,6 @@ export default {
       this.editorVisible = true;
       console.log(this.editingPhoto);
       this.viewerVisible = false;
-    },
-    reportAlbum() {
-      this.reportDialogVisible = true;
-    },
-    async submitAlbumReport() {
-      try {
-        await apiClient.post("/reports/user", {
-          resourceId: this.album.albumId,
-          reason: this.reportReason,
-          resourceType: "album",
-          reporteeId: this.album.userId,
-        });
-        this.$message.success("举报已提交");
-        this.reportDialogVisible = false;
-        this.reportReason = "";
-      } catch (error) {
-        console.error("举报失败：", error);
-        this.$message.error("举报失败，请稍后再试");
-      }
     },
     async deletePhoto(photo) {
       try {
@@ -597,7 +247,7 @@ export default {
       try {
         const formData = new FormData();
         formData.append("file", blob, "edited.png");
-        formData.append("albumId", this.album.albumId); // 当前相册ID
+        formData.append("albumId", this.albumId); // 当前相册ID
         formData.append("userId", this.userId); // 当前用户ID
 
         // 调用上传新照片的接口
@@ -630,15 +280,7 @@ export default {
             "Content-Type": "multipart/form-data",
           },
         });
-
-        const index = this.album.photos.findIndex(
-          (photo) => photo.photoId === updatedPhoto.photoId
-        );
-        if (index !== -1) {
-          this.album.photos[index] = { ...updatedPhoto };
-          this.$message.success("照片信息已更新");
-          window.location.reload();
-        }
+        this.$message.success("照片信息已更新");
       } catch (error) {
         console.error("更新照片信息失败：", error);
         this.$message.error("更新照片信息失败");
@@ -665,7 +307,7 @@ export default {
     filterPhotos() {
       const { startDate, endDate, tag, location, isFavorite } =
         this.filterCriteria;
-      return (this.album.photos || []).filter((photo) => {
+      return this.photos.filter((photo) => {
         // 取照片的日期部分（去掉T之后的时间）
         const date = photo.capturedAt ? photo.capturedAt.split("T")[0] : "";
         const photoTag = photo.tag === null ? "" : photo.tag;
@@ -928,5 +570,18 @@ export default {
 .add-icon {
   font-size: 36px;
   color: #9ca3af;
+}
+
+.header-actions {
+  margin-left: auto;
+  padding: 10px;
+}
+.album-header {
+  display: flex;
+  align-items: center;
+}
+
+.filter-form {
+  padding: 10px 0;
 }
 </style>

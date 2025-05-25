@@ -8,7 +8,7 @@
           <p class="photo-count">共{{ filterPhotos.length }}张照片</p>
         </div>
         <div class="header-actions">
-          <el-button type="primary" @click="showVideo = true"
+          <el-button type="primary" @click="showMemory = true"
             >查看回忆</el-button
           >
           <el-button type="primary" @click="multiSelectMode = !multiSelectMode">
@@ -259,7 +259,6 @@ export default {
         audioFile: null,
       },
       VideoByte: null,
-      showVideo: false,
     };
   },
   async created() {

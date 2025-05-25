@@ -8,9 +8,6 @@
           <p class="photo-count">共{{ filterPhotos.length }}张照片</p>
         </div>
         <div class="header-actions">
-          <el-button type="primary" @click="showVideo = true"
-            >查看回忆</el-button
-          >
           <el-button type="primary" @click="multiSelectMode = !multiSelectMode">
             {{ multiSelectMode ? "取消多选" : "多选" }}
           </el-button>
@@ -93,6 +90,7 @@
               @click.stop
               style="position: absolute; top: 8px; left: 8px; z-index: 2"
             />
+  
           </template>
           <img
             v-if="!isVideo(photo.fileUrl)"
@@ -143,41 +141,6 @@
     <template #footer>
       <el-button @click="showSelectedDialog = false">关闭</el-button>
       <el-button type="primary" @click="generateMemory">生成回忆</el-button>
-      <el-dialog
-        v-model="memoryDialogVisible"
-        title="生成回忆设置"
-        width="400px"
-      >
-        <el-form label-width="100px">
-          <el-form-item label="转场效果">
-            <el-select
-              v-model="memoryOptions.transition"
-              placeholder="选择转场"
-            >
-              <el-option label="淡入淡出" value="fade" />
-              <el-option label="缩放" value="zoom" />
-              <el-option label="滑动" value="slide" />
-            </el-select>
-          </el-form-item>
-
-          <el-form-item label="帧率">
-            <el-select v-model="memoryOptions.fps">
-              <el-option label="25" :value="25" />
-            </el-select>
-          </el-form-item>
-
-          <el-form-item label="音频文件">
-            <input type="file" @change="handleAudioChange" accept="audio/*" />
-          </el-form-item>
-        </el-form>
-
-        <template #footer>
-          <el-button @click="memoryDialogVisible = false">取消</el-button>
-          <el-button type="primary" @click="submitMemoryRequest"
-            >生成</el-button
-          >
-        </template>
-      </el-dialog>
     </template>
   </el-dialog>
   <el-dialog v-model="photoReportDialogVisible" title="举报照片" width="400px">
@@ -258,8 +221,6 @@ export default {
         fps: 25,
         audioFile: null,
       },
-      VideoByte: null,
-      showVideo: false,
     };
   },
   async created() {
@@ -448,10 +409,7 @@ export default {
     async submitMemoryRequest() {
       const photoIds = this.selectedPhotos.map((p) => p.photoId);
       const formData = new FormData();
-      formData.append(
-        "PhotoId",
-        photoIds.map((id) => parseInt(id, 10))
-      );
+      formData.append("photoId", JSON.stringify(photoIds));
       formData.append("transition", this.memoryOptions.transition);
       formData.append("fps", this.memoryOptions.fps);
       if (this.memoryOptions.audioFile) {
@@ -462,8 +420,6 @@ export default {
         const res = await apiClient.post("/video/create_photo", formData);
         this.$message.success("回忆生成成功");
         this.memoryDialogVisible = false;
-        this.showSelectedDialog = false;
-        this.VideoByte = res.data.data;
       } catch (error) {
         console.error("生成失败", error);
         this.$message.error("生成回忆失败");

@@ -8,9 +8,6 @@
           <p class="photo-count">共{{ filterPhotos.length }}张照片</p>
         </div>
         <div class="header-actions">
-          <el-button type="primary" @click="showVideo = true"
-            >查看回忆</el-button
-          >
           <el-button type="primary" @click="multiSelectMode = !multiSelectMode">
             {{ multiSelectMode ? "取消多选" : "多选" }}
           </el-button>
@@ -22,15 +19,7 @@
             size="small"
             type="success"
             @click="showSelectedDialog = true"
-            >确定</el-button
-          >
-          <el-button
-            v-if="multiSelectMode"
-            size="small"
-            type="info"
-            @click="selectAllPhotos"
-            >全选</el-button
-          >
+          >确定</el-button>
         </div>
       </div>
       <div v-if="filterDialogVisible" class="filter-form">
@@ -137,47 +126,16 @@
           alt="selected"
           class="photo-image"
         />
-        <video v-else :src="photo.fileUrl" controls class="photo-image" />
+        <video
+          v-else
+          :src="photo.fileUrl"
+          controls
+          class="photo-image"
+        />
       </div>
     </div>
     <template #footer>
       <el-button @click="showSelectedDialog = false">关闭</el-button>
-      <el-button type="primary" @click="generateMemory">生成回忆</el-button>
-      <el-dialog
-        v-model="memoryDialogVisible"
-        title="生成回忆设置"
-        width="400px"
-      >
-        <el-form label-width="100px">
-          <el-form-item label="转场效果">
-            <el-select
-              v-model="memoryOptions.transition"
-              placeholder="选择转场"
-            >
-              <el-option label="淡入淡出" value="fade" />
-              <el-option label="缩放" value="zoom" />
-              <el-option label="滑动" value="slide" />
-            </el-select>
-          </el-form-item>
-
-          <el-form-item label="帧率">
-            <el-select v-model="memoryOptions.fps">
-              <el-option label="25" :value="25" />
-            </el-select>
-          </el-form-item>
-
-          <el-form-item label="音频文件">
-            <input type="file" @change="handleAudioChange" accept="audio/*" />
-          </el-form-item>
-        </el-form>
-
-        <template #footer>
-          <el-button @click="memoryDialogVisible = false">取消</el-button>
-          <el-button type="primary" @click="submitMemoryRequest"
-            >生成</el-button
-          >
-        </template>
-      </el-dialog>
     </template>
   </el-dialog>
   <el-dialog v-model="photoReportDialogVisible" title="举报照片" width="400px">
@@ -252,14 +210,6 @@ export default {
       selectedPhotos: [],
       // 控制已选照片对话框
       showSelectedDialog: false,
-      memoryDialogVisible: false,
-      memoryOptions: {
-        transition: "fade",
-        fps: 25,
-        audioFile: null,
-      },
-      VideoByte: null,
-      showVideo: false,
     };
   },
   async created() {
@@ -422,53 +372,6 @@ export default {
         this.selectedPhotos.push(photo);
       }
     },
-    /**
-     * Toggle select all: if all are already selected, clear; otherwise select all.
-     */
-    selectAllPhotos() {
-      const allPhotos = this.filterPhotos;
-      // If currently all are selected, clear selection
-      if (this.selectedPhotos.length === allPhotos.length) {
-        this.selectedPhotos = [];
-      } else {
-        // Otherwise select all
-        this.selectedPhotos = allPhotos.slice();
-      }
-    },
-    generateMemory() {
-      this.memoryDialogVisible = true;
-    },
-    handleAudioChange(event) {
-      const file = event.target.files[0];
-      if (file) {
-        this.memoryOptions.audioFile = file;
-      }
-    },
-
-    async submitMemoryRequest() {
-      const photoIds = this.selectedPhotos.map((p) => p.photoId);
-      const formData = new FormData();
-      formData.append(
-        "PhotoId",
-        photoIds.map((id) => parseInt(id, 10))
-      );
-      formData.append("transition", this.memoryOptions.transition);
-      formData.append("fps", this.memoryOptions.fps);
-      if (this.memoryOptions.audioFile) {
-        formData.append("audio", this.memoryOptions.audioFile);
-      }
-
-      try {
-        const res = await apiClient.post("/video/create_photo", formData);
-        this.$message.success("回忆生成成功");
-        this.memoryDialogVisible = false;
-        this.showSelectedDialog = false;
-        this.VideoByte = res.data.data;
-      } catch (error) {
-        console.error("生成失败", error);
-        this.$message.error("生成回忆失败");
-      }
-    },
   },
   computed: {
     filterPhotos() {
@@ -497,13 +400,6 @@ export default {
           return false;
         return true;
       });
-    },
-  },
-  watch: {
-    multiSelectMode(newVal) {
-      if (!newVal) {
-        this.selectedPhotos = [];
-      }
     },
   },
 };
@@ -762,6 +658,7 @@ export default {
 .photo-card.selected {
   border: 2px solid #409eff; /* Blue border for selection */
 }
+
 
 .selected-photos-grid {
   display: grid;

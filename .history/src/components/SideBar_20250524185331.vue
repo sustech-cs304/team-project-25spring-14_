@@ -63,7 +63,7 @@ export default {
         {
           name: "allPhotos",
           icon: "icon-quanbuzhaopian1",
-          label: "生成回忆",
+          label: "shen",
           path: "/allPhotos",
         },
         {

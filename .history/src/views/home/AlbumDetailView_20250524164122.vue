@@ -185,29 +185,6 @@
         </div>
       </div>
       <el-dialog
-        v-model="photoMetaDialogVisible"
-        title="设置照片信息"
-        width="400px"
-      >
-        <el-form :model="photoMetaForm" label-width="80px">
-          <el-form-item label="拍摄时间">
-            <el-date-picker
-              v-model="photoMetaForm.capturedAt"
-              type="date"
-              placeholder="选择日期"
-              value-format="YYYY-MM-DD"
-            />
-          </el-form-item>
-          <el-form-item label="拍摄地点">
-            <el-input v-model="photoMetaForm.location" placeholder="输入地点" />
-          </el-form-item>
-        </el-form>
-        <template #footer>
-          <el-button @click="photoMetaDialogVisible = false">取消</el-button>
-          <el-button type="primary" @click="confirmPhotoMeta">确认</el-button>
-        </template>
-      </el-dialog>
-      <el-dialog
         v-model="deleteConfirmVisible"
         title="确认删除"
         width="300px"
@@ -325,12 +302,6 @@ export default {
         location: "",
         isFavorite: null,
       },
-      photoMetaDialogVisible: false,
-      photoMetaForm: {
-        capturedAt: "",
-        location: "",
-      },
-      photoUploadQueue: [],
     };
   },
   async created() {
@@ -373,39 +344,34 @@ export default {
     triggerAddPhoto() {
       this.$refs.photoInput.click();
     },
-    handlePhotoChange(event) {
-      const files = Array.from(event.target.files);
+    async handlePhotoChange(event) {
+      const files = event.target.files;
       if (!files.length) return;
-      this.photoUploadQueue = files;
-      this.photoMetaDialogVisible = true;
-    },
-    async confirmPhotoMeta() {
-      this.photoMetaDialogVisible = false;
-      for (const file of this.photoUploadQueue) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("albumId", this.album.albumId);
-        formData.append("userId", this.userId);
-        formData.append(
-          "capturedAt",
-          this.photoMetaForm.capturedAt + "T00:00:00"
-        );
-        formData.append("location", this.photoMetaForm.location);
 
-        try {
+      try {
+        for (const file of files) {
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("albumId", this.album.albumId);
+          formData.append("userId", this.userId);
+
           const response = await apiClient.post("/photos/upload", formData, {
-            headers: { "Content-Type": "multipart/form-data" },
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
           });
+
           const newPhoto = response.data.data.photo;
           this.album.photos.push(newPhoto);
           this.album.photoCount++;
-        } catch (error) {
-          console.error("上传失败：", error);
-          this.$message.error("部分照片上传失败");
         }
+
+        this.$message.success("所有照片上传成功");
+      } catch (error) {
+        console.error("上传失败：", error);
+        this.$message.error("部分照片上传失败");
       }
-      this.photoUploadQueue = [];
-      this.$message.success("所有照片上传成功");
+
       window.location.reload();
     },
     updateAlbumCover() {
@@ -637,7 +603,7 @@ export default {
         if (index !== -1) {
           this.album.photos[index] = { ...updatedPhoto };
           this.$message.success("照片信息已更新");
-          window.location.reload();
+          win
         }
       } catch (error) {
         console.error("更新照片信息失败：", error);

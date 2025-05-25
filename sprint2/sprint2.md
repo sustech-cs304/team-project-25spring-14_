@@ -4,6 +4,12 @@
 
 我们建立了全面的项目绩效指标体系，监控开发进度和质量：
 
+| line of code               | 3391    |
+| -------------------------- | ------- |
+| **number of source file**  | **38**  |
+| **Cyclomatic complexity**  | **297** |
+| **Number of dependencies** | **68**  |
+
 
 
 ## 2. 项目文档 (Documentation)

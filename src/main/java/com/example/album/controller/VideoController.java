@@ -45,14 +45,15 @@ public class VideoController {
             @RequestParam String transition,
             @RequestParam String fps,
             @RequestPart("audio") MultipartFile audioFile
-            ) {
-        List<String> urls = new ArrayList<>(); // 这个需要用userid和photoid从表格里面取出所哟图片的url
+    ) {
+        List<String> urls = new ArrayList<>();
         for (int j : PhotoId) {
             Photo photo = photoMapper.selectById(j);
             urls.add(photo.getFileUrl());
         }
-        String audio = videoService.storeAudio(audioFile);
-        return videoService.CreateVideo(urls,audio,transition,fps);
+
+        // 不再保存音频文件，直接传递给服务
+        return videoService.CreateVideo(urls, audioFile, transition, fps);
     }
 
     /**
@@ -62,21 +63,21 @@ public class VideoController {
      * @param transition 变换的方式
      * @return Result
      */
-    @PostMapping("/create_video_tag")
-    public Result<byte[]> Create_video_tag(
-            @RequestParam String Tag,
-            @RequestParam String fps,
-            @RequestParam String transition,
-            @RequestPart("audio") MultipartFile audioFile
-            ) {
-        List<String> urls = new ArrayList<>(); // 这是通过tag找到的所有图片的url
-        List<Photo> photos = photoMapper.findPhotosByTag(Tag);
-        for (Photo photo : photos) {
-            urls.add(photo.getFileUrl());
-        }
-        String audio = videoService.storeAudio(audioFile);
-        return videoService.CreateVideo(urls,audio,transition,fps);
-    }
+//    @PostMapping("/create_video_tag")
+//    public Result<byte[]> Create_video_tag(
+//            @RequestParam String Tag,
+//            @RequestParam String fps,
+//            @RequestParam String transition,
+//            @RequestPart("audio") MultipartFile audioFile
+//            ) {
+//        List<String> urls = new ArrayList<>(); // 这是通过tag找到的所有图片的url
+//        List<Photo> photos = photoMapper.findPhotosByTag(Tag);
+//        for (Photo photo : photos) {
+//            urls.add(photo.getFileUrl());
+//        }
+//        String audio = videoService.storeAudio(audioFile);
+//        return videoService.CreateVideo(urls,audio,transition,fps);
+//    }
 
     @PostMapping("/add_caption")
     public Result<byte[]> add_caption(

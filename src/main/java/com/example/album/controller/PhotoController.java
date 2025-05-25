@@ -73,7 +73,7 @@ public class PhotoController {
             photo.setLocation(uploadDTO.getLocation());
 //            photo.setFileSize(result.getFileSize());
             photo.setTagName(tag);  // 首先默认使用我进行分类的标签，如果需要修改，就再次调用这个方法
-            photo.setCapturedAt(result.getCapturedAt());
+            photo.setCapturedAt(uploadDTO.getCapturedAt());
             photo.setCreatedAt(LocalDateTime.now());
 //            photo.setPostId(uploadDTO.getPostId());
             if (uploadDTO.getIsFavorite() != null) {

@@ -53,33 +53,45 @@ def adjust_brightness(img_path, brightness=0, contrast=1.0):  # 调整亮度，�
     # plt.axis('off')
     # plt.show()
 
-def ai_classify_image(image_url):  # image_url 是网络图片地址
+# def ai_classify_image(image_url):  # image_url 是网络图片地址
+#     model = YOLO('yolov8n.pt')
+#     common_choices = ['person', 'car', 'dog', 'cat', 'book', 'airplane']
+
+#     try:
+#         response = requests.get(image_url)
+#         if response.status_code != 200:
+#             print(f"Failed to fetch image from {image_url}, status code: {response.status_code}")
+#             return ''
+#         img_array = np.asarray(bytearray(response.content), dtype=np.uint8)
+#         img = cv.imdecode(img_array, cv.IMREAD_COLOR)
+
+#         img_rgb = cv.cvtColor(img, cv.COLOR_BGR2RGB)
+
+#         result = model.predict(img_rgb, verbose=False)
+
+#         detect = ''
+#         for box in result[0].boxes:
+#             class_id = int(box.cls[0].item())
+#             class_name = model.names[class_id]
+#             if class_name in common_choices and class_name not in detect:
+#                 detect += f' {class_name}'
+#         return detect.strip()
+
+#     except Exception as e:
+#         print(f"Error processing image URL {image_url}: {e}")
+#         return ''
+
+def ai_classify_image(image_path):  # 用AI来识别图片中是否有特定的物体
     model = YOLO('yolov8n.pt')
-    common_choices = ['person', 'car', 'dog', 'cat', 'book', 'airplane']
-
-    try:
-        response = requests.get(image_url)
-        if response.status_code != 200:
-            print(f"Failed to fetch image from {image_url}, status code: {response.status_code}")
-            return ''
-        img_array = np.asarray(bytearray(response.content), dtype=np.uint8)
-        img = cv.imdecode(img_array, cv.IMREAD_COLOR)
-
-        img_rgb = cv.cvtColor(img, cv.COLOR_BGR2RGB)
-
-        result = model.predict(img_rgb, verbose=False)
-
-        detect = ''
-        for box in result[0].boxes:
-            class_id = int(box.cls[0].item())
-            class_name = model.names[class_id]
-            if class_name in common_choices and class_name not in detect:
-                detect += f' {class_name}'
-        return detect.strip()
-
-    except Exception as e:
-        print(f"Error processing image URL {image_url}: {e}")
-        return ''
+    common_choises = ['person', 'car', 'dog', 'cat', 'book', 'airplane']
+    result = model.predict(image_path, verbose=False)
+    detect = ''
+    for box in result[0].boxes:
+        class_id = int(box.cls[0].item())
+        class_name = model.names[class_id]
+        if class_name in common_choises and class_name not in detect:
+            detect  = f'{detect} {class_name}' # 还是沿用字符串，中间加上一个空格
+    return detect
     
 def get_image_from_url(image_url):
     try:

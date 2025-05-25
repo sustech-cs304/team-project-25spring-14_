@@ -125,11 +125,24 @@ def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面�
     video_writer = cv.VideoWriter(temp_output, fourcc, fps, frame_size)
 
     image_files = image_folder
+    def load_and_resize_image(img_path):
+        """加载并调整图片大小"""
+        if not os.path.exists(img_path):
+            print(f"Warning: File not found: {img_path}")
+            return None
+        
+        img = cv.imread(img_path)  # 直接读取本地文件
+        if img is None:
+            print(f"Warning: Cannot read image: {img_path}")
+            return None
+        
+        return cv.resize(img, frame_size)
     if transition == '':  # 没有特效的
         for i in range(len(image_files) - 1):
             img_path = image_files[i]
             # img = cv.imread(img_path)
-            img = get_image_from_url(img_path)
+            # img = get_image_from_url(img_path)
+            img = load_and_resize_image(img_path)
             if img is None:
                 continue
             img = cv.resize(img, frame_size)
@@ -140,8 +153,10 @@ def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面�
             img_path1 = image_files[i]
             img_path2 = image_files[i + 1]
 
-            img1 = get_image_from_url(img_path1)
-            img2 = get_image_from_url(img_path2)
+            # img1 = get_image_from_url(img_path1)
+            img1 = load_and_resize_image(img_path1)
+            # img2 = get_image_from_url(img_path2)
+            img2 = load_and_resize_image(img_path2)
 
             if img2 is None or img1 is None:  # 已经到了最后一张单独加上去
                 continue
@@ -164,8 +179,11 @@ def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面�
             img_path1 = image_files[i]
             img_path2 = image_files[i + 1]
 
-            img1 = get_image_from_url(img_path1)
-            img2 = get_image_from_url(img_path2)
+
+            # img1 = get_image_from_url(img_path1)
+            img1 = load_and_resize_image(img_path1)
+            # img2 = get_image_from_url(img_path2)
+            img2 = load_and_resize_image(img_path2)
 
             if img2 is None or img1 is None:  # 已经到了最后一张单独加上去
                 continue
@@ -192,8 +210,11 @@ def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面�
             img_path1 = image_files[i]
             img_path2 = image_files[i + 1]
 
-            img1 = get_image_from_url(img_path1)
-            img2 = get_image_from_url(img_path2)
+
+            # img1 = get_image_from_url(img_path1)
+            img1 = load_and_resize_image(img_path1)
+            # img2 = get_image_from_url(img_path2)
+            img2 = load_and_resize_image(img_path2)
 
             if img2 is None or img1 is None:  # 已经到了最后一张单独加上去
                 continue

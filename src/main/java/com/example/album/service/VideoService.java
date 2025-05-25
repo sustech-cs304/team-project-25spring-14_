@@ -1,5 +1,8 @@
 package com.example.album.service;
 
+import jakarta.servlet.ServletContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -28,52 +31,45 @@ import com.example.album.entity.Result;
 public class VideoService {
     private final String FLASK_URL = "http://localhost:5000/";
     private static final Logger logger = LoggerFactory.getLogger(VideoService.class);
+    private static final String Base_url = "http://localhost:8080";
+    @Value("%{app.upload.dir}")
+    private String audioDir;
 
+    @Autowired
+    private ServletContext servletContext;
 
-    public Result<byte[]> CreateVideo(List<String> img_folder, String audio_file, String transition, String fps) {  //这个方法会直接将生成的视频保存到本地，如果需要
+    public Result<byte[]> CreateVideo(List<String> img_folder, MultipartFile audioFile, String transition, String fps) {
         try {
             RestTemplate restTemplate = new RestTemplate();
-
             String url = UriComponentsBuilder.fromUriString(FLASK_URL)
                     .path("/image_to_video")
                     .toUriString();
 
-            Map<String, Object> requestBody = new HashMap<>();  // 需要给前端发送一个json格式的参数
+            Map<String, Object> requestBody = new HashMap<>();
             requestBody.put("img_folder", img_folder);
-            requestBody.put("audio_file", audio_file);
-//        requestBody.put("final_output_file", final_output_file);
             requestBody.put("transition", transition);
             requestBody.put("fps", fps);
 
+            // 将音频转为Base64传输
+            if (audioFile != null && !audioFile.isEmpty()) {
+                String audioBase64 = Base64.getEncoder().encodeToString(audioFile.getBytes());
+                requestBody.put("audio_base64", audioBase64);
+                requestBody.put("audio_filename", audioFile.getOriginalFilename());
+            }
+
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
-
             HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
-            ResponseEntity<byte[]> response = restTemplate.exchange(
-                    url,
-                    HttpMethod.POST,
-                    requestEntity,
-                    byte[].class
-            );
+
+            ResponseEntity<byte[]> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, byte[].class);
+
             byte[] videoData = response.getBody();
-//            if (videoData != null) {
-//                // 将二进制数据保存为本地的 mp4 文件
-//                try (FileOutputStream fos = new FileOutputStream(final_output_file)) {
-//                    fos.write(videoData);
-//                    logger.info("Video saved successfully to: " + final_output_file);
-//                } catch (IOException e) {
-//                    logger.error("Error saving video file: " + e.getMessage(), e);
-//                    return Result.error("Error saving video file: " + e.getMessage());
-//                }
-//            }
-//            logger.info(response.getBody(), response.getStatusCode());  // 用日志显示出body和状态码
-            if (videoData != null){
+            if (videoData != null) {
                 return Result.success(videoData);
             } else {
                 throw new RuntimeException("no video data");
             }
         } catch (Exception e) {
-            // 处理请求失败的情况
             logger.error(e.getMessage(), e);
             throw new RuntimeException(e.getMessage());
         }
@@ -138,23 +134,24 @@ public class VideoService {
     }
 
     public String storeAudio(MultipartFile audio) {
-        try{
-            String upload = "temp";
-            String fileName = audio.getOriginalFilename();
-
-            File directory = new File(upload);
-            if (!directory.exists()) {
-                boolean mkdirs = directory.mkdirs();
-                if (!mkdirs) {
-                    logger.error("mkdirs failed");
-                    return null;
-                }
+        if (audio == null || audio.isEmpty()) {
+            return null;
+        }
+        try {
+            String realStaticPath = servletContext.getRealPath(audioDir + "/temp");
+            File dir = new File(realStaticPath);
+            if (!dir.exists() && !dir.mkdirs()) {
+                throw new IOException("创建目录失败: " + realStaticPath);
             }
-            File file = new File(upload + File.separator + fileName);
-            audio.transferTo(file);  // 将音频文件保存到该路径
-            return file.getAbsolutePath();
+
+            String filename = audio.getOriginalFilename();
+            File dest = new File(dir, filename);
+            audio.transferTo(dest);
+
+            return Base_url + "/uploads/temp/" + filename;
+
         } catch (IOException e) {
-            logger.error(e.getMessage(), e);
+            e.printStackTrace();
             return null;
         }
     }

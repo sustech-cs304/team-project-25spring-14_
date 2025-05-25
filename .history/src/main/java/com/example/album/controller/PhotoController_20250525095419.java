@@ -62,7 +62,11 @@ public class PhotoController {
             } else return null;
             // 存储照片
             PhotoStorageResult result = storageService.storePhoto(file, userId);
+<<<<<<< HEAD
+             String tag = imageService.ai_classify(result.getFileUrl());  //直接用这个url发送给python后端，会返回一个字符串
+=======
             String tag = imageService.ai_classify(result.getFileUrl());  //直接用这个url发送给python后端，会返回一个字符串
+>>>>>>> 6b26d113c52b832921e5340d67746b177af79a27
             // 保存照片记录到数据库
             Photo photo = new Photo();
             photo.setAlbumId(Math.toIntExact(uploadDTO.getAlbumId()));
@@ -72,8 +76,12 @@ public class PhotoController {
             photo.setThumbnailUrl(result.getThumbnailUrl());
             photo.setLocation(uploadDTO.getLocation());
 //            photo.setFileSize(result.getFileSize());
+<<<<<<< HEAD
+             photo.setTagName(tag);  // 首先默认使用我进行分类的标签，如果需要修改，就再次调用这个方法
+=======
             photo.setTagName(tag);  // 首先默认使用我进行分类的标签，如果需要修改，就再次调用这个方法
-            photo.setCapturedAt(uploadDTO.getCapturedAt());
+>>>>>>> 6b26d113c52b832921e5340d67746b177af79a27
+            photo.setCapturedAt(result.getCapturedAt());
             photo.setCreatedAt(LocalDateTime.now());
 //            photo.setPostId(uploadDTO.getPostId());
             if (uploadDTO.getIsFavorite() != null) {

@@ -67,12 +67,6 @@ export default {
           path: "/allPhotos",
         },
         {
-          name: "edit",
-          icon: "icon-tianxie",
-          label: "照片编辑",
-          path: "/edit",
-        },
-        {
           name: "share",
           icon: "icon-gongxiangkongjian",
           label: "共享空间",

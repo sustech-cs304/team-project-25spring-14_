@@ -15,7 +15,10 @@
             <i class="album-icons icon-shuaxin"></i>
           </button>
           <button class="upload-btn" @click="showPost = true">
-            + 发布内容
+            <i class="album-icons icon-jia"></i>
+          </button>
+          <button class="upload-btn1" @click="showPost1 = true">
+            + 分享照片
           </button>
         </div>
       </nav>
@@ -38,6 +41,11 @@
           v-if="showPost"
           @confirm="Postit"
           @close="showPost = false"
+        />
+        <PostPRO
+          :visible="showPost1"
+          @close="showPost1 = false"
+          @confirm="Postok"
         />
         <UserInfoCard ref="userCard" />
         <!-- 帖子列表 -->
@@ -147,6 +155,7 @@ import PostModal from "@/components/PostModal.vue";
 import UserInfoCard from "@/components/UserInfoCard.vue";
 import ChatModal from "@/components/ChatModal.vue";
 import CommentModal from "@/components/CommentModal.vue";
+import PostPRO from "@/components/PostPRO.vue";
 export default {
   components: {
     SideBar,
@@ -154,10 +163,12 @@ export default {
     UserInfoCard,
     ChatModal,
     CommentModal,
+    PostPRO,
   },
   data() {
     return {
       showPost: false,
+      showPost1: false,
       posts: [],
       userInfo: {},
       count: 0,
@@ -297,6 +308,25 @@ export default {
           },
         });
 
+        if (response.data.code == 0) {
+          this.initializePage();
+        } else {
+          alert("发帖失败: " + response.data.message);
+        }
+      } catch (error) {
+        alert("发帖失败");
+        console.error(error);
+      }
+    },
+    async Postok({ photoIds, caption, privacy }) {
+      this.showPost1 = false;
+      try {
+        const payload = {
+          photoIds,
+          caption,
+          privacy,
+        };
+        const response = await apiClient.post(`posts`, payload);
         if (response.data.code == 0) {
           this.initializePage();
         } else {
@@ -487,16 +517,25 @@ export default {
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  margin-right: 20px;
 }
 
 .upload-btn {
+  background: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.upload-btn1 {
   background: #ff4757;
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  margin-right: 20px;
 }
 
 .user-avatar img {

@@ -29,7 +29,7 @@ import com.example.album.entity.Result;
 @Service
 @Component
 public class VideoService {
-    private final String FLASK_URL = "http://localhost:5000/";
+    private final String FLASK_URL = "http://photo-python:5000/";
     private static final Logger logger = LoggerFactory.getLogger(VideoService.class);
     private static final String Base_url = "http://localhost:8080";
     @Value("%{app.upload.dir}")

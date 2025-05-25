@@ -82,7 +82,7 @@ public class VideoController {
     @PostMapping("/add_caption")
     public Result<byte[]> add_caption(
             @RequestParam int photoId,
-            @RequestParam Map<String,String> tag,
+            @RequestParam String tag,
             @RequestParam String font_name,
             @RequestParam String font_size,
             @RequestParam String font_color

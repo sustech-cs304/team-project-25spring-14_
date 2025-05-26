@@ -376,15 +376,8 @@ export default {
   },
   mounted() {
     // Ensure $loading service is available on this.$loading
-    if (
-      !this.$loading &&
-      this.$.appContext &&
-      this.$.appContext.app &&
-      this.$.appContext.app.config &&
-      this.$.appContext.app.config.globalProperties
-    ) {
-      this.$.appContext.app.config.globalProperties.$loading =
-        ElLoading.service;
+    if (!this.$loading && this.$.appContext && this.$.appContext.app && this.$.appContext.app.config && this.$.appContext.app.config.globalProperties) {
+      this.$.appContext.app.config.globalProperties.$loading = ElLoading.service;
     }
   },
   methods: {

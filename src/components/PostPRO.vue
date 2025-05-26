@@ -34,21 +34,6 @@
             </div>
           </div>
         </div>
-
-        <!-- 附加选项 -->
-        <div class="additional-options">
-          <div class="option-item" @click="showLocation = true">
-            <i class="icon-location"></i>
-            <span>{{ location || "添加位置" }}</span>
-          </div>
-          <div>
-            <select v-model="privacy" class="select">
-              <option value="PRIVATE">私密</option>
-              <option value="PUBLIC">公开</option>
-              <option value="SHARED">好友可见</option>
-            </select>
-          </div>
-        </div>
       </div>
 
       <!-- 底部操作 -->

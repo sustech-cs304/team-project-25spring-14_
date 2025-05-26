@@ -37,17 +37,19 @@
         </div>
         <div class="announcement-content">
           <h3>最新照片</h3>
-          <p
-            v-if="latestPhoto"
+            <p
+            :class="{ 'disabled-link': !latestPhoto }"
+            :style="!latestPhoto ? 'cursor: not-allowed; color: #ccc;' : ''"
             @click="
-              this.$router.push({
-                path: `/albums/${this.latestPhoto.albumId}`,
+              latestPhoto &&
+              $router.push({
+                path: `/albums/${latestPhoto.albumId}`,
                 query: { isSelf: true },
               })
             "
-          >
+            >
             去看看吧 →
-          </p>
+            </p>
         </div>
       </div>
 

@@ -37,17 +37,17 @@
         </div>
         <div class="announcement-content">
           <h3>最新照片</h3>
-          <p
+            <p
             v-if="latestPhoto"
             @click="
               this.$router.push({
-                path: `/albums/${this.latestPhoto.albumId}`,
-                query: { isSelf: true },
+              path: `/albums/${this.latestPhoto.albumId}`,
+              query: { isSelf: true },
               })
             "
-          >
+            >
             去看看吧 →
-          </p>
+            </p>
         </div>
       </div>
 

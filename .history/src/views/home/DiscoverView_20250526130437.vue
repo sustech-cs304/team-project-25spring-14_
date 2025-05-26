@@ -38,7 +38,6 @@
         <div class="announcement-content">
           <h3>最新照片</h3>
           <p
-            v-if="latestPhoto"
             @click="
               this.$router.push({
                 path: `/albums/${this.latestPhoto.albumId}`,
@@ -201,8 +200,8 @@ export default {
   },
   mounted() {
     this.fetchUserInfo().then(() => {
-      this.fetchData();
-    });
+    this.fetchData();
+  });
   },
 };
 </script>

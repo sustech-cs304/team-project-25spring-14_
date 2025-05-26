@@ -30,15 +30,16 @@
           <div v-else class="no-photo-placeholder">暂无照片</div>
           <div class="announcement-time">
             <i class="album-icons icon-shizhongclock73"></i>
-            <span v-if="latestPhoto && latestPhoto.capturedAt">
-              {{ latestPhoto.capturedAt.split("T")[0] }}
-            </span>
+            <span>{{
+              this.latestPhoto
+                ? this.latestPhoto.capturedAt.split("T")[0]
+                : ""
+            }}</span>
           </div>
         </div>
         <div class="announcement-content">
           <h3>最新照片</h3>
           <p
-            v-if="latestPhoto"
             @click="
               this.$router.push({
                 path: `/albums/${this.latestPhoto.albumId}`,
@@ -200,9 +201,8 @@ export default {
     },
   },
   mounted() {
-    this.fetchUserInfo().then(() => {
-      this.fetchData();
-    });
+    this.fetchUserInfo();
+    this.fetchData();
   },
 };
 </script>

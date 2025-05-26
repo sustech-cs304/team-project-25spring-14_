@@ -129,7 +129,7 @@
                 <i class="album-icons icon-zantong"></i> {{ post.likeCount }}
               </button>
               <button class="action-btn" @click="openCommentModal(post.postId)">
-                <i class="album-icons icon-pinglun"></i> {{ post.commentCount }}
+                <i class="album-icons icon-pinglun"></i>
               </button>
             </div>
 

@@ -16,13 +16,17 @@ pipeline {
         BACKEND_DIR = "backend"
         PYTHON_DIR = "python-service"
         FRONTEND_DIR = "frontend"
+        
+        // 新增：可执行文件输出目录
+        EXECUTABLES_DIR = "executables"
+        BUILD_START_TIME = "${System.currentTimeMillis()}"
     }
     
     stages {
         stage('Cleanup & Checkout') {
             steps {
                 cleanWs()
-                sh "mkdir -p ${BACKEND_DIR} ${PYTHON_DIR} ${FRONTEND_DIR}"
+                sh "mkdir -p ${BACKEND_DIR} ${PYTHON_DIR} ${FRONTEND_DIR} ${EXECUTABLES_DIR}"
                 
                 // 清理现有容器
                 sh 'docker-compose down -v || true'
@@ -40,12 +44,33 @@ pipeline {
             }
         }
         
+        // 新增：构建时间监控阶段
+        stage('Build Time Warning') {
+            steps {
+                echo '''
+                ⏱️ 构建开始！
+                
+                🎥 注意：如果构建时间超过10分钟，建议开始录制视频！
+                   - 使用OBS Studio或其他录屏软件
+                   - 录制Jenkins构建页面
+                   - 保存视频以备演示使用
+                '''
+            }
+        }
+        
         stage('Parallel Build') {
             parallel {
                 stage('Build Backend') {
                     steps {
                         dir("${BACKEND_DIR}") {
                             sh 'mvn clean package -DskipTests'
+                            
+                            // 新增：复制JAR到可执行文件目录
+                            sh '''
+                                echo "📦 保存后端可执行JAR文件..."
+                                cp target/*.jar ../${EXECUTABLES_DIR}/photo-album-backend.jar
+                                echo "✅ 后端JAR已保存到: ${EXECUTABLES_DIR}/photo-album-backend.jar"
+                            '''
                         }
                     }
                 }
@@ -57,8 +82,165 @@ pipeline {
                                 npm install
                                 npm run build
                             '''
+                            
+                            // 新增：打包前端dist为可部署包
+                            sh '''
+                                echo "📦 打包前端静态文件..."
+                                tar -czf ../${EXECUTABLES_DIR}/photo-album-frontend-dist.tar.gz dist/
+                                echo "✅ 前端打包已保存到: ${EXECUTABLES_DIR}/photo-album-frontend-dist.tar.gz"
+                            '''
                         }
                     }
+                }
+                
+                // 新增：Python可执行文件构建
+                stage('Build Python Executable') {
+                    steps {
+                        dir("${PYTHON_DIR}") {
+                            sh '''
+                                echo "🐍 准备Python服务打包..."
+                                
+                                # 创建Python启动脚本
+                                cat > run_python_service.sh << 'EOF'
+#!/bin/bash
+# Python服务启动脚本
+# 需要先安装Python 3.11和依赖
+
+echo "检查Python环境..."
+if ! command -v python3 &> /dev/null; then
+                                echo "❌ 请先安装Python 3.11"
+    exit 1
+fi
+
+echo "安装依赖..."
+pip install -r requirements.txt
+
+echo "启动Python服务..."
+python app.py
+EOF
+                                
+                                chmod +x run_python_service.sh
+                                
+                                # 打包Python服务
+                                tar -czf ../${EXECUTABLES_DIR}/photo-album-python-service.tar.gz \\
+                                    app.py \\
+                                    requirements.txt \\
+                                    run_python_service.sh \\
+                                    $(find . -name "*.py" -o -name "*.yml" -o -name "*.yaml" | grep -v __pycache__)
+                                
+                                echo "✅ Python服务包已保存到: ${EXECUTABLES_DIR}/photo-album-python-service.tar.gz"
+                            '''
+                        }
+                    }
+                }
+            }
+        }
+        
+        // 新增：创建独立运行脚本
+        stage('Create Standalone Scripts') {
+            steps {
+                dir("${EXECUTABLES_DIR}") {
+                    // 创建后端独立运行脚本
+                    sh '''
+                        cat > run-backend-standalone.sh << 'EOF'
+#!/bin/bash
+# 独立运行后端服务（需要Java 21）
+
+echo "🚀 启动后端服务..."
+
+# 检查Java
+if ! command -v java &> /dev/null; then
+    echo "❌ 请先安装Java 21"
+    exit 1
+fi
+
+# 检查PostgreSQL（可选）
+echo "⚠️  注意：需要PostgreSQL数据库"
+echo "   如果没有运行的数据库，可以使用Docker："
+echo "   docker run -d -p 5432:5432 -e POSTGRES_PASSWORD=postgres postgres:13"
+
+# 运行JAR
+java -jar photo-album-backend.jar \\
+    --spring.datasource.url=jdbc:postgresql://localhost:5432/smart_photo_album \\
+    --spring.datasource.username=postgres \\
+    --spring.datasource.password=postgres
+EOF
+                        chmod +x run-backend-standalone.sh
+                    '''
+                    
+                    // 创建前端独立运行脚本
+                    sh '''
+                        cat > run-frontend-standalone.sh << 'EOF'
+#!/bin/bash
+# 独立运行前端服务
+
+echo "🌐 部署前端服务..."
+
+# 解压dist
+tar -xzf photo-album-frontend-dist.tar.gz
+
+# 使用Python简单HTTP服务器
+echo "使用Python HTTP服务器在端口8000运行前端..."
+cd dist
+python3 -m http.server 8000
+EOF
+                        chmod +x run-frontend-standalone.sh
+                    '''
+                    
+                    // 创建完整的独立部署脚本
+                    sh '''
+                        cat > deploy-all-standalone.sh << 'EOF'
+#!/bin/bash
+# 完整独立部署脚本
+
+echo "🎯 智能相册应用独立部署"
+echo "========================"
+
+# 1. 启动数据库
+echo "1️⃣ 启动PostgreSQL数据库..."
+docker run -d --name photo-postgres -p 5432:5432 \\
+    -e POSTGRES_DB=smart_photo_album \\
+    -e POSTGRES_USER=postgres \\
+    -e POSTGRES_PASSWORD=postgres \\
+    postgres:13
+
+sleep 10
+
+# 2. 启动后端
+echo "2️⃣ 启动后端服务..."
+nohup java -jar photo-album-backend.jar > backend.log 2>&1 &
+echo "后端PID: $!"
+
+# 3. 启动Python服务
+echo "3️⃣ 启动Python AI服务..."
+tar -xzf photo-album-python-service.tar.gz
+cd python-service
+nohup ./run_python_service.sh > ../python.log 2>&1 &
+cd ..
+echo "Python服务PID: $!"
+
+# 4. 启动前端
+echo "4️⃣ 启动前端服务..."
+tar -xzf photo-album-frontend-dist.tar.gz
+cd dist
+nohup python3 -m http.server 80 > ../frontend.log 2>&1 &
+cd ..
+echo "前端PID: $!"
+
+echo ""
+echo "✅ 所有服务已启动！"
+echo "📍 访问地址："
+echo "   前端: http://localhost"
+echo "   后端API: http://localhost:8080"
+echo "   Python AI: http://localhost:5000"
+echo ""
+echo "📋 查看日志："
+echo "   tail -f backend.log"
+echo "   tail -f python.log"
+echo "   tail -f frontend.log"
+EOF
+                        chmod +x deploy-all-standalone.sh
+                    '''
                 }
             }
         }
@@ -90,10 +272,15 @@ RUN echo "deb https://mirrors.aliyun.com/debian/ bookworm main contrib non-free 
     echo "deb https://mirrors.aliyun.com/debian-security bookworm-security main contrib non-free non-free-firmware" >> /etc/apt/sources.list
 
 # 安装最小运行时依赖
-RUN apt-get update && apt-get install -y --no-install-recommends \\
-    libgomp1 \\
-    libglib2.0-0 \\
-    libgl1-mesa-glx \\
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libgomp1 \
+    libglib2.0-0 \
+    libgl1-mesa-glx \
+    ffmpeg \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    libgstreamer1.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -209,7 +396,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: postgres
       PYTHON_SERVICE_URL: http://photo-python:5000
     volumes:
-      - shared_storage:/app/storage
+      - shared_storage:/app/uploads/storage
     ports:
       - "8080:8080"
     networks:
@@ -221,8 +408,10 @@ services:
     restart: unless-stopped
     environment:
       PYTHONUNBUFFERED: 1
+      FLASK_HOST: 0.0.0.0
+      FLASK_PORT: 5000
     volumes:
-      - shared_storage:/app/storage
+      - shared_storage:/app/uploads/storage
     ports:
       - "5000:5000"
     networks:
@@ -319,6 +508,9 @@ EOF
                     cp docker-compose.yml deployment-package/
                     cp -r backend deployment-package/
                     
+                    # 新增：复制可执行文件到部署包
+                    cp -r ${EXECUTABLES_DIR} deployment-package/
+                    
                     # 创建简化启动脚本
                     cat > deployment-package/start.sh << 'EOF'
 #!/bin/bash
@@ -370,11 +562,36 @@ EOF
             }
         }
         
+        // 新增：打包所有可执行文件
+        stage('Package Executables') {
+            steps {
+                sh '''
+                    echo "📦 打包所有可执行文件..."
+                    cd ${EXECUTABLES_DIR}
+                    tar -czf ../photo-album-executables-only.tar.gz *
+                    cd ..
+                    
+                    echo "📋 可执行文件清单："
+                    ls -la ${EXECUTABLES_DIR}/
+                    
+                    echo ""
+                    echo "✅ 独立可执行文件包已创建: photo-album-executables-only.tar.gz"
+                    echo "   包含："
+                    echo "   - photo-album-backend.jar (后端可执行JAR)"
+                    echo "   - photo-album-frontend-dist.tar.gz (前端静态文件)"
+                    echo "   - photo-album-python-service.tar.gz (Python服务包)"
+                    echo "   - 各种独立运行脚本"
+                '''
+            }
+        }
+        
         stage('Archive Results') {
             steps {
                 archiveArtifacts artifacts: '''
                     photo-album-app.tar.gz,
-                    docker-compose.yml
+                    photo-album-executables-only.tar.gz,
+                    docker-compose.yml,
+                    executables/*
                 ''', allowEmptyArchive: false
             }
         }
@@ -384,27 +601,26 @@ EOF
         success {
             echo '''
             🎉 构建和部署成功！
-            
-            📦 部署包已创建: photo-album-app.tar.gz
-            
-            🚀 使用方法:
-            1. 下载 photo-album-app.tar.gz
-            2. 解压: tar -xzf photo-album-app.tar.gz
-            3. 进入目录: cd deployment-package
-            4. 启动: ./start.sh
-            5. 访问: http://localhost
-            
+
+            📦 可执行文件已准备就绪：
+            ✅ photo-album-executables-only.tar.gz - 包含所有独立可执行文件
+               - 后端JAR: photo-album-backend.jar
+               - 前端打包: photo-album-frontend-dist.tar.gz  
+               - Python服务: photo-album-python-service.tar.gz
+               - 独立运行脚本
+
+            🚀 演示准备：
+            1. 下载 photo-album-executables-only.tar.gz
+            2. 解压: tar -xzf photo-album-executables-only.tar.gz
+            3. 运行独立部署: ./deploy-all-standalone.sh
+            4. 或分别运行各组件的独立脚本
+
+            📦 完整部署包: photo-album-app.tar.gz
+
             🐳 Docker镜像已推送:
             - 后端: shuoer001/photo-album-backend:latest
             - Python AI: shuoer001/photo-album-python:latest
             - 前端: shuoer001/photo-album-frontend:latest
-            
-            💡 Python依赖已成功处理:
-            - Flask 3.1.0
-            - matplotlib 3.10.1
-            - numpy 2.2.4
-            - opencv-python 4.10.0.84
-            - ultralytics 8.3.79
             '''
         }
         failure {
@@ -420,6 +636,8 @@ EOF
             - 重新运行构建（依赖可能已缓存）
             - 检查网络连接
             - 增加Jenkins节点内存
+            
+            📦 检查是否有之前成功的构建产物可用于演示
             '''
         }
         always {
@@ -428,6 +646,10 @@ EOF
                 echo "=== 最终状态 ==="
                 docker images | grep photo-album || echo "无相关镜像"
                 docker ps -a | grep photo- || echo "无相关容器"
+                
+                echo ""
+                echo "=== 可执行文件 ==="
+                ls -la ${EXECUTABLES_DIR}/ || echo "无可执行文件"
             '''
         }
     }

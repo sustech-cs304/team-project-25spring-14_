@@ -331,7 +331,7 @@ def add_captions(input_video, subtitles_dict: dict, font_name='Arial', font_size
     with open(temp_srt, "w", encoding='utf-8') as f:
         f.writelines(srt_content)
 
-    input_video = download_video(input_video=input_video)
+    # input_video = download_video(input_video=input_video)
     output_video = f'temp_{int(time.time())}_{random.randint(1000, 9999)}.mp4'
 
     subtitles_filter = (

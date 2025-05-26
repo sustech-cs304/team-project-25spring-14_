@@ -177,7 +177,7 @@
       <!-- 操作区 -->
       <div class="photo-actions">
         <el-button
-          v-if="isSelfPhoto"
+          v-if="!isSlef(photo.fileUrl)"
           type="primary"
           @click="
             isVideo(photo.fileUrl)
@@ -187,11 +187,10 @@
         >
           编辑
         </el-button>
-        <el-button type="warning" @click="$emit('report', photo)">
-          举报
-        </el-button>
+        <el-button type="warning" @click="$emit('report', photo)"
+          >举报</el-button
+        >
         <el-popconfirm
-          v-if="isSelfPhoto"
           title="确认删除该图片？"
           confirm-button-text="删除"
           cancel-button-text="取消"
@@ -221,10 +220,6 @@ export default {
       type: Boolean,
       required: true,
     },
-    isSelfPhoto: {
-      type: Boolean,
-      default: true,
-    },
   },
   emits: ["update:modelValue", "edit", "delete", "report", "editInfo"],
   data() {
@@ -245,9 +240,9 @@ export default {
       encodedVideoDialogVisible: false,
       VideoByte: "",
       showVideo: false,
+      isSelf: true, // 是否是自己的照片
     };
   },
-
   watch: {
     photo: {
       handler(newVal) {

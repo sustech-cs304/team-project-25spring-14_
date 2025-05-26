@@ -224,7 +224,6 @@
   <PhotoViewerModal
     v-model="viewerVisible"
     :photo="selectedPhoto"
-    :is-self-photo="isSelfPhoto"
     @edit="editPhoto"
     @delete="deletePhoto"
     @report="handlePhotoReport"
@@ -280,7 +279,6 @@ export default {
   data() {
     return {
       isSelf: this.$route.query.isSelf === "true",
-      isSelfPhoto: false,
       album: {
         photos: [],
       },
@@ -530,8 +528,9 @@ export default {
 
     openPhotoViewer(photo) {
       this.selectedPhoto = photo;
-      this.isSelfPhoto = this.userId === String(photo.userId);
-      console.log(this.isSelfPhoto);
+      console.log("打开照片查看器，照片信息：", photo);
+      console.log(local)
+
       this.viewerVisible = true;
     },
     editPhoto(photo) {

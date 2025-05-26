@@ -223,7 +223,7 @@ export default {
     },
     isSelfPhoto: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
   emits: ["update:modelValue", "edit", "delete", "report", "editInfo"],
@@ -244,7 +244,7 @@ export default {
       showFontStyleForm: false,
       encodedVideoDialogVisible: false,
       VideoByte: "",
-      showVideo: false,
+      showVideo: false
     };
   },
 

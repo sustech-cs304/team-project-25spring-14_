@@ -224,7 +224,7 @@
   <PhotoViewerModal
     v-model="viewerVisible"
     :photo="selectedPhoto"
-    :is-self-photo="isSelfPhoto"
+    :
     @edit="editPhoto"
     @delete="deletePhoto"
     @report="handlePhotoReport"
@@ -530,8 +530,7 @@ export default {
 
     openPhotoViewer(photo) {
       this.selectedPhoto = photo;
-      this.isSelfPhoto = this.userId === String(photo.userId);
-      console.log(this.isSelfPhoto);
+      this.isSelfPhoto = this.userId === photo.userId;
       this.viewerVisible = true;
     },
     editPhoto(photo) {

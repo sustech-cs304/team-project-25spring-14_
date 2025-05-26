@@ -530,7 +530,7 @@ export default {
 
     openPhotoViewer(photo) {
       this.selectedPhoto = photo;
-      this.isSelfPhoto = this.userId === String(photo.userId);
+      this.isSelfPhoto = this.userId === S(photo.userId);
       console.log(this.isSelfPhoto);
       this.viewerVisible = true;
     },

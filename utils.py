@@ -238,26 +238,67 @@ def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面�
         for i in range(fps // 2):
             video_writer.write(img2)
 
-    video_writer.release()  # 释放资源，不然最后会报警告
+    # video_writer.release()  # 释放资源，不然最后会报警告
+    # print("Video saved successfully.")
+    # if audio_file is None:  # 没有音频文件
+    #     with open(temp_output, 'rb') as f:
+    #         file_data = f.read()
+    #     os.remove(temp_output)
+    #     return file_data
+    video_writer.release()
     print("Video saved successfully.")
-    if audio_file is None:  # 没有音频文件
-        with open(temp_output, 'rb') as f:
-            file_data = f.read()
-        os.remove(temp_output)
-        return file_data
+
+    # 用ffmpeg重新编码为H.264格式以兼容所有浏览器
+    temp_h264_output = f'temp_h264_{int(time.time())}_{random.randint(1000, 9999)}.mp4'
+    ffmpeg_encode_cmd = [
+        "ffmpeg", "-y",
+        "-i", temp_output,
+        "-c:v", "libx264",
+        "-profile:v", "baseline",
+        "-pix_fmt", "yuv420p",
+        "-movflags", "+faststart",
+        temp_h264_output
+    ]
+
+    try:
+        subprocess.run(ffmpeg_encode_cmd, check=True)
+    
+        if audio_file is None:  # 没有音频文件
+            with open(temp_h264_output, 'rb') as f:
+                file_data = f.read()
+            os.remove(temp_output)
+            os.remove(temp_h264_output)
+            return file_data
+    except subprocess.CalledProcessError as e:
+        print(f"FFmpeg H.264 encoding error: {e}, using original video")
+        # 如果H.264编码失败，返回原始视频
+        if audio_file is None:
+            with open(temp_output, 'rb') as f:
+                file_data = f.read()
+            os.remove(temp_output)
+            return file_data    
     
     # 有音频文件，使用ffmpeg合并
     final_output_file = f'temp_{int(time.time())}_{random.randint(1000, 9999)}.mp4'
+    # ffmpeg_cmd = [
+    #     "ffmpeg",
+    #     "-i", temp_output,
+    #     "-i", audio_file,
+    #     "-c:v", "copy",
+    #     "-c:a", "aac",
+    #     "-shortest",
+    #     final_output_file
+    # ]
+
     ffmpeg_cmd = [
-        "ffmpeg",
-        "-i", temp_output,
+        "ffmpeg", "-y",
+        "-i", temp_h264_output,  # 使用H.264编码的视频
         "-i", audio_file,
         "-c:v", "copy",
         "-c:a", "aac",
         "-shortest",
         final_output_file
     ]
-    
     subprocess.run(ffmpeg_cmd)
     with open(final_output_file, 'rb') as f:
         file_data = f.read()
@@ -265,6 +306,7 @@ def img_to_video(image_folder, audio_file,transition='', fps=25):  # 跟上面�
     # 清理临时文件
     os.remove(final_output_file)
     os.remove(temp_output)
+    os.remove(temp_h264_output)
     # 注意：这里不再删除audio_file，因为它是由调用方创建的临时文件
     # os.remove(audio_file)  # 删除这行
     

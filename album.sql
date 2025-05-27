@@ -1,9 +1,9 @@
 -- 创建数据库
 SET search_path TO public;
-DROP DATABASE IF EXISTS smart_photo_album;
-CREATE DATABASE smart_photo_album;
+-- DROP DATABASE IF EXISTS smart_photo_album;
+-- CREATE DATABASE smart_photo_album;
 
-\c smart_photo_album;
+-- \c smart_photo_album;
 DROP TYPE IF EXISTS user_status CASCADE;
 DROP TYPE IF EXISTS privacy_type CASCADE;
 DROP TYPE IF EXISTS resource_type CASCADE;
@@ -221,6 +221,9 @@ VALUES (0,'admin'::user_role, 'virtual','123','admin@system.com', 'active'::user
 
 INSERT INTO tb_user (user_id,rolename,username,password,email,status,created_at)
 VALUES (321,'admin'::user_role, 'admintest', MD5('admin123'),'1asad@system.com', 'active'::user_status,CURRENT_TIMESTAMP);
+
+INSERT INTO tb_user (user_id, rolename, username, password, email, status, created_at) 
+VALUES (500, 'admin'::user_role, 'admin123', MD5('admin123'), 'admin123@system.com', 'active'::user_status, CURRENT_TIMESTAMP);
 
 INSERT INTO tb_album (album_id, user_id, title, description, privacy, created_at, updated_at)
 VALUES (0, 0, '社区照片', '系统自动创建的社区照片专用相册，用户不可见', 'public'::privacy_type, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);

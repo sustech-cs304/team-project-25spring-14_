@@ -371,7 +371,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      #- pg_data:/var/lib/postgresql/data
       - ./backend/album.sql:/docker-entrypoint-initdb.d/init.sql:ro
     ports:
       - "5432:5432"
@@ -430,7 +430,7 @@ services:
       - photo-network
 
 volumes:
-  pg_data:
+  #pg_data:
   shared_storage:
 EOF
                 '''

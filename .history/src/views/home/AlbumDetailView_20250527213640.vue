@@ -113,8 +113,6 @@
           <el-button type="primary" @click="filterDialogVisible = true"
             >筛选</el-button
           >
-        </div>
-        <div class="album-actions">
           <el-button type="info" @click="toggleMultiSelect">
             {{ isMultiSelectMode ? "取消多选" : "多选" }}
           </el-button>

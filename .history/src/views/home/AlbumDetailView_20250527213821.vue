@@ -114,18 +114,7 @@
             >筛选</el-button
           >
         </div>
-        <div class="album-actions">
-          <el-button type="info" @click="toggleMultiSelect">
-            {{ isMultiSelectMode ? "取消多选" : "多选" }}
-          </el-button>
-          <el-button
-            v-if="isMultiSelectMode && selectedPhotos.length"
-            type="danger"
-            @click="deleteSelectedPhotos"
-          >
-            删除选中照片
-          </el-button>
-        </div>
+        <div ></div>
       </div>
       <div v-if="filterDialogVisible" class="filter-form">
         <el-form :model="filterCriteria" label-width="80px" inline>

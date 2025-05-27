@@ -105,9 +105,10 @@
           <el-button type="danger" @click="deleteConfirmVisible = true" plain
             >删除相册</el-button
           >
+          
         </div>
         <div v-if="!isSelf" class="album-actions">
-          <el-button type="warning" @click="reportAlbum">举报相册</el-button>
+          <
         </div>
         <div class="album-actions">
           <el-button type="primary" @click="filterDialogVisible = true"

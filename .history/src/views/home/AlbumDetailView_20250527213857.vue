@@ -101,6 +101,7 @@
           </div>
           <p class="photo-count">{{ filterPhotos.length }} 张照片</p>
         </div>
+
         <div v-if="isSelf" class="album-actions">
           <el-button type="danger" @click="deleteConfirmVisible = true" plain
             >删除相册</el-button

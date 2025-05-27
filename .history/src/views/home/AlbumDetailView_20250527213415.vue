@@ -114,18 +114,6 @@
             >筛选</el-button
           >
         </div>
-        <div class="album-actions">
-          <el-button type="info" @click="toggleMultiSelect">
-            {{ isMultiSelectMode ? "取消多选" : "多选" }}
-          </el-button>
-          <el-button
-            v-if="isMultiSelectMode && selectedPhotos.length"
-            type="danger"
-            @click="deleteSelectedPhotos"
-          >
-            删除选中照片
-          </el-button>
-        </div>
       </div>
       <div v-if="filterDialogVisible" class="filter-form">
         <el-form :model="filterCriteria" label-width="80px" inline>
@@ -174,15 +162,7 @@
           class="photo-card"
           v-for="photo in filterPhotos"
           :key="photo.photoId"
-          :class="{
-            selected: isSelected(photo),
-            selectable: isMultiSelectMode,
-          }"
-          @click="
-            isMultiSelectMode
-              ? togglePhotoSelection(photo)
-              : openPhotoViewer(photo)
-          "
+          @click="openPhotoViewer(photo)"
         >
           <img
             v-if="!isVideo(photo.fileUrl)"
@@ -733,44 +713,6 @@ export default {
       };
       this.filterDialogVisible = false;
     },
-    toggleMultiSelect() {
-      this.isMultiSelectMode = !this.isMultiSelectMode;
-      if (!this.isMultiSelectMode) {
-        this.selectedPhotos = [];
-      }
-    },
-    togglePhotoSelection(photo) {
-      const index = this.selectedPhotos.findIndex(
-        (p) => p.photoId === photo.photoId
-      );
-      if (index >= 0) {
-        this.selectedPhotos.splice(index, 1);
-      } else {
-        this.selectedPhotos.push(photo);
-      }
-    },
-    isSelected(photo) {
-      return this.selectedPhotos.some((p) => p.photoId === photo.photoId);
-    },
-    async deleteSelectedPhotos() {
-      const confirmed = window.confirm("确定要删除选中的照片吗？");
-      if (!confirmed) return;
-      try {
-        for (const photo of this.selectedPhotos) {
-          await apiClient.delete(`/photos/${photo.photoId}`);
-          this.album.photos = this.album.photos.filter(
-            (p) => p.photoId !== photo.photoId
-          );
-          this.album.photoCount--;
-        }
-        this.selectedPhotos = [];
-        this.isMultiSelectMode = false;
-        this.$message.success("已删除选中照片");
-      } catch (error) {
-        console.error("批量删除失败：", error);
-        this.$message.error("删除失败，请稍后再试");
-      }
-    },
   },
   computed: {
     filterPhotos() {
@@ -1045,13 +987,5 @@ export default {
 .add-icon {
   font-size: 36px;
   color: #9ca3af;
-}
-.photo-card.selectable {
-  cursor: pointer;
-  border: 2px dashed transparent;
-}
-.photo-card.selected {
-  border: 2px dashed #409eff;
-  background-color: rgba(64, 158, 255, 0.1);
 }
 </style>

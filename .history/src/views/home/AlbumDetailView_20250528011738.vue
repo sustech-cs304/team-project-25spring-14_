@@ -675,9 +675,11 @@ export default {
         formData.append("title", this.selectedPhoto.fileName);
         formData.append("tag", this.selectedPhoto.tag);
         formData.append("location", this.selectedPhoto.location);
-        formData.append("capturedAt", this.selectedPhoto.capturedAt);
-
-        console.log(this.selectedPhoto);
+        formData.append("isFavorite", this.selectedPhoto.isFavorite);
+        formData.append(
+          "capturedAt",
+          this.selectedPhoto.capturedAt + "T00:00:00"
+        );
 
         // 调用上传新照片的接口
         await apiClient.post("/photos/upload", formData, {

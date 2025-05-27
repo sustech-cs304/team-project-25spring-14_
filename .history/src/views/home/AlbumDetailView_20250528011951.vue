@@ -675,6 +675,7 @@ export default {
         formData.append("title", this.selectedPhoto.fileName);
         formData.append("tag", this.selectedPhoto.tag);
         formData.append("location", this.selectedPhoto.location);
+        formData.append("isFavorite", this.selectedPhoto.isFavorite);
         formData.append("capturedAt", this.selectedPhoto.capturedAt);
 
         console.log(this.selectedPhoto);

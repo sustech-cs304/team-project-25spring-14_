@@ -672,12 +672,7 @@ export default {
         formData.append("file", blob, "edited.png");
         formData.append("albumId", this.album.albumId); // 当前相册ID
         formData.append("userId", this.userId); // 当前用户ID
-        formData.append("title", this.selectedPhoto.fileName);
-        formData.append("tag", this.selectedPhoto.tag);
-        formData.append("location", this.selectedPhoto.location);
-        formData.append("capturedAt", this.selectedPhoto.capturedAt);
-
-        console.log(this.selectedPhoto);
+        formData.append("title", this.sel);
 
         // 调用上传新照片的接口
         await apiClient.post("/photos/upload", formData, {

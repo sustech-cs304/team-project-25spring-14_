@@ -17,7 +17,7 @@ public interface PhotoMapper extends BaseMapper<Photo> {
      * copy and deal with the enum type (it works really good)
      */
 
-    @Insert("INSERT INTO tb_photo(album_id, user_id, tag_name,title file_name, file_url, location, thumbnail_url, is_favorite, captured_at, created_at,post_id) " +
+    @Insert("INSERT INTO tb_photo(album_id, user_id, tag_name, file_name, file_url, location, thumbnail_url, is_favorite, captured_at, created_at,post_id) " +
             "VALUES(#{albumId}, #{userId}, #{tagName} ,#{fileName}, #{fileUrl}, #{location}, #{thumbnailUrl},#{isFavorite}, #{capturedAt}, #{createdAt}, #{postId})")
     @Options(useGeneratedKeys = true, keyProperty = "photoId")
     int insert(Photo photo);

@@ -63,7 +63,7 @@ export default {
       photos: null,
       images: [],
       location: "",
-      privacy: "PRIVATE",
+      privacy: "PUBLIC",
       showLocation: false,
       showPrivacy: false,
       isProcessing: false,

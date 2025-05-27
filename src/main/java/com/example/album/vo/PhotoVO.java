@@ -21,6 +21,8 @@ public class PhotoVO {
 
     private String tag;
 
+    private String title;
+
     private Boolean isFavorite;
 
     private String location;

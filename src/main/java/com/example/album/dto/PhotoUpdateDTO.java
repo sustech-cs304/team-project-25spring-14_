@@ -16,4 +16,6 @@ public class PhotoUpdateDTO {
     private String fileName;
 
     private String location;
+
+    private String title;
 }

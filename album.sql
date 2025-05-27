@@ -78,6 +78,7 @@ CREATE TABLE tb_photo
     album_id      INTEGER      NOT NULL,
     user_id       INTEGER      NOT NULL,
     tag_name      VARCHAR(50),
+    title         VARCHAR(100) NOT NULL,
     file_name     VARCHAR(255) NOT NULL,
     file_url      VARCHAR(255) NOT NULL,
     location VARCHAR(50) ,

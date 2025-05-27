@@ -67,7 +67,7 @@ public class PhotoController {
             Photo photo = new Photo();
             photo.setAlbumId(Math.toIntExact(uploadDTO.getAlbumId()));
             photo.setUserId(Math.toIntExact(userId));
-            photo.setFileName(uploadDTO.getTitle());
+            photo.setFileName(result.getOriginalFilename());
             photo.setFileUrl(result.getFileUrl());
             photo.setThumbnailUrl(result.getThumbnailUrl());
             photo.setLocation(uploadDTO.getLocation());

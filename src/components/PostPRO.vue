@@ -70,7 +70,7 @@ export default {
       caption: "",
       selectedPhotos: [],
       location: "",
-      privacy: "PRIVATE",
+      privacy: "PUBLIC",
       showLocation: false,
       showPhotoSelector: false,
     };

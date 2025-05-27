@@ -55,9 +55,6 @@
       <div class="chart-card">
         <div class="chart-header">
           <h3>照片分布</h3>
-          <el-button size="small" @click="toggleChartMode">
-            切换为 {{ chartMode === "tag" ? "地点" : "标签" }} 统计
-          </el-button>
           <div class="chart-legend">
             <span v-for="item in chartData" :key="item.name">
               <i :style="{ backgroundColor: item.color }"></i>
@@ -91,7 +88,6 @@ export default {
       myPhotoCounts: 0,
       myAlbumCounts: 0,
       latestPhoto: {},
-      chartMode: "tag",
     };
   },
   methods: {
@@ -126,13 +122,10 @@ export default {
         this.myAlbumCounts = albumsRes.data.data.count;
         this.latestPhoto = photosRes.data.data.photos[0];
 
-        const categoryCounts = {};
+        const tagCounts = {};
         photosRes.data.data.photos.forEach((photo) => {
-          const key =
-            this.chartMode === "tag"
-              ? (photo.tag || "其他").trim()
-              : (photo.location || "未知").trim();
-          categoryCounts[key] = (categoryCounts[key] || 0) + 1;
+          const tag = (photo.tag || "其他").trim();
+          tagCounts[tag] = (tagCounts[tag] || 0) + 1;
         });
 
         // 为每个标签分配随机颜色（或从固定色卡中选取）
@@ -149,24 +142,14 @@ export default {
           "#87CEEB",
         ];
         const colorMap = {};
-        Object.keys(categoryCounts).forEach((tag, index) => {
+        Object.keys(tagCounts).forEach((tag, index) => {
           colorMap[tag] = colors[index % colors.length];
         });
 
-        const grayColor = "#E2E8F0";
-        const otherLabels = ["其他", "未知"];
-        const entries = Object.entries(categoryCounts).sort((a, b) => {
-          const aIsOther = otherLabels.includes(a[0]);
-          const bIsOther = otherLabels.includes(b[0]);
-          if (aIsOther && !bIsOther) return 1;
-          if (!aIsOther && bIsOther) return -1;
-          return 0;
-        });
-
-        this.chartData = entries.map(([name, value]) => ({
+        this.chartData = Object.entries(tagCounts).map(([name, value]) => ({
           name,
           value,
-          color: otherLabels.includes(name) ? grayColor : colorMap[name],
+          color: colorMap[name],
         }));
 
         this.$nextTick(this.renderChart);
@@ -201,10 +184,6 @@ export default {
         color: this.chartData.map((i) => i.color),
       };
       this.chartInstance.setOption(option);
-    },
-    toggleChartMode() {
-      this.chartMode = this.chartMode === "tag" ? "location" : "tag";
-      this.fetchData();
     },
   },
   mounted() {

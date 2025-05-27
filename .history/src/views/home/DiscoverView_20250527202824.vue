@@ -56,7 +56,7 @@
         <div class="chart-header">
           <h3>照片分布</h3>
           <el-button size="small" @click="toggleChartMode">
-            切换为 {{ chartMode === "tag" ? "地点" : "标签" }} 统计
+            切换为 {{ chartMode === 'tag' ? '地点' : '标签' }} 统计
           </el-button>
           <div class="chart-legend">
             <span v-for="item in chartData" :key="item.name">
@@ -153,20 +153,10 @@ export default {
           colorMap[tag] = colors[index % colors.length];
         });
 
-        const grayColor = "#E2E8F0";
-        const otherLabels = ["其他", "未知"];
-        const entries = Object.entries(categoryCounts).sort((a, b) => {
-          const aIsOther = otherLabels.includes(a[0]);
-          const bIsOther = otherLabels.includes(b[0]);
-          if (aIsOther && !bIsOther) return 1;
-          if (!aIsOther && bIsOther) return -1;
-          return 0;
-        });
-
-        this.chartData = entries.map(([name, value]) => ({
+        this.chartData = Object.entries(categoryCounts).map(([name, value]) => ({
           name,
           value,
-          color: otherLabels.includes(name) ? grayColor : colorMap[name],
+          color: colorMap[name],
         }));
 
         this.$nextTick(this.renderChart);

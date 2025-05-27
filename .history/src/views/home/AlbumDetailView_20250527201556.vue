@@ -336,7 +336,7 @@ export default {
       photoMetaForm: {
         capturedAt: "",
         location: "",
-        title: "",
+        fileName: "",
       },
       photoUploadQueue: [],
       $loadingInstance: null,
@@ -420,7 +420,7 @@ export default {
             this.photoMetaForm.capturedAt + "T00:00:00"
           );
           formData.append("location", this.photoMetaForm.location);
-          formData.append("title", this.photoMetaForm.title);
+          formData.append("fileName", this.photoMetaForm.fileName);
 
           try {
             const response = await apiClient.post("/photos/upload", formData, {

@@ -139,9 +139,6 @@
           <el-form-item label="地点">
             <el-input v-model="filterCriteria.location" placeholder="地点" />
           </el-form-item>
-          <el-form-item label="主题">
-            <el-input v-model="filterCriteria.title" placeholder="主题" />
-          </el-form-item>
           <el-form-item label="收藏">
             <el-switch
               v-model="filterCriteria.isFavorite"
@@ -333,7 +330,6 @@ export default {
         endDate: "",
         tag: "",
         location: "",
-        title: "",
         isFavorite: null,
       },
       photoMetaDialogVisible: false,
@@ -714,14 +710,13 @@ export default {
   },
   computed: {
     filterPhotos() {
-      const { startDate, endDate, tag, location, isFavorite, title } =
+      const { startDate, endDate, tag, location, isFavorite } =
         this.filterCriteria;
       return (this.album.photos || []).filter((photo) => {
         // 取照片的日期部分（去掉T之后的时间）
         const date = photo.capturedAt ? photo.capturedAt.split("T")[0] : "";
         const photoTag = photo.tag === null ? "" : photo.tag;
         const photoLocation = photo.location === null ? "" : photo.location;
-        const photoTitle = photo.fileName === null ? "" : photo.fileName;
         if (startDate && date < startDate) return false;
         if (endDate && date > endDate) return false;
         if (
@@ -734,11 +729,6 @@ export default {
           !(photoLocation || "")
             .toLowerCase()
             .includes(location.trim().toLowerCase())
-        )
-          return false;
-        if (
-          title &&
-          !(photoTitle || "").toLowerCase().includes(title.trim().toLowerCase())
         )
           return false;
         if (isFavorite !== null && photo.isFavorite !== isFavorite)

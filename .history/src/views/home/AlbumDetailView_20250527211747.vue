@@ -113,6 +113,10 @@
           <el-button type="primary" @click="filterDialogVisible = true"
             >筛选</el-button
           >
+          <!-- 多选按钮 -->
+          <el-button type="info" @click="toggleMultiSelect">
+            {{ isMultiSelectMode ? "取消多选" : "多选" }}
+          </el-button>
         </div>
       </div>
       <div v-if="filterDialogVisible" class="filter-form">
@@ -162,7 +166,8 @@
           class="photo-card"
           v-for="photo in filterPhotos"
           :key="photo.photoId"
-          @click="openPhotoViewer(photo)"
+          :class="{ selected: isSelected(photo), selectable: isMultiSelectMode }"
+          @click="isMultiSelectMode ? togglePhotoSelection(photo) : openPhotoViewer(photo)"
         >
           <img
             v-if="!isVideo(photo.fileUrl)"
@@ -287,6 +292,25 @@ export default {
   data() {
     // Ensure $loadingInstance is in data for instance reference
     return {
+      isMultiSelectMode: false,
+      selectedPhotos: [],
+    toggleMultiSelect() {
+      this.isMultiSelectMode = !this.isMultiSelectMode;
+      if (!this.isMultiSelectMode) {
+        this.selectedPhotos = [];
+      }
+    },
+    togglePhotoSelection(photo) {
+      const index = this.selectedPhotos.findIndex(p => p.photoId === photo.photoId);
+      if (index >= 0) {
+        this.selectedPhotos.splice(index, 1);
+      } else {
+        this.selectedPhotos.push(photo);
+      }
+    },
+    isSelected(photo) {
+      return this.selectedPhotos.some(p => p.photoId === photo.photoId);
+    },
       isSelf: this.$route.query.isSelf === "true",
       isSelfPhoto: false,
       album: {
@@ -985,5 +1009,14 @@ export default {
 .add-icon {
   font-size: 36px;
   color: #9ca3af;
+}
+
+.photo-card.selectable {
+  cursor: pointer;
+  border: 2px dashed transparent;
+}
+.photo-card.selected {
+  border: 2px dashed #409eff;
+  background-color: rgba(64, 158, 255, 0.1);
 }
 </style>

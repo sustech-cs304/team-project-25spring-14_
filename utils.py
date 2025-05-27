@@ -84,7 +84,7 @@ def adjust_brightness(img_path, brightness=0, contrast=1.0):  # 调整亮度，�
 def ai_classify_image(image_path):  # 用AI来识别图片中是否有特定的物体
     model = YOLO('yolov8n.pt')
     # common_choises = ['person', 'car', 'dog', 'cat', 'book', 'airplane']
-    result = model.predict(image_path, verbose=False)
+    result = model.predict(image_path, conf= 0.95,verbose=False)
     detect = ''
     for box in result[0].boxes:
         class_id = int(box.cls[0].item())
